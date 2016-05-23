@@ -1,7 +1,21 @@
 language: node_js
 node_js:
   - "4.4.4"
+env:
+  global:
+    - CXX=g++-4.8 # node.js v > 4 requirements
+addons:
+  apt: # node.js v > 4 requirements
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+cache:
+  directories:
+  - oasp4js-sample/node_modules
 before_install:
+  - cd oasp4js-sample
   - npm install -g gulp
+test
 after_success:
   - cat ./test/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
