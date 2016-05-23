@@ -15,6 +15,5 @@ cache:
   - oasp4js-sample/node_modules
 before_install:
   - cd oasp4js-sample
-  - npm install -g gulp
 after_success:
-  - cat ./test/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+  - cat ./report/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
