@@ -1,12 +1,6 @@
 module.exports = function (config) {
 
-  /*var configuration = ;
-  
-  if (process.env.TRAVIS) {
-    configuration.browsers = ['Chrome_travis_ci'];
-  }*/
-
-  config.set({
+  var configuration = {
     basePath: '..',
     frameworks: ['jasmine'],
     plugins: [
@@ -42,8 +36,14 @@ module.exports = function (config) {
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: false,
+    autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: true
-  });
+    singleRun: false
+  };
+  
+  if (process.env.TRAVIS) {
+    configuration.browsers = ['Chrome_travis_ci'];
+  }
+
+  config.set(configuration);
 };
