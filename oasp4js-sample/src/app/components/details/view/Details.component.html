@@ -1,0 +1,52 @@
+<div style="float:left;">
+  <p><b>Status: </b>{{parentTable.getState()}}</p>
+</div>
+<div style="margin:50 0 90 0">
+  <div class="dropdown" style="float:right; margin:10px">
+    <button *ngIf="commandToAdd.getPrice() != null" class="btn btn-default" disabled="disabled">{{commandToAdd.getTitle()}}</button>
+    <button *ngIf="commandToAdd.getPrice() === null" class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Commands
+      <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li role="presentation" *ngFor=" let command of commands">
+        <a role="menuitem" tabindex="-1" style="cursor:pointer" (click)="commandToAdd = command">{{command.getTitle()}}</a>
+      </li>
+    </ul>
+    <!-- <select class="btn btn-default">
+      <option *ngFor="#command of commands" (click)="commandToAdd === command">{{command.title}}</option>
+    </select> -->
+    <button *ngIf="commandToAdd.getPrice() != null" class="btn btn-default" type="button" id="menu1" (click)="addCommand()">+Add</button>
+  </div>
+
+  <table class="table table-striped" style="cursor:pointer" *ngIf="!emptyTable">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Price</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let command of parentTable.getDirtyCommands()" (click)="clickedRow(command)">
+            <td [class.selected]="selectedCommand === command">{{command.getNumber()}}</td>
+            <td [class.selected]="selectedCommand === command">{{command.getTitle()}}</td>
+            <td [class.selected]="selectedCommand === command">{{command.getStatus()}}</td>
+            <td [class.selected]="selectedCommand === command">{{command.getPrice()}}€</td>
+            <td [class.selected]="selectedCommand === command">{{command.getComment()}}</td>
+        </tr>
+    </tbody>
+  </table>
+
+  <div style="float:left;">
+    <button *ngIf="selectedCommand.getNumber() != null" class="btn btn-default" (click)="removeCommand()">Remove</button>
+  </div>
+</div>
+<div *ngIf="emptyTable">
+  <p style="text-align:center;"><b>No commands on this Table</b></p>
+  <p style="text-align:center;">Please start adding one.</p>
+</div>
+<div style="text-align:right;" class="modal-footer">
+  <button class="btn btn-primary" data-dismiss="modal" (click)="submit()">Submit</button>
+  <button class="btn btn-warning" data-dismiss="modal" (click)="cancel()">Cancel</button>
+</div>

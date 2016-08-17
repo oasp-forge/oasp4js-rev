@@ -1,0 +1,100 @@
+<!-- Show details of the table -->  
+<div>
+    <div class="modal-header">
+        <h3 class="modal-title">Table Details #{{id}}</h3>
+    </div>
+    <div class="modal-body">
+        <form name="forms.tableForm" novalidate>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <label>Status</label>&nbsp;
+                    <span>{{TABLE.status}}</span> <!-- change to state -->
+                </div>
+            </div>
+           <div class="page-header">
+                <h4>Order</h4>
+            </div>
+            <div class="row" [hidden]="noOrderAssigned" >
+                <div class="col-md-12">
+                     <div class="alert alert-info" role="alert"> No order currently assigned to this table.
+                       <!-- <a (click)="assignNewOrder()">Assign a new order...</a>-->
+                    </div>
+                </div>
+            </div>
+               <div [hidden]="orderAssigned" >
+                <div class="row">
+                    <div class="col-md-12">
+                        <label>FREE</label>&nbsp; 
+                    </div>
+                </div> 
+               <div class="row">
+                    <div class="col-md-1">
+                        <label>Order Positions:</label>&nbsp;
+                    </div>
+                    <div class="col-md-2" > 
+                       <select (change)="onChange($event)" id="positions" ([ngModel])="selectedOption"> 
+                            <option disabled selected hidden="true">Select offer...</option>
+                            <option [ngValue]="opt" *ngFor="let opt of OFFERS" >{{opt.description}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        <button [disabled]="!isSelectedOption()" class="btn btn-sm btn-primary" (click)="addPosition()">
+                        +Add
+                        </button>
+                        &nbsp;
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <table id="OrderPositions" class="raw-table"> <!-- TODO -> OrderBy -->
+                            <tr> 
+                                <th field-name="id" width="7em">Number</th>
+                                <th field-name="offerName">Title</th>
+                                <th field-name="state">Status</th>
+                                <th field-name="price">Price</th> <!-- TODO -> Price function -->
+                                <th field-name="comment">Comment</th>
+                            <tr>    
+                            <tr *ngFor="let position of POSITIONS" (click)="onItemClick(position)" selected> 
+                                <td> 
+                                  {{position.number}}  
+                                </td>
+                                <td>
+                                  {{position.offer.name}} 
+                                </td>
+                                <td> 
+                                  {{position.state}} 
+                                </td>
+                                <td>
+                                  {{position.offer.price}}  
+                                </td>
+                                <td>
+                                  {{position.comment}} 
+                                </td>
+                            </tr>  
+                        </table> 
+                        <div class="btn-group btn-group-sm" role="group">   
+                            <!--<button-bar [buttonDefs]=buttonDefs ></button-bar> -->
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button *ngFor="let buttonDef of buttonDefs"
+                                        (click)="onButtonClick(buttonDef)"
+                                        [disabled]="isButtonDisabled(buttonDef)"
+                                        class="btn btn-sm btn-default">
+                                        <!-- TODO: Include translatable -->
+                                    <span data-ng-hide="isLabelTranslatable" data-ng-bind="buttonDef.label"></span>
+                                    <span data-ng-show="isLabelTranslatable" translate>{{buttonDef.label}}</span>
+                                </button>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+                <!-- <pagination [totalItems]="bigTotalItems" [(ngModel)]="bigCurrentPage" [maxSize]="maxSize" class="pagination-sm" [boundaryLinks]="true"></pagination>
+            -->
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-warning">Cancel</button>
+    </div> 
+</div>

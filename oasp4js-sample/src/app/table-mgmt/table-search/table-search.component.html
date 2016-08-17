@@ -1,0 +1,33 @@
+<!-- Show search form and the result of the search -->
+
+<div class="row">
+    <div class="col-md-12">
+        <table id="OrderPositions" class="raw-table"> <!-- TODO -> OrderBy -->
+            <tr>
+                <th field-name="number" width="7em">Number</th>
+                <th field-name="state" >State</th>
+                <th field-name="waiter" >Waiter</th>
+            </tr> 
+            <tr *ngFor="let table of TABLES" (click)="onItemClick(table)" selected> 
+                <td> 
+                  {{table.id}}  
+                </td> 
+                <td> 
+                  {{table.state}} 
+                </td> 
+                <td>
+                  {{table.waiter}} 
+                </td>
+            </tr>  
+        </table> 
+        <br> 
+        <button *ngFor="let buttonDef of buttonDefs"
+            (click)="onButtonClick(buttonDef)"
+            [disabled]="isButtonDisabled(buttonDef)"
+            class="btn btn-sm btn-default">
+            <!-- TODO: Include translatable -->
+        	<span data-ng-hide="isLabelTranslatable" data-ng-bind="buttonDef.label"></span>
+        	<span data-ng-show="isLabelTranslatable" translate>{{buttonDef.label}}</span>
+    	</button>
+    </div>
+</div> 

@@ -1,0 +1,14 @@
+<div class="loginContainer">
+  <h1>This is the login to the devonfw restaurant example application as technical showcase for an AngularJS client.</h1>
+  <div>
+    <img src="app/img/login_logo.png">
+  </div>
+  <div class="cuadroUsuario">
+    <h2>Sign in</h2>
+    <!-- <input style="margin:10px;" type="string" class="form-control" [(ngModel)]=user.username placeholder="username">
+    <input style="margin:10px;" type="password" class="form-control" [(ngModel)]=user.password placeholder="password"> -->
+    <input [(ngModel)]=user.username (keyup.enter)="validateLogin()" style="margin-top:10px; margin-bottom:10px;" type="string" class="form-control" placeholder="User Name">
+    <input [(ngModel)]=user.password (keyup.enter)="validateLogin()" style="margin-top:10px; margin-bottom:10px;" type="password" class="form-control" placeholder="Password">
+    <button class="btn btn-success" style="margin-top:10px; margin-bottom:10px;" type="submit" (click)="validateLogin()">Sign in</button>
+  </div>
+</div>

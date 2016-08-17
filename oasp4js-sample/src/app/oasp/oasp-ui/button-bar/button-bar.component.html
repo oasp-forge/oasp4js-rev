@@ -1,0 +1,8 @@
+<div class="btn-group btn-group-sm" role="group"> 
+    <button *ngFor="let buttonDef of buttonDefs"  
+        (click)="onButtonClick(buttonDef)"
+        [disabled]="isButtonDisabled(buttonDef)"
+        [class]="buttonDef.class">
+    	<span [hidden]="buttonDef.hidden">{{buttonDef.label}}</span>
+	</button>
+</div>

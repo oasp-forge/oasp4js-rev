@@ -1,0 +1,32 @@
+<div class ="header-restaurant">
+  <label class ="header-title"> <a> Restaurant Sample Application </a> </label>
+
+  <ul *ngIf="logged" class = "header-tabs">
+    <li role = "presentation">
+      <a> Tables </a>
+    </li>
+    <li role = "presentation">
+      <a> Kitchen </a>
+    </li>
+  </ul>
+
+<div class = "header-right">
+
+  <div class="dropdown">
+
+    <button class="userList" type="button" (click) ="openMenu()" data-toggle="dropdown">
+      <img  class ="icon" [src]="currentIcon">
+        {{currentLanguage}}
+      <span class="caret"></span></button>
+
+    <ul class="dropdown-menu dropdown-menu-right" [hidden] = "dropmenu" id ="dropMenuId">
+      <li (click) ="changeLanguage()"><a> <img  class ="icon" [src]="optionIcon"> {{optionLanguage}}</a></li>
+    </ul>
+
+  </div>
+
+
+  <span *ngIf="logged"> Logged in as : {{username}} </span>
+  <button type="button" class = "btn btn-primary" *ngIf="logged" (click) = "logOff()"> Log off </button>
+</div>
+</div>

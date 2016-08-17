@@ -1,0 +1,17 @@
+<div [hidden]="!modal" style= "position:absolute; left: 0px; top: 0px; width:100%; height:100%; background-color: grey; opacity: 0.6;"></div>
+<div class="modal-dialog modal-lg">
+	<div class="modal-content">
+		<div class="modal-header"> 
+			<h3 class="modal-title">{{getTitle()}}</h3>
+	        <div [innerHTML]="getHeader()"></div>
+	    </div>
+
+	    <div class="modal-body"> 
+	    	<div [innerHTML]="getBody()"></div>
+	    </div>
+
+	    <div class="modal-footer"> 
+	    	<button-bar [buttonDefs]="getButtons()"></button-bar>
+	    </div>  
+	<div>
+</div> 

@@ -1,0 +1,15 @@
+<div class="btn-group" role="group">
+  <button type="button" class="btn" (click) ="changePage(1, 1)" [disabled]="currentPage === 1"> << </button>
+  <button type="button" class="btn" (click) ="changePage(pageView - 4, pageView - 4)" *ngIf="pageView > 4"> ... </button>
+  <button type="button" class="btn" (click) ="changePage(currentPage - 1, 0)" [disabled]="currentPage === 1"> Previous </button>
+
+
+  <button type="button" class="btn" (click) ="changePage(pageView)" [disabled]="currentPage === pageView">{{pageView}}</button>
+  <button type="button" class="btn" (click) ="changePage(pageView + 1)" *ngIf="numberPages > 1 && pageView + 1 <= numberPages" [disabled]="currentPage === pageView + 1">{{pageView + 1}}</button>
+  <button type="button" class="btn" (click) ="changePage(pageView + 2)" *ngIf="numberPages > 2 && pageView + 2 <= numberPages" [disabled]="currentPage === pageView + 2">{{pageView + 2}}</button>
+  <button type="button" class="btn" (click) ="changePage(pageView + 3)" *ngIf="numberPages > 3 && pageView + 3 <= numberPages" [disabled]="currentPage === pageView + 3">{{pageView + 3}}</button>
+
+  <button type="button" class="btn" (click) ="changePage(pageView + 4, pageView + 4)" *ngIf="pageView + 4 <= numberPages"> ... </button>
+  <button type="button" class="btn" (click) ="changePage(currentPage + 1, 0)" [disabled]="currentPage === numberPages"> Next </button>
+  <button type="button" class="btn" (click) ="changePage(numberPages, numberPages - (numberPages % 4) + 1)" [disabled]="currentPage === numberPages"> >> </button>
+</div>
