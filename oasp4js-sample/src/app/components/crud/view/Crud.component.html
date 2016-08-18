@@ -20,7 +20,9 @@
         <!-- 1 = FREE -->
 	    	<template [ngSwitchWhen]="1">
           <div class="btn-group" role="group">
-            <button type="button" class="btn" data-toggle="modal" (click)="openEdition()" data-target="#edition">Edit</button>
+            <!-- data-target="#edition" -->
+            <button type="button" class="btn" data-toggle="modal" (click)="openEdition()">Edit</button>
+            <!-- <button (click)="openEdition()">Edit</button> -->
             <button type="button" class="btn" (click)="reserve()">Reserve</button>
             <button type="button" class="btn" disabled="disabled">Cancel Reservation</button>
             <button type="button" class="btn" (click)="occupy()">Occupy</button>
@@ -31,7 +33,8 @@
         <!-- 2 = OCCUPIED -->
         <template [ngSwitchWhen]="2">
           <div class="btn-group" role="group">
-            <button type="button" class="btn" data-toggle="modal" data-target="#edition">Edit</button>
+            <button type="button" class="btn" data-toggle="modal" (click)="openEdition()">Edit</button>
+            <!-- <button type="button" class="btn" data-toggle="modal" data-target="#edition">Edit</button> -->
             <button type="button" class="btn" disabled="disabled">Reserve</button>
             <button type="button" class="btn" disabled="disabled">Cancel Reservation</button>
             <button type="button" class="btn" disabled="disabled">Occupy</button>
@@ -42,7 +45,8 @@
         <!-- 3 = RESERVED -->
         <template [ngSwitchWhen]="3">
           <div class="btn-group" role="group">
-            <button type="button" class="btn" data-toggle="modal" data-target="#edition">Edit</button>
+            <button type="button" class="btn" data-toggle="modal" (click)="openEdition()">Edit</button>
+            <!-- <button type="button" class="btn" data-toggle="modal" data-target="#edition">Edit</button> -->
             <button type="button" class="btn" disabled="disabled">Reserve</button>
             <button type="button" class="btn" (click)="cancelReservation()">Cancel Reservation</button>
             <button type="button" class="btn" (click)="occupy()">Occupy</button>
@@ -52,7 +56,9 @@
 
 	    	<template ngSwitchDefault>
           <div class="btn-group" role="group">
-            <button type="button" class="btn" data-toggle="modal" data-target="#edition" disabled="disabled">Edit</button>
+             <!-- data-target="#edition"  -->
+             <button type="button" class="btn" data-toggle="modal" (click)="openEdition()">Edit</button>
+            <!-- <button type="button" class="btn" data-toggle="modal" disabled="disabled">Edit</button> -->
             <button type="button" class="btn" disabled="disabled">Reserve</button>
             <button type="button" class="btn" disabled="disabled">Cancel Reservation</button>
             <button type="button" class="btn" disabled="disabled">Occupy</button>
@@ -60,6 +66,36 @@
           </div>
         </template>
 	    </div>
+
+      <!-- <button class="btn btn-primary" (click)="lgModal.show()">Large modal</button>
+
+      <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" (click)="lgModal.hide()" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title">Large modal</h4>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <!-- PRUEBA MODAL DE OASP -->
+      <modal-dialog id="modal-dialog"
+    		[hidden]=true
+    		[modal]=true
+    		[TITLE]="dialog_header"
+        [BODY]=nameComponent
+    		[BUTTONS]=dialog_buttons
+        [parentTable]=selectedTable>
+    	</modal-dialog>
+
+      <!-- /PRUEBA MODAL DE OASP-->
 
       <!-- WINDOW -->
       <div class="container">

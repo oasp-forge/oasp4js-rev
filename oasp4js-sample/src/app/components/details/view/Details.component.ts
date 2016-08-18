@@ -79,10 +79,12 @@ export class DetailsComponent {
 
   cancel(){
     this.parentTable.setDirtyCommands(this.parentTable.getCommand());
+    document.getElementById("modal-dialog").hidden = !document.getElementById("modal-dialog").hidden;
   }
 
   submit(){
     this.parentTable.setCommand(this.parentTable.getDirtyCommands());
+    document.getElementById("modal-dialog").hidden = !document.getElementById("modal-dialog").hidden;
   }
 
 }
