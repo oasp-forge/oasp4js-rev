@@ -7,4 +7,3 @@ if (environment.production) {
 }
 
 bootstrap(Oasp4jsSampleAppComponent);
-

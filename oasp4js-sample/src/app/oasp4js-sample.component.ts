@@ -6,7 +6,6 @@ import { CrudComponent } from './components/crud/view/Crud.component'
 
 import { User } from './models/user/User.model'
 
-
 @Component({
   moduleId: module.id,
   selector: 'oasp4js-sample-app',
