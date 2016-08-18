@@ -1,3 +1,16 @@
-<h1>
-  {{title}}
-</h1>
+<header [logged]="login" [username] ="usuario.username" (logOffEvent)="login = $event"></header>
+
+<div class = "app-body">
+  <!-- LOGIN -->
+  <div *ngIf="!login">
+    <login (loginEvent)="enviar($event)" (userEvent)="usuario=$event"></login>
+  </div>
+
+  <!-- APPLICATION -->
+  <div *ngIf="login">
+    <h2>Tables</h2>
+    <crud></crud>
+  </div>
+</div>
+
+<label class ="footer">@OASP 2015</label>

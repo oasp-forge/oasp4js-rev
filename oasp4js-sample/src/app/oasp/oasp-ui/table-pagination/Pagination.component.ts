@@ -5,7 +5,7 @@ import {EventEmitter} from '@angular/core'
   selector:'pagination',
   templateUrl:'app/oasp/oasp-ui/table-pagination/Pagination.component.html',
   inputs:['list', 'rowsPerPage'],
-  outputs: ['listEmitter']
+  outputs: ['paginationList']
 })
 
 export class PaginationComponent implements OnInit{
@@ -19,7 +19,7 @@ export class PaginationComponent implements OnInit{
   rowsPerPage: number;
   numberPages: number;
 
-  listEmitter = new EventEmitter();
+  paginationList = new EventEmitter();
 
   ngOnInit(){
     if(this.rowsPerPage > this.list.length){
@@ -29,7 +29,7 @@ export class PaginationComponent implements OnInit{
     this.showList = this.list.slice(0, this.rowsPerPage);
 
     this.numberPages = Math.ceil(this.list.length / this.rowsPerPage);
-    this.listEmitter.emit(this.showList)
+    this.paginationList.emit(this.showList)
   }
 
   changePage(page: number, view: number){
@@ -53,6 +53,6 @@ export class PaginationComponent implements OnInit{
     } else{
       this.showList = this.list.slice( this.rowsPerPage * (this.currentPage - 1), this.rowsPerPage * (this.currentPage - 1) + this.rowsPerPage);
     }
-    this.listEmitter.emit(this.showList)
+    this.paginationList.emit(this.showList)
   }
 }

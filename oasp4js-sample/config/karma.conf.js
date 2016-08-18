@@ -1,11 +1,16 @@
 module.exports = function (config) {
-
-  var configuration = {
+  'use strict';
+  config.set({
     basePath: '..',
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'browserify'],
     plugins: [
       require('karma-jasmine'),
-      require('karma-chrome-launcher')
+      require('karma-chrome-launcher'),
+      require('karma-coverage'),
+      require('karma-browserify'),
+      require('karma-mocha-reporter'),
+      require('karma-phantomjs-launcher'),
+      require('mocha')
     ],
     customLaunchers: {
       // chrome setup for travis CI using chromium
@@ -21,7 +26,7 @@ module.exports = function (config) {
       { pattern: 'dist/vendor/systemjs/dist/system-polyfills.js', included: true, watched: false },
       { pattern: 'dist/vendor/systemjs/dist/system.src.js', included: true, watched: false },
       { pattern: 'dist/vendor/zone.js/dist/async-test.js', included: true, watched: false },
-
+      
       { pattern: 'config/karma-test-shim.js', included: true, watched: true },
 
       // Distribution folder.
@@ -31,19 +36,47 @@ module.exports = function (config) {
       // Vendor packages might include spec files. We don't want to use those.
       'dist/vendor/**/*.spec.js'
     ],
-    preprocessors: {},
-    reporters: ['progress'],
+
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: false,
-    browsers: ['Chrome'],
-    singleRun: true
-  };
-  
-  if (process.env.TRAVIS) {
-    configuration.browsers = ['Chrome_travis_ci'];
-  }
+    autoWatch: true,
+    browsers: [
+      'PhantomJS'
+    ],
+    singleRun: true,
 
-  config.set(configuration);
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    preprocessors: {
+      '**/*.ts': ['browserify']
+    },
+
+    browserify: {
+      debug: true,
+      transform: [
+        ['browserify-istanbul', {
+          instrumenter: require('isparta'),
+          ignore: ['**/*.spec.ts','**/*.d.ts'],
+        }]
+      ],
+      plugin: [
+        ['tsify']
+      ]
+    },
+
+    // options on how to report coverage:
+    coverageReporter: {
+      reporters: [
+        {type: 'text'},
+        {type: 'lcov', dir: 'report/coverage', subdir: '.'}
+      ]
+    },
+
+    // test results reporter to use
+    // possible values: 'dots', 'progress'
+    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+    reporters: ['mocha', 'coverage'],
+   
+  });
 };
