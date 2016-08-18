@@ -4,13 +4,15 @@
 <div style="margin:50 0 90 0">
   <div class="dropdown" style="float:right; margin:10px">
     <button *ngIf="commandToAdd.getPrice() != null" class="btn btn-default" disabled="disabled">{{commandToAdd.getTitle()}}</button>
-    <button *ngIf="commandToAdd.getPrice() === null" class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Commands
+    <button *ngIf="commandToAdd.getPrice() === null" class="btn btn-default dropdown-toggle" type="button" (click)="openMenu()" id="menu1" data-toggle="dropdown">Commands
       <span class="caret"></span></button>
-    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+    <ul class="my-dropdown" role="menu"  [hidden]= "viewMenu" aria-labelledby="menu1">
       <li role="presentation" *ngFor=" let command of commands">
         <a role="menuitem" tabindex="-1" style="cursor:pointer" (click)="commandToAdd = command">{{command.getTitle()}}</a>
       </li>
     </ul>
+
+
     <!-- <select class="btn btn-default">
       <option *ngFor="#command of commands" (click)="commandToAdd === command">{{command.title}}</option>
     </select> -->

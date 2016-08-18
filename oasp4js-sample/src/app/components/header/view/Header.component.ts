@@ -24,7 +24,6 @@ export class HeaderComponent {
 
     openMenu(){
       this.dropmenu = !this.dropmenu;
-      document.getElementById("dropMenuId").hidden = this.dropmenu;
     }
 
     changeLanguage(){

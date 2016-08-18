@@ -19,11 +19,17 @@ export class DetailsComponent {
   public commandToAdd:Command = new Command(null, '', '', null, '');
   public selectedCommand:Command = new Command(null, '', '', null, '');
   public emptyTable = false;
+  public viewMenu: boolean = true;
   // constructor(private detailsService:DetailsService){
   //   // this.commands = this.parentTable.getCommand();
   // }
 
+  openMenu(){
+    this.viewMenu = !this.viewMenu;
+  }
+
   addCommand(){
+    this.viewMenu = !this.viewMenu;
     let n = 0;
     for(let i = 0; i < this.parentTable.getDirtyCommands().length; i ++){
       if(this.parentTable.getDirtyCommands()[i].getNumber() > n){
