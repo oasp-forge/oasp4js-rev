@@ -6966,24 +6966,24 @@ tr.selected {
 /*-------------MAIN APP STYLES-------------*/
 .header-restaurant {
   color: grey !important;
-  background-color: black !important;
+  background-color: #030303 !important;
   height: 50px !important;
 }
 
-.header-restaurant .header-right{
+.header-right{
+  margin-top: 8px;
   float: right !important;
+  display: inline-flex;
 }
 
-.header-restaurant .header-right span{
+.header-right .headerInfo{
+  margin-top: 8px;
   margin-right: 50px !important;
+  margin-left: -30px !important;
 }
 
-.header-restaurant .header-right button{
+.header-right button{
   margin-right : 50px;
-}
-
-.header-restaurant .header-right .userList button{
-  background: none;
 }
 
 .header-restaurant .header-title {
@@ -7048,19 +7048,39 @@ tr.selected {
 
 /*-------------DROPDOWNLIST-------------*/
 
-.header-restaurant .header-right .icon {
+.header-right .icon {
   height: 16px !important;
   width: 20px !important;
+}
+
+.header-right .languageSelection {
+  background-color: white;
+}
+
+.header-right .languageList li {
+  list-style: none;
 }
 
 .header-restaurant .header-right .userList{
   width: auto;
   display: -webkit-inline-box !important;
-  margin-top:13px !important;
-  margin-right: 30px !important;
+  margin-top:7px !important;
+  margin-right: 70px !important;
   background: none !important;
   border: none !important;
   font-size: 16px !important;
+}
+
+.userList:hover {
+    color: white !important;
+}
+
+.userList:hover {
+    color: white !important;
+}
+
+.userList:focus {
+    outline: none !important;
 }
 
 .header-restaurant .header-right .dropdown {
@@ -7068,18 +7088,36 @@ tr.selected {
   color: grey !important;
 }
 
-.dropdown:hover {
-  color: white !important;
-}
 
 .header-restaurant .header-right .dropdown ul {
-  float:right;
   background-color: white !important;
-  margin-top: 40px !important;
-  margin-right: 80px !important;
-  background: none !important;
-  border: none !important;
   font-size: 16px !important;
+}
+
+.header-restaurant .header-right .dropdown ul:hover {
+    background-color: #f9f9f9 !important;
+}
+
+.my-dropdown{
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  min-width: 160px;
+  margin: 2px 0 0;
+  list-style: none;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background-clip: padding-box;
+  padding:  12px 10px 12px 10px;
+}
+
+.my-dropdown li a:hover{
+  text-decoration: none;
 }
 
 /*-----------TABLE STYLE --------*/

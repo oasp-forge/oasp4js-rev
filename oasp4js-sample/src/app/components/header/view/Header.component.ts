@@ -12,7 +12,7 @@ import {languages} from '../../../resources/languages/Languages.resource'
 export class HeaderComponent {
     logged: boolean = false;
     username: string;
-    dropmenu:boolean = false;
+    dropmenu:boolean = true;
 
     currentIcon:string = languages[0].iconUrl;
     currentLanguage: string = languages[0].name;
@@ -36,6 +36,8 @@ export class HeaderComponent {
       aux = this.currentIcon;
       this.currentIcon = this.optionIcon;
       this.optionIcon = aux;
+
+      this.dropmenu = !this.dropmenu;
     }
 
     logOff(){

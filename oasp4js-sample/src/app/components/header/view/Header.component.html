@@ -19,14 +19,14 @@
         {{currentLanguage}}
       <span class="caret"></span></button>
 
-    <ul class="dropdown-menu dropdown-menu-right" [hidden] = "dropmenu" id ="dropMenuId">
+    <ul class="my-dropdown" [hidden] = "dropmenu" id ="dropMenuId">
       <li (click) ="changeLanguage()"><a> <img  class ="icon" [src]="optionIcon"> {{optionLanguage}}</a></li>
     </ul>
 
   </div>
 
 
-  <span *ngIf="logged"> Logged in as : {{username}} </span>
+  <span class="headerInfo" *ngIf="logged"> Logged in as : {{username}} </span>
   <button type="button" class = "btn btn-primary" *ngIf="logged" (click) = "logOff()"> Log off </button>
 </div>
 </div>
