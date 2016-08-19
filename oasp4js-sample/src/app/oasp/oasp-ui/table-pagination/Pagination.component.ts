@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, OnInit, OnChanges} from '@angular/core'
 import {EventEmitter} from '@angular/core'
 
 @Component({
@@ -8,7 +8,7 @@ import {EventEmitter} from '@angular/core'
   outputs: ['paginationList']
 })
 
-export class PaginationComponent implements OnInit{
+export class PaginationComponent implements OnChanges{
 
   list;
   showList;
@@ -21,12 +21,12 @@ export class PaginationComponent implements OnInit{
 
   paginationList = new EventEmitter();
 
-  ngOnInit(){
+  ngOnChanges(){
     if(this.rowsPerPage > this.list.length){
       this.rowsPerPage = this.list.length;
     }
 
-    this.showList = this.list.slice(0, this.rowsPerPage);
+    this.showList = this.list.slice(this.rowsPerPage * (this.currentPage - 1), this.rowsPerPage * (this.currentPage - 1) + this.rowsPerPage);
 
     this.numberPages = Math.ceil(this.list.length / this.rowsPerPage);
     this.paginationList.emit(this.showList)
