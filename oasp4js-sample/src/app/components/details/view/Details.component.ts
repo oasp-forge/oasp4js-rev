@@ -49,12 +49,6 @@ export class DetailsComponent {
     this.parentTable.addDirtyCommand(c);
     this.emptyTable = false;
     this.commandToAdd = new Command(null, '', '', null, '');
-
-    console.log("////////// ADD COMMAND //////////");
-    console.log("Commands");
-    console.log(this.parentTable.getCommand());
-    console.log("DirtyCommands");
-    console.log(this.parentTable.getDirtyCommands());
   }
 
   clickedRow(valor){
@@ -71,12 +65,6 @@ export class DetailsComponent {
     if(this.parentTable.getDirtyCommands().length === 0){
       this.emptyTable = true;
     }
-
-    console.log("////////// REMOVE COMMAND //////////");
-    console.log("Commands");
-    console.log(this.parentTable.getCommand());
-    console.log("DirtyCommands");
-    console.log(this.parentTable.getDirtyCommands());
   }
 
   resetSelectedCommand(){
@@ -85,12 +73,12 @@ export class DetailsComponent {
 
   cancel(){
     this.parentTable.setDirtyCommands(this.parentTable.getCommand());
-    document.getElementById("modal-dialog").hidden = !document.getElementById("modal-dialog").hidden;
+    // document.getElementById("modal-dialog").hidden = !document.getElementById("modal-dialog").hidden;
   }
 
   submit(){
     this.parentTable.setCommand(this.parentTable.getDirtyCommands());
-    document.getElementById("modal-dialog").hidden = !document.getElementById("modal-dialog").hidden;
+    // document.getElementById("modal-dialog").hidden = !document.getElementById("modal-dialog").hidden;
   }
 
 }

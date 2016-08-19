@@ -5883,13 +5883,13 @@ button.close {
   border: 0;
   -webkit-appearance: none;
 }
-.modal-open {
+/*.modal-open {
   overflow: hidden;
 }
 .modal {
   display: none;
   overflow: hidden;
-  /*position: fixed;*/
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
@@ -6006,7 +6006,9 @@ button.close {
   .modal-lg {
     width: 900px;
   }
-}
+}*/
+
+
 .tooltip {
   position: absolute;
   z-index: 1070;
@@ -7142,4 +7144,25 @@ tr.selected {
   font-weight: bold;
   font-size: 13px;
   width:60%;
+}
+
+/*---------MODAL---------*/
+
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
 }
