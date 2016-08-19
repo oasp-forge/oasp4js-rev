@@ -10,15 +10,26 @@ export class CrudService{
     return this.tables;
   }
 
-  getTablesOrderByNumber(){
+  getTablesOrderByNumber(dir){
     let tables = this.tables.slice();
     tables.sort((n1,n2) => {
-      if (n1.number > n2.number) {
-          return 1;
-      }
+      if(dir === "asc"){
+        if (n1.number < n2.number) {
+            return 1;
+        }
 
-      if (n1.number < n2.number) {
-          return -1;
+        if (n1.number > n2.number) {
+            return -1;
+        }
+      } else {
+        debugger
+        if (n1.number > n2.number) {
+            return 1;
+        }
+
+        if (n1.number < n2.number) {
+            return -1;
+        }
       }
 
       return 0;
@@ -27,32 +38,51 @@ export class CrudService{
     return tables;
   }
 
-  getTablesOrderByState(){
+  getTablesOrderByState(dir){
     let tables = this.tables.slice();
     tables.sort((n1,n2) => {
-      if (n1.state > n2.state) {
-          return 1;
-      }
+      if(dir === "asc"){
+        if (n1.state < n2.state) {
+            return 1;
+        }
 
-      if (n1.state < n2.state) {
-          return -1;
-      }
+        if (n1.state > n2.state) {
+            return -1;
+        }
+      } else {
+        if (n1.state > n2.state) {
+            return 1;
+        }
 
+        if (n1.state < n2.state) {
+            return -1;
+        }
+      }
       return 0;
     });
 
     return tables;
   }
 
-  getTablesOrderByWaiter(){
+  getTablesOrderByWaiter(dir){
     let tables = this.tables.slice();
     tables.sort((n1,n2) => {
-      if (n1.waiter > n2.waiter) {
-          return 1;
-      }
+      if(dir === "asc"){
+        if (n1.waiter < n2.waiter) {
+            return 1;
+        }
 
-      if (n1.waiter < n2.waiter) {
-          return -1;
+        if (n1.waiter > n2.waiter) {
+            return -1;
+        }
+      } else {
+        if (n1.waiter > n2.waiter) {
+            return 1;
+        }
+
+        if (n1.waiter < n2.waiter) {
+            return -1;
+        }
       }
 
       return 0;

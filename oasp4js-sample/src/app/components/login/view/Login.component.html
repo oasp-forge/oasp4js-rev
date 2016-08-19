@@ -17,12 +17,12 @@
           <div [hidden]="user.valid || user.pristine" class ="login-alert">
             Please enter your username
           </div>
-          <input type="text" style="margin-bottom:10px;" #usernameLogin class="form-control" required ngControl="username"  #user="ngForm">
+          <input placeholder="User name" type="text" style="margin-bottom:10px;" #usernameLogin class="form-control" required ngControl="username"  #user="ngForm">
 
           <div [hidden]="pass.valid || pass.pristine" class ="login-alert">
             Please enter your password
           </div>
-          <input type="text" style="margin-bottom:10px;" #passwordLogin class="form-control" required ngControl="password"  #pass="ngForm">
+          <input type="text" placeholder="Password" style="margin-bottom:10px;" #passwordLogin class="form-control" required ngControl="password"  #pass="ngForm">
 
       </div>
       <button type="submit" class="btn  btn-success" [disabled]="!loginForm.form.valid">Submit</button>
