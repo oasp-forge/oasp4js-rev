@@ -6007,6 +6007,8 @@ button.close {
     width: 900px;
   }
 }*/
+
+
 .tooltip {
   position: absolute;
   z-index: 1070;
@@ -7134,4 +7136,25 @@ tr.selected {
   font-weight: bold;
   font-size: 13px;
   width:60%;
+}
+
+/*---------MODAL---------*/
+
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
 }
