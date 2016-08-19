@@ -7018,7 +7018,7 @@ tr.selected {
 }
 
 .cuadroUsuario{
-  width:30% !important;
+  width:45% !important;
 }
 
 
@@ -7123,4 +7123,15 @@ tr.selected {
 /*-----------TABLE STYLE --------*/
 .table td.selected {
   background-color: #88CFE3 !important;
+}
+
+/***********LOGIN ALERTS**********/
+.login-alert {
+  background-color: #E86B6B;
+  padding-left: 8px;
+  color: white;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 13px;
+  width:60%;
 }
