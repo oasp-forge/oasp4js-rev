@@ -1,16 +1,10 @@
 module.exports = function (config) {
-  'use strict';
   config.set({
     basePath: '..',
-    frameworks: ['jasmine', 'browserify'],
+    frameworks: ['jasmine'],
     plugins: [
       require('karma-jasmine'),
-      require('karma-chrome-launcher'),
-      require('karma-coverage'),
-      require('karma-browserify'),
-      require('karma-mocha-reporter'),
-      require('karma-phantomjs-launcher'),
-      require('mocha')
+      require('karma-chrome-launcher')
     ],
     customLaunchers: {
       // chrome setup for travis CI using chromium
@@ -36,47 +30,13 @@ module.exports = function (config) {
       // Vendor packages might include spec files. We don't want to use those.
       'dist/vendor/**/*.spec.js'
     ],
-
+    preprocessors: {},
+    reporters: ['progress'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: [
-      'PhantomJS'
-    ],
-    singleRun: true,
-
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      '**/*.ts': ['browserify']
-    },
-
-    browserify: {
-      debug: true,
-      transform: [
-        ['browserify-istanbul', {
-          instrumenter: require('isparta'),
-          ignore: ['**/*.spec.ts','**/*.d.ts'],
-        }]
-      ],
-      plugin: [
-        ['tsify']
-      ]
-    },
-
-    // options on how to report coverage:
-    coverageReporter: {
-      reporters: [
-        {type: 'text'},
-        {type: 'lcov', dir: 'report/coverage', subdir: '.'}
-      ]
-    },
-
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['mocha', 'coverage'],
-
+    browsers: ['Chrome'],
+    singleRun: false
   });
 };

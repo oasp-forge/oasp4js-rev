@@ -54,7 +54,7 @@ export class CrudComponent{
 
   public tables:Table[];
   public showTables: Table[];
-  public tablesPerPage: number = 2;
+  public tablesPerPage: number = 4;
 
   public sortIconState:boolean = false;
   public sortIconStyle = ["glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down"];
