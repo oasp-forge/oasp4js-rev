@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter} from '@angular/core'
+import {Component, Output, EventEmitter, OnInit} from '@angular/core'
 import {Table} from '../../../models/table/Table.model'
 import {commandsList} from '../../../resources/commands/Commands.resource'
 import {Command} from '../../../models/command/Command.model'
@@ -9,11 +9,14 @@ import {DetailsService} from '../service/Details.service'
   selector:'tableDetails',
   templateUrl:'app/components/details/view/Details.component.html',
   inputs:['parentTable'],
-  outputs:['resultEvent']
+  outputs:['resultEvent', 'parentTableEvent']
 })
 
-export class DetailsComponent {
-  resultEvent:EventEmitter<boolean> = new EventEmitter<boolean>();
+export class DetailsComponent implements OnInit{
+  resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
+  // parentTableEvent:EventEmitter<Table> = new EventEmitter<Table>();
+  parentTableEvent = new EventEmitter<Table>();
+
   public parentTable:Table;
   public commands:Command[] = commandsList;
   public commandToAdd:Command = new Command(null, '', '', null, '');
@@ -24,11 +27,16 @@ export class DetailsComponent {
   //   // this.commands = this.parentTable.getCommand();
   // }
 
+  ngOnInit(){
+    debugger
+  }
+
   openMenu(){
     this.viewMenu = !this.viewMenu;
   }
 
   addCommand(){
+    this.emptyTable = false;
     this.viewMenu = !this.viewMenu;
     let n = 0;
     for(let i = 0; i < this.parentTable.getDirtyCommands().length; i ++){
@@ -47,7 +55,6 @@ export class DetailsComponent {
       '...'
     );
     this.parentTable.addDirtyCommand(c);
-    this.emptyTable = false;
     this.commandToAdd = new Command(null, '', '', null, '');
   }
 
@@ -73,12 +80,12 @@ export class DetailsComponent {
 
   cancel(){
     this.parentTable.setDirtyCommands(this.parentTable.getCommand());
-    // document.getElementById("modal-dialog").hidden = !document.getElementById("modal-dialog").hidden;
   }
 
   submit(){
     this.parentTable.setCommand(this.parentTable.getDirtyCommands());
-    // document.getElementById("modal-dialog").hidden = !document.getElementById("modal-dialog").hidden;
+    // this.parentTableEvent.emit(this.parentTable);
+    this.resultEvent.emit(this.parentTable);
   }
 
 }

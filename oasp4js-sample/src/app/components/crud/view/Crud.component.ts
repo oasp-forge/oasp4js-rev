@@ -81,7 +81,7 @@ export class CrudComponent{
         this.sortIconStyle[2] = "glyphicon glyphicon-chevron-down";
         this.sortIconStyle[column] = "glyphicon glyphicon-chevron-up";
     }
-    
+
     switch(column){
       case 0:
         this.tables = this.crudService.getTablesOrderByNumber();
@@ -142,5 +142,10 @@ export class CrudComponent{
         this.myState = 3;
       }
     }
+  }
+
+  resetTable(valor){
+    let index = this.crudService.getTables().indexOf(this.selectedTable);
+    this.crudService.getTables()[index] = valor;
   }
 }
