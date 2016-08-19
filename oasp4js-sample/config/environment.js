@@ -8,4 +8,3 @@ module.exports = function(environment) {
     locationType: 'auto'
   };
 };
-

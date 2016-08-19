@@ -71,39 +71,17 @@ export class CrudComponent{
     this.myState = 0;
   }
 
-  sortColumn(column:number){
+  sortColumn(column:number, name:string){
 
     if(this.sortIconStyle[column] === "glyphicon glyphicon-chevron-up"){
         this.sortIconStyle[column] = "glyphicon glyphicon-chevron-down";
+        this.tables = this.crudService.getTablesOrderBy(-1, name);
     } else {
         this.sortIconStyle[0] = "glyphicon glyphicon-chevron-down";
         this.sortIconStyle[1] = "glyphicon glyphicon-chevron-down";
         this.sortIconStyle[2] = "glyphicon glyphicon-chevron-down";
         this.sortIconStyle[column] = "glyphicon glyphicon-chevron-up";
-    }
-
-    switch(column){
-      case 0:
-        if(this.sortIconStyle[column] === "glyphicon glyphicon-chevron-up"){
-          this.tables = this.crudService.getTablesOrderByNumber("asc");
-        } else {
-          this.tables = this.crudService.getTablesOrderByNumber("desc");
-        }
-      break;
-      case 1:
-        if(this.sortIconStyle[column] === "glyphicon glyphicon-chevron-up"){
-          this.tables = this.crudService.getTablesOrderByState("asc");
-        } else {
-          this.tables = this.crudService.getTablesOrderByState("desc");
-        }
-      break;
-      case 2:
-        if(this.sortIconStyle[column] === "glyphicon glyphicon-chevron-up"){
-          this.tables = this.crudService.getTablesOrderByWaiter("asc");
-        } else {
-          this.tables = this.crudService.getTablesOrderByWaiter("desc");
-        }
-      break;
+        this.tables = this.crudService.getTablesOrderBy(1, name);
     }
 
   }
