@@ -6964,7 +6964,9 @@ tr.selected {
 
 
 
-/* RESTAURANT */
+/************************RESTAURANT *********************************/
+
+
 /*-------------MAIN APP STYLES-------------*/
 .header-restaurant {
   color: grey !important;
@@ -7125,6 +7127,12 @@ tr.selected {
 /*-----------TABLE STYLE --------*/
 .table td.selected {
   background-color: #88CFE3 !important;
+}
+
+.table th a {
+  float:right;
+  margin-right: 5px;
+  text-decoration: none;
 }
 
 /***********LOGIN ALERTS**********/

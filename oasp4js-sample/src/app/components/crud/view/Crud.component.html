@@ -1,9 +1,9 @@
 <form id="firstOptionForm">
 <table class="table table-striped" style="cursor:pointer">
       <thead>
-          <th>Number</th>
-          <th>State</th>
-          <th>Waiter</th>
+          <th (click) = "sortColumn(0)" > Number <a [class]="sortIconStyle[0]"></a></th>
+          <th (click) = "sortColumn(1)"  > State  <a [class]="sortIconStyle[1]"></a></th>
+          <th (click) = "sortColumn(2)" > Waiter <a [class]="sortIconStyle[2]"></a></th>
       </thead>
       <tbody>
           <tr *ngFor="let table of showTables" #row (click)=clickedRow(table)>

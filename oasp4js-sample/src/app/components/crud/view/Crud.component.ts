@@ -37,7 +37,7 @@ export class CrudComponent{
     {
         label: 'Cancel',
         onClick: function (context) {
-          document.getElementById("modal-dialog").hidden = true ;
+          this.hideModalDialog = !this.hideModalDialog;
         },
         isActive: function (context) {
             return true;
@@ -56,6 +56,10 @@ export class CrudComponent{
   public showTables: Table[];
   public tablesPerPage: number = 4;
 
+  public sortIconState:boolean = false;
+  public sortIconStyle = ["glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down"];
+  public hideModalDialog = true;
+
   arr:Command[];
 
   public myState;
@@ -67,8 +71,33 @@ export class CrudComponent{
     this.myState = 0;
   }
 
+  sortColumn(column:number){
+
+    if(this.sortIconStyle[column] === "glyphicon glyphicon-chevron-up"){
+        this.sortIconStyle[column] = "glyphicon glyphicon-chevron-down";
+    } else {
+        this.sortIconStyle[0] = "glyphicon glyphicon-chevron-down";
+        this.sortIconStyle[1] = "glyphicon glyphicon-chevron-down";
+        this.sortIconStyle[2] = "glyphicon glyphicon-chevron-down";
+        this.sortIconStyle[column] = "glyphicon glyphicon-chevron-up";
+    }
+    
+    switch(column){
+      case 0:
+        this.tables = this.crudService.getTablesOrderByNumber();
+      break;
+      case 1:
+        this.tables = this.crudService.getTablesOrderByState();
+      break;
+      case 2:
+        this.tables = this.crudService.getTablesOrderByWaiter();
+      break;
+    }
+
+  }
+
   openEdition(){
-    document.getElementById("modal-dialog").hidden = !document.getElementById("modal-dialog").hidden;
+    this.hideModalDialog = !this.hideModalDialog;
   }
 
   pagination(value){
