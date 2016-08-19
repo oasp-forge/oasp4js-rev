@@ -14,35 +14,27 @@ export class LoginComponent{
   loginEvent:EventEmitter<boolean> = new EventEmitter<boolean>();
   userEvent:EventEmitter<User> = new EventEmitter<User>();
 
-  user:User = new User(null, '', '');
+  user:User;
   public n: number = 1;
+  loginFailed:boolean = true;
 
   constructor(
     private loginService:LoginService
   ){ }
 
-  private validateLogin(){
+  private hideAlertLogin(){
+    this.loginFailed = !this.loginFailed;
+  }
 
-    if(this.user.username === null || this.user.password === null ||
-      this.user.username.length === 0 || this.user.password.length === 0){
-
-      this.loginEvent.emit(false);
-      console.log("YOU MUST FILL EVERY FIELD!")
-      // alert("YOU MUST FILL EVERY FIELD!")
-    }
-    else{
+  private validateLogin(username, password){
+      this.user = new User(null, username, password);
       if(this.loginService.loginCorrect(this.user)){
         this.loginEvent.emit(true);
         this.user.setId(this.loginService.getIdFromParams(this.user.username, this.user.password));
         this.userEvent.emit(this.user);
-        console.log("WELCOME BACK "+ this.user.username.toUpperCase() +"!")
-        // alert("WELCOME BACK "+ this.user.username.toUpperCase() +"!")
       }
       else{
-        this.loginEvent.emit(false);
-        console.log("YOU'RE NOT LOGGED YET!")
-        // alert("YOU'RE NOT LOGGED YET!")
+        this.loginFailed = false;
       }
     }
-  }
 }

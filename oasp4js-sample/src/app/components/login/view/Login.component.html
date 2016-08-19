@@ -3,12 +3,29 @@
   <div>
     <img src="app/img/login_logo.png">
   </div>
-  <div class="cuadroUsuario">
-    <h2>Sign in</h2>
-    <!-- <input style="margin:10px;" type="string" class="form-control" [(ngModel)]=user.username placeholder="username">
-    <input style="margin:10px;" type="password" class="form-control" [(ngModel)]=user.password placeholder="password"> -->
-    <input [(ngModel)]=user.username (keyup.enter)="validateLogin()" style="margin-top:10px; margin-bottom:10px;" type="string" class="form-control" placeholder="User Name">
-    <input [(ngModel)]=user.password (keyup.enter)="validateLogin()" style="margin-top:10px; margin-bottom:10px;" type="password" class="form-control" placeholder="Password">
-    <button class="btn btn-success" style="margin-top:10px; margin-bottom:10px;" type="submit" (click)="validateLogin()">Sign in</button>
-  </div>
+
+  <form (ngSubmit)="validateLogin(usernameLogin.value, passwordLogin.value)" #loginForm="ngForm">
+      <h2>Sign in</h2>
+
+      <div class="cuadroUsuario">
+
+          <div [hidden]="loginFailed" class="alert alert-danger">
+            <a href="#" class="close" (click) ="hideAlertLogin()">&times;</a>
+            Authentication failed. Please try again!
+          </div>
+
+          <div [hidden]="user.valid || user.pristine" class ="login-alert">
+            Please enter your username
+          </div>
+          <input type="text" style="margin-bottom:10px;" #usernameLogin class="form-control" required ngControl="username"  #user="ngForm">
+
+          <div [hidden]="pass.valid || pass.pristine" class ="login-alert">
+            Please enter your password
+          </div>
+          <input type="text" style="margin-bottom:10px;" #passwordLogin class="form-control" required ngControl="password"  #pass="ngForm">
+
+      </div>
+      <button type="submit" class="btn  btn-success" [disabled]="!loginForm.form.valid">Submit</button>
+  </form>
+
 </div>
