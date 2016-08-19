@@ -11,6 +11,7 @@ html {
 }
 body {
   margin: 0;
+  position:relative; /* CAMBIADO */
 }
 article,
 aside,
@@ -5989,7 +5990,7 @@ button.close {
   height: 50px;
   overflow: scroll;
 }
-@media (min-width: 768px) {
+/*@media (min-width: 768px) {
   .modal-dialog {
     width: 600px;
     margin: 30px auto;
@@ -6006,7 +6007,7 @@ button.close {
   .modal-lg {
     width: 900px;
   }
-}
+}*/
 .tooltip {
   position: absolute;
   z-index: 1070;
@@ -7123,4 +7124,31 @@ tr.selected {
 /*-----------TABLE STYLE --------*/
 .table td.selected {
   background-color: #88CFE3 !important;
+}
+
+/*----------- TEST OWN MODAL --------*/
+.modal {
+    /* some styles to position the modal at the center of the page */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    line-height: 200px;
+    height: 200px;
+    margin-left: -150px;
+    margin-top: -100px;
+    background-color: #f1c40f;
+    text-align: center;
+
+    /* needed styles for the overlay */
+    z-index: 10; /* keep on top of other elements on the page */
+    outline: 9999px solid rgba(0,0,0,0.5);
+}
+
+html, body {
+  min-height: 100%;
+}
+
+body {
+  position: relative;
 }
