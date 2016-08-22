@@ -7166,3 +7166,34 @@ tr.selected {
   text-align: left;
   vertical-align: middle;
 }
+
+/************** PAGINATION ****************/
+
+.btn-pagination {
+  background-color: white;
+  border: 1px solid #E3E3E3 !important;
+  color: #E3E3E3;
+}
+
+.btn-pagination.selected {
+  background-color: #0076FC;
+  color: white !important;
+}
+
+
+.btn-pagination[disabled] {
+  color: grey;
+}
+
+.btn-pagination[disabled]:hover {
+  color: grey;
+}
+
+.btn-pagination:not([disabled]) {
+  color: #257C99;
+}
+
+.btn-pagination:not([disabled]):hover {
+  color: #257C99;
+  background-color: #F0F0F0;
+}
