@@ -14,7 +14,7 @@ import { User } from './models/user/User.model'
   directives: [LoginComponent, HeaderComponent, CrudComponent]
 })
 export class Oasp4jsSampleAppComponent{
-  title = "oasp4js-sample works";
+  title = "oasp4js-sample works!";
   public login:boolean
   public usuario: User = new User(0,"","");
 
