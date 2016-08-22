@@ -21,12 +21,12 @@
 	    	<template [ngSwitchWhen]="1">
           <div class="btn-group" role="group">
             <!-- data-target="#edition" -->
-            <button type="button" class="btn" data-toggle="modal" data-target="#myModal">Edit</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Edit</button>
             <!-- <button (click)="openEdition()">Edit</button> -->
-            <button type="button" class="btn" (click)="reserve()">Reserve</button>
-            <button type="button" class="btn" disabled="disabled">Cancel Reservation</button>
-            <button type="button" class="btn" (click)="occupy()">Occupy</button>
-            <button type="button" class="btn" disabled="disabled">Free</button>
+            <button type="button" class="btn btn-primary" (click)="reserve()">Reserve</button>
+            <button type="button" class="btn btn-primary" disabled="disabled">Cancel Reservation</button>
+            <button type="button" class="btn btn-primary" (click)="occupy()">Occupy</button>
+            <button type="button" class="btn btn-primary" disabled="disabled">Free</button>
           </div>
         </template>
 
@@ -75,7 +75,7 @@
                 <h3 class="modal-title" style="float:left;">Details for Table #{{selectedTable.number}}</h3>
               </div>
               <div class="modal-body">
-                <tableDetails [parentTable]="selectedTable" (parentTableEvent)="selectedTable = $event" (resultEvent)="resetTable($event)"></tableDetails>
+                <tableDetails [parentTable]="selectedTable" (resultEvent)="resetTable($event)"></tableDetails>
               </div>
             </div>
           </div>

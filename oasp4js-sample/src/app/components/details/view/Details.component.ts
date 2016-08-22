@@ -12,24 +12,24 @@ import {DetailsService} from '../service/Details.service'
   outputs:['resultEvent', 'parentTableEvent']
 })
 
-export class DetailsComponent implements OnInit{
+export class DetailsComponent{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   // parentTableEvent:EventEmitter<Table> = new EventEmitter<Table>();
   parentTableEvent = new EventEmitter<Table>();
 
   public parentTable:Table;
+
+  public tableForOperations:Table;
+
   public commands:Command[] = commandsList;
   public commandToAdd:Command = new Command(null, '', '', null, '');
   public selectedCommand:Command = new Command(null, '', '', null, '');
   public emptyTable = false;
   public viewMenu: boolean = true;
-  // constructor(private detailsService:DetailsService){
-  //   // this.commands = this.parentTable.getCommand();
-  // }
-
-  ngOnInit(){
-    debugger
+  constructor(private detailsService:DetailsService){
+    this.tableForOperations = this.parentTable;
   }
+
 
   openMenu(){
     this.viewMenu = !this.viewMenu;
@@ -39,9 +39,9 @@ export class DetailsComponent implements OnInit{
     this.emptyTable = false;
     this.viewMenu = !this.viewMenu;
     let n = 0;
-    for(let i = 0; i < this.parentTable.getDirtyCommands().length; i ++){
-      if(this.parentTable.getDirtyCommands()[i].getNumber() > n){
-        n = this.parentTable.getDirtyCommands()[i].getNumber();
+    for(let i = 0; i < this.tableForOperations.getDirtyCommands().length; i ++){
+      if(this.tableForOperations.getDirtyCommands()[i].getNumber() > n){
+        n = this.tableForOperations.getDirtyCommands()[i].getNumber();
       }
     }
     if(n === 0){
@@ -54,7 +54,7 @@ export class DetailsComponent implements OnInit{
       this.commandToAdd.getPrice(),
       '...'
     );
-    this.parentTable.addDirtyCommand(c);
+    this.tableForOperations.addDirtyCommand(c);
     this.commandToAdd = new Command(null, '', '', null, '');
   }
 
@@ -67,9 +67,9 @@ export class DetailsComponent implements OnInit{
   }
 
   removeCommand(){
-    this.parentTable.removeDirtyCommand(this.selectedCommand);
+    this.tableForOperations.removeDirtyCommand(this.selectedCommand);
     this.selectedCommand = new Command(null,'','',null,'');
-    if(this.parentTable.getDirtyCommands().length === 0){
+    if(this.tableForOperations.getDirtyCommands().length === 0){
       this.emptyTable = true;
     }
   }
@@ -79,11 +79,12 @@ export class DetailsComponent implements OnInit{
   }
 
   cancel(){
-    this.parentTable.setDirtyCommands(this.parentTable.getCommand());
+    this.tableForOperations.setDirtyCommands(this.tableForOperations.getCommand());
   }
 
   submit(){
-    this.parentTable.setCommand(this.parentTable.getDirtyCommands());
+    this.tableForOperations.setCommand(this.tableForOperations.getDirtyCommands());
+    this.parentTable = this.tableForOperations;
     // this.parentTableEvent.emit(this.parentTable);
     this.resultEvent.emit(this.parentTable);
   }
