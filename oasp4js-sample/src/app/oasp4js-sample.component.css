@@ -7176,10 +7176,9 @@ tr.selected {
 }
 
 .btn-pagination.selected {
-  background-color: #0076FC;
+  background-color: #007EA8;
   color: white !important;
 }
-
 
 .btn-pagination[disabled] {
   color: grey;
@@ -7190,10 +7189,10 @@ tr.selected {
 }
 
 .btn-pagination:not([disabled]) {
-  color: #257C99;
+  color: #007EA8;
 }
 
 .btn-pagination:not([disabled]):hover {
-  color: #257C99;
+  color: #007EA8;
   background-color: #F0F0F0;
 }
