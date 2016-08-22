@@ -7,4 +7,5 @@ import {commandsList} from '../../../resources/commands/Commands.resource'
 @Injectable()
 export class DetailsService{
   commands : Command[] = commandsList;
+  _commands : Command[];
 }

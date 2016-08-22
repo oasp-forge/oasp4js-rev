@@ -20,47 +20,43 @@
         <!-- 1 = FREE -->
 	    	<template [ngSwitchWhen]="1">
           <div class="btn-group" role="group">
-            <!-- data-target="#edition" -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Edit</button>
-            <!-- <button (click)="openEdition()">Edit</button> -->
-            <button type="button" class="btn btn-primary" (click)="reserve()">Reserve</button>
-            <button type="button" class="btn btn-primary" disabled="disabled">Cancel Reservation</button>
-            <button type="button" class="btn btn-primary" (click)="occupy()">Occupy</button>
-            <button type="button" class="btn btn-primary" disabled="disabled">Free</button>
+            <button type="button" class="btn btn-pagination" data-toggle="modal" data-target="#myModal">Edit</button>
+            <button type="button" class="btn btn-pagination" (click)="reserve()">Reserve</button>
+            <button type="button" class="btn btn-pagination" disabled="disabled">Cancel Reservation</button>
+            <button type="button" class="btn btn-pagination" (click)="occupy()">Occupy</button>
+            <button type="button" class="btn btn-pagination" disabled="disabled">Free</button>
           </div>
         </template>
 
         <!-- 2 = OCCUPIED -->
         <template [ngSwitchWhen]="2">
           <div class="btn-group" role="group">
-            <button type="button" class="btn" data-toggle="modal" data-target="#myModal">Edit</button>
-            <!-- <button type="button" class="btn" data-toggle="modal" data-target="#edition">Edit</button> -->
-            <button type="button" class="btn" disabled="disabled">Reserve</button>
-            <button type="button" class="btn" disabled="disabled">Cancel Reservation</button>
-            <button type="button" class="btn" disabled="disabled">Occupy</button>
-            <button type="button" class="btn" (click)="free()">Free</button>
+            <button type="button" class="btn btn-pagination" data-toggle="modal" data-target="#myModal">Edit</button>
+            <button type="button" class="btn btn-pagination" disabled="disabled">Reserve</button>
+            <button type="button" class="btn btn-pagination" disabled="disabled">Cancel Reservation</button>
+            <button type="button" class="btn btn-pagination" disabled="disabled">Occupy</button>
+            <button type="button" class="btn btn-pagination" (click)="free()">Free</button>
           </div>
         </template>
 
         <!-- 3 = RESERVED -->
         <template [ngSwitchWhen]="3">
           <div class="btn-group" role="group">
-            <button type="button" class="btn" data-toggle="modal" data-target="#myModal">Edit</button>
-            <!-- <button type="button" class="btn" data-toggle="modal" data-target="#edition">Edit</button> -->
-            <button type="button" class="btn" disabled="disabled">Reserve</button>
-            <button type="button" class="btn" (click)="cancelReservation()">Cancel Reservation</button>
-            <button type="button" class="btn" (click)="occupy()">Occupy</button>
-            <button type="button" class="btn" disabled="disabled">Free</button>
+            <button type="button" class="btn btn-pagination" data-toggle="modal" data-target="#myModal">Edit</button>
+            <button type="button" class="btn btn-pagination" disabled="disabled">Reserve</button>
+            <button type="button" class="btn btn-pagination" (click)="cancelReservation()">Cancel Reservation</button>
+            <button type="button" class="btn btn-pagination" (click)="occupy()">Occupy</button>
+            <button type="button" class="btn btn-pagination" disabled="disabled">Free</button>
           </div>
         </template>
 
 	    	<template ngSwitchDefault>
           <div class="btn-group" role="group">
-            <button type="button" class="btn" data-toggle="modal" data-target="#myModal" disabled="disabled">Edit</button>
-            <button type="button" class="btn" disabled="disabled">Reserve</button>
-            <button type="button" class="btn" disabled="disabled">Cancel Reservation</button>
-            <button type="button" class="btn" disabled="disabled">Occupy</button>
-            <button type="button" class="btn" disabled="disabled">Free</button>
+            <button type="button" class="btn btn-pagination" data-toggle="modal" data-target="#myModal" disabled="disabled">Edit</button>
+            <button type="button" class="btn btn-pagination" disabled="disabled">Reserve</button>
+            <button type="button" class="btn btn-pagination" disabled="disabled">Cancel Reservation</button>
+            <button type="button" class="btn btn-pagination" disabled="disabled">Occupy</button>
+            <button type="button" class="btn btn-pagination" disabled="disabled">Free</button>
           </div>
         </template>
 	    </div>
@@ -75,7 +71,7 @@
                 <h3 class="modal-title" style="float:left;">Details for Table #{{selectedTable.number}}</h3>
               </div>
               <div class="modal-body">
-                <tableDetails [parentTable]="selectedTable" (resultEvent)="resetTable($event)"></tableDetails>
+                <tableDetails [parentTable]="selectedTable" (parentTableEvent)="selectedTable = $event" (resultEvent)="resetTable($event)" [_commands]="_commands"></tableDetails>
               </div>
             </div>
           </div>

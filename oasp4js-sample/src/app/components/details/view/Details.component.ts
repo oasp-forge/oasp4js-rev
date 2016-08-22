@@ -8,40 +8,44 @@ import {DetailsService} from '../service/Details.service'
 @Component({
   selector:'tableDetails',
   templateUrl:'app/components/details/view/Details.component.html',
-  inputs:['parentTable'],
+  inputs:['parentTable', '_commands'],
   outputs:['resultEvent', 'parentTableEvent']
 })
 
-export class DetailsComponent{
+export class DetailsComponent implements OnInit{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   // parentTableEvent:EventEmitter<Table> = new EventEmitter<Table>();
   parentTableEvent = new EventEmitter<Table>();
-
   public parentTable:Table;
-
-  public tableForOperations:Table;
-
+  public dirtyTable:Table = new Table(0,'','',null,null);
   public commands:Command[] = commandsList;
   public commandToAdd:Command = new Command(null, '', '', null, '');
   public selectedCommand:Command = new Command(null, '', '', null, '');
   public emptyTable = false;
   public viewMenu: boolean = true;
-  constructor(private detailsService:DetailsService){
-    this.tableForOperations = this.parentTable;
+
+  public _commands;
+
+  ngOnInit(){
   }
 
+  constructor(){
+    // this.dirtyTable = this.parentTable;
+  }
 
   openMenu(){
     this.viewMenu = !this.viewMenu;
   }
 
   addCommand(){
-    this.emptyTable = false;
+    if(this._commands.length === 0){
+      this.emptyTable = false;
+    }
     this.viewMenu = !this.viewMenu;
     let n = 0;
-    for(let i = 0; i < this.tableForOperations.getDirtyCommands().length; i ++){
-      if(this.tableForOperations.getDirtyCommands()[i].getNumber() > n){
-        n = this.tableForOperations.getDirtyCommands()[i].getNumber();
+    for(let i = 0; i < this._commands.length; i ++){
+      if(this._commands[i].number > n){
+        n = this._commands[i].number;
       }
     }
     if(n === 0){
@@ -54,7 +58,9 @@ export class DetailsComponent{
       this.commandToAdd.getPrice(),
       '...'
     );
-    this.tableForOperations.addDirtyCommand(c);
+    
+    this._commands.push(c);
+
     this.commandToAdd = new Command(null, '', '', null, '');
   }
 
@@ -67,9 +73,12 @@ export class DetailsComponent{
   }
 
   removeCommand(){
-    this.tableForOperations.removeDirtyCommand(this.selectedCommand);
+    let index = this._commands.indexOf(this.selectedCommand);
+    this._commands.splice(index,1);
+    // this.parentTable.removeDirtyCommand(this.selectedCommand);
     this.selectedCommand = new Command(null,'','',null,'');
-    if(this.tableForOperations.getDirtyCommands().length === 0){
+
+    if(this._commands.length === 0){
       this.emptyTable = true;
     }
   }
@@ -79,13 +88,12 @@ export class DetailsComponent{
   }
 
   cancel(){
-    this.tableForOperations.setDirtyCommands(this.tableForOperations.getCommand());
+    this._commands = this.parentTable.commands;
+    this.resultEvent.emit(this.parentTable);
   }
 
   submit(){
-    this.tableForOperations.setCommand(this.tableForOperations.getDirtyCommands());
-    this.parentTable = this.tableForOperations;
-    // this.parentTableEvent.emit(this.parentTable);
+    this.parentTable.commands = this._commands;
     this.resultEvent.emit(this.parentTable);
   }
 

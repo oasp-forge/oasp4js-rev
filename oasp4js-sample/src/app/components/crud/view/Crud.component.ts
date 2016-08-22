@@ -5,19 +5,45 @@ import {DetailsComponent} from '../../details/view/Details.component'
 import {Command} from '../../../models/command/Command.model'
 import {PaginationComponent} from '../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import { ModalDialogComponent } from '../../../oasp/oasp-ui/modal-dialog/modal-dialog.component'
-// import {MODAL_DIRECTIVES, BS_VIEW_PROVIDERS} from 'ng2-bootstrap/ng2-bootstrap';
 
 @Component({
   selector:'crud',
   templateUrl:'app/components/crud/view/Crud.component.html',
   providers:[CrudService],
-  // directives:[DetailsComponent, PaginationComponent, ModalDialogComponent, MODAL_DIRECTIVES],
   directives:[DetailsComponent, PaginationComponent, ModalDialogComponent],
-  // viewProviders:[BS_VIEW_PROVIDERS],
 })
 
 export class CrudComponent{
   public selectedTable:Table = new Table(0,'','',this.arr, this.arr);
+  /********* PRUEBA MODAL DE OASP *************/
+  // dialog_header:String = "Details for Table #" + this.selectedTable.getNumber().toString();
+  // public componentLoaded = "tableDetails";
+  //
+  // dialog_buttons:Object = [
+  //   {
+  //       label: 'Accept',
+  //       onClick: function (context) {
+  //         console.log("ACEPTAR");
+  //       },
+  //       isActive: function (context) {
+  //           return true;
+  //       },
+  //       class: 'btn btn-primary',
+  //       hidden: false
+  //   },
+  //   {
+  //       label: 'Cancel',
+  //       onClick: function (context) {
+  //         this.hideModalDialog = !this.hideModalDialog;
+  //       },
+  //       isActive: function (context) {
+  //           return true;
+  //       },
+  //       class: 'btn btn-warning',
+  //       hidden: false
+  //   }
+  // ];
+  /**********************************/
 
   returnThisValue(value){
     return value;
@@ -25,7 +51,7 @@ export class CrudComponent{
 
   public tables:Table[];
   public showTables: Table[];
-  public tablesPerPage: number = 2;
+  public tablesPerPage: number = 4;
 
   public sortIconState:boolean = false;
   public sortIconStyle = ["glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down"];
@@ -34,6 +60,8 @@ export class CrudComponent{
   arr:Command[];
 
   public myState;
+
+  public _commands:Command[];
 
   constructor(
     private crudService:CrudService
@@ -53,9 +81,7 @@ export class CrudComponent{
         this.sortIconStyle[2] = "glyphicon glyphicon-chevron-down";
         this.sortIconStyle[column] = "glyphicon glyphicon-chevron-up";
         this.tables = this.crudService.getTablesOrderBy(1, name);
-
     }
-
   }
 
   openEdition(){
@@ -94,6 +120,7 @@ export class CrudComponent{
       this.myState = 0;
     } else {
       this.selectedTable = valor;
+      this._commands = JSON.parse(JSON.stringify(this.selectedTable.commands));
       if(this.selectedTable.state === "FREE"){
         this.myState = 1;
       }
@@ -107,7 +134,9 @@ export class CrudComponent{
   }
 
   resetTable(valor){
-    let index = this.crudService.getTables().indexOf(this.selectedTable);
-    this.crudService.getTables()[index] = valor;
+    this.selectedTable = new Table(0,'','',this.arr, this.arr);
+    this.myState = 0;
+    // let index = this.crudService.getTables().indexOf(this.selectedTable);
+    // this.crudService.getTables()[index] = valor;
   }
 }
