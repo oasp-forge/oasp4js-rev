@@ -19,7 +19,7 @@ export class Oasp4jsSampleAppComponent{
   public usuario: User = new User(0,"","");
 
   enviar(value){
-    setTimeout(()=>{this.login = value;},1);
+    setTimeout( ()=>{this.login = value;},1);
   }
 
   logOut(){

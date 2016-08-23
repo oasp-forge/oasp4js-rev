@@ -7196,3 +7196,20 @@ tr.selected {
   color: #007EA8;
   background-color: #F0F0F0;
 }
+
+/**************** FILTERS **************/
+
+.filter input {
+  display: inline-flex;
+  width: auto !important;
+}
+
+.filter .right{
+  margin-top: 10px;
+  display: block !important;
+  text-align: right !important;
+}
+
+.filter .form-flex{
+  width: 100%;
+}
