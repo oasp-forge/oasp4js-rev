@@ -3,13 +3,14 @@ import {Table} from '../../../models/table/Table.model'
 import {commandsList} from '../../../resources/commands/Commands.resource'
 import {Command} from '../../../models/command/Command.model'
 import {DetailsService} from '../service/Details.service'
-
+import {PaginationComponent} from '../../../oasp/oasp-ui/table-pagination/Pagination.component'
 
 @Component({
   selector:'tableDetails',
   templateUrl:'app/components/details/view/Details.component.html',
   inputs:['parentTable', '_commands'],
-  outputs:['resultEvent', 'parentTableEvent']
+  outputs:['resultEvent', 'parentTableEvent'],
+  directives:[PaginationComponent],
 })
 
 export class DetailsComponent implements OnInit{
@@ -23,6 +24,7 @@ export class DetailsComponent implements OnInit{
   public selectedCommand:Command = new Command(null, '', '', null, '');
   public emptyTable = false;
   public viewMenu: boolean = true;
+  public commandsPerPage = 4;
 
   public _commands;
 
