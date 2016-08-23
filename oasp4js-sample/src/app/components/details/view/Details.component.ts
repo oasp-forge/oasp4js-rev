@@ -60,7 +60,7 @@ export class DetailsComponent implements OnInit{
       this.commandToAdd.getPrice(),
       '...'
     );
-    
+
     this._commands.push(c);
 
     this.commandToAdd = new Command(null, '', '', null, '');

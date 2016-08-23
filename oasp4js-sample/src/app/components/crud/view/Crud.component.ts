@@ -14,6 +14,7 @@ import { ModalDialogComponent } from '../../../oasp/oasp-ui/modal-dialog/modal-d
 })
 
 export class CrudComponent{
+  message = "crud.component is working!"
   public selectedTable:Table = new Table(0,'','',this.arr, this.arr);
   /********* PRUEBA MODAL DE OASP *************/
   // dialog_header:String = "Details for Table #" + this.selectedTable.getNumber().toString();

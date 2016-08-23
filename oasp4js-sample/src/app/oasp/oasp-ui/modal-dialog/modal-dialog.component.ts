@@ -1,8 +1,32 @@
-import { Component, Input, OnInit, Injectable, DynamicComponentLoader, Injector } from '@angular/core';
+import { 
+    Component, 
+    Input, 
+    OnInit, 
+    Injectable, 
+    DynamicComponentLoader, 
+    Injector, 
+    ElementRef 
+} from '@angular/core';
 import { ButtonBarComponent } from '../button-bar/button-bar.component'
 import { DetailsComponent } from '../../../components/details/view/Details.component'
 import { LoginComponent } from '../../../components/login/view/Login.component'
 import { Table } from '../../../models/table/Table.model'
+
+function compileToComponent(template, directives) {
+  @Component({ 
+    selector: 'fire', 
+    template , directives
+  })
+  class FireComponent {};
+  return FireComponent;
+}
+
+@Component({
+  selector: 'hello',
+  template: '<h1>Hello, Angular!</h1>'
+})
+class Hello {}
+
 
 @Component({
   selector: 'modal-dialog',
@@ -15,7 +39,8 @@ export class ModalDialogComponent {
   constructor(
     public dcl:DynamicComponentLoader,
     public _injector:Injector
-  ){}
+  ){
+  }
 
   @Input('HEADER') header:Object;
   @Input('BODY') body:Object;
