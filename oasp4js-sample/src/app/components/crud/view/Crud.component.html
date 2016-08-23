@@ -3,6 +3,7 @@
   <form style = "margin-bottom: 30px" class="form-inline" (ngSubmit)="searchFilters(numberTable.value, stateTable.value, waiterTable.value)">
     <fieldset>
         <legend> Filters </legend>
+
         <div class = "form-flex">
           <label> Number </label>
           <input type ="number" class="form-control" #numberTable>
@@ -11,6 +12,7 @@
           <label> Waiter </label>
           <input type ="text" class="form-control" #waiterTable>
         </div>
+
         <div class = "right">
           <button type ="submit" class = "btn btn-primary btn-filter">Search</button>
         </div>
