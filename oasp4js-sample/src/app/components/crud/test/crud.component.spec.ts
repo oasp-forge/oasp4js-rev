@@ -6,11 +6,12 @@ import {
   inject
 } from '@angular/core/testing';
 import { CrudComponent } from '../view/Crud.component';
+import { CrudService } from '../service/Crud.service'
 
 beforeEachProviders(() => [CrudComponent]);
 
 describe('App: CrudComponent', () => {
-  it('should create the app',
+  it('should create the Component CRUD',
       inject([CrudComponent], (crud: CrudComponent) => {
     expect(crud).toBeTruthy();
   }));
