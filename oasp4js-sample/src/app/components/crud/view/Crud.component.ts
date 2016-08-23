@@ -14,37 +14,7 @@ import { ModalDialogComponent } from '../../../oasp/oasp-ui/modal-dialog/modal-d
 })
 
 export class CrudComponent{
-  message = "crud.component is working!"
   public selectedTable:Table = new Table(0,'','',this.arr, this.arr);
-  /********* PRUEBA MODAL DE OASP *************/
-  // dialog_header:String = "Details for Table #" + this.selectedTable.getNumber().toString();
-  // public componentLoaded = "tableDetails";
-  //
-  // dialog_buttons:Object = [
-  //   {
-  //       label: 'Accept',
-  //       onClick: function (context) {
-  //         console.log("ACEPTAR");
-  //       },
-  //       isActive: function (context) {
-  //           return true;
-  //       },
-  //       class: 'btn btn-primary',
-  //       hidden: false
-  //   },
-  //   {
-  //       label: 'Cancel',
-  //       onClick: function (context) {
-  //         this.hideModalDialog = !this.hideModalDialog;
-  //       },
-  //       isActive: function (context) {
-  //           return true;
-  //       },
-  //       class: 'btn btn-warning',
-  //       hidden: false
-  //   }
-  // ];
-  /**********************************/
 
   returnThisValue(value){
     return value;
@@ -87,6 +57,10 @@ export class CrudComponent{
 
   openEdition(){
     this.hideModalDialog = !this.hideModalDialog;
+  }
+
+  searchFilters(num: number, state, waiter){
+    this.tables = this.crudService.applyFilters(num, state, waiter);
   }
 
   pagination(value){

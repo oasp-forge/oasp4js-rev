@@ -11,6 +11,7 @@ export class CrudService{
   }
 
   getTablesOrderBy(dir, name){
+    /** This should be a call to back-end server **/
     let tables = this.tables.slice();
     tables.sort((n1,n2) => {
       if (n1[name] > n2[name]) {
@@ -25,6 +26,11 @@ export class CrudService{
     });
 
     return tables;
+  }
+
+
+  applyFilters(num: number, state: string, waiter: string){
+      /** back-end call for filtering **/
   }
 
   getTableById(id:number):Table{
