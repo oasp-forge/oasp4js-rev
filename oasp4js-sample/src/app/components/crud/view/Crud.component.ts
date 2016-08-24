@@ -15,6 +15,7 @@ import { ModalDialogComponent } from '../../../oasp/oasp-ui/modal-dialog/modal-d
 
 export class CrudComponent{
   public selectedTable:Table = new Table(0,'','',this.arr, this.arr);
+  public message
 
   returnThisValue(value){
     return value;

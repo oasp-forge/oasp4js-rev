@@ -2,6 +2,7 @@
 <div class = "filter">
   <form style = "margin-bottom: 30px" class="form-inline" (ngSubmit)="searchFilters(numberTable.value, stateTable.value, waiterTable.value)">
     <fieldset>
+
         <legend> Filters </legend>
 
         <div class = "form-flex">
@@ -38,51 +39,12 @@
 
 
   <div style="text-align:center;">
-      <div [ngSwitch]="myState">
-        <!-- 1 = FREE -->
-	    	<template [ngSwitchWhen]="1">
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-pagination" data-toggle="modal" data-target="#myModal">Edit</button>
-            <button type="button" class="btn btn-pagination" (click)="reserve()">Reserve</button>
-            <button type="button" class="btn btn-pagination" disabled="disabled">Cancel Reservation</button>
-            <button type="button" class="btn btn-pagination" (click)="occupy()">Occupy</button>
-            <button type="button" class="btn btn-pagination" disabled="disabled">Free</button>
-          </div>
-        </template>
 
-        <!-- 2 = OCCUPIED -->
-        <template [ngSwitchWhen]="2">
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-pagination" data-toggle="modal" data-target="#myModal">Edit</button>
-            <button type="button" class="btn btn-pagination" disabled="disabled">Reserve</button>
-            <button type="button" class="btn btn-pagination" disabled="disabled">Cancel Reservation</button>
-            <button type="button" class="btn btn-pagination" disabled="disabled">Occupy</button>
-            <button type="button" class="btn btn-pagination" (click)="free()">Free</button>
-          </div>
-        </template>
-
-        <!-- 3 = RESERVED -->
-        <template [ngSwitchWhen]="3">
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-pagination" data-toggle="modal" data-target="#myModal">Edit</button>
-            <button type="button" class="btn btn-pagination" disabled="disabled">Reserve</button>
-            <button type="button" class="btn btn-pagination" (click)="cancelReservation()">Cancel Reservation</button>
-            <button type="button" class="btn btn-pagination" (click)="occupy()">Occupy</button>
-            <button type="button" class="btn btn-pagination" disabled="disabled">Free</button>
-          </div>
-        </template>
-
-	    	<template ngSwitchDefault>
-          <div class="btn-group" role="group">
-            <button type="button" class="btn btn-pagination" data-toggle="modal" data-target="#myModal" disabled="disabled">Edit</button>
-            <button type="button" class="btn btn-pagination" disabled="disabled">Reserve</button>
-            <button type="button" class="btn btn-pagination" disabled="disabled">Cancel Reservation</button>
-            <button type="button" class="btn btn-pagination" disabled="disabled">Occupy</button>
-            <button type="button" class="btn btn-pagination" disabled="disabled">Free</button>
-          </div>
-        </template>
-	    </div>
-
+  <button type="button" class="btn btn-pagination" data-toggle="modal" data-target = "#myModal">Edit</button>
+  <button type="button" class="btn btn-pagination" (click)="reserve()" [disabled] = "myState === 3">Reserve</button>
+  <button type="button" class="btn btn-pagination" (click)="cancelReservation()" [disabled] = "myState === 0">Cancel Reservation</button>
+  <button type="button" class="btn btn-pagination" (click)="occupy()" [disabled] = "myState === 2">Occupy</button>
+  <button type="button" class="btn btn-pagination" (click)="free()" [disabled] = "myState === 1">Free</button>
 
       <div class="container">
         <div class="modal" id="myModal" role="dialog">
@@ -105,5 +67,4 @@
       <pagination [list] = "tables" [rowsPerPage] = "tablesPerPage" (paginationList) = "pagination($event)"></pagination>
   </div>
 
-  <router-outlet></router-outlet>
 </form>
