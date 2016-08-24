@@ -6,8 +6,7 @@ export class Table {
     public number: number,
     public state: string,
     public waiter: string,
-    public commands: Command[],
-    public dirtyCommands: Command[]
+    public commands: Command[]
   ) {  }
 
   getNumber():number{
@@ -42,14 +41,6 @@ export class Table {
     this.commands = commands;
   }
 
-  getDirtyCommands():Command[]{
-    return this.dirtyCommands;
-  }
-
-  setDirtyCommands(dirtyCommands:Command[]){
-    this.dirtyCommands = dirtyCommands;
-  }
-
   addCommand(command:Command){
     this.commands.push(command);
   }
@@ -59,18 +50,6 @@ export class Table {
     if(index > -1){
       this.commands.splice(index, 1);
     }
-    
-  }
 
-  addDirtyCommand(dirtyCommand:Command){
-    this.dirtyCommands.push(dirtyCommand);
   }
-
-  removeDirtyCommand(dirtyCommand:Command){
-    let index = this.dirtyCommands.indexOf(dirtyCommand);
-    if(index > -1){
-      this.dirtyCommands.splice(index,1);
-    }
-  }
-
 }

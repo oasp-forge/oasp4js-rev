@@ -21,21 +21,13 @@
   </form>
 </div>
 
-<table class="table table-striped" style="cursor:pointer">
-      <thead>
-          <th (click) = "sortColumn(0, 'number')" > Number <a [class]="sortIconStyle[0]"></a></th>
-          <th (click) = "sortColumn(1, 'state')"  > State  <a [class]="sortIconStyle[1]"></a></th>
-          <th (click) = "sortColumn(2, 'waiter')" > Waiter <a [class]="sortIconStyle[2]"></a></th>
-      </thead>
-      <tbody>
-          <tr *ngFor="let table of showTables" #row (click)=clickedRow(table)>
-              <td [class.selected]="selectedTable === table">{{table.number}}</td>
-              <td [class.selected]="selectedTable === table">{{table.state}}</td>
-              <td [class.selected]="selectedTable === table">{{table.waiter}}</td>
-          </tr>
-      </tbody>
-  </table>
 
+<grid-table
+    [headers] ="headers"
+    [attributeNames] = "attributeNames"
+    [dataInput] = "showTables"
+    (objSelected) = "rowSelected($event)">
+</grid-table>
 
   <div style="text-align:center">
       <button type="button" class="btn btn-pagination" data-toggle="modal"  [disabled] = "myState === -1" data-target = "#myModal">Edit</button>
@@ -53,7 +45,7 @@
                 <h3 class="modal-title" style="float:left;">Details for Table #{{selectedTable.number}}</h3>
               </div>
               <div class="modal-body">
-                <tableDetails [parentTable]="selectedTable" (parentTableEvent)="selectedTable = $event" (resultEvent)="resetTable($event)" [_commands]="_commands"></tableDetails>
+                <tableDetails [parentTable]="selectedTable" (parentTableEvent)="selectedTable = $event" [_commands]="_commands"></tableDetails>
               </div>
             </div>
           </div>

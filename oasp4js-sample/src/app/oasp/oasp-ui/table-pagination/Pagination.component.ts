@@ -1,5 +1,4 @@
-import {Component, OnInit, OnChanges} from '@angular/core'
-import {EventEmitter} from '@angular/core'
+import {Component, OnChanges, EventEmitter} from '@angular/core'
 
 @Component({
   selector:'pagination',

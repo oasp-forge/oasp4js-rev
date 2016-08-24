@@ -64,11 +64,11 @@ let t5dc:Command[] = [
   commandsList[5]
 ]
 
-let table1 = new Table(1,'FREE', 'Jackie Brown', t1c, t1dc);
-let table2 = new Table(2,'OCCUPIED', 'Vince Vega', t2c, t2dc);
-let table3 = new Table(3,'RESERVED', 'Hans Landa', t3c, t3dc);
-let table4 = new Table(4,'FREE', 'O-Ren Ishii', t4c, t4dc);
-let table5 = new Table(5,'FREE', 'Earl McGraw', t5c, t5dc);
+let table1 = new Table(1,'FREE', 'Jackie Brown', t1c);
+let table2 = new Table(2,'OCCUPIED', 'Vince Vega', t2c);
+let table3 = new Table(3,'RESERVED', 'Hans Landa', t3c);
+let table4 = new Table(4,'FREE', 'O-Ren Ishii', t4c);
+let table5 = new Table(5,'FREE', 'Earl McGraw', t5c);
 
 
 export let tablesList:Table[] = [
