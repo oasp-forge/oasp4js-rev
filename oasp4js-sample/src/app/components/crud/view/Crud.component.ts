@@ -5,23 +5,27 @@ import {DetailsComponent} from '../../details/view/Details.component'
 import {Command} from '../../../models/command/Command.model'
 import {PaginationComponent} from '../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import { ModalDialogComponent } from '../../../oasp/oasp-ui/modal-dialog/modal-dialog.component'
+import { GridTableComponent } from '../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 
 @Component({
   selector:'crud',
   templateUrl:'app/components/crud/view/Crud.component.html',
   providers:[CrudService],
-  directives:[DetailsComponent, PaginationComponent, ModalDialogComponent],
+  directives:[DetailsComponent, PaginationComponent, ModalDialogComponent, GridTableComponent],
 })
 
 export class CrudComponent{
-  public selectedTable:Table = new Table(0,'','',this.arr, this.arr);
-  public message
+
+  public selectedTable = new Table(0,"","",this.arr);
 
   returnThisValue(value){
     return value;
   }
 
   public tables:Table[];
+  public headers: string[] = ["Table number","State", "Waiter"];
+  public attributeNames: string[] = ["number", "state", "waiter"];
+
   public showTables: Table[];
   public tablesPerPage: number = 4;
 
@@ -65,7 +69,6 @@ export class CrudComponent{
   }
 
   pagination(value){
-    this.selectedTable = new Table(0,'','',this.arr, this.arr);
     this.myState = -1;
     this.showTables = value;
   }
@@ -90,9 +93,9 @@ export class CrudComponent{
     this.myState = 1;
   }
 
-  clickedRow(valor){
-    if(this.selectedTable === valor){
-      this.selectedTable = new Table(0,'','',this.arr, this.arr);
+  rowSelected(valor){
+    if(!valor){
+      this.selectedTable = new Table(0,"","",this.arr);
       this.myState = -1;
     } else {
       this.selectedTable = valor;
@@ -107,12 +110,5 @@ export class CrudComponent{
         this.myState = 3;
       }
     }
-  }
-
-  resetTable(valor){
-    this.selectedTable = new Table(0,'','',this.arr, this.arr);
-    this.myState = -1;
-    // let index = this.crudService.getTables().indexOf(this.selectedTable);
-    // this.crudService.getTables()[index] = valor;
   }
 }

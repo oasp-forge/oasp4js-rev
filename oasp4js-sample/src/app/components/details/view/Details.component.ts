@@ -9,16 +9,15 @@ import {PaginationComponent} from '../../../oasp/oasp-ui/table-pagination/Pagina
   selector:'tableDetails',
   templateUrl:'app/components/details/view/Details.component.html',
   inputs:['parentTable', '_commands'],
-  outputs:['resultEvent', 'parentTableEvent'],
+  outputs:['parentTableEvent'],
   directives:[PaginationComponent],
 })
 
 export class DetailsComponent implements OnInit{
-  resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   // parentTableEvent:EventEmitter<Table> = new EventEmitter<Table>();
   parentTableEvent = new EventEmitter<Table>();
   public parentTable:Table;
-  public dirtyTable:Table = new Table(0,'','',null,null);
+  public dirtyTable:Table = new Table(0,'','',null);
   public commands:Command[] = commandsList;
   public commandToAdd:Command = new Command(null, '', '', null, '');
   public selectedCommand:Command = new Command(null, '', '', null, '');
@@ -91,12 +90,10 @@ export class DetailsComponent implements OnInit{
 
   cancel(){
     this._commands = this.parentTable.commands;
-    this.resultEvent.emit(this.parentTable);
   }
 
   submit(){
     this.parentTable.commands = this._commands;
-    this.resultEvent.emit(this.parentTable);
   }
 
 }
