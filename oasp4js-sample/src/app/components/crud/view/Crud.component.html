@@ -1,6 +1,5 @@
-<form id="firstOptionForm">
 <div class = "filter">
-  <form style = "margin-bottom: 30px" class="form-inline" (ngSubmit)="searchFilters(numberTable.value, stateTable.value, waiterTable.value)">
+  <form style = "margin-bottom: 30px" class="form-inline" #filterForm="ngForm" (ngSubmit)="searchFilters(numberTable.value, stateTable.value, waiterTable.value)">
     <fieldset>
 
         <legend> Filters </legend>
@@ -38,13 +37,12 @@
   </table>
 
 
-  <div style="text-align:center;">
-
-  <button type="button" class="btn btn-pagination" data-toggle="modal" data-target = "#myModal">Edit</button>
-  <button type="button" class="btn btn-pagination" (click)="reserve()" [disabled] = "myState === 3">Reserve</button>
-  <button type="button" class="btn btn-pagination" (click)="cancelReservation()" [disabled] = "myState === 0">Cancel Reservation</button>
-  <button type="button" class="btn btn-pagination" (click)="occupy()" [disabled] = "myState === 2">Occupy</button>
-  <button type="button" class="btn btn-pagination" (click)="free()" [disabled] = "myState === 1">Free</button>
+  <div style="text-align:center">
+      <button type="button" class="btn btn-pagination" data-toggle="modal"  [disabled] = "myState === -1" data-target = "#myModal">Edit</button>
+      <button type="button" class="btn btn-pagination" (click)="reserve()" [disabled] = "myState === 3 || myState === 2 || myState === -1">Reserve</button>
+      <button type="button" class="btn btn-pagination" (click)="cancelReservation()" [disabled] = "myState === 0 || myState === 1 || myState === 2 || myState === -1">Cancel Reservation</button>
+      <button type="button" class="btn btn-pagination" (click)="occupy()" [disabled] = "myState === 2 || myState === 0 || myState === 1 || myState === -1">Occupy</button>
+      <button type="button" class="btn btn-pagination" (click)="free()" [disabled] = "myState === 1 || myState === -1">Free</button>
 
       <div class="container">
         <div class="modal" id="myModal" role="dialog">
@@ -66,5 +64,3 @@
   <div style="text-align:right">
       <pagination [list] = "tables" [rowsPerPage] = "tablesPerPage" (paginationList) = "pagination($event)"></pagination>
   </div>
-
-</form>

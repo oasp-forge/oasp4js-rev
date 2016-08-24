@@ -39,7 +39,7 @@ export class CrudComponent{
     private crudService:CrudService
   ){
     this.tables = crudService.getTables();
-    this.myState = 0;
+    this.myState = -1;
   }
 
   sortColumn(column:number, name:string){
@@ -60,13 +60,13 @@ export class CrudComponent{
     this.hideModalDialog = !this.hideModalDialog;
   }
 
-  searchFilters(num: number, state, waiter){
+  searchFilters(num, state, waiter){
     this.tables = this.crudService.applyFilters(num, state, waiter);
   }
 
   pagination(value){
     this.selectedTable = new Table(0,'','',this.arr, this.arr);
-    this.myState = 0;
+    this.myState = -1;
     this.showTables = value;
   }
 
@@ -93,7 +93,7 @@ export class CrudComponent{
   clickedRow(valor){
     if(this.selectedTable === valor){
       this.selectedTable = new Table(0,'','',this.arr, this.arr);
-      this.myState = 0;
+      this.myState = -1;
     } else {
       this.selectedTable = valor;
       this._commands = JSON.parse(JSON.stringify(this.selectedTable.commands));
@@ -111,7 +111,7 @@ export class CrudComponent{
 
   resetTable(valor){
     this.selectedTable = new Table(0,'','',this.arr, this.arr);
-    this.myState = 0;
+    this.myState = -1;
     // let index = this.crudService.getTables().indexOf(this.selectedTable);
     // this.crudService.getTables()[index] = valor;
   }
