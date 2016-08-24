@@ -1,8 +1,9 @@
 import {CrudService} from '../../components/crud/service/Crud.service';
 import {CrudComponent} from '../../components/crud/view/Crud.component';
 import {it, describe, expect, beforeEach, inject} from '@angular/core/testing';
+import {Table} from '../../models/table/Table.model'
 
-xdescribe('CrudComponent [COMPONENT]: \n', () => {
+describe('CrudComponent [COMPONENT]: \n', () => {
     let crud:CrudComponent;
     let service:CrudService = new CrudService();
     let a;
@@ -13,11 +14,7 @@ xdescribe('CrudComponent [COMPONENT]: \n', () => {
     });
 
     //specs
-    it('[TEST_ERROR] var a should be TRUE!', () => {
-      a = false;
-      expect(a).toBe(true);
-      // crud.ngOnInit();
-      // expect(list.items.length).toBe(5);
-      // expect(list.items).toEqual(['golden retriever', 'french bulldog', 'german shepherd', 'alaskan husky', 'jack russel terrier']);
+    it('[TEST_ERROR] SELECTEDTABLE should be an instance of class Table!!', () => {
+      expect(crud.selectedTable instanceof Table).toBe(true);
     });
 });

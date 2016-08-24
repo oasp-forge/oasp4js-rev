@@ -92,6 +92,7 @@ export class DetailsComponent implements OnInit{
   cancel(){
     this._commands = this.parentTable.commands;
     this.resultEvent.emit(this.parentTable);
+    let a = 1;
   }
 
   submit(){
