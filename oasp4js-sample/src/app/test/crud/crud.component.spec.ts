@@ -6,7 +6,6 @@ import {Table} from '../../models/table/Table.model'
 describe('CrudComponent [COMPONENT]: \n', () => {
     let crud:CrudComponent;
     let service:CrudService = new CrudService();
-    let a;
 
     //setup
     beforeEach(() => {
@@ -14,7 +13,7 @@ describe('CrudComponent [COMPONENT]: \n', () => {
     });
 
     //specs
-    it('[TEST_ERROR] SELECTEDTABLE should be an instance of class Table!!', () => {
+    it('[TEST_ERROR] SELECTEDTABLE should be an instance of class Table!', () => {
       expect(crud.selectedTable instanceof Table).toBe(true);
     });
 });
