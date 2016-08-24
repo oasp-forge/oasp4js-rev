@@ -31,7 +31,7 @@ export class CrudService{
 
   applyFilters(num: number, state: string, waiter: string){
       /** back-end call for filtering **/
-      return this.tables;
+      return this.tables.slice();
   }
 
   getTableById(id:number):Table{
