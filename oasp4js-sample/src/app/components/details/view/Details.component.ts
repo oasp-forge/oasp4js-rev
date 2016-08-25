@@ -4,6 +4,7 @@ import {commandsList} from '../../../resources/commands/Commands.resource'
 import {Command} from '../../../models/command/Command.model'
 import {DetailsService} from '../service/Details.service'
 import {PaginationComponent} from '../../../oasp/oasp-ui/table-pagination/Pagination.component'
+import { GridTableComponent } from '../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 
 @Component({
   selector:'tableDetails',
@@ -12,23 +13,26 @@ import {PaginationComponent} from '../../../oasp/oasp-ui/table-pagination/Pagina
   // outputs:['parentTableEvent'],
   inputs:['parentTable', '_commands'],
   outputs:['resultEvent', 'parentTableEvent'],
-  directives:[PaginationComponent],
+  directives:[PaginationComponent, GridTableComponent],
 })
 
 export class DetailsComponent implements OnInit{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   parentTableEvent = new EventEmitter<Table>();
 
+  public _commands;
+  public headers: string[] = ["Number","Title", "Status", "Price", "Comment"];
+  public attributeNames: string[] = ["number", "title", "status", "price", "comment"];
+
   public parentTable:Table;
-  public dirtyTable:Table = new Table(0,'','',null);
   public commands:Command[] = commandsList;
+  public dirtyTable:Table = new Table(0,'','',null);
   public commandToAdd:Command = new Command(null, '', '', null, '');
   public selectedCommand:Command = new Command(null, '', '', null, '');
   public emptyTable = false;
   public viewMenu: boolean = true;
   public commandsPerPage = 4;
 
-  public _commands;
 
   ngOnInit(){
   }

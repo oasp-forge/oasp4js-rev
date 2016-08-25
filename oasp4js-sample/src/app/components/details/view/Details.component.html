@@ -14,9 +14,16 @@
     <button *ngIf="commandToAdd.getPrice() != null" class="btn btn-default" type="button" id="menu1" (click)="addCommand()">+Add</button>
   </div>
 
-  <table class="table table-striped" style="cursor:pointer">
+  <grid-table
+      [headers] ="headers"
+      [attributeNames] = "attributeNames"
+      [dataInput] = "_commands"
+      (objSelected) = "clickedRow($event)">
+  </grid-table>
+
+  <!-- <table class="table table-striped" style="cursor:pointer"> -->
   <!-- <table class="table table-striped" style="cursor:pointer" *ngIf="!emptyTable"> -->
-    <thead>
+    <!-- <thead>
         <tr>
             <th>Number</th>
             <th>Title</th>
@@ -34,7 +41,7 @@
             <td [class.selected]="selectedCommand === command">{{command.comment}}</td>
         </tr>
     </tbody>
-  </table>
+  </table> -->
   <!-- <div style="text-align:right">
       <pagination [list] = "_commands" [rowsPerPage] = "commandsPerPage" (paginationList) = "pagination($event)"></pagination>
   </div> -->
@@ -42,9 +49,6 @@
   <!--<div *ngIf="emptyTable" style="text-align:center">
     <p><b>No commands on this Table</b>  Please start adding one.</p>
   </div>-->
-
-
-
 
   <div style="float:left;">
     <button *ngIf="selectedCommand.number != null" class="btn btn-default" (click)="removeCommand()">Remove</button>
