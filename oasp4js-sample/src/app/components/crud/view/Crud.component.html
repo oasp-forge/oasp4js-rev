@@ -33,9 +33,7 @@
               </div>
               <div class="modal-body">
 
-              <tableDetails [parentTable]="selectedTable" (parentTableEvent)="selectedTable = $event" (resultEvent)="rowSelected($event)" [_commands]="_commands">
-                <pagination [list] = "tables" [rowsPerPage] = "tablesPerPage" (paginationList) = "pagination($event)"></pagination>
-              </tableDetails>
+              <tableDetails [parentTable]="selectedTable" (parentTableEvent)="selectedTable = $event" (resultEvent)="rowSelected($event)" [_commands]="_commands"></tableDetails>
 
               </div>
             </div>
