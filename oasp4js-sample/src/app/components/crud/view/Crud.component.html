@@ -21,7 +21,6 @@
   </form>
 </div>
 
-
 <grid-table
     [headers] ="headers"
     [attributeNames] = "attributeNames"
@@ -45,7 +44,7 @@
                 <h3 class="modal-title" style="float:left;">Details for Table #{{selectedTable.number}}</h3>
               </div>
               <div class="modal-body">
-                <tableDetails [parentTable]="selectedTable" (parentTableEvent)="selectedTable = $event" [_commands]="_commands"></tableDetails>
+                <tableDetails [parentTable]="selectedTable" (parentTableEvent)="selectedTable = $event"></tableDetails>
               </div>
             </div>
           </div>
