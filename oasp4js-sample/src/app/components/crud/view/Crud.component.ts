@@ -39,6 +39,8 @@ export class CrudComponent{
 
   public _commands:Command[];
 
+  public modalHeader:string;
+
   constructor(
     private crudService:CrudService
   ){
@@ -58,6 +60,10 @@ export class CrudComponent{
         this.sortIconStyle[column] = "glyphicon glyphicon-chevron-up";
         this.tables = this.crudService.getTablesOrderBy(1, name);
     }
+  }
+
+  openEditModal(){
+    document.getElementById("modal").hidden = !document.getElementById("modal").hidden;
   }
 
   openEdition(){
@@ -96,9 +102,12 @@ export class CrudComponent{
   rowSelected(valor){
     if(!valor){
       this.selectedTable = new Table(0,"","",this.arr);
+      this.modalHeader = "Details of Table #" + this.selectedTable.number;
+      // this.openEditModal();
       this.myState = -1;
     } else {
       this.selectedTable = valor;
+      this.modalHeader = "Details of Table #" + this.selectedTable.number;
       this._commands = JSON.parse(JSON.stringify(this.selectedTable.commands));
       if(this.selectedTable.state === "FREE"){
         this.myState = 1;
