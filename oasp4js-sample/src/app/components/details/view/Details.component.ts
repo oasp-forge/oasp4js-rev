@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter, OnInit} from '@angular/core'
+import {Component, Output, EventEmitter} from '@angular/core'
 import {Table} from '../../../models/table/Table.model'
 import {commandsList} from '../../../resources/commands/Commands.resource'
 import {Command} from '../../../models/command/Command.model'
@@ -9,13 +9,12 @@ import { GridTableComponent } from '../../../oasp/oasp-ui/grid-table/view/Grid-t
 @Component({
   selector:'tableDetails',
   templateUrl:'app/components/details/view/Details.component.html',
-
   inputs:['parentTable', '_commands'],
   outputs:['resultEvent', 'parentTableEvent'],
   directives:[PaginationComponent, GridTableComponent],
 })
 
-export class DetailsComponent{
+export class DetailsComponent {
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   parentTableEvent = new EventEmitter<Table>();
 

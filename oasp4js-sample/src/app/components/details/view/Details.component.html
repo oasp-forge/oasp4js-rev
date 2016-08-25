@@ -22,35 +22,6 @@
       (objSelected) = "clickedRow($event)">
   </grid-table>
 
-  <!-- <table class="table table-striped" style="cursor:pointer"> -->
-  <!-- <table class="table table-striped" style="cursor:pointer" *ngIf="!emptyTable"> -->
-    <!-- <thead>
-        <tr>
-            <th>Number</th>
-            <th>Title</th>
-            <th>Status</th>
-            <th>Price</th>
-            <th>Comment</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let command of _commands" (click)="clickedRow(command)">
-            <td [class.selected]="selectedCommand === command">{{command.number}}</td>
-            <td [class.selected]="selectedCommand === command">{{command.title}}</td>
-            <td [class.selected]="selectedCommand === command">{{command.status}}</td>
-            <td [class.selected]="selectedCommand === command">{{command.price}}€</td>
-            <td [class.selected]="selectedCommand === command">{{command.comment}}</td>
-        </tr>
-    </tbody>
-  </table> -->
-  <!-- <div style="text-align:right">
-      <pagination [list] = "_commands" [rowsPerPage] = "commandsPerPage" (paginationList) = "pagination($event)"></pagination>
-  </div> -->
-
-  <!--<div *ngIf="emptyTable" style="text-align:center">
-    <p><b>No commands on this Table</b>  Please start adding one.</p>
-  </div>-->
-
   <div style="float:left;">
     <button *ngIf="selectedCommand.number != null" class="btn btn-default" (click)="removeCommand()">Remove</button>
   </div>

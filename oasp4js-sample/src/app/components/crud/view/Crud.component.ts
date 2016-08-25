@@ -104,7 +104,6 @@ export class CrudComponent{
     if(!valor){
       this.selectedTable = new Table(0,"","",this.arr);
       this.modalHeader = "Details of Table #" + this.selectedTable.number;
-      // this.openEditModal();
       this.myState = -1;
     } else {
       this.selectedTable = valor;
