@@ -8,14 +8,17 @@ import {PaginationComponent} from '../../../oasp/oasp-ui/table-pagination/Pagina
 @Component({
   selector:'tableDetails',
   templateUrl:'app/components/details/view/Details.component.html',
+  // inputs:['parentTable', '_commands'],
+  // outputs:['parentTableEvent'],
   inputs:['parentTable', '_commands'],
-  outputs:['parentTableEvent'],
+  outputs:['resultEvent', 'parentTableEvent'],
   directives:[PaginationComponent],
 })
 
 export class DetailsComponent implements OnInit{
-  // parentTableEvent:EventEmitter<Table> = new EventEmitter<Table>();
+  resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   parentTableEvent = new EventEmitter<Table>();
+
   public parentTable:Table;
   public dirtyTable:Table = new Table(0,'','',null);
   public commands:Command[] = commandsList;
@@ -90,12 +93,22 @@ export class DetailsComponent implements OnInit{
 
   cancel(){
     this._commands = this.parentTable.commands;
-    this.parentTableEvent.emit(this.parentTable);
+    this.resultEvent.emit(this.parentTable);
   }
 
   submit(){
     this.parentTable.commands = this._commands;
-    this.parentTableEvent.emit(this.parentTable);
+    this.resultEvent.emit(this.parentTable);
   }
+
+  // cancel(){
+  //   // this._commands = this.parentTable.commands;
+  //   // this.parentTableEvent.emit(this.parentTable);
+  // }
+  //
+  // submit(){
+  //   this.parentTable.commands = this._commands;
+  //   this.parentTableEvent.emit(this.parentTable);
+  // }
 
 }
