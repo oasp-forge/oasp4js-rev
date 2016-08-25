@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter, OnInit} from '@angular/core'
+import {Component, Output, EventEmitter} from '@angular/core'
 import {Table} from '../../../models/table/Table.model'
 import {commandsList} from '../../../resources/commands/Commands.resource'
 import {Command} from '../../../models/command/Command.model'
@@ -9,14 +9,12 @@ import { GridTableComponent } from '../../../oasp/oasp-ui/grid-table/view/Grid-t
 @Component({
   selector:'tableDetails',
   templateUrl:'app/components/details/view/Details.component.html',
-  // inputs:['parentTable', '_commands'],
-  // outputs:['parentTableEvent'],
   inputs:['parentTable', '_commands'],
   outputs:['resultEvent', 'parentTableEvent'],
   directives:[PaginationComponent, GridTableComponent],
 })
 
-export class DetailsComponent implements OnInit{
+export class DetailsComponent {
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   parentTableEvent = new EventEmitter<Table>();
 
@@ -33,13 +31,6 @@ export class DetailsComponent implements OnInit{
   public viewMenu: boolean = true;
   public commandsPerPage = 4;
 
-
-  ngOnInit(){
-  }
-
-  constructor(){
-    // this.dirtyTable = this.parentTable;
-  }
 
   openMenu(){
     this.viewMenu = !this.viewMenu;
@@ -83,7 +74,6 @@ export class DetailsComponent implements OnInit{
   removeCommand(){
     let index = this._commands.indexOf(this.selectedCommand);
     this._commands.splice(index,1);
-    // this.parentTable.removeDirtyCommand(this.selectedCommand);
     this.selectedCommand = new Command(null,'','',null,'');
 
     if(this._commands.length === 0){
@@ -98,21 +88,13 @@ export class DetailsComponent implements OnInit{
   cancel(){
     this._commands = this.parentTable.commands;
     this.resultEvent.emit(this.parentTable);
+    document.getElementById("modal").hidden = !document.getElementById("modal").hidden;
   }
 
   submit(){
     this.parentTable.commands = this._commands;
     this.resultEvent.emit(this.parentTable);
+    document.getElementById("modal").hidden = !document.getElementById("modal").hidden;
   }
-
-  // cancel(){
-  //   // this._commands = this.parentTable.commands;
-  //   // this.parentTableEvent.emit(this.parentTable);
-  // }
-  //
-  // submit(){
-  //   this.parentTable.commands = this._commands;
-  //   this.parentTableEvent.emit(this.parentTable);
-  // }
 
 }
