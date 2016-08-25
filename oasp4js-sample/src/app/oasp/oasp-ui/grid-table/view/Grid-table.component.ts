@@ -37,13 +37,13 @@ export class GridTableComponent implements OnChanges{
 
     if(this.sortIconStyle[column] === "glyphicon glyphicon-chevron-up"){
         this.sortIconStyle[column] = "glyphicon glyphicon-chevron-down";
-        this.rowsData = this.gridtableService.getTablesOrderBy(-1, name, this.rowsData.length);
+        this.rowsData = this.gridtableService.getTablesOrderBy(-1, name, this.rowsData);
     } else {
         this.sortIconStyle[0] = "glyphicon glyphicon-chevron-down";
         this.sortIconStyle[1] = "glyphicon glyphicon-chevron-down";
         this.sortIconStyle[2] = "glyphicon glyphicon-chevron-down";
         this.sortIconStyle[column] = "glyphicon glyphicon-chevron-up";
-        this.rowsData = this.gridtableService.getTablesOrderBy(1, name, this.rowsData.length);
+        this.rowsData = this.gridtableService.getTablesOrderBy(1, name, this.rowsData);
     }
   }
 

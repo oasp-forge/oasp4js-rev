@@ -1,26 +1,12 @@
 <div>
-<div class = "filter">
-  <form style = "margin-bottom: 30px" class="form-inline" #filterForm="ngForm" (ngSubmit)="searchFilters(numberTable.value, stateTable.value, waiterTable.value)">
-    <fieldset>
-
-        <legend> Filters </legend>
-
-        <div class = "form-flex">
-          <label> Number </label>
-          <input type ="number" class="form-control" #numberTable>
-          <label> State </label>
-          <input type ="text" class="form-control" #stateTable>
-          <label> Waiter </label>
-          <input type ="text" class="form-control" #waiterTable>
-        </div>
-
-        <div class = "right">
-          <button type ="submit" class = "btn btn-primary btn-filter">Search</button>
-        </div>
-
-    </fieldset>
-  </form>
-</div>
+<filter-panel (filterValues) = "searchFilters($event)">
+  <label> Number </label>
+  <input type ="number" class="form-control">
+  <label> State </label>
+  <input type ="text" class="form-control">
+  <label> Waiter </label>
+  <input type ="text" class="form-control">
+</filter-panel>
 
 <grid-table
     [headers] ="headers"
@@ -35,28 +21,6 @@
       <button type="button" class="btn btn-pagination" (click)="cancelReservation()" [disabled] = "myState === 0 || myState === 1 || myState === 2 || myState === -1">Cancel Reservation</button>
       <button type="button" class="btn btn-pagination" (click)="occupy()" [disabled] = "myState === 2 || myState === 0 || myState === 1 || myState === -1">Occupy</button>
       <button type="button" class="btn btn-pagination" (click)="free()" [disabled] = "myState === 1 || myState === -1">Free</button>
-
-      <!-- <div class="container">
-        <div class="modal" id="myModal" role="dialog">
-          <div class="modal-dialog modal-lm">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title" style="float:left;">Details for Table #{{selectedTable.number}}</h3>
-              </div>
-              <div class="modal-body">
-
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
-
-
-  </div>
-
-  <div>
   </div>
 
   <div style="text-align:right">

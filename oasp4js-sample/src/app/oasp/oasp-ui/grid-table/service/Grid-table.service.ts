@@ -10,10 +10,9 @@ export class GridtableService{
     return this.tables;
   }
 
-  getTablesOrderBy(dir, name, size){
+  getTablesOrderBy(dir, name, data){
     /** This should be a call to back-end server **/
-    let tables = this.tables.slice();
-    tables.sort((n1,n2) => {
+    data.sort((n1,n2) => {
       if (n1[name] > n2[name]) {
           return 1 * dir;
       }
@@ -25,7 +24,7 @@ export class GridtableService{
       return 0;
     });
 
-    return tables.slice(0,size);
+    return data.slice(0,data.length);
   }
 
   applyFilters(num: number, state: string, waiter: string){

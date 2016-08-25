@@ -1,6 +1,7 @@
 <div style="float:left; width:100%;">
   <p><b>Status: </b>{{parentTable.getState()}}</p>
 </div>
+
 <div style="margin:50 0 90 0">
   <div class="dropdown" style="float:right; margin:10px">
     <button *ngIf="commandToAdd.getPrice() != null" class="btn btn-default" disabled="disabled">{{commandToAdd.getTitle()}}</button>
@@ -15,7 +16,7 @@
   </div>
 
   <grid-table
-      [headers] ="headers"
+      [headers] = "headers"
       [attributeNames] = "attributeNames"
       [dataInput] = "_commands"
       (objSelected) = "clickedRow($event)">
