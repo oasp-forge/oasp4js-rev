@@ -6,12 +6,13 @@ import {Command} from '../../../models/command/Command.model'
 import {PaginationComponent} from '../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import { ModalDialogComponent } from '../../../oasp/oasp-ui/modal-dialog/modal-dialog.component'
 import { GridTableComponent } from '../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
+import { FilterPanelComponent } from '../../../oasp/oasp-ui/filters-panel/view/Filters-panel.component'
 
 @Component({
   selector:'crud',
   templateUrl:'app/components/crud/view/Crud.component.html',
   providers:[CrudService],
-  directives:[DetailsComponent, PaginationComponent, ModalDialogComponent, GridTableComponent],
+  directives:[DetailsComponent, PaginationComponent, ModalDialogComponent, GridTableComponent, FilterPanelComponent],
 })
 
 export class CrudComponent{
@@ -64,8 +65,8 @@ export class CrudComponent{
     this.hideModalDialog = !this.hideModalDialog;
   }
 
-  searchFilters(num, state, waiter){
-    this.tables = this.crudService.applyFilters(num, state, waiter);
+  searchFilters(filters){
+    this.tables = this.crudService.applyFilters(filters);
   }
 
   pagination(value){

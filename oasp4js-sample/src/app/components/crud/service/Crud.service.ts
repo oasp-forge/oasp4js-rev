@@ -29,7 +29,7 @@ export class CrudService{
   }
 
 
-  applyFilters(num: number, state: string, waiter: string){
+  applyFilters(filters){
       /** back-end call for filtering **/
       return this.tables.slice();
   }

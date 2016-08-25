@@ -1,25 +1,11 @@
-<div class = "filter">
-  <form style = "margin-bottom: 30px" class="form-inline" #filterForm="ngForm" (ngSubmit)="searchFilters(numberTable.value, stateTable.value, waiterTable.value)">
-    <fieldset>
-
-        <legend> Filters </legend>
-
-        <div class = "form-flex">
-          <label> Number </label>
-          <input type ="number" class="form-control" #numberTable>
-          <label> State </label>
-          <input type ="text" class="form-control" #stateTable>
-          <label> Waiter </label>
-          <input type ="text" class="form-control" #waiterTable>
-        </div>
-
-        <div class = "right">
-          <button type ="submit" class = "btn btn-primary btn-filter">Search</button>
-        </div>
-
-    </fieldset>
-  </form>
-</div>
+<filter-panel (filterValues) = "searchFilters($event)">
+  <label> Number </label>
+  <input type ="number" class="form-control">
+  <label> State </label>
+  <input type ="text" class="form-control">
+  <label> Waiter </label>
+  <input type ="text" class="form-control">
+</filter-panel>
 
 <grid-table
     [headers] ="headers"
@@ -40,12 +26,16 @@
           <div class="modal-dialog modal-lm">
             <div class="modal-content">
               <div class="modal-header">
+
+
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h3 class="modal-title" style="float:left;">Details for Table #{{selectedTable.number}}</h3>
               </div>
               <div class="modal-body">
 
-              <tableDetails [parentTable]="selectedTable" (parentTableEvent)="selectedTable = $event" (resultEvent)="rowSelected($event)" [_commands]="_commands"></tableDetails>
+              <tableDetails [parentTable]="selectedTable" (parentTableEvent)="selectedTable = $event" (resultEvent)="rowSelected($event)" [_commands]="_commands">
+                <pagination [list] = "tables" [rowsPerPage] = "tablesPerPage" (paginationList) = "pagination($event)"></pagination>
+              </tableDetails>
 
               </div>
             </div>
