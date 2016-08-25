@@ -14,18 +14,14 @@ export class FilterPanelComponent{
 
   clearForm(){
     for(let i = 0 ; i < this.form.nativeElement.children.length ; i++ ){
-      if(this.form.nativeElement.children[i].tagName === "INPUT"){
         this.form.nativeElement.children[i].value = "";
-      }
     }
   }
 
   searchFilters(){
     let filterValues = [];
     for(let i = 0 ; i < this.form.nativeElement.children.length ; i++ ){
-      if(this.form.nativeElement.children[i].tagName === "INPUT"){
         filterValues.push(this.form.nativeElement.children[i].value);
-      }
     }
     this.filterValues.emit(filterValues);
   }

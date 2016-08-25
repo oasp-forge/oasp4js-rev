@@ -1,18 +1,15 @@
 <div class = "filter">
-  <form style = "margin-bottom: 30px" class="form-inline" #filterForm="ngForm" (ngSubmit)="searchFilters(filterForm.value)">
+  <form style = "margin-bottom: 30px" class="form-inline">
     <fieldset>
-
-        <legend> Filters </legend>
+        <legend> Search </legend>
 
         <div #filters class = "form-flex">
-
           <ng-content></ng-content>
-
         </div>
 
         <div class = "right">
-          <button (click)="clearForm(filterForm.value)" class = "btn btn-warning btn-filter">Clear</button>
-          <button type ="submit" class = "btn btn-primary btn-filter">Search</button>
+          <button (click)="clearForm()" class = "btn btn-warning btn-filter">Clear</button>
+          <button (click)="searchFilters()" class = "btn btn-primary btn-filter">Search</button>
         </div>
 
     </fieldset>
