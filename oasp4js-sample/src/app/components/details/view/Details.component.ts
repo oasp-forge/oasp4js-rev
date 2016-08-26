@@ -10,13 +10,13 @@ import { GridTableComponent } from '../../../oasp/oasp-ui/grid-table/view/Grid-t
   selector:'tableDetails',
   templateUrl:'app/components/details/view/Details.component.html',
   inputs:['parentTable', '_commands'],
-  outputs:['resultEvent', 'parentTableEvent'],
+  outputs:['resultEvent', 'closeWindowEvent'],
   directives:[PaginationComponent, GridTableComponent],
 })
 
 export class DetailsComponent {
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
-  parentTableEvent = new EventEmitter<Table>();
+  closeWindowEvent = new EventEmitter();
 
   public _commands;
   public headers: string[] = ["Number","Title", "Status", "Price", "Comment"];
@@ -88,13 +88,13 @@ export class DetailsComponent {
   cancel(){
     this._commands = this.parentTable.commands;
     this.resultEvent.emit(this.parentTable);
-    document.getElementById("modal").hidden = !document.getElementById("modal").hidden;
+    this.closeWindowEvent.emit(false);
   }
 
   submit(){
     this.parentTable.commands = this._commands;
     this.resultEvent.emit(this.parentTable);
-    document.getElementById("modal").hidden = !document.getElementById("modal").hidden;
+    this.closeWindowEvent.emit(false);
   }
 
 }

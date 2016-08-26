@@ -32,14 +32,12 @@ export class CrudComponent{
 
   public sortIconState:boolean = false;
   public sortIconStyle = ["glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down"];
-  public hideModalDialog = true;
+  public hideModalDialog = false;
 
   arr:Command[];
 
   public myState;
-
   public _commands:Command[];
-
   public modalHeader:string;
 
   constructor(
@@ -64,7 +62,8 @@ export class CrudComponent{
   }
 
   openEditModal(){
-    document.getElementById("modal").hidden = !document.getElementById("modal").hidden;
+    this.hideModalDialog = true;
+    //document.getElementById("modal").hidden = !document.getElementById("modal").hidden;
   }
 
   openEdition(){

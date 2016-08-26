@@ -1,4 +1,4 @@
-import {Component,Input} from '@angular/core';
+import {Component,Input, EventEmitter} from '@angular/core';
 import {ButtonBarComponent} from '../button-bar/button-bar.component'
 import {DetailsComponent} from '../../../components/details/view/Details.component'
 import {Table} from '../../../models/table/Table.model'
@@ -22,6 +22,7 @@ export class ModalDialogComponent {
   defaultBody:Object = "OASP dialog body";
   defaultButtonDefs:Object;
   defaultTitle:String = "OASP dialog title";
+
 
   public nameLogin = "login";
   public nameDetails = "tableDetails"

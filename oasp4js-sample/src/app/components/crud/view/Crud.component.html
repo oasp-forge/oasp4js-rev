@@ -1,47 +1,37 @@
-<filter-panel (filterValues) = "searchFilters($event)">
-  <label> Number </label>
-  <input type ="number" class="form-control">
-  <label> State </label>
-  <input type ="text" class="form-control">
-  <label> Waiter </label>
-  <input type ="text" class="form-control">
-</filter-panel>
+<div>
+  <filter-panel (filterValues) = "searchFilters($event)">
+    <label> Number </label>
+    <input type ="number" class="form-control">
+    <label> State </label>
+    <input type ="text" class="form-control">
+    <label> Waiter </label>
+    <input type ="text" class="form-control">
+  </filter-panel>
 
-<grid-table
-    [headers] ="headers"
-    [attributeNames] = "attributeNames"
-    [dataInput] = "showTables"
-    (objSelected) = "rowSelected($event)">
-</grid-table>
+  <grid-table
+      [headers] ="headers"
+      [attributeNames] = "attributeNames"
+      [dataInput] = "showTables"
+      (objSelected) = "rowSelected($event)">
+  </grid-table>
 
-<div style="text-align:center">
-    <button type="button" class="btn btn-pagination" data-toggle="modal"  [disabled] = "myState === -1" data-target = "#myModal">Edit</button>
-    <button type="button" class="btn btn-pagination" (click)="reserve()" [disabled] = "myState === 3 || myState === 2 || myState === -1">Reserve</button>
-    <button type="button" class="btn btn-pagination" (click)="cancelReservation()" [disabled] = "myState === 0 || myState === 1 || myState === 2 || myState === -1">Cancel Reservation</button>
-    <button type="button" class="btn btn-pagination" (click)="occupy()" [disabled] = "myState === 2 || myState === 0 || myState === 1 || myState === -1">Occupy</button>
-    <button type="button" class="btn btn-pagination" (click)="free()" [disabled] = "myState === 1 || myState === -1">Free</button>
- 
-    <div class="container">
-      <div class="modal" id="myModal" role="dialog">
-        <div class="modal-dialog modal-lm">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h3 class="modal-title" style="float:left;">Details for Table #{{selectedTable.number}}</h3>
-            </div>
-            <div class="modal-body">
-            <tableDetails [parentTable]="selectedTable" (parentTableEvent)="selectedTable = $event" (resultEvent)="rowSelected($event)" [_commands]="_commands"></tableDetails>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div style="text-align:center">
+      <button type="button" class="btn btn-pagination" [disabled] = "myState === -1" data-toggle="modal" data-target="prueba" (click)="openEditModal()">Edit</button>
+      <button type="button" class="btn btn-pagination" (click)="reserve()" [disabled] = "myState === 3 || myState === 2 || myState === -1">Reserve</button>
+      <button type="button" class="btn btn-pagination" (click)="cancelReservation()" [disabled] = "myState === 0 || myState === 1 || myState === 2 || myState === -1">Cancel Reservation</button>
+      <button type="button" class="btn btn-pagination" (click)="occupy()" [disabled] = "myState === 2 || myState === 0 || myState === 1 || myState === -1">Occupy</button>
+      <button type="button" class="btn btn-pagination" (click)="free()" [disabled] = "myState === 1 || myState === -1">Free</button>
+  </div>
+
+  <div style="text-align:right">
+      <pagination [list] = "tables" [rowsPerPage] = "tablesPerPage" (paginationList) = "pagination($event)"></pagination>
+  </div>
 </div>
 
-<div style="text-align:right">
-    <pagination
-      [list] = "tables"
-      [rowsPerPage] = "tablesPerPage"
-      (paginationList) = "pagination($event)">
-    </pagination>
-</div>
+<modal-dialog id="modal"
+  *ngIf="hideModalDialog"
+  [modal]=true
+  [TITLE]=modalHeader
+  style="position:absolute; left: 0px; top: 0px; width:100%; height:100%;">
+  <tableDetails [parentTable]="selectedTable" (closeWindowEvent)="hideModalDialog = $event" (resultEvent)="rowSelected($event)" [_commands]="_commands"></tableDetails>
+</modal-dialog>
