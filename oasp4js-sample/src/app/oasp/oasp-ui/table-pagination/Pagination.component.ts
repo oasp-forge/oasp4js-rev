@@ -21,14 +21,15 @@ export class PaginationComponent implements OnChanges{
   paginationList = new EventEmitter();
 
   ngOnChanges(){
-    if(this.rowsPerPage > this.list.length){
-      this.rowsPerPage = this.list.length;
+    if(this.list){
+      if(this.rowsPerPage > this.list.length){
+        this.rowsPerPage = this.list.length;
+      }
+
+      this.showList = this.list.slice(this.rowsPerPage * (this.currentPage - 1), this.rowsPerPage * (this.currentPage - 1) + this.rowsPerPage);
+      this.numberPages = Math.ceil(this.list.length / this.rowsPerPage);
+      this.paginationList.emit(this.showList)
     }
-
-    this.showList = this.list.slice(this.rowsPerPage * (this.currentPage - 1), this.rowsPerPage * (this.currentPage - 1) + this.rowsPerPage);
-
-    this.numberPages = Math.ceil(this.list.length / this.rowsPerPage);
-    this.paginationList.emit(this.showList)
   }
 
   changePage(page: number, view: number){

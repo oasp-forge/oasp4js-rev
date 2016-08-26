@@ -10,14 +10,14 @@ import {GridTableComponent} from '../../../oasp/oasp-ui/grid-table/view/Grid-tab
   selector:'tableDetails',
   templateUrl:'app/components/details/view/Details.component.html',
   inputs:['parentTable', '_commands'],
-  outputs:['resultEvent', 'parentTableEvent'],
   providers:[DetailsService],
+  outputs:['resultEvent', 'closeWindowEvent'],
   directives:[PaginationComponent, GridTableComponent],
 })
 
 export class DetailsComponent implements OnChanges{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
-  parentTableEvent = new EventEmitter<Table>();
+  closeWindowEvent = new EventEmitter();
 
   constructor(private detailsService:DetailsService){}
 
@@ -55,7 +55,7 @@ export class DetailsComponent implements OnChanges{
   }
 
   clickedRow(valor){
-    if(this.selectedCommand === valor){
+    if(!valor){
       this.resetValues();
     } else {
       this.selectedCommand = valor;
@@ -81,14 +81,18 @@ export class DetailsComponent implements OnChanges{
 
   cancel(){
     this.resultEvent.emit(this.parentTable);
-    document.getElementById("modal").hidden = !document.getElementById("modal").hidden;
+    this.closeWindowEvent.emit(false);
   }
 
   submit(){
     this.parentTable.commands = this.detailsService.commands;
     this.resultEvent.emit(this.parentTable);
+<<<<<<< HEAD
     this.detailsService.resetCommands();
     document.getElementById("modal").hidden = !document.getElementById("modal").hidden;
+=======
+    this.closeWindowEvent.emit(false);
+>>>>>>> 0ce25674b04094f8acc27cd440d4e31fc3b69785
   }
 
 }
