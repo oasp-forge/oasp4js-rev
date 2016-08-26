@@ -1,22 +1,31 @@
-import {Component, Output, EventEmitter} from '@angular/core'
+import {Component, Output, EventEmitter, OnChanges} from '@angular/core'
 import {Table} from '../../../models/table/Table.model'
 import {commandsList} from '../../../resources/commands/Commands.resource'
 import {Command} from '../../../models/command/Command.model'
 import {DetailsService} from '../service/Details.service'
 import {PaginationComponent} from '../../../oasp/oasp-ui/table-pagination/Pagination.component'
-import { GridTableComponent } from '../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
+import {GridTableComponent} from '../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 
 @Component({
   selector:'tableDetails',
   templateUrl:'app/components/details/view/Details.component.html',
   inputs:['parentTable', '_commands'],
   outputs:['resultEvent', 'parentTableEvent'],
+  providers:[DetailsService],
   directives:[PaginationComponent, GridTableComponent],
 })
 
-export class DetailsComponent {
+export class DetailsComponent implements OnChanges{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   parentTableEvent = new EventEmitter<Table>();
+
+  constructor(private detailsService:DetailsService){}
+
+  ngOnChanges(){
+    if(this.parentTable.commands !== undefined){
+      this.detailsService.commands = JSON.parse(JSON.stringify(this.parentTable.commands));
+    }
+  }
 
   public _commands;
   public headers: string[] = ["Number","Title", "Status", "Price", "Comment"];
@@ -30,70 +39,55 @@ export class DetailsComponent {
   public emptyTable = false;
   public viewMenu: boolean = true;
   public commandsPerPage = 4;
+  public showCommands: Command[];
 
 
   openMenu(){
     this.viewMenu = !this.viewMenu;
+    console.log("openMenu() --> viewMenu = " + this.viewMenu);
   }
 
   addCommand(){
-    if(this._commands.length === 0){
-      this.emptyTable = false;
-    }
     this.viewMenu = !this.viewMenu;
-    let n = 0;
-    for(let i = 0; i < this._commands.length; i ++){
-      if(this._commands[i].number > n){
-        n = this._commands[i].number;
-      }
-    }
-    if(n === 0){
-      n = 100000;
-    }
-    let c = new Command(
-      n + 1,
-      this.commandToAdd.getTitle(),
-      'ORDERED',
-      this.commandToAdd.getPrice(),
-      '...'
-    );
-
-    this._commands.push(c);
-
-    this.commandToAdd = new Command(null, '', '', null, '');
+    console.log("addCommand() --> viewMenu = " + this.viewMenu);
+    this.detailsService.addCommand(this.commandToAdd);
+    this.resetValues();
   }
 
   clickedRow(valor){
     if(this.selectedCommand === valor){
-      this.selectedCommand = new Command(null,'','',null,'');
+      this.resetValues();
     } else {
       this.selectedCommand = valor;
     }
   }
 
   removeCommand(){
-    let index = this._commands.indexOf(this.selectedCommand);
-    this._commands.splice(index,1);
-    this.selectedCommand = new Command(null,'','',null,'');
-
-    if(this._commands.length === 0){
+    this.detailsService.removeCommand(this.selectedCommand);
+    this.resetValues();
+    if(this.detailsService.commands.length === 0){
       this.emptyTable = true;
     }
   }
 
-  resetSelectedCommand(){
+  resetValues(){
     this.selectedCommand = new Command(null,'','',null,'');
+    this.commandToAdd = new Command(null,'','',null,'');
+  }
+
+  pagination(value){
+    this.showCommands = value;
   }
 
   cancel(){
-    this._commands = this.parentTable.commands;
     this.resultEvent.emit(this.parentTable);
     document.getElementById("modal").hidden = !document.getElementById("modal").hidden;
   }
 
   submit(){
-    this.parentTable.commands = this._commands;
+    this.parentTable.commands = this.detailsService.commands;
     this.resultEvent.emit(this.parentTable);
+    this.detailsService.resetCommands();
     document.getElementById("modal").hidden = !document.getElementById("modal").hidden;
   }
 

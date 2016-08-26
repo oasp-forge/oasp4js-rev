@@ -3,6 +3,7 @@
 </div>
 
 <div style="margin:50 0 90 0">
+
   <div class="dropdown" style="float:right; margin:10px">
     <button *ngIf="commandToAdd.getPrice() != null" class="btn btn-default" disabled="disabled">{{commandToAdd.getTitle()}}</button>
     <button *ngIf="commandToAdd.getPrice() === null" class="btn btn-default dropdown-toggle" type="button" (click)="openMenu()" id="menu1" data-toggle="dropdown">Commands
@@ -18,13 +19,19 @@
   <grid-table
       [headers] = "headers"
       [attributeNames] = "attributeNames"
-      [dataInput] = "_commands"
+      [dataInput] = "showCommands"
       (objSelected) = "clickedRow($event)">
   </grid-table>
+
 
   <div style="float:left;">
     <button *ngIf="selectedCommand.number != null" class="btn btn-default" (click)="removeCommand()">Remove</button>
   </div>
+
+</div>
+
+<div style="text-align:right">
+  <pagination [list] = "detailsService.commands" [rowsPerPage] = "commandsPerPage" (paginationList) = "pagination($event)"></pagination>
 </div>
 
 <div style="text-align:right;" class="modal-footer">

@@ -1,19 +1,19 @@
 <div>
-<filter-panel (filterValues) = "searchFilters($event)">
-  <label> Number </label>
-  <input type ="number" class="form-control">
-  <label> State </label>
-  <input type ="text" class="form-control">
-  <label> Waiter </label>
-  <input type ="text" class="form-control">
-</filter-panel>
+  <filter-panel (filterValues) = "searchFilters($event)">
+    <label> Number </label>
+    <input type ="number" class="form-control">
+    <label> State </label>
+    <input type ="text" class="form-control">
+    <label> Waiter </label>
+    <input type ="text" class="form-control">
+  </filter-panel>
 
-<grid-table
-    [headers] ="headers"
-    [attributeNames] = "attributeNames"
-    [dataInput] = "showTables"
-    (objSelected) = "rowSelected($event)">
-</grid-table>
+  <grid-table
+      [headers] ="headers"
+      [attributeNames] = "attributeNames"
+      [dataInput] = "showTables"
+      (objSelected) = "rowSelected($event)">
+  </grid-table>
 
   <div style="text-align:center">
       <button type="button" class="btn btn-pagination" [disabled] = "myState === -1" data-toggle="modal" data-target="prueba" (click)="openEditModal()">Edit</button>
@@ -26,6 +26,7 @@
   <div style="text-align:right">
       <pagination [list] = "tables" [rowsPerPage] = "tablesPerPage" (paginationList) = "pagination($event)"></pagination>
   </div>
+
 </div>
 
 <modal-dialog id="modal"
