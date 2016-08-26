@@ -64,7 +64,7 @@ export class DetailsComponent {
   }
 
   clickedRow(valor){
-    if(this.selectedCommand === valor){
+    if(!valor){
       this.selectedCommand = new Command(null,'','',null,'');
     } else {
       this.selectedCommand = valor;
