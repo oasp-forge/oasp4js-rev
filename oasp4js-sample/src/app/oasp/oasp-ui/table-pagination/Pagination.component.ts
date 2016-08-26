@@ -21,6 +21,7 @@ export class PaginationComponent implements OnChanges{
   paginationList = new EventEmitter();
 
   ngOnChanges(){
+    debugger
     if(this.list){
       if(this.rowsPerPage > this.list.length){
         this.rowsPerPage = this.list.length;

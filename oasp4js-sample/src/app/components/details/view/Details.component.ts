@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter, OnChanges} from '@angular/core'
+import {Component, Output, EventEmitter, OnChanges, OnInit} from '@angular/core'
 import {Table} from '../../../models/table/Table.model'
 import {commandsList} from '../../../resources/commands/Commands.resource'
 import {Command} from '../../../models/command/Command.model'
@@ -15,15 +15,16 @@ import {GridTableComponent} from '../../../oasp/oasp-ui/grid-table/view/Grid-tab
   directives:[PaginationComponent, GridTableComponent],
 })
 
-export class DetailsComponent implements OnChanges{
+export class DetailsComponent implements OnInit{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   closeWindowEvent = new EventEmitter();
 
   constructor(private detailsService:DetailsService){}
 
-  ngOnChanges(){
+  ngOnInit(){
     if(this.parentTable.commands !== undefined){
       this.detailsService.commands = JSON.parse(JSON.stringify(this.parentTable.commands));
+      this.myCommands = this.detailsService.copyCommands();
     }
   }
 
@@ -41,6 +42,8 @@ export class DetailsComponent implements OnChanges{
   public commandsPerPage = 4;
   public showCommands: Command[];
 
+  public myCommands: Command[];
+
 
   openMenu(){
     this.viewMenu = !this.viewMenu;
@@ -49,8 +52,8 @@ export class DetailsComponent implements OnChanges{
 
   addCommand(){
     this.viewMenu = !this.viewMenu;
-    console.log("addCommand() --> viewMenu = " + this.viewMenu);
     this.detailsService.addCommand(this.commandToAdd);
+    this.myCommands = this.detailsService.copyCommands();
     this.resetValues();
   }
 
@@ -68,6 +71,7 @@ export class DetailsComponent implements OnChanges{
     if(this.detailsService.commands.length === 0){
       this.emptyTable = true;
     }
+    this.myCommands = this.detailsService.copyCommands();
   }
 
   resetValues(){

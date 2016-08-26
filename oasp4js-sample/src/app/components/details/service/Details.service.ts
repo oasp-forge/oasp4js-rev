@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core'
+import {Injectable, OnInit} from '@angular/core'
 import {Table} from '../../../models/table/Table.model'
 import {tablesList} from '../../../resources/tables/Tables.resource'
 import {Command} from '../../../models/command/Command.model'
@@ -8,6 +8,8 @@ import {commandsList} from '../../../resources/commands/Commands.resource'
 export class DetailsService{
   commands : Command[] = [];
   commandList : Command[] = commandsList;
+
+
 
   addCommand(c:Command){
 
@@ -34,6 +36,10 @@ export class DetailsService{
 
   resetCommands(){
     this.commands = [];
+  }
+
+  copyCommands():Command[]{
+    return JSON.parse(JSON.stringify(this.commands));
   }
 
 }
