@@ -20,7 +20,7 @@
     <button type="button" class="btn btn-pagination" (click)="cancelReservation()" [disabled] = "myState === 0 || myState === 1 || myState === 2 || myState === -1">Cancel Reservation</button>
     <button type="button" class="btn btn-pagination" (click)="occupy()" [disabled] = "myState === 2 || myState === 0 || myState === 1 || myState === -1">Occupy</button>
     <button type="button" class="btn btn-pagination" (click)="free()" [disabled] = "myState === 1 || myState === -1">Free</button>
-
+ 
     <div class="container">
       <div class="modal" id="myModal" role="dialog">
         <div class="modal-dialog modal-lm">
