@@ -7,7 +7,7 @@ import {Component, OnChanges, EventEmitter} from '@angular/core'
   outputs: ['paginationList']
 })
 
-export class PaginationComponent implements OnChanges{
+export class PaginationComponent{
 
   list;
   showList;
@@ -15,21 +15,33 @@ export class PaginationComponent implements OnChanges{
   currentPage: number = 1;
   pageView: number = 1;
 
+  initRowsPerPage: number;
   rowsPerPage: number;
   numberPages: number;
 
   paginationList = new EventEmitter();
 
   ngOnChanges(){
-    debugger
     if(this.list){
+
+      if(!this.initRowsPerPage) {
+        this.initRowsPerPage = this.rowsPerPage;
+      }
+
       if(this.rowsPerPage > this.list.length){
         this.rowsPerPage = this.list.length;
+      } else {
+        this.rowsPerPage = this.initRowsPerPage;
       }
 
       this.showList = this.list.slice(this.rowsPerPage * (this.currentPage - 1), this.rowsPerPage * (this.currentPage - 1) + this.rowsPerPage);
       this.numberPages = Math.ceil(this.list.length / this.rowsPerPage);
-      this.paginationList.emit(this.showList)
+      this.paginationList.emit(this.showList);
+
+      if(this.showList.length <= 0){
+        this.changePage(this.currentPage - 1, 0);
+      }
+
     }
   }
 

@@ -21,17 +21,19 @@ export class DetailsService{
     }
 
     if(n === 0){n = 100000}
-
-    c.setNumber(n+1);
-    c.setTitle(c.getTitle())
-    c.setStatus('ORDERED');//by default
-    c.setPrice(c.getPrice());
-    this.commands.push(c);
+    let d = new Command(n+1, c.getTitle(),'ORDERED', c.getPrice(), "...");
+    this.commands.push(d);
   }
 
   removeCommand(c:Command){
-    let index = this.commands.indexOf(c);
-    this.commands.splice(index,1);
+    // debugger
+    // let index = this.commands.indexOf(c);
+    for(let i = 0; i < this.commands.length ; i ++){
+      if(this.commands[i].number === c.number){
+        this.commands.splice(i,1);
+        break;
+      }
+    }
   }
 
   resetCommands(){
