@@ -28,11 +28,11 @@
   </div>
 
 </div>
-
+<!-- style="position:absolute; left: 0px; top: 0px; width:100%; height:100%;" -->
 <modal-dialog id="modal"
   *ngIf="hideModalDialog"
   [modal]=true
   [TITLE]=modalHeader
-  style="position:absolute; left: 0px; top: 0px; width:100%; height:100%;">
+  class="modaldialog">
   <tableDetails [parentTable]="selectedTable" (closeWindowEvent)="hideModalDialog = $event" (resultEvent)="rowSelected($event)" [_commands]="_commands"></tableDetails>
 </modal-dialog>

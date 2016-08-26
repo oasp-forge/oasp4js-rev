@@ -9,8 +9,6 @@ export class DetailsService{
   commands : Command[] = [];
   commandList : Command[] = commandsList;
 
-
-
   addCommand(c:Command){
 
     let n = 0;
@@ -26,8 +24,6 @@ export class DetailsService{
   }
 
   removeCommand(c:Command){
-    // debugger
-    // let index = this.commands.indexOf(c);
     for(let i = 0; i < this.commands.length ; i ++){
       if(this.commands[i].number === c.number){
         this.commands.splice(i,1);
