@@ -87,12 +87,8 @@ export class DetailsComponent implements OnChanges{
   submit(){
     this.parentTable.commands = this.detailsService.commands;
     this.resultEvent.emit(this.parentTable);
-<<<<<<< HEAD
     this.detailsService.resetCommands();
-    document.getElementById("modal").hidden = !document.getElementById("modal").hidden;
-=======
     this.closeWindowEvent.emit(false);
->>>>>>> 0ce25674b04094f8acc27cd440d4e31fc3b69785
   }
 
 }
