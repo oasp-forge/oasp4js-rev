@@ -34,9 +34,11 @@ export class PaginationComponent{
         this.rowsPerPage = this.initRowsPerPage;
       }
 
+      // This should be server-side
       this.showList = this.list.slice(this.rowsPerPage * (this.currentPage - 1), this.rowsPerPage * (this.currentPage - 1) + this.rowsPerPage);
       this.numberPages = Math.ceil(this.list.length / this.rowsPerPage);
       this.paginationList.emit(this.showList);
+      // -------
 
       if(this.showList.length <= 0){
         this.changePage(this.currentPage - 1, 0);
@@ -61,6 +63,7 @@ export class PaginationComponent{
       this.pageView = view;
     }
 
+    // This should be server-side
     if(this.rowsPerPage * (this.currentPage - 1) < this.rowsPerPage){
       this.showList = this.list.slice(0, this.rowsPerPage);
     } else{

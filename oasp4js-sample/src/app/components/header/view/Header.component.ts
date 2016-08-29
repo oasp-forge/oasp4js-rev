@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import {languages} from '../../../resources/languages/Languages.resource'
+import {ROUTER_DIRECTIVES} from "@angular/router";
 
 @Component({
     selector: 'header',
     templateUrl: 'app/components/header/view/Header.component.html',
     inputs: ["logged", "username"],
-    outputs: ["logOffEvent"]
+    outputs: ["logOffEvent"],
+    directives: [ROUTER_DIRECTIVES]
 })
 
 export class HeaderComponent {
