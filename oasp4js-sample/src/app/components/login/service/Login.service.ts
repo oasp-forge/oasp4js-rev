@@ -24,7 +24,10 @@ export class LoginService{
       }
     }
     return res;
+  }
 
+  getUsers() : User[]{
+    return this.users;
   }
 
 }

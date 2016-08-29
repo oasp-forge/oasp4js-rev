@@ -3,17 +3,22 @@ import {CrudComponent} from '../../components/crud/view/Crud.component';
 import {it, describe, expect, beforeEach, inject} from '@angular/core/testing';
 import {Table} from '../../models/table/Table.model'
 
-describe('CrudComponent [COMPONENT]: \n', () => {
-    let crud:CrudComponent;
+describe('\nCrudComponent [COMPONENT]: \n', () => {
+    let component:CrudComponent;
     let service:CrudService = new CrudService();
 
     //setup
     beforeEach(() => {
-        crud = new CrudComponent(service);
+        component = new CrudComponent(service);
     });
 
     //specs
-    it('[TEST_ERROR] SELECTEDTABLE should be an instance of class Table!', () => {
-      expect(crud.selectedTable instanceof Table).toBe(true);
+    it('[TEST_ERROR] CrudComponent should be defined!', () => {
+      expect(component).toBeDefined();
     });
+
+    it('[TEST_ERROR] SELECTEDTABLE should be an instance of class Table!', () => {
+      expect(component.selectedTable instanceof Table).toBe(true);
+    });
+
 });

@@ -15,6 +15,10 @@ describe('CrudService [SERVICE]: \n', () => {
     tables = service.getTables();
   }));
 
+  it('[TEST_ERROR] CrudComponent should be defined!', () => {
+    expect(service).toBeDefined();
+  });
+
   it('[TEST_ERROR] typeof TABLES should be [object Array]!', () => {
     expect(Object.prototype.toString.call(tables)).toBe('[object Array]');
   })
