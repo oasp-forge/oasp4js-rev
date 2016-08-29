@@ -6967,6 +6967,15 @@ tr.selected {
 /************************RESTAURANT *********************************/
 
 
+/*********** PROPERTIES *******************/
+.propertyMargin-right {
+    margin-right: 5px;
+}
+
+.propertyMargin-left {
+    margin-left: 5px;
+}
+
 /*-------------MAIN APP STYLES-------------*/
 .header-restaurant {
   color: grey !important;
@@ -7125,6 +7134,14 @@ tr.selected {
 }
 
 /*-----------TABLE STYLE --------*/
+.table{
+    border: 3px solid #f9f9f9;
+}
+
+.table th{
+    padding: 10px;
+}
+
 .table td.selected {
   background-color: #88CFE3 !important;
 }
@@ -7201,4 +7218,26 @@ tr.selected {
 
 .filter .form-flex{
   width: 100%;
+}
+
+/****************  KITCHEN  *************/
+
+.Kitchentables .commandTable{
+    width: 43% !important;
+    display: inline-table;
+}
+.Kitchentables .commandButton{
+    top: 50px;
+    margin-left: 45px;
+    margin-right: 45px;
+    width: 50px;
+    height: 35px;
+}
+
+.Kitchentables .commandButtonReturn{
+    top: 100px;
+    right: 50px;
+    margin-left: -50px;
+    width: 50px;
+    height: 35px;
 }

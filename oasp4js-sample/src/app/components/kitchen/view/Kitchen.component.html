@@ -1,1 +1,29 @@
-<h1>KITCHEN</h1>
+<h2>Kitchen</h2>
+<div class ="Kitchentables">
+    <div class = "commandTable">
+        <h3> Available </h3>
+        <grid-table
+            [headers] ="headers"
+            [attributeNames] = "attributeNames"
+            [dataInput] = "availableCommands"
+            (objSelected) = "availableSelected($event)">
+        </grid-table>
+    </div>
+
+    <button (click) ="assign()" [disabled] = "selectedAvailableCommand == undefined" class ="btn commandButton glyphicon glyphicon-arrow-right"></button>
+    <button  (click) ="changeState(1)" [disabled] = "selectedAssignedCommand == undefined" class ="btn commandButtonReturn glyphicon glyphicon-arrow-left"></button>
+
+    <div class = "commandTable">
+        <h3> Assigned </h3>
+        <grid-table
+            [headers] ="headers"
+            [attributeNames] = "attributeNames"
+            [dataInput] = "assignedCommands"
+            (objSelected) = "assignedSelected($event)">
+         </grid-table>
+
+
+         <button  (click) ="changeState(2)" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-warning propertyMargin-left">Cancel</button>
+         <button  (click) ="changeState(3)" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-primary propertyMargin-left">Done</button>
+    </div>
+</div>

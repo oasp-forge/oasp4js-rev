@@ -21,8 +21,7 @@ export class GridTableComponent implements OnChanges{
 
     public selection;
     objSelected = new EventEmitter();
-
-    public sortIconStyle = ["glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down"];
+    public sortIconStyle = [];
 
     constructor(private gridtableService : GridtableService){
     }
@@ -31,6 +30,11 @@ export class GridTableComponent implements OnChanges{
       this.attributesNames = this.attributeNames;
       this.tableHeaders = this.headers;
       this.rowsData = this.dataInput;
+      if(this.sortIconStyle.length === 0){
+          for(let i = 0 ; i < this.tableHeaders.length; i++){
+              this.sortIconStyle.push("glyphicon glyphicon-chevron-down");
+          }
+      }
     }
 
     sortColumn(column:number, name:string){
