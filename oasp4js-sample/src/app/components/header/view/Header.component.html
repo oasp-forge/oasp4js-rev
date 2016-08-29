@@ -3,10 +3,10 @@
 
   <ul *ngIf="logged" class = "header-tabs">
     <li role = "presentation">
-      <a> Tables </a>
+      <a [routerLink]="['/Tables']"> Tables </a>
     </li>
     <li role = "presentation">
-      <a> Kitchen </a>
+      <a [routerLink]="['/Kitchen']"> Kitchen </a>
     </li>
   </ul>
 

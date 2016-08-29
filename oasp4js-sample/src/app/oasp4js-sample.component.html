@@ -1,4 +1,4 @@
-<header [logged]="login" [username] ="usuario.username" (logOffEvent)="login = $event"></header>
+<header [logged]="login" [username] ="usuario.username" (logOffEvent)="login = logOut($event)"></header>
 
 <div class = "app-body">
   <!-- LOGIN -->
@@ -7,9 +7,8 @@
   </div>
 
   <!-- APPLICATION -->
-  <div *ngIf="login">
-    <h2>Tables</h2>
-    <crud></crud>
+  <div [hidden]="!login">
+    <router-outlet></router-outlet>
   </div>
 </div>
 
