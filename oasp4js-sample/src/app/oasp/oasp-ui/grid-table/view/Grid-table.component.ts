@@ -11,48 +11,47 @@ import {GridtableService} from '../service/Grid-table.service'
 
 export class GridTableComponent implements OnChanges{
 
-  headers;
-  attributeNames;
-  dataInput;
+    headers;
+    attributeNames;
+    dataInput;
 
-  public rowsData = [];
-  public attributesNames = [];
-  public tableHeaders = [];
+    public rowsData = [];
+    public attributesNames = [];
+    public tableHeaders = [];
 
-  public selection;
-  objSelected = new EventEmitter();
+    public selection;
+    objSelected = new EventEmitter();
 
-  public sortIconStyle = ["glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down"];
+    public sortIconStyle = ["glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down","glyphicon glyphicon-chevron-down"];
 
-  constructor(private gridtableService : GridtableService){
-  }
-
-  ngOnChanges(){
-    this.attributesNames = this.attributeNames;
-    this.tableHeaders = this.headers;
-    this.rowsData = this.dataInput;
-  }
-
-  sortColumn(column:number, name:string){
-
-    if(this.sortIconStyle[column] === "glyphicon glyphicon-chevron-up"){
-        this.sortIconStyle[column] = "glyphicon glyphicon-chevron-down";
-        this.rowsData = this.gridtableService.getTablesOrderBy(-1, name, this.rowsData);
-    } else {
-        this.sortIconStyle[0] = "glyphicon glyphicon-chevron-down";
-        this.sortIconStyle[1] = "glyphicon glyphicon-chevron-down";
-        this.sortIconStyle[2] = "glyphicon glyphicon-chevron-down";
-        this.sortIconStyle[column] = "glyphicon glyphicon-chevron-up";
-        this.rowsData = this.gridtableService.getTablesOrderBy(1, name, this.rowsData);
+    constructor(private gridtableService : GridtableService){
     }
-  }
 
-  clickedRow(valor){
-    if(this.selection === valor){
-      this.selection = undefined;
-    } else {
-      this.selection = valor;
+    ngOnChanges(){
+      this.attributesNames = this.attributeNames;
+      this.tableHeaders = this.headers;
+      this.rowsData = this.dataInput;
     }
-    this.objSelected.emit(this.selection);
-  }
+
+    sortColumn(column:number, name:string){
+      if(this.sortIconStyle[column] === "glyphicon glyphicon-chevron-up"){
+          this.sortIconStyle[column] = "glyphicon glyphicon-chevron-down";
+          this.rowsData = this.gridtableService.getTablesOrderBy(-1, name, this.rowsData);
+      } else {
+          this.sortIconStyle[0] = "glyphicon glyphicon-chevron-down";
+          this.sortIconStyle[1] = "glyphicon glyphicon-chevron-down";
+          this.sortIconStyle[2] = "glyphicon glyphicon-chevron-down";
+          this.sortIconStyle[column] = "glyphicon glyphicon-chevron-up";
+          this.rowsData = this.gridtableService.getTablesOrderBy(1, name, this.rowsData);
+      }
+    }
+
+    clickedRow(valor){
+      if(this.selection === valor){
+          this.selection = undefined;
+      } else {
+          this.selection = valor;
+      }
+      this.objSelected.emit(this.selection);
+    }
 }

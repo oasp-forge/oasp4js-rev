@@ -6,12 +6,17 @@ import { CrudComponent } from './components/crud/view/Crud.component'
 
 import { User } from './models/user/User.model'
 
+import {ROUTER_DIRECTIVES, Router, Routes} from "@angular/router";
+
+@Routes([
+])
+
 @Component({
   moduleId: module.id,
   selector: 'oasp4js-sample-app',
   templateUrl: 'oasp4js-sample.component.html',
   styleUrls: ['oasp4js-sample.component.css'],
-  directives: [LoginComponent, HeaderComponent, CrudComponent]
+  directives: [LoginComponent, HeaderComponent, CrudComponent, ROUTER_DIRECTIVES]
 })
 export class Oasp4jsSampleAppComponent{
   title = "oasp4js-sample works!";
