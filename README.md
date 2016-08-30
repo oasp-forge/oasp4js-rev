@@ -25,3 +25,14 @@ There will be 3 kind of users:
 - Chief (username:"chief"/password:"chief") : Access to both Tables and Kitchen views.
 - Cook ("cook"/"cook") : Access only to Kitchen view
 - Waiter ("waiter/waiter") : Access only to Tables view
+
+##Which technologies are in use?
+
+As we are developing this sample-app in Angular2, we are forced to use an environment on which TypeScript can be supported, so we use Atom. It allows us to install packages from the environment itself. TypeScript is being the main language, but also HTML with angular2 elements (I will try to explain it later on this Issue).
+
+### How to start run it locally? (step by step)
+
+1. Install Atom and Node.js (we use "npm" for running, testing and installing). We've followed the next video: https://www.youtube.com/watch?v=_-CD_5YhJTA
+2. Clone oasp4js-rev repo to a local folder. We will be commiting to the "Development" branch (default branch of te repo)
+3. Open CMD and go to repo's folder, where you will have the sample-app project called 'oasp4js-sample'
+4. Write `npm install` on CMD. Every dependecy specified on `package.json` will be installed.
