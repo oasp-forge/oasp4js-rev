@@ -1,13 +1,29 @@
 <h2>Tables</h2>
 <div>
-  <filter-panel (filterValues) = "searchFilters($event)">
-    <label> Number </label>
-    <input type ="number" class="form-control">
-    <label> State </label>
-    <input type ="text" class="form-control">
-    <label> Waiter </label>
-    <input type ="text" class="form-control">
-  </filter-panel>
+
+  <search-panel (searchValues) = "searchFilters($event)">
+    <span>
+        <div class = "searchFields propertyMargin-right">
+            <label> Number </label>
+            <input type ="number" class="form-control">
+        </div>
+
+        <div class = "searchFields propertyMargin-right">
+            <label> State </label>
+            <select class="form-control">
+              <option value="Ordered">Ordered</option>
+              <option value="Cooking">Cooking</option>
+              <option value="Canceled">Canceled</option>
+              <option value="Done">Done</option>
+            </select>
+        </div>
+
+        <div class = "searchFields">
+            <label> Waiter </label>
+            <input type ="text" class="form-control">
+        </div>
+    </span>
+  </search-panel>
 
   <grid-table
       [headers] ="headers"

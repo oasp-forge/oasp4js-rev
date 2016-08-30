@@ -1,15 +1,33 @@
 <h2>Kitchen</h2>
 
-<filter-panel (filterValues) = "searchFilters($event)">
-    <label> Number </label>
-    <input type ="number" class="form-control">
-    <label> title </label>
-    <input type ="text" class="form-control">
-    <label> status </label>
-    <input type ="text" class="form-control">
-    <label> comment </label>
-    <input type ="text" class="form-control">
-</filter-panel>
+<search-panel (searchValues) = "searchFilters($event)">
+
+    <div class = "searchFields propertyMargin-right">
+        <label> Number </label>
+        <input type ="number" class="form-control">
+    </div>
+
+    <div class = "searchFields propertyMargin-right">
+        <label> Title </label>
+        <input type ="text" class="form-control">
+    </div>
+
+    <div class = "searchFields propertyMargin-right">
+        <label> Status </label>
+        <select class="form-control">
+          <option value="Ordered">Ordered</option>
+          <option value="Cooking">Cooking</option>
+          <option value="Canceled">Canceled</option>
+          <option value="Done">Done</option>
+        </select>
+    </div>
+
+    <div class = "searchFields propertyMargin-right">
+        <label> Comment </label>
+        <input type ="text" class="form-control">
+    </div>
+
+</search-panel>
 
 <div class ="Kitchentables">
     <div class = "commandTable">

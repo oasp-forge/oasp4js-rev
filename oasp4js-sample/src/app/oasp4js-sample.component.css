@@ -6969,11 +6969,19 @@ tr.selected {
 
 /*********** PROPERTIES *******************/
 .propertyMargin-right {
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 .propertyMargin-left {
-    margin-left: 5px;
+    margin-left: 10px;
+}
+
+.propertyMargin-bottom {
+    margin-bottom: 10px;
+}
+
+.propertyMargin-top {
+    margin-top: 10px;
 }
 
 /*-------------MAIN APP STYLES-------------*/
@@ -7204,20 +7212,34 @@ tr.selected {
 }
 
 /**************** FILTERS **************/
+.searchForm {
+    margin-bottom: 30px;
+    position: relative;
+}
 
 .filter input {
-  display: inline-flex;
-  width: auto !important;
+  width: 200px !important;
+}
+
+.filter input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .filter .right{
-  margin-top: 10px;
-  display: block !important;
-  text-align: right !important;
+    position: absolute;
+    bottom: 0;
+    right: 0;
 }
 
 .filter .form-flex{
   width: 100%;
+  position: relative;
+}
+
+.searchFields {
+    float: left;
+    margin-bottom: 50px;
 }
 
 /****************  KITCHEN  *************/
