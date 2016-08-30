@@ -31,9 +31,19 @@ export class Oasp4jsSampleAppComponent{
 
   constructor(private router: Router){}
 
+  setUser(value){
+      this.usuario = value;
+  }
+
   enviar(value){
-    setTimeout( ()=>{this.login = value;},1);
-    this.router.navigate(['/Tables']);
+    setTimeout( ()=>{
+        this.login = value;
+        if(this.usuario.id < 3){
+            this.router.navigate(['/Tables']);
+        } else{
+            this.router.navigate(['/Kitchen']);
+        }
+    },1);
   }
 
   logOut(){

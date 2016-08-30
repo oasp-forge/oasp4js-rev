@@ -1,9 +1,9 @@
-<header [logged]="login" [username] ="usuario.username" (logOffEvent)="login = logOut($event)"></header>
+<header [logged]="login" [user] ="usuario" (logOffEvent)="login = logOut($event)"></header>
 
 <div class = "app-body">
   <!-- LOGIN -->
   <div *ngIf="!login">
-    <login (loginEvent)="enviar($event)" (userEvent)="usuario=$event"></login>
+    <login (loginEvent)="enviar($event)" (userEvent)="setUser($event)"></login>
   </div>
 
   <!-- APPLICATION -->

@@ -72,10 +72,11 @@ export class LoginComponent implements OnInit{
   }
 
   private validateLogin(username, password){
-      this.user = new User(null, username, password);
+      this.user = new User(null, username, password, null);
       if(this.loginService.loginCorrect(this.user)){
         this.loginEvent.emit(true);
         this.user.setId(this.loginService.getIdFromParams(this.user.username, this.user.password));
+        this.user.setPermission(this.loginService.getPermissionFromParams(this.user.username, this.user.password));
         this.userEvent.emit(this.user);
       }
       else{
