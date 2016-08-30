@@ -2,11 +2,12 @@ import {Component} from '@angular/core'
 import {GridTableComponent} from '../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {Command} from '../../../models/command/Command.model'
 import {KitchenService} from '../service/Kitchen.service'
+import {FilterPanelComponent} from '../../../oasp/oasp-ui/filters-panel/view/Filters-panel.component'
 
 @Component({
   selector:'kitchen',
   templateUrl:'app/components/kitchen/view/Kitchen.component.html',
-  directives: [GridTableComponent],
+  directives: [GridTableComponent, FilterPanelComponent],
   providers: [KitchenService]
 })
 
@@ -63,11 +64,11 @@ export class KitchenComponent{
                 this.kitchenService.doneCommand(this.selectedAssignedCommand);
                 break;
         }
+        this.assignedCommands = this.kitchenService.getAssignedCommands();
+        this.availableCommands = this.kitchenService.getAvaliableCommands();
 
         this.selectedAvailableCommand = undefined;
         this.selectedAssignedCommand = undefined;
-        this.assignedCommands = this.kitchenService.getAssignedCommands();
-        this.availableCommands = this.kitchenService.getAvaliableCommands();
 
     }
 }
