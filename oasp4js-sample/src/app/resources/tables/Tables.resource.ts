@@ -4,65 +4,25 @@ import {commandsList} from '../commands/Commands.resource'
 
 
 let t1c:Command[] = [
-  commandsList[0],
-  commandsList[2],
-  commandsList[3]
-]
-
-let t1dc:Command[] = [
-  commandsList[0],
-  commandsList[2],
-  commandsList[3]
+  commandsList[0]
 ]
 
 let t2c:Command[] = [
-  commandsList[1],
-  commandsList[4]
+  commandsList[1]
 ]
-
-let t2dc:Command[] = [
-  commandsList[1],
-  commandsList[4]
-]
-
 
 let t3c:Command[] = [
-  commandsList[2],
-  commandsList[4],
-  commandsList[5]
+  commandsList[2]
 ]
-
-let t3dc:Command[] = [
-  commandsList[2],
-  commandsList[4],
-  commandsList[5]
-]
-
 
 let t4c:Command[] = [
-  commandsList[3],
-  commandsList[4],
-  commandsList[5]
+  commandsList[3]
 ]
-
-let t4dc:Command[] = [
-  commandsList[3],
-  commandsList[4],
-  commandsList[5]
-]
-
 
 let t5c:Command[] = [
-  commandsList[1],
-  commandsList[3],
-  commandsList[5]
+  commandsList[4]
 ]
 
-let t5dc:Command[] = [
-  commandsList[1],
-  commandsList[3],
-  commandsList[5]
-]
 
 let table1 = new Table(1,'FREE', 'Jackie Brown', t1c);
 let table2 = new Table(2,'OCCUPIED', 'Vince Vega', t2c);

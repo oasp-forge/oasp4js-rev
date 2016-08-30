@@ -3,24 +3,24 @@ import {Table} from '../../../models/table/Table.model'
 import {tablesList} from '../../../resources/tables/Tables.resource'
 import {Command} from '../../../models/command/Command.model'
 import {commandsList} from '../../../resources/commands/Commands.resource'
+import {commandId} from '../../../resources/commands/Commands.resource'
 
 @Injectable()
 export class DetailsService{
   commands : Command[] = [];
   commandList : Command[] = commandsList;
+  commandIndex: number = commandId[0];
 
   addCommand(c:Command){
+    this.commandIndex++;
 
-    let n = 0;
-    for(let i = 0; i < this.commands.length; i ++){
-      if(this.commands[i].number > n){
-        n = this.commands[i].number;
-      }
+    if(this.commandIndex === 9999999){
+        this.commandIndex = 1000000;
     }
 
-    if(n === 0){n = 100000}
-    let d = new Command(n+1, c.getTitle(),'ORDERED', c.getPrice(), "...");
+    let d = new Command(this.commandIndex, c.getTitle(),'ORDERED', c.getPrice(), "...");
     this.commands.push(d);
+    commandId[0] = this.commandIndex;
   }
 
   removeCommand(c:Command){

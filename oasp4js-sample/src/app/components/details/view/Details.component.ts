@@ -75,8 +75,8 @@ export class DetailsComponent implements OnInit{
   }
 
   resetValues(){
-    this.selectedCommand = new Command(null,'','',null,'');
-    this.commandToAdd = new Command(null,'','',null,'');
+    this.selectedCommand = new Command(null, '','',null,'');
+    this.commandToAdd = new Command(null, '','',null,'');
   }
 
   pagination(value){
