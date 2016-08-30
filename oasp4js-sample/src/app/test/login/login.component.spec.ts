@@ -12,9 +12,14 @@ describe('\nLoginComponent [COMPONENT]: \n', () => {
 
     //setup
     beforeEach(() => {
-        component = new LoginComponent(service);
-        loginEvent = component.loginEvent;
-        userEvent = component.userEvent;
+      component = new LoginComponent(service);
+      loginEvent = component.loginEvent;
+      userEvent = component.userEvent;
+
+      spyOn(component, 'validateLogin');
+
+      component.validateLogin('username', 'password');
+
     });
 
     //specs
@@ -24,10 +29,18 @@ describe('\nLoginComponent [COMPONENT]: \n', () => {
 
     it('[TEST_ERROR] typeof loginEvent should be EventEmitter<>!', () => {
       expect(loginEvent instanceof EventEmitter).toBe(true);
-    })
+    });
 
     it('[TEST_ERROR] typeof userEvent should be EventEmitter<>!', () => {
       expect(userEvent instanceof EventEmitter).toBe(true);
-    })
+    });
+
+    it('[TEST_ERROR] validateLogin should have been called!', () => {
+      expect(component.validateLogin).toHaveBeenCalled();
+    });
+
+    it('[TEST_ERROR] validateLogin should have been called with => (\'username\', \'password\')', () => {
+      expect(component.validateLogin).toHaveBeenCalledWith('username', 'password');
+    });
 
 });

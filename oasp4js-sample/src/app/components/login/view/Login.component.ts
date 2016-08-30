@@ -71,7 +71,7 @@ export class LoginComponent implements OnInit{
     this.loginFailed = !this.loginFailed;
   }
 
-  private validateLogin(username, password){
+  validateLogin(username, password){
       this.user = new User(null, username, password, null);
       if(this.loginService.loginCorrect(this.user)){
         this.loginEvent.emit(true);
