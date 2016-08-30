@@ -27,7 +27,7 @@ import {ROUTER_DIRECTIVES, Router, Routes} from "@angular/router";
 export class Oasp4jsSampleAppComponent{
   title = "oasp4js-sample works!";
   public login:boolean;
-  public usuario: User = new User(0,"","");
+  public usuario: User = new User(0,"","",0);
 
   constructor(private router: Router){}
 
