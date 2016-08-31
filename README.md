@@ -37,4 +37,4 @@ As we are developing this sample-app in Angular2, we are forced to use an enviro
 2. Clone oasp4js-rev repo to a local folder. We will be commiting to the "Development" branch (default branch of the repo)
 3. Open CMD and go to repo's folder, where you will have the sample-app project called 'oasp4js-sample'
 4. Write `npm install` on CMD. Every dependecy specified on `package.json` will be installed.
-5. Writing `npm start` on CMD will run the proyect, open your browser and it will be located in `localhost:4200`.
+5. Writing `npm start` on CMD will run the proyect, so you'll can see your Application on the browser, located in `localhost:4200`.
