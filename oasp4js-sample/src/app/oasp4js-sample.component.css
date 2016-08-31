@@ -7181,6 +7181,18 @@ tr.selected {
   height:100%;
 }
 
+.modaldialogInfo {
+  position:absolute;
+  left: 0px;
+  top: 0px;
+  width:50%;
+  /*height:100%;*/
+}
+
+.modal-dialog-info {
+  width:50%;
+}
+
 /************** PAGINATION ****************/
 
 .btn-pagination {

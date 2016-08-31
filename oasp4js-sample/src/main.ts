@@ -11,6 +11,5 @@ if (environment.production) {
   enableProdMode();
 }
 
-
 bootstrap(Oasp4jsSampleAppComponent, [ROUTER_PROVIDERS, ROUTER_DIRECTIVES, HTTP_PROVIDERS, CrudRestService])
   .catch(err => console.error(err));
