@@ -10,6 +10,7 @@ if (environment.production) {
   enableProdMode();
 }
 
-
-bootstrap(Oasp4jsSampleAppComponent, [ROUTER_PROVIDERS, ROUTER_DIRECTIVES])
-  .catch(err => console.error(err));
+bootstrap(Oasp4jsSampleAppComponent,[
+  ROUTER_PROVIDERS,
+  ROUTER_DIRECTIVES,
+]).catch(err => console.error(err));
