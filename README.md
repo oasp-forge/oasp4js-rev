@@ -29,9 +29,9 @@ There will be 3 kind of users:
 
 ##Which technologies are in use?
 
-As we are developing this sample-app in Angular2, we are forced to use an environment on which TypeScript can be supported, so we use Atom. It allows us to install packages from the environment itself. TypeScript is being the main language, but also HTML and CSS with angular2 elements (I will try to explain it later on this Issue).
+As we are developing this sample-app in _Angular2_, we are forced to use an environment on which TypeScript can be supported, so we use _Atom_. It allows us to install packages from the environment itself. _TypeScript_ is being the main language on the development of the this application, but also HTML and CSS with angular2 elements (I will try to explain it later on this Issue). To run our code and to install packages, we've been using the _NPM_ of _Nodejs_. Finally, the browser we're using is _Chrome_, which is being very useful not only in running process, but it debugging as well.
 
-### How to start run it locally? (step by step)
+##How to start run it locally? (step by step)
 
 1. Install Atom and Node.js (we use "npm" for running, testing and installing). We've followed the next video: https://www.youtube.com/watch?v=_-CD_5YhJTA
 2. Clone oasp4js-rev repo to a local folder. We will be commiting to the "Development" branch (default branch of the repo)
