@@ -14,16 +14,17 @@
 
 </div>
 
+<!-- AUTOLOGIN -->
 <modal-dialog id="showPopup"
 *ngIf="autoLog"
 [modal]=true
 [TITLE]=autoLogInfo
+[type]="'info'"
 class="modaldialog">
-  <!-- CONTENT OF MODAL -->
   <form (ngSubmit)="validateAutoLogin(usernameLogin.value, passwordLogin.value)" #loginForm="ngForm">
           <input placeholder="Username" type="text" style="margin-bottom:10px;" #usernameLogin class="form-control" required ngControl="username"  #user="ngForm">
           <input placeholder="Password" type="text" style="margin-bottom:10px;" #passwordLogin class="form-control" required ngControl="password"  #pass="ngForm">
-      <button type="submit" class="btn  btn-success" [disabled]="!loginForm.form.valid">Submit</button>
+          <button type="submit" class="btn  btn-success" [disabled]="!loginForm.form.valid">Submit</button>
   </form>
 </modal-dialog>
 

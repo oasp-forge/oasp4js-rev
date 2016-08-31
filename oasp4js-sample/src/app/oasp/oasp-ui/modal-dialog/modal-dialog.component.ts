@@ -13,14 +13,18 @@ export class ModalDialogComponent {
   @Input('HEADER') header:Object;
   @Input('BODY') body:Object;
   @Input('BUTTONS') buttonDefs:Object;
-  @Input('TITLE') title:String;
+  @Input('TITLE') title:string;
   @Input('modal') modal:boolean;
   @Input('parentTable') parentTable:Table;
+  @Input('type') type:string;
 
   defaultHeader:Object = "";
   defaultBody:Object = "OASP dialog body";
   defaultButtonDefs:Object;
   defaultTitle:String = "OASP dialog title";
+
+  public info:string = "info";
+  public container:string = "container";
 
 
   public nameLogin = "login";
@@ -48,6 +52,7 @@ export class ModalDialogComponent {
   }
 
   getTitle(){
+    debugger
       if(this.title != null)
           return this.title;
       else

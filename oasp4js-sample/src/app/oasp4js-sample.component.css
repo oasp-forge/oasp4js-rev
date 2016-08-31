@@ -7189,6 +7189,10 @@ tr.selected {
   /*height:100%;*/
 }
 
+.modal-dialog-info {
+  width:50%;
+}
+
 /************** PAGINATION ****************/
 
 .btn-pagination {

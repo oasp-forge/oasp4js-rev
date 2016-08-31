@@ -46,16 +46,8 @@ export class Oasp4jsSampleAppComponent {
 
   constructor(private router: Router, private loginService: LoginService){
     this.autoLog = false;
-
-    if(this.login){
-      this.timer = setInterval(() => {
-        console.log('/// Interval ///');
-        if(this.login === true){
-          this.autoLog = true;
-          this.login = null;
-        }
-      }, 10000);
-    }
+    this.timer = setInterval(() => {
+    }, this.mins*15);
   }
 
   setUser(value){
@@ -63,6 +55,14 @@ export class Oasp4jsSampleAppComponent {
   }
 
   enviar(value){
+    clearInterval(this.timer);
+    this.timer = setInterval(() => {
+      if(this.login === true){
+        this.autoLog = true;
+        this.router.navigate(['']);
+        this.login = false;
+      }
+    }, this.mins*15);
     setTimeout( ()=>{
         this.login = value;
         if(this.usuario.id < 3){
@@ -79,24 +79,17 @@ export class Oasp4jsSampleAppComponent {
   }
 
   validateAutoLogin(username, password){
-    this.usuario.setUsername(username);
-    this.usuario.setPassword(password);
+    this.usuario = new User(null, username, password, null);
     if(this.loginService.loginCorrect(this.usuario)){
       this.autoLog = false;
       this.login = true;
-      this.usuario.setId(this.loginService.getIdFromParams(this.usuario.getUsername(), this.usuario.getPassword()));
+      this.usuario.setId(this.loginService.getIdFromParams(this.usuario.username, this.usuario.password));
+      this.usuario.setPermission(this.loginService.getPermissionFromParams(this.usuario.username, this.usuario.password));
+      this.setUser(this.usuario);
       this.enviar(true);
-      clearInterval(this.timer);
-      this.timer = setInterval(() => {
-        console.log('/// Interval ///');
-        if(this.login === true){
-          this.autoLog = true;
-          this.login = null;
-        }
-      }, 10000);
     }
     else{
-      this.enviar(false);
+      this.login = false;
       this.autoLog = false;
     }
   }
