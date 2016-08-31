@@ -2,18 +2,19 @@ import { Component } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import {languages} from '../../../resources/languages/Languages.resource'
 import {ROUTER_DIRECTIVES} from "@angular/router";
+import {User} from '../../../models/user/User.model';
 
 @Component({
     selector: 'header',
     templateUrl: 'app/components/header/view/Header.component.html',
-    inputs: ["logged", "username"],
+    inputs: ["logged", "user"],
     outputs: ["logOffEvent"],
     directives: [ROUTER_DIRECTIVES]
 })
 
 export class HeaderComponent {
     logged: boolean = false;
-    username: string;
+    user: User;
     dropmenu:boolean = true;
 
     currentIcon:string = languages[0].iconUrl;
@@ -25,6 +26,7 @@ export class HeaderComponent {
     logOffEvent = new EventEmitter<boolean>();
 
     openMenu(){
+        debugger
       this.dropmenu = !this.dropmenu;
     }
 

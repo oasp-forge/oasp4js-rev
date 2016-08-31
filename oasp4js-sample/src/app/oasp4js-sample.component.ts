@@ -33,7 +33,7 @@ import {TimerWrapper} from '@angular/core/src/facade/async';
 export class Oasp4jsSampleAppComponent {
   title = "oasp4js-sample works!";
   public login:boolean;
-  public usuario: User = new User(0,"","");
+  public usuario: User = new User(0,"","",0);
   public autoLog:boolean;
 
   public mins = 60000;
@@ -58,10 +58,19 @@ export class Oasp4jsSampleAppComponent {
     }
   }
 
+  setUser(value){
+      this.usuario = value;
+  }
 
   enviar(value){
-    setTimeout( ()=>{this.login = value;},1);
-    this.router.navigate(['/Tables']);
+    setTimeout( ()=>{
+        this.login = value;
+        if(this.usuario.id < 3){
+            this.router.navigate(['/Tables']);
+        } else{
+            this.router.navigate(['/Kitchen']);
+        }
+    },1);
   }
 
   logOut(){

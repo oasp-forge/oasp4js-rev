@@ -2,10 +2,10 @@
   <label class ="header-title"> <a> Restaurant Sample Application </a> </label>
 
   <ul *ngIf="logged" class = "header-tabs">
-    <li role = "presentation">
+    <li *ngIf="user.permission === 1 || user.permission === 3" role = "presentation">
       <a [routerLink]="['/Tables']"> Tables </a>
     </li>
-    <li role = "presentation">
+    <li *ngIf="user.permission > 1" role = "presentation">
       <a [routerLink]="['/Kitchen']"> Kitchen </a>
     </li>
   </ul>
@@ -26,7 +26,7 @@
   </div>
 
 
-  <span class="headerInfo" *ngIf="logged"> Logged in as : {{username}} </span>
+  <span class="headerInfo" *ngIf="logged"> Logged in as : {{user.username}} </span>
   <button type="button" class = "btn btn-primary" *ngIf="logged" (click) = "logOff()"> Log off </button>
 </div>
 </div>

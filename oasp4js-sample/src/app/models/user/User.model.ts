@@ -3,7 +3,8 @@ export class User {
   constructor(
     public id: number,
     public username: string,
-    public password: string
+    public password: string,
+    public permission: number
   ) {  }
 
   getId():number{
@@ -28,6 +29,14 @@ export class User {
 
   setPassword(password:string){
     this.password = password;
+  }
+
+  getPermission():number{
+    return this.permission;
+  }
+
+  setPermission(permission:number){
+    this.permission = permission;
   }
 
 }

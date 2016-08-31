@@ -22,7 +22,7 @@
           <div [hidden]="pass.valid || pass.pristine" class ="login-alert">
             Please enter your password
           </div>
-          <input type="text" placeholder="Password" style="margin-bottom:10px;" #passwordLogin class="form-control" required ngControl="password"  #pass="ngForm">
+          <input type="password" placeholder="Password" style="margin-bottom:10px;" #passwordLogin class="form-control" required ngControl="password"  #pass="ngForm">
 
       </div>
       <button type="submit" class="btn  btn-success" [disabled]="!loginForm.form.valid">Submit</button>

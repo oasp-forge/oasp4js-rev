@@ -1,28 +1,29 @@
 import {Component, ElementRef, ViewChild, EventEmitter} from '@angular/core'
 
 @Component({
-  selector:'filter-panel',
+  selector:'search-panel',
   templateUrl:'app/oasp/oasp-ui/filters-panel/view/Filters-panel.component.html',
-  outputs: ["filterValues"]
+  outputs: ["searchValues"]
 })
 
-export class FilterPanelComponent{
+export class SearchPanelComponent{
 
   @ViewChild('filters') form;
 
-  filterValues = new EventEmitter();
+  searchValues = new EventEmitter();
 
   clearForm(){
-    for(let i = 0 ; i < this.form.nativeElement.children.length ; i++ ){
-        this.form.nativeElement.children[i].value = "";
+    for(let i = 0 ; i < this.form.nativeElement.children[0].children.length ; i++ ){
+        this.form.nativeElement.children[0].children[i].children[1].value = "";
     }
   }
 
-  searchFilters(){
-    let filterValues = [];
-    for(let i = 0 ; i < this.form.nativeElement.children.length ; i++ ){
-        filterValues.push(this.form.nativeElement.children[i].value);
+  search(){
+    let values = [];
+    for(let i = 0 ; i < this.form.nativeElement.children[0].children.length ; i++ ){
+        values.push(this.form.nativeElement.children[0].children[i].children[1].value);
     }
-    this.filterValues.emit(filterValues);
+    this.searchValues.emit(values);
+    this.clearForm();
   }
 }

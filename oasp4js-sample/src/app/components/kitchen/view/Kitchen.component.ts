@@ -2,12 +2,12 @@ import {Component} from '@angular/core'
 import {GridTableComponent} from '../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {Command} from '../../../models/command/Command.model'
 import {KitchenService} from '../service/Kitchen.service'
-import {FilterPanelComponent} from '../../../oasp/oasp-ui/filters-panel/view/Filters-panel.component'
+import {SearchPanelComponent} from '../../../oasp/oasp-ui/filters-panel/view/Filters-panel.component'
 
 @Component({
   selector:'kitchen',
   templateUrl:'app/components/kitchen/view/Kitchen.component.html',
-  directives: [GridTableComponent, FilterPanelComponent],
+  directives: [GridTableComponent, SearchPanelComponent],
   providers: [KitchenService]
 })
 

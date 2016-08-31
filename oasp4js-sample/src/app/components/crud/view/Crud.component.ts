@@ -6,13 +6,13 @@ import {Command} from '../../../models/command/Command.model'
 import {PaginationComponent} from '../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import {ModalDialogComponent} from '../../../oasp/oasp-ui/modal-dialog/modal-dialog.component'
 import {GridTableComponent} from '../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
-import {FilterPanelComponent} from '../../../oasp/oasp-ui/filters-panel/view/Filters-panel.component'
+import {SearchPanelComponent} from '../../../oasp/oasp-ui/filters-panel/view/Filters-panel.component'
 
 @Component({
   selector:'crud',
   templateUrl:'app/components/crud/view/Crud.component.html',
   providers:[CrudService],
-  directives:[DetailsComponent, PaginationComponent, ModalDialogComponent, GridTableComponent, FilterPanelComponent],
+  directives:[DetailsComponent, PaginationComponent, ModalDialogComponent, GridTableComponent, SearchPanelComponent],
 })
 
 export class CrudComponent{
