@@ -3,13 +3,13 @@
     <fieldset >
         <legend> Search </legend>
 
-        <div #filters class = "form-flex">
+        <div class = "form-flex">
           <ng-content></ng-content>
         </div>
 
         <div class = "right">
-          <button (click)="clearForm()" class = "btn btn-warning btn-filter">Clear</button>
-          <button (click)="search()" class = "btn btn-primary btn-filter">Search</button>
+          <button type="button" (click)="clearForm()" class = "btn btn-warning btn-filter">Clear</button>
+          <button (click)="doSearch()" class = "btn btn-primary btn-filter">Search</button>
         </div>
 
     </fieldset>

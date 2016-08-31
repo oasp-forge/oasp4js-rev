@@ -1,32 +1,31 @@
 <div class ="header-restaurant">
-  <label class ="header-title"> <a> Restaurant Sample Application </a> </label>
+    <label class ="header-title"> <a> Restaurant Sample Application </a> </label>
 
-  <ul *ngIf="logged" class = "header-tabs">
-    <li *ngIf="user.permission === 1 || user.permission === 3" role = "presentation">
-      <a [routerLink]="['/Tables']"> Tables </a>
-    </li>
-    <li *ngIf="user.permission > 1" role = "presentation">
-      <a [routerLink]="['/Kitchen']"> Kitchen </a>
-    </li>
-  </ul>
-
-<div class = "header-right">
-
-  <div class="dropdown">
-
-    <button class="userList" type="button" (click) ="openMenu()">
-      <img  class ="icon" [src]="currentIcon">
-        {{currentLanguage}}
-      <span class="caret"></span></button>
-
-    <ul class="my-dropdown" [hidden] = "dropmenu" id ="dropMenuId">
-      <li (click) ="changeLanguage()"><a> <img  class ="icon" [src]="optionIcon"> {{optionLanguage}}</a></li>
+    <ul *ngIf="logged" class = "header-tabs">
+        <li *ngIf="user.permission === 1 || user.permission === 3" role = "presentation">
+          <a [routerLink]="['/Tables']"> Tables </a>
+        </li>
+        <li *ngIf="user.permission > 1" role = "presentation">
+          <a [routerLink]="['/Kitchen']"> Kitchen </a>
+        </li>
     </ul>
 
-  </div>
+    <div class = "header-right">
+
+      <div class="dropdown">
+        <button class="userList" type="button" (click) ="openMenu()">
+          <img  class ="icon" [src]="currentIcon">
+            {{currentLanguage}}
+          <span class="caret"></span></button>
+
+        <ul class="my-dropdown" [hidden] = "dropmenu" id ="dropMenuId">
+          <li (click) ="changeLanguage()"><a> <img  class ="icon" [src]="optionIcon"> {{optionLanguage}}</a></li>
+        </ul>
+      </div>
 
 
-  <span class="headerInfo" *ngIf="logged"> Logged in as : {{user.username}} </span>
-  <button type="button" class = "btn btn-primary" *ngIf="logged" (click) = "logOff()"> Log off </button>
-</div>
+      <span class="headerInfo" *ngIf="logged"> Logged in as : {{user.username}} </span>
+      <button type="button" class = "btn btn-primary" *ngIf="logged" (click) = "logOff()"> Log off </button>
+    </div>
+
 </div>

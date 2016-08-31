@@ -1,20 +1,21 @@
 <h2>Kitchen</h2>
 
-<search-panel (searchValues) = "searchFilters($event)">
+<search-panel [searchInputs] ="[num,title,stat,comment]" (searchValues) = "searchFilters($event)">
 
     <div class = "searchFields propertyMargin-right">
         <label> Number </label>
-        <input type ="number" class="form-control">
+        <input #num type ="number" class="form-control">
     </div>
 
     <div class = "searchFields propertyMargin-right">
         <label> Title </label>
-        <input type ="text" class="form-control">
+        <input #title type ="text" class="form-control">
     </div>
 
     <div class = "searchFields propertyMargin-right">
         <label> Status </label>
-        <select class="form-control">
+        <select #stat class="form-control">
+          <option value="">All</option>
           <option value="Ordered">Ordered</option>
           <option value="Cooking">Cooking</option>
           <option value="Canceled">Canceled</option>
@@ -24,7 +25,7 @@
 
     <div class = "searchFields propertyMargin-right">
         <label> Comment </label>
-        <input type ="text" class="form-control">
+        <input #comment type ="text" class="form-control">
     </div>
 
 </search-panel>

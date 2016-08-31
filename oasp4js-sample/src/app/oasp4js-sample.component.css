@@ -7232,11 +7232,6 @@ tr.selected {
     right: 0;
 }
 
-.filter .form-flex{
-  width: 100%;
-  position: relative;
-}
-
 .searchFields {
     float: left;
     margin-bottom: 50px;

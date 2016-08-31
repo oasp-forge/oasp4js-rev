@@ -2,7 +2,7 @@ import {Component} from '@angular/core'
 import {GridTableComponent} from '../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {Command} from '../../../models/command/Command.model'
 import {KitchenService} from '../service/Kitchen.service'
-import {SearchPanelComponent} from '../../../oasp/oasp-ui/filters-panel/view/Filters-panel.component'
+import {SearchPanelComponent} from '../../../oasp/oasp-ui/search-panel/Search-panel.component'
 
 @Component({
   selector:'kitchen',
