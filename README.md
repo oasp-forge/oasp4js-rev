@@ -17,7 +17,7 @@
 The sample-app is a management of a restaurant. Users will log in in the app, so they can perform some actions on it (always depending on their profile). 
 
 3 different views are able to be used/navigated:
--Login: First view of the application where you have to insert a correct pair user/password to access the private part of the application, depending on the credentials, you will have different permissions. Once you are in, you can return to this view by "log off" button on the header.
+- Login: First view of the application where you have to insert a correct pair user/password to access the private part of the application, depending on the credentials, you will have different permissions. Once you are in, you can return to this view by "log off" button on the header.
 - Tables: It will be a CRUD that will contain data about the tables in the restaurant, as well as their own attributes such as the state of each one of them (FREE/RESERVED/OCCUPIED).
 - Details/Edit: This view will be displayed from "Tables", clicking on "Edit" button when a table's already selected. It will contain another CRUD of commands asked on that Table. So it will be possible to add some more, remove, and so on.
 - Kitchen: Management of the states of the table commands. Every action that is performed on Details view will have its reflect on this view. It will be possible to perform some actions over those commands as well, such as "cancel" (when they are ready).
