@@ -38,3 +38,13 @@ As we are developing this sample-app in **Angular2**, we are forced to use an en
 3. Open CMD and go to repo's folder, where you will have the sample-app project called 'oasp4js-sample'
 4. Write `npm install` on CMD. Every dependecy specified on `package.json` will be installed.
 5. Writing `npm start` on CMD will run the proyect, so you'll can see your Application on the browser, located in `localhost:4200`.
+
+##How to run tests
+
+Tests will be use to verify the integrity of the code within a component or with others. The tool we use to fire those tests is **Karma**, which was developed by the Angular2 team as well. Those tests implemented in Jasmine, a behavior-driven development framework for testing JavaScript code. You can find information about syntax and how they can be implemented in Issue [#10](../../issues/10) .
+
+Every time we commit to this repository, Travis CI evaluate our code and execute those tests we've implemented. Those files will have the following format:
+
+`[component].spec.ts`
+
+In order to commit as verified as possible, we also use the `npm test` to run tests locally. If they run correctly, we push them to the repo (although "running correctly" may mean that the test is failing, but always compiling).
