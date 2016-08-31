@@ -34,6 +34,9 @@ export class KitchenComponent{
         }
     }
 
+    searchFilters(filters){
+    }
+
     assignedSelected(value){
         if(!value){
             this.selectedAssignedCommand = undefined;

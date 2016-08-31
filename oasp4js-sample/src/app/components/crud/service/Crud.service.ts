@@ -1,13 +1,21 @@
 import {Injectable} from '@angular/core'
 import {Table} from '../../../models/table/Table.model'
 import {tablesList} from '../../../resources/tables/Tables.resource'
+import { CrudRestService } from './Crud.service.rest';
+
 
 @Injectable()
 export class CrudService{
   tables : Table[] = tablesList;
 
+  constructor(private crudRestService:CrudRestService)
+   { }
+
   getTables():Table[]{
-    return this.tables;
+      let t;
+      t = this.crudRestService.getTables();
+      return t;
+    // return this.tables;
   }
 
   getTablesOrderBy(dir, name){
@@ -31,7 +39,7 @@ export class CrudService{
 
   applyFilters(filters){
       /** back-end call for filtering **/
-      return this.tables.slice();
+      return this.tables.slice(0,4);
   }
 
   getTableById(id:number):Table{
