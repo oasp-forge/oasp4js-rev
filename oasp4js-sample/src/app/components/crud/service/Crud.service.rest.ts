@@ -5,6 +5,9 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+
+declare let $:any; // --> AÑADIDO
+
 /*
   Need to know how to do a http connection with the server
 */
@@ -20,10 +23,28 @@ export class CrudRestService {
   }
 
   getTables(): Promise<Table[]>{
-      return this.http.get(this.basePath + '/table/')
-                     .toPromise()
-                     .then(response => response.json().data as Table[])
-                     .catch(this.handleError);
+      // let a = this.http.get(this.basePath + '/table/')
+      //                .toPromise()
+      //                .then(response => response.json().data as Table[])
+      //                .catch(this.handleError);
+      // debugger
+      // return a;
+
+//       let res;
+//
+//       this.http.get(this.basePath + '/currentuser/')
+//                   .map(response => response.json())
+//                   .subscribe(result => res = result);
+
+      var a = {};
+      // var obj = this.http.get(this.basePath + '/table/');
+      // debugger
+
+      var obj = this.http.get(this.basePath + '/table/')
+      .map(res => JSON.stringify(res));
+
+      return null;
+
   }
 
   getPaginatedTables(pagenumber:number, pagesize:number){
