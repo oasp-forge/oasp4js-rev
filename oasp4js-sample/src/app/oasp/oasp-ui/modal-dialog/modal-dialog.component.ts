@@ -1,11 +1,10 @@
 import {Component,Input, EventEmitter} from '@angular/core';
 import {ButtonBarComponent} from '../button-bar/button-bar.component'
-import {Table} from '../../../models/table/Table.model'
+import {Table} from '../../../main/models/table/Table.model'
 
 @Component({
   selector: 'modal-dialog',
   templateUrl: './app/oasp/oasp-ui/modal-dialog/modal-dialog.component.html',
-  styleUrls: ['./app/oasp4js-sample.component.css'],
   directives: [ButtonBarComponent]
 })
 export class ModalDialogComponent {
@@ -16,7 +15,6 @@ export class ModalDialogComponent {
   @Input('TITLE') title:string;
   @Input('modal') modal:boolean;
   @Input('parentTable') parentTable:Table;
-  @Input('type') type:string;
 
   defaultHeader:Object = "";
   defaultBody:Object = "OASP dialog body";

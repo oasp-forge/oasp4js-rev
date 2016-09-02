@@ -8,7 +8,7 @@
   {{#unless environment.production}}
   <script src="/ember-cli-live-reload.js" type="text/javascript"></script>
   {{/unless}}
-  <link rel="stylesheet" href="app/oasp4js-sample.component.css">
+  <link rel="stylesheet" href="app/main/css/oasp4js-sample.component.css">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -26,17 +26,12 @@
 <body>
   <oasp4js-sample-app>Loading...</oasp4js-sample-app>
 
-
     {{#each scripts.polyfills}}<script src="{{.}}"></script>{{/each}}
     <script>
       System.import('system-config.js').then(function () {
         System.import('main');
       }).catch(console.error.bind(console));
     </script>
-
-
-
-
 
 </body>
 </html>
