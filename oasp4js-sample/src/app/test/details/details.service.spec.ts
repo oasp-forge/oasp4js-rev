@@ -1,8 +1,8 @@
-import {DetailsService} from '../../components/details/service/Details.service';
-import {Table} from '../../models/table/Table.model'
-import {Command} from '../../models/command/Command.model'
+import {DetailsService} from '../../main/views/details/service/Details.service';
+import {Table} from '../../main/models/table/Table.model'
+import {Command} from '../../main/models/command/Command.model'
 import {beforeEachProviders,beforeEach,describe,expect,it,inject} from '@angular/core/testing';
-import {commandsList} from '../../resources/commands/Commands.resource'
+import {commandsList} from '../../main/resources/commands/Commands.resource'
 
 describe('DetailsService [SERVICE]: \n', () => {
   let service;

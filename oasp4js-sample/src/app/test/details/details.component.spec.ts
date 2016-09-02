@@ -1,7 +1,7 @@
-import {DetailsComponent} from '../../components/details/view/Details.component';
-import {DetailsService} from '../../components/details/service/Details.service';
+import {DetailsComponent} from '../../main/views/details/view/Details.component';
+import {DetailsService} from '../../main/views/details/service/Details.service';
 import {it, describe, expect, beforeEach, inject} from '@angular/core/testing';
-import {Command} from '../../models/command/Command.model'
+import {Command} from '../../main/models/command/Command.model'
 
 describe('\nDetailsComponent [COMPONENT]: \n', () => {
     let component:DetailsComponent;
