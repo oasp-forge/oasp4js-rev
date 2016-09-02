@@ -53,30 +53,23 @@ export class LoginService{
     return this.users;
   }
 
-  funcionLogin(username,password){
+  funcionLogin(username:string,password:string){
+     
+    let data={
+      "j_username":username,
+      "j_password":password
+    };
+
+    var res = null;
+    console.log(data);
 
     var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-         
-    let data={
-      j_username:username,
-      j_password:password
-    };
-//     data["j_username"]=username;
-//     data["j_password"]=password;
+    headers.append('Content-Type','application/json');
+    headers.append('Accept','application/json');
 
-    console.log(data); //this is printing both times correctly
-    //on second request data is blank where as it works correctly for first time       
-    var post = this.http.post(this.loginPath + 'login', JSON.stringify(data),{headers: headers})
-        .map((res: Response) => res.json());
-
-    var get = this.http.get(this.basePath + '/table/')
-          .map(res => JSON.stringify(res))
-          .subscribe(
-                data => {
-                console.log("Response of GET ===>" + data);
-          });
-
+    this.http.post('http://10.68.8.26:8081/oasp4j-sample-server/j_spring_security_login', JSON.stringify(data), {headers:headers})
+    .map(res => {console.log('RESPUESTA!! ---> \n' + res)})
+    .subscribe(data => {console.log(data)});
   }
 
 }
