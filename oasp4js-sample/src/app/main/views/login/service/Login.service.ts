@@ -53,21 +53,6 @@ export class LoginService{
     return this.users;
   }
 
-<<<<<<< HEAD:oasp4js-sample/src/app/components/login/service/Login.service.ts
-  funcionLogin(username:string,password:string){
-     
-    let data={
-      "j_username":username,
-      "j_password":password
-    };
-
-    var res = null;
-    console.log(data);
-
-    var headers = new Headers();
-    headers.append('Content-Type','application/json');
-    headers.append('Accept','application/json');
-=======
   funcionLogin(username,password){
 
     var headers = new Headers();
@@ -85,11 +70,10 @@ export class LoginService{
         data => { a = data},
         err => console.error('error'),
         () => console.log('done'))
->>>>>>> 77ceb5108c4e731ab62d5269d003ea0ab33328a4:oasp4js-sample/src/app/main/views/login/service/Login.service.ts
 
-    this.http.post('http://10.68.8.26:8081/oasp4j-sample-server/j_spring_security_login', JSON.stringify(data), {headers:headers})
-    .map(res => {console.log('RESPUESTA!! ---> \n' + res)})
-    .subscribe(data => {console.log(data)});
+    // this.http.post('http://10.68.8.26:8081/oasp4j-sample-server/j_spring_security_login', JSON.stringify(data), {headers:headers})
+    // .map(res => {console.log('RESPUESTA!! ---> \n' + res)})
+    // .subscribe(data => {console.log(data)});
   }
 
 
