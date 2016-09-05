@@ -64,16 +64,32 @@ export class LoginService{
     };   
 
     let a;
-    var flag = this.http.post('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/login', JSON.stringify({j_username: username, j_password: password}), { headers: headers })
-    .map(res => JSON.stringify(res))
+
+    this.http.post('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/login', JSON.stringify({j_username: username, j_password: password}), { headers: headers })
+    .map(res => {
+      JSON.stringify(res)
+    })
     .subscribe(
-        data => { a = data},
+        data => {this.funcionGetTables();},
         err => console.error('error'),
-        () => console.log('done'))
+        () => {
+          console.log('done');
+    });
 
     // this.http.post('http://10.68.8.26:8081/oasp4j-sample-server/j_spring_security_login', JSON.stringify(data), {headers:headers})
     // .map(res => {console.log('RESPUESTA!! ---> \n' + res)})
     // .subscribe(data => {console.log(data)});
+  }
+
+  funcionGetTables(){
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    this.http.get(this.basePath + '/table/', { headers: headers })
+                           .map(res => {
+                             debugger
+                             JSON.stringify(res)
+                           })
+                           .subscribe(data => {});
   }
 
 

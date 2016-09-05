@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Table} from '../../../models/table/Table.model'
+import {Command} from '../../../models/command/Command.model'
 //import { environment } from '../environment';
 import { Http, Response,Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
@@ -12,6 +13,7 @@ import 'rxjs/add/operator/toPromise';
 export class CrudRestService {
   serverPath:String =  'http://10.68.8.26:8081/oasp4j-sample-server/';
   basePath:String = this.serverPath + 'services/rest/tablemanagement/v1';
+  offersPath:String = this.serverPath + 'services/rest/offermanagement/v1';
 
  constructor(private http:Http) { }
 
@@ -28,6 +30,20 @@ export class CrudRestService {
       var obj = this.http.get(this.basePath + '/table/', { headers: headers })
                              .map(res => JSON.stringify(res))
                              .subscribe(data => {a = data} );
+
+      return null;
+  }
+
+  getOffers(): Promise<Command[]>{
+
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+
+      var obj = this.http.get(this.basePath + '/offer/', { headers: headers })
+                             .map(res => {
+                               debugger
+                             })
+                             .subscribe();
 
       return null;
   }
