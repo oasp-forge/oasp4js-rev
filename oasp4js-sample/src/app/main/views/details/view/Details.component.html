@@ -30,7 +30,7 @@
 </div>
 
 <div style="text-align:right">
-  <pagination [list] = "myCommands" [rowsPerPage] = "commandsPerPage" (paginationList) = "pagination($event)"></pagination>
+  <pagination [list] = "myCommands" [path] = "CommandsPath" [initPaginationParams]= "pageData" (paginationList) = "pagination($event)"></pagination>
 </div>
 
 <br>

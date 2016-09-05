@@ -24,6 +24,16 @@ export class CrudRestService {
                              .map(res =>  res.json())
   }
 
+  saveTable(table){
+
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+
+      this.http.post(this.basePath + '/table/', JSON.stringify(table),  {headers: headers})
+                             .map(res =>  res.json())
+                             .subscribe(data => { });
+  }
+
   getPaginatedTables(pagenumber:number, pagesize:number){
 
   }
@@ -33,10 +43,6 @@ export class CrudRestService {
   }
 
   deleteTable(id:number){
-
-  }
-
-  saveTable(table:Table){
 
   }
 

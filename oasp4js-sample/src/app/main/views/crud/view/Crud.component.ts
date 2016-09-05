@@ -19,6 +19,13 @@ import { CrudRestService } from '../service/Crud.service.rest';
 export class CrudComponent{
 
   public selectedTable = new Table(0,"","",this.arr);
+  public paginationPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/tablemanagement/v1/table/search"
+  public pageData = {
+            pagination: {
+              size: 4,
+              page: 1,
+              total: true
+      }};
 
   public tables:Table[];
   public headers: string[] = ["Table number","State", "Waiter"];
@@ -56,24 +63,10 @@ export class CrudComponent{
     this.showTables = value;
   }
 
-  reserve(){
-    this.crudService.reserve(this.selectedTable);
-    this.myState = 3;
-  }
-
-  cancelReservation(){
-    this.crudService.cancelReservation(this.selectedTable);
-    this.myState = 1;
-  }
-
-  occupy(){
-    this.crudService.occupy(this.selectedTable);
-    this.myState = 2;
-  }
-
-  free(){
-    this.crudService.free(this.selectedTable);
-    this.myState = 1;
+  changeState(state, btn){
+      this.selectedTable.state = state;
+      this.crudRestService.saveTable(this.selectedTable);
+      this.myState = btn;
   }
 
   rowSelected(valor){
