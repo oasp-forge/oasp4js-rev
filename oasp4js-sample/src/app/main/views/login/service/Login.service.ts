@@ -71,6 +71,9 @@ export class LoginService{
         err => console.error('error'),
         () => console.log('done'))
 
+    // this.http.post('http://10.68.8.26:8081/oasp4j-sample-server/j_spring_security_login', JSON.stringify(data), {headers:headers})
+    // .map(res => {console.log('RESPUESTA!! ---> \n' + res)})
+    // .subscribe(data => {console.log(data)});
   }
 
 
