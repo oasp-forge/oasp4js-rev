@@ -6,13 +6,15 @@ import { CrudRestService } from './Crud.service.rest';
 
 @Injectable()
 export class CrudService{
-  tables : Table[] = tablesList;
+  tables : Table[];
 
   constructor(private crudRestService:CrudRestService)
    { }
 
-  getTables():Table[]{
-     return this.tables;
+  getTables(){
+      let a;
+      a = this.crudRestService.getTables();
+      return a;
   }
 
   getTablesOrderBy(dir, name){

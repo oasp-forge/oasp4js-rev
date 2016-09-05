@@ -19,17 +19,9 @@ export class CrudRestService {
     //return this.http.get(this.basePath + '/table/' + id).map((res:Response) => res.json());
   }
 
-  getTables(): Promise<Table[]>{
-      var a = {};
-
-      var headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-
-      var obj = this.http.get(this.basePath + '/table/', { headers: headers })
-                             .map(res => JSON.stringify(res))
-                             .subscribe(data => {a = data} );
-
-      return null;
+  getTables(){
+      return this.http.get(this.basePath + '/table/')
+                             .map(res =>  res.json())
   }
 
   getPaginatedTables(pagenumber:number, pagesize:number){
