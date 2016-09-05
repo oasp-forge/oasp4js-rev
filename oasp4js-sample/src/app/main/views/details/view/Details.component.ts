@@ -47,7 +47,6 @@ export class DetailsComponent implements OnInit{
 
   openMenu(){
     this.viewMenu = !this.viewMenu;
-    console.log("openMenu() --> viewMenu = " + this.viewMenu);
   }
 
   addCommand(){

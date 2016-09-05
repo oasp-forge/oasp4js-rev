@@ -13,7 +13,7 @@ import 'rxjs/add/operator/toPromise';
 export class CrudRestService {
   serverPath:String =  'http://10.68.8.26:8081/oasp4j-sample-server/';
   basePath:String = this.serverPath + 'services/rest/tablemanagement/v1';
-  offersPath:String = this.serverPath + 'services/rest/offermanagement/v1';
+  productsPath:String = this.serverPath + 'services/rest/offermanagement/v1';
 
  constructor(private http:Http) { }
 
@@ -21,31 +21,14 @@ export class CrudRestService {
     //return this.http.get(this.basePath + '/table/' + id).map((res:Response) => res.json());
   }
 
-  getTables(): Promise<Table[]>{
-      var a = {};
-
-      var headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-
-      var obj = this.http.get(this.basePath + '/table/', { headers: headers })
-                             .map(res => JSON.stringify(res))
-                             .subscribe(data => {a = data} );
-
-      return null;
+  getTables(){
+    return this.http.get(this.basePath + '/table/')
+                           .map(res =>  res.json())
   }
 
-  getOffers(): Promise<Command[]>{
-
-      var headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-
-      var obj = this.http.get(this.basePath + '/offer/', { headers: headers })
-                             .map(res => {
-                               debugger
-                             })
-                             .subscribe();
-
-      return null;
+  getOffers(){
+    return this.http.get(this.productsPath + '/product/')
+                           .map(res =>  res.json())
   }
 
   getPaginatedTables(pagenumber:number, pagesize:number){

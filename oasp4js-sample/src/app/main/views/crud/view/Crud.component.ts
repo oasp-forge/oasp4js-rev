@@ -7,6 +7,7 @@ import {PaginationComponent} from '../../../../oasp/oasp-ui/table-pagination/Pag
 import {ModalDialogComponent} from '../../../../oasp/oasp-ui/modal-dialog/modal-dialog.component'
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {SearchPanelComponent} from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
+import { CrudRestService } from '../service/Crud.service.rest';
 
 @Component({
   selector:'crud',
@@ -33,12 +34,13 @@ export class CrudComponent{
   public _commands:Command[];
   public modalHeader:string;
 
-  constructor(private crudService:CrudService){
-    this.tables = crudService.getTables();
+  constructor(private crudService:CrudService, private crudRestService: CrudRestService){
+    crudService.getTables().subscribe(data => {this.tables = data});
     this.myState = -1;
   }
 
   openEditModal(){
+    debugger
     this.hideModalDialog = true;
   }
 
@@ -83,7 +85,10 @@ export class CrudComponent{
     } else {
       this.selectedTable = valor;
       this.modalHeader = "Details of Table #" + this.selectedTable.number;
-      this._commands = JSON.parse(JSON.stringify(this.selectedTable.commands));
+      this.crudService.getOffers()
+          .subscribe(data => {
+            this._commands = data
+      });
       if(this.selectedTable.state === "FREE"){
         this.myState = 1;
       }
@@ -94,6 +99,7 @@ export class CrudComponent{
         this.myState = 3;
       }
     }
+
   }
 
 }
