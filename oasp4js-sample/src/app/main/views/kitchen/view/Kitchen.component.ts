@@ -27,22 +27,14 @@ export class KitchenComponent{
     }
 
     availableSelected(value){
-        if(!value){
-            this.selectedAvailableCommand = undefined;
-        } else{
-            this.selectedAvailableCommand = value;
-        }
+        this.selectedAvailableCommand = value;
     }
 
     searchFilters(filters){
     }
 
     assignedSelected(value){
-        if(!value){
-            this.selectedAssignedCommand = undefined;
-        } else{
-            this.selectedAssignedCommand = value;
-        }
+        this.selectedAssignedCommand = value;
     }
 
     assign(){
@@ -55,7 +47,6 @@ export class KitchenComponent{
     }
 
     changeState(op: number){
-
         switch(op){
             case 1:
                 this.kitchenService.returnCommand(this.selectedAssignedCommand);
@@ -67,11 +58,11 @@ export class KitchenComponent{
                 this.kitchenService.doneCommand(this.selectedAssignedCommand);
                 break;
         }
+
         this.assignedCommands = this.kitchenService.getAssignedCommands();
         this.availableCommands = this.kitchenService.getAvaliableCommands();
 
         this.selectedAvailableCommand = undefined;
         this.selectedAssignedCommand = undefined;
-
     }
 }

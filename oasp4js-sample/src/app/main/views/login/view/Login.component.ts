@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit{
 
   constructor(
     private loginService:LoginService
-  ){ }
+  ){  }
 
   private doctors = [];
   // constructor(http: Http, cd: ChangeDetectorRef, private loginService:LoginService) {

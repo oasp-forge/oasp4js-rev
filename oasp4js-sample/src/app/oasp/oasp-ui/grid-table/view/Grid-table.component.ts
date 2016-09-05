@@ -30,6 +30,7 @@ export class GridTableComponent implements OnChanges{
       this.attributesNames = this.attributeNames;
       this.tableHeaders = this.headers;
       this.rowsData = this.dataInput;
+      this.selection = undefined;
       if(this.sortIconStyle.length === 0){
           for(let i = 0 ; i < this.tableHeaders.length; i++){
               this.sortIconStyle.push("glyphicon glyphicon-chevron-down");
