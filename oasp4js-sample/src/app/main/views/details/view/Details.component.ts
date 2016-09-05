@@ -19,6 +19,17 @@ export class DetailsComponent implements OnInit{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   closeWindowEvent = new EventEmitter();
 
+  //bad path
+  commandsPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/offermanagement/v1/offer/search"
+
+  pageData = {
+      pagination:{
+          page:1,
+          size: 4,
+          total: true
+      }
+  }
+
   constructor(private detailsService:DetailsService){}
 
   ngOnInit(){
