@@ -3,35 +3,35 @@ import {Table} from '../table/Table.model'
 export class Command {
 
   constructor(
-    public number: number,
-    public title: string,
-    public status: string,
+    public id: number,
+    public offerName: string,
+    public state: string,
     public price: number,
     public comment: string
   ) {  }
 
-  getNumber():number{
-    return this.number;
+  getId():number{
+    return this.id;
   }
 
-  setNumber(number:number){
-    this.number = number;
+  setId(id:number){
+    this.id = id;
   }
 
-  getTitle():string{
-    return this.title;
+  getOfferName():string{
+    return this.offerName;
   }
 
-  setTitle(title:string){
-    this.title = title;
+  setOfferName(offerName:string){
+    this.offerName = offerName;
   }
 
-  getStatus():string{
-    return this.status;
+  getState():string{
+    return this.state;
   }
 
-  setStatus(status:string){
-    this.status = status;
+  setState(status:string){
+    this.state = status;
   }
 
   getPrice():number{
