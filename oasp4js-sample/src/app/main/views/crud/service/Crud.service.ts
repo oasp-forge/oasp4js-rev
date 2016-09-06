@@ -51,36 +51,4 @@ export class CrudService{
     return res;
   }
 
-  reserve(table:Table){
-    for(let i = 0; i < this.tables.length; i ++){
-      if(this.tables[i].getNumber() === table.getNumber()){
-        this.tables[i].setState("RESERVED");
-      }
-    }
-  }
-
-  cancelReservation(table:Table){
-    for(let i = 0; i < this.tables.length; i ++){
-      if(this.tables[i].getNumber() === table.getNumber()){
-        this.tables[i].setState("FREE");
-      }
-    }
-  }
-
-  occupy(table:Table){
-    for(let i = 0; i < this.tables.length; i ++){
-      if(this.tables[i].getNumber() === table.getNumber()){
-        this.tables[i].setState("OCCUPIED");
-      }
-    }
-  }
-
-  free(table:Table){
-    for(let i = 0; i < this.tables.length; i ++){
-      if(this.tables[i].getNumber() === table.getNumber()){
-        this.tables[i].setState("FREE");
-      }
-    }
-  }
-
 }
