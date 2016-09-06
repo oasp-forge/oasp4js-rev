@@ -5,11 +5,12 @@ import {Command} from '../../../models/command/Command.model'
 import {DetailsService} from '../service/Details.service'
 import {PaginationComponent} from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
+import {DetailsRestService} from '../service/Details.service.rest'
 
 @Component({
   selector:'tableDetails',
   templateUrl:'app/main/views/details/view/Details.component.html',
-  inputs:['parentTable', '_commands'],
+  inputs:['parentTable'],
   providers:[DetailsService],
   outputs:['resultEvent', 'closeWindowEvent'],
   directives:[PaginationComponent, GridTableComponent],
@@ -18,35 +19,15 @@ import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-
 export class DetailsComponent implements OnInit{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   closeWindowEvent = new EventEmitter();
+  pageData;
 
-  //bad path
-  commandsPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/offermanagement/v1/offer/search"
+  CommandsPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/offermanagement/v1/offer/search"
 
-  pageData = {
-      pagination:{
-          page:1,
-          size: 4,
-          total: true
-      }
-  }
+  public headers: string[] = ["number","description", "state", "price", "Comment"];
+  public attributeNames: string[] = ["id", "name", "state", "price", "comment"];
 
-  constructor(private detailsService:DetailsService){}
-
-  ngOnInit(){
-    if(this.parentTable.commands !== undefined){
-      this.detailsService.commands = JSON.parse(JSON.stringify(this.parentTable.commands));
-      this.myCommands = this.detailsService.copyCommands();
-    }
-  }
-
-  public _commands;
-  public headers: string[] = ["Number","Title", "Status", "Price", "Comment"];
-  public headers2: string[] = ["number","description", "state", "price", "Comment"];
-  public attributeNames: string[] = ["number", "title", "status", "price", "comment"];
-  public attributeNames2: string[] = ["number", "description", "status", "price", "comment"];
-
-  public parentTable:Table; 
-  public commands:Command[] = commandsList;
+  public parentTable:Table;
+  public commands:Command[];
   public dirtyTable:Table = new Table(0,'','',null);
   public commandToAdd:Command = new Command(null, '', '', null, '');
   public selectedCommand:Command = new Command(null, '', '', null, '');
@@ -55,8 +36,15 @@ export class DetailsComponent implements OnInit{
   public commandsPerPage = 4;
   public showCommands: Command[];
 
-  public myCommands: Command[];
+  constructor(private detailsRestService: DetailsRestService, private detailsService:DetailsService){}
 
+  ngOnInit(){
+      this.detailsRestService.getCommands().subscribe(data => this.commands = data);
+      this.pageData = {
+          state: "OPEN",
+          tableId: this.parentTable.number
+      };
+  }
 
   openMenu(){
     this.viewMenu = !this.viewMenu;
@@ -64,26 +52,16 @@ export class DetailsComponent implements OnInit{
 
   addCommand(){
     this.viewMenu = !this.viewMenu;
-    this.detailsService.addCommand(this.commandToAdd);
-    this.myCommands = this.detailsService.copyCommands();
+    this.detailsRestService.addCommand(this.commandToAdd, this.commands[this.commands.length - 1].id +1);
     this.resetValues();
   }
 
   clickedRow(valor){
-    if(!valor){
-      this.resetValues();
-    } else {
       this.selectedCommand = valor;
-    }
   }
 
   removeCommand(){
-    this.detailsService.removeCommand(this.selectedCommand);
-    this.resetValues();
-    if(this.detailsService.commands.length === 0){
-      this.emptyTable = true;
-    }
-    this.myCommands = this.detailsService.copyCommands();
+
   }
 
   resetValues(){

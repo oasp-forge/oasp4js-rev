@@ -21,7 +21,7 @@ export class PaginationComponent{
   pageView: number;
 
   initRowsPerPage: number;
-  rowsPerPage: number;
+  rowsPerPage: number = 4;
   numberPages: number;
 
   paginationList = new EventEmitter();
@@ -31,15 +31,15 @@ export class PaginationComponent{
   }
 
   ngOnInit(){
-      this.rowsPerPage = this.initPaginationParams.pagination.size;
+      if(this.initPaginationParams && this.initPaginationParams.pagination ){
+          this.rowsPerPage = this.initPaginationParams.pagination.size;
+      }
       this.currentPage = 1;
       this.pageView = 1;
   }
 
   ngOnChanges(){
-
     if(this.list){
-
       if(!this.initRowsPerPage) {
         this.initRowsPerPage = this.rowsPerPage;
       }
@@ -67,7 +67,11 @@ export class PaginationComponent{
                      {headers: headers})
                                         .map(res => res.json())
                                         .subscribe(data => {
-                                            this.showList = data.result;
+                                            if(data.result[0].order){
+                                                this.showList = data.result[0].positions
+                                            } else {
+                                                this.showList = data.result;
+                                            }
                                             this.paginationList.emit(this.showList)
                                          });
 
@@ -109,7 +113,11 @@ export class PaginationComponent{
                    {headers: headers})
                                       .map(res => res.json())
                                       .subscribe(data => {
-                                          this.showList = data.result;
+                                          if(data.result[0].order){
+                                              this.showList = data.result[0].positions
+                                          } else {
+                                              this.showList = data.result;
+                                          }
                                           this.paginationList.emit(this.showList)
                                        });
 

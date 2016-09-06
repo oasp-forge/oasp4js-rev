@@ -18,14 +18,14 @@ export class DetailsService{
         this.commandIndex = 1000000;
     }
 
-    let d = new Command(this.commandIndex, c.getTitle(),'ORDERED', c.getPrice(), "...");
+    let d = new Command(this.commandIndex, c.getOfferName(),'ORDERED', c.getPrice(), "...");
     this.commands.push(d);
     commandId[0] = this.commandIndex;
   }
 
   removeCommand(c:Command){
     for(let i = 0; i < this.commands.length ; i ++){
-      if(this.commands[i].number === c.number){
+      if(this.commands[i].id === c.id){
         this.commands.splice(i,1);
         break;
       }

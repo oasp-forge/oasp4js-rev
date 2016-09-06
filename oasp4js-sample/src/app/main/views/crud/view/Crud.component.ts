@@ -20,6 +20,7 @@ export class CrudComponent{
 
   public selectedTable = new Table(0,"","",this.arr);
   public paginationPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/tablemanagement/v1/table/search"
+
   public pageData = {
             pagination: {
               size: 4,

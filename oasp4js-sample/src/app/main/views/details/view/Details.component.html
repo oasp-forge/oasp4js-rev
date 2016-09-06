@@ -5,32 +5,32 @@
 <div style="margin:50 0 90 0">
 
   <div class="dropdown" style="float:right; margin:10px">
-    <button *ngIf="commandToAdd.getPrice() != null" class="btn btn-default" disabled="disabled">{{commandToAdd.getTitle()}}</button>
-    <button *ngIf="commandToAdd.getPrice() === null" class="btn btn-default dropdown-toggle" type="button" (click)="openMenu()" id="menu1" data-toggle="dropdown">Commands
+    <button *ngIf="commandToAdd.price != null" class="btn btn-default" disabled="disabled">{{commandToAdd.name}}</button>
+    <button *ngIf="commandToAdd.price === null" class="btn btn-default dropdown-toggle" type="button" (click)="openMenu()" id="menu1" data-toggle="dropdown">Commands
       <span class="caret"></span></button>
     <ul class="my-dropdown" role="menu"  [hidden]= "viewMenu" aria-labelledby="menu1">
       <li role="presentation" *ngFor=" let command of commands">
-        <a role="menuitem" tabindex="-1" style="cursor:pointer" (click)="commandToAdd = command">{{command.getTitle()}}</a>
+        <a role="menuitem" tabindex="-1" style="cursor:pointer" (click)="commandToAdd = command">{{command.name}}</a>
       </li>
     </ul>
-    <button *ngIf="commandToAdd.getPrice() != null" class="btn btn-default" type="button" id="menu1" (click)="addCommand()">+Add</button>
+    <button *ngIf="commandToAdd.price != null" class="btn btn-default" type="button" id="menu1" (click)="addCommand()">+Add</button>
   </div>
 
   <grid-table
-      [headers] = "headers2"
-      [attributeNames] = "attributeNames2"
-      [dataInput] = "_commands"
+      [headers] = "headers"
+      [attributeNames] = "attributeNames"
+      [dataInput] = "showCommands"
       (objSelected) = "clickedRow($event)">
   </grid-table>
 
   <div style="float:left;">
-    <button *ngIf="selectedCommand.number != null" class="btn btn-default" (click)="removeCommand()">Remove</button>
+    <button *ngIf="selectedCommand != null" class="btn btn-default" (click)="removeCommand()">Remove</button>
   </div>
 
 </div>
 
 <div style="text-align:right">
-  <pagination [list] = "myCommands" [path] = "CommandsPath" [initPaginationParams]= "pageData" (paginationList) = "pagination($event)"></pagination>
+  <pagination [list] = "commands" [path] = "CommandsPath" [initPaginationParams]= "pageData" (paginationList) = "pagination($event)"></pagination>
 </div>
 
 <br>
