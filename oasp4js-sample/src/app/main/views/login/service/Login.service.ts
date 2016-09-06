@@ -75,7 +75,6 @@ export class LoginService{
     headers.append('Content-Type', 'application/json');
     this.http.get(this.basePath + '/table/', { headers: headers })
                            .map(res => {
-                             debugger
                              JSON.stringify(res)
                            })
                            .subscribe(data => {});

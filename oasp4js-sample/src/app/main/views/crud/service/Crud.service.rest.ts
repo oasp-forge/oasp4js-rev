@@ -27,7 +27,7 @@ export class CrudRestService {
   }
 
   getOffers(){
-    return this.http.get(this.productsPath + '/product/')
+    return this.http.get(this.productsPath + '/offer/')
                            .map(res =>  res.json())
   }
 
@@ -36,9 +36,10 @@ export class CrudRestService {
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
-      this.http.post(this.basePath + '/table/', JSON.stringify(table),  {headers: headers})
+      let post = this.http.post(this.basePath + '/table/', JSON.stringify(table),  {headers: headers})
                              .map(res =>  res.json())
                              .subscribe(data => { });
+      post.unsubscribe();             
   }
 
   getPaginatedTables(pagenumber:number, pagesize:number){

@@ -41,7 +41,9 @@ export class DetailsComponent implements OnInit{
 
   public _commands;
   public headers: string[] = ["Number","Title", "Status", "Price", "Comment"];
+  public headers2: string[] = ["number","description", "state", "price", "Comment"];
   public attributeNames: string[] = ["number", "title", "status", "price", "comment"];
+  public attributeNames2: string[] = ["number", "description", "status", "price", "comment"];
 
   public parentTable:Table;
   public commands:Command[] = commandsList;
