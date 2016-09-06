@@ -17,6 +17,10 @@ export class CrudService{
       return a;
   }
 
+  getOffers(){
+    return this.crudRestService.getOffers();
+  }
+
   getTablesOrderBy(dir, name){
     /** This should be a call to back-end server **/
     let tables = this.tables.slice();

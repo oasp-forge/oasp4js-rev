@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Table} from '../../../models/table/Table.model'
+import {Command} from '../../../models/command/Command.model'
 //import { environment } from '../environment';
 import { Http, Response,Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
@@ -12,6 +13,7 @@ import 'rxjs/add/operator/toPromise';
 export class CrudRestService {
   serverPath:String =  'http://10.68.8.26:8081/oasp4j-sample-server/';
   basePath:String = this.serverPath + 'services/rest/tablemanagement/v1';
+  productsPath:String = this.serverPath + 'services/rest/offermanagement/v1';
 
  constructor(private http:Http) { }
 
@@ -20,8 +22,13 @@ export class CrudRestService {
   }
 
   getTables(){
-      return this.http.get(this.basePath + '/table/')
-                             .map(res =>  res.json())
+    return this.http.get(this.basePath + '/table/')
+                           .map(res =>  res.json())
+  }
+
+  getOffers(){
+    return this.http.get(this.productsPath + '/offer/')
+                           .map(res =>  res.json())
   }
 
   saveTable(table){
@@ -29,9 +36,10 @@ export class CrudRestService {
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
-      this.http.post(this.basePath + '/table/', JSON.stringify(table),  {headers: headers})
+      let post = this.http.post(this.basePath + '/table/', JSON.stringify(table),  {headers: headers})
                              .map(res =>  res.json())
                              .subscribe(data => { });
+      post.unsubscribe();             
   }
 
   getPaginatedTables(pagenumber:number, pagesize:number){

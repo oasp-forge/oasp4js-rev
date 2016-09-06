@@ -41,6 +41,8 @@ export class CrudComponent{
   public _commands:Command[];
   public modalHeader:string;
 
+  public pendingRequest;
+
   constructor(private crudService:CrudService, private crudRestService: CrudRestService){
     crudService.getTables().subscribe(data => {this.tables = data});
     this.myState = -1;
@@ -69,15 +71,26 @@ export class CrudComponent{
       this.myState = btn;
   }
 
-  rowSelected(valor){
+  rowSelected(valor, param){
+    if(this.hideModalDialog){
+      this.pendingRequest.unsubscribe();
+      this.pendingRequest = null;
+    }
     if(!valor){
       this.selectedTable = new Table(0,"","",this.arr);
       this.modalHeader = "Details of Table #" + this.selectedTable.number;
       this.myState = -1;
-    } else {
+    } else if(!this.hideModalDialog){
       this.selectedTable = valor;
       this.modalHeader = "Details of Table #" + this.selectedTable.number;
-    //   this._commands = JSON.parse(JSON.stringify(this.selectedTable.commands));
+      var me = this;
+      if(!this.pendingRequest){
+        this.pendingRequest = this.crudService.getOffers()
+        .subscribe(data => {
+          me._commands = data
+        });
+      }
+      // this.pendingRequest.unsubscribe();
       if(this.selectedTable.state === "FREE"){
         this.myState = 1;
       }
@@ -88,6 +101,7 @@ export class CrudComponent{
         this.myState = 3;
       }
     }
+
   }
 
 }

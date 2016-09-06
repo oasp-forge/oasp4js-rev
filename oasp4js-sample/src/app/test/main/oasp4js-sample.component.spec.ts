@@ -18,7 +18,7 @@ describe('[COMPONENT]: Oasp4jsSampleAppComponent', () => {
 
     beforeAll(() => {
         router = jasmine.createSpyObj("Router", ['navigate']);
-        component = new Oasp4jsSampleAppComponent(router,service);
+        component = new Oasp4jsSampleAppComponent(router,service, http);
     });
     it("should be defined", () => {
       expect(component).toBeDefined();

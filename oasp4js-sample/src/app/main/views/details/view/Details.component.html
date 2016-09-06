@@ -1,5 +1,5 @@
 <div style="float:left; width:100%;">
-  <p><b>Status: </b>{{parentTable.getState()}}</p>
+  <p><b>Status: </b>{{parentTable.state}}</p>
 </div>
 
 <div style="margin:50 0 90 0">
@@ -17,9 +17,9 @@
   </div>
 
   <grid-table
-      [headers] = "headers"
-      [attributeNames] = "attributeNames"
-      [dataInput] = "showCommands"
+      [headers] = "headers2"
+      [attributeNames] = "attributeNames2"
+      [dataInput] = "_commands"
       (objSelected) = "clickedRow($event)">
   </grid-table>
 

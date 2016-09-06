@@ -1,15 +1,13 @@
 import { Component } from '@angular/core';
 import {ROUTER_DIRECTIVES, Router, Routes} from "@angular/router";
 import {TimerWrapper} from '@angular/core/src/facade/async';
-
+import { Http } from '@angular/http'
 import { HeaderComponent} from '../header/view/Header.component';
 import { LoginComponent} from '../login/view/Login.component';
 import { LoginService} from '../login/service/Login.service';
 import { CrudComponent } from '../crud/view/Crud.component'
 import { KitchenComponent } from '../kitchen/view/Kitchen.component'
-
 import { User } from '../../models/user/User.model'
-
 import { ModalDialogComponent } from '../../../oasp/oasp-ui/modal-dialog/modal-dialog.component';
 
 @Routes([
@@ -47,7 +45,11 @@ export class Oasp4jsSampleAppComponent {
   public autoLogTitle = "Ooops...";
   public autoLogInfo = "Session time expired!";
 
-  constructor(private router: Router, private loginService: LoginService){
+  constructor(
+    private router: Router,
+    private loginService: LoginService,
+    private http: Http
+  ){
     this.autoLog = false;
     this.timer = setInterval(() => {
     }, this.mins*15);
@@ -79,6 +81,9 @@ export class Oasp4jsSampleAppComponent {
   logOut(){
     this.login = false;
     this.router.navigate(['']);
+    this.http.post('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/logout', JSON.stringify({j_username: "", j_password: ""}), null)
+    .map(res => JSON.stringify(res))
+    .subscribe()
   }
 
   validateAutoLogin(username, password){
