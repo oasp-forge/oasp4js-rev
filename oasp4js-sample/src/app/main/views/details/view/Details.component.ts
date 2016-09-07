@@ -21,29 +21,28 @@ export class DetailsComponent implements OnInit{
   closeWindowEvent = new EventEmitter();
   pageData;
 
-  CommandsPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/offermanagement/v1/offer/search"
+  CommandsPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order/search"
 
   public headers: string[] = ["number","description", "state", "price", "Comment"];
-  public attributeNames: string[] = ["id", "name", "state", "price", "comment"];
+  public attributeNames: string[] = ["id", "offerName", "state", "price", "comment"];
 
   public parentTable:Table;
   public commands:Command[];
-  public dirtyTable:Table = new Table(0,'','',null);
-  public commandToAdd:Command = new Command(null, '', '', null, '');
-  public selectedCommand:Command = new Command(null, '', '', null, '');
-  public emptyTable = false;
+  public menus = [];
+  public commandToAdd:Command = null;
+  public selectedCommand:Command = null;
   public viewMenu: boolean = true;
-  public commandsPerPage = 4;
   public showCommands: Command[];
 
   constructor(private detailsRestService: DetailsRestService, private detailsService:DetailsService){}
 
   ngOnInit(){
-      this.detailsRestService.getCommands().subscribe(data => this.commands = data);
       this.pageData = {
           state: "OPEN",
-          tableId: this.parentTable.number
+          tableId: 100 + this.parentTable.number
       };
+      this.detailsRestService.getCommands(this.pageData).subscribe(data => {this.commands = data.result[0].positions});
+      this.detailsRestService.getMenus().subscribe(data => this.menus = data);
   }
 
   openMenu(){
@@ -61,12 +60,12 @@ export class DetailsComponent implements OnInit{
   }
 
   removeCommand(){
-
+      this.detailsRestService.deleteCommand(this.selectedCommand.id);
   }
 
   resetValues(){
-    this.selectedCommand = new Command(null, '','',null,'');
-    this.commandToAdd = new Command(null, '','',null,'');
+    this.selectedCommand = null;
+    this.commandToAdd = null;
   }
 
   pagination(value){

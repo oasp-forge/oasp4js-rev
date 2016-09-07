@@ -17,7 +17,7 @@ export class PaginationComponent{
   paginationData;
   paginationParams;
 
-  currentPage: number;
+  currentPage: number = 1;
   pageView: number;
 
   initRowsPerPage: number;
@@ -51,6 +51,7 @@ export class PaginationComponent{
       }
 
       this.numberPages = Math.ceil(this.list.length / this.rowsPerPage);
+    }
 
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
@@ -67,7 +68,7 @@ export class PaginationComponent{
                      {headers: headers})
                                         .map(res => res.json())
                                         .subscribe(data => {
-                                            if(data.result[0].order){
+                                            if(data && data.result[0] && data.result[0].order){
                                                 this.showList = data.result[0].positions
                                             } else {
                                                 this.showList = data.result;
@@ -78,8 +79,6 @@ export class PaginationComponent{
       if(this.showList && this.showList.length <= 0){
         this.changePage(this.currentPage - 1, 0);
       }
-
-    }
   }
 
   changePage(page: number, view: number){
@@ -113,7 +112,7 @@ export class PaginationComponent{
                    {headers: headers})
                                       .map(res => res.json())
                                       .subscribe(data => {
-                                          if(data.result[0].order){
+                                          if(data && data.result[0] && data.result[0].order){
                                               this.showList = data.result[0].positions
                                           } else {
                                               this.showList = data.result;

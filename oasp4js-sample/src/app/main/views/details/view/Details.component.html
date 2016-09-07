@@ -5,15 +5,15 @@
 <div style="margin:50 0 90 0">
 
   <div class="dropdown" style="float:right; margin:10px">
-    <button *ngIf="commandToAdd.price != null" class="btn btn-default" disabled="disabled">{{commandToAdd.name}}</button>
-    <button *ngIf="commandToAdd.price === null" class="btn btn-default dropdown-toggle" type="button" (click)="openMenu()" id="menu1" data-toggle="dropdown">Commands
+    <button *ngIf="commandToAdd" class="btn btn-default" disabled="disabled">{{commandToAdd.name}}</button>
+    <button *ngIf="!commandToAdd" class="btn btn-default dropdown-toggle" type="button" (click)="openMenu()" id="menu1" data-toggle="dropdown">Offers
       <span class="caret"></span></button>
     <ul class="my-dropdown" role="menu"  [hidden]= "viewMenu" aria-labelledby="menu1">
-      <li role="presentation" *ngFor=" let command of commands">
+      <li role="presentation" *ngFor=" let command of menus">
         <a role="menuitem" tabindex="-1" style="cursor:pointer" (click)="commandToAdd = command">{{command.name}}</a>
       </li>
     </ul>
-    <button *ngIf="commandToAdd.price != null" class="btn btn-default" type="button" id="menu1" (click)="addCommand()">+Add</button>
+    <button *ngIf="commandToAdd" class="btn btn-default" type="button" id="menu1" (click)="addCommand()">+Add</button>
   </div>
 
   <grid-table
@@ -24,7 +24,7 @@
   </grid-table>
 
   <div style="float:left;">
-    <button *ngIf="selectedCommand != null" class="btn btn-default" (click)="removeCommand()">Remove</button>
+    <button *ngIf="selectedCommand" class="btn btn-default" (click)="removeCommand()">Remove</button>
   </div>
 
 </div>
