@@ -21,67 +21,64 @@ export class DetailsComponent implements OnInit{
   closeWindowEvent = new EventEmitter();
   pageData;
 
-  CommandsPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order/search"
+  positionsPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order/search"
 
   public headers: string[] = ["number","description", "state", "price", "Comment"];
   public attributeNames: string[] = ["id", "offerName", "state", "price", "comment"];
 
   public parentTable:Table;
-  public commands:Command[];
-  public menus = [];
-  public commandToAdd:Command = null;
-  public selectedCommand:Command = null;
+  public offers = [];
+  public offerToAdd = null;
+  public selectedPosition = null;
   public viewMenu: boolean = true;
-  public showCommands: Command[];
+  public showPositions;
+
+  public positions;
+  public order;
 
   constructor(private detailsRestService: DetailsRestService, private detailsService:DetailsService){}
 
   ngOnInit(){
-      this.pageData = {
-          state: "OPEN",
-          tableId: 100 + this.parentTable.number
-      };
-      this.detailsRestService.getCommands(this.pageData).subscribe(data => {this.commands = data.result[0].positions});
-      this.detailsRestService.getMenus().subscribe(data => this.menus = data);
+      this.detailsRestService.getPositions(this.pageData).subscribe(data => {this.positions = data.result[0].positions; this.order = data.result[0].order});
+      this.detailsRestService.getMenus().subscribe(data => this.offers = data);
   }
 
   openMenu(){
     this.viewMenu = !this.viewMenu;
   }
 
-  addCommand(){
-    this.viewMenu = !this.viewMenu;
-    this.detailsRestService.addCommand(this.commandToAdd, this.commands[this.commands.length - 1].id +1);
-    this.resetValues();
+  clickedRow(valor){
+      this.selectedPosition = valor;
   }
 
-  clickedRow(valor){
-      this.selectedCommand = valor;
+  addCommand(){
+      this.viewMenu = !this.viewMenu;
+    //   this.positions.push(new Command(undefined, this.offerToAdd.name,'ORDERED', this.offerToAdd.id, this.offerToAdd.price, "..."));
+      this.resetValues();
   }
 
   removeCommand(){
-      this.detailsRestService.deleteCommand(this.selectedCommand.id);
+      this.positions.splice(this.positions.indexOf(this.selectedPosition),1);
   }
 
   resetValues(){
-    this.selectedCommand = null;
-    this.commandToAdd = null;
+      this.selectedPosition = null;
+      this.offerToAdd = null;
   }
 
   pagination(value){
-    this.showCommands = value;
+      this.showPositions = value;
   }
 
   cancel(){
-    this.resultEvent.emit(this.parentTable);
-    this.closeWindowEvent.emit(false);
+      this.resultEvent.emit(this.parentTable);
+      this.closeWindowEvent.emit(false);
   }
 
   submit(){
-    this.parentTable.commands = this.detailsService.commands;
-    this.resultEvent.emit(this.parentTable);
-    this.detailsService.resetCommands();
-    this.closeWindowEvent.emit(false);
+      this.resultEvent.emit(this.parentTable);
+      this.detailsRestService.updateOrder(this.order, this.positions);
+      this.closeWindowEvent.emit(false);
   }
 
 }

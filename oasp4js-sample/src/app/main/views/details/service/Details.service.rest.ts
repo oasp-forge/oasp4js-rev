@@ -16,7 +16,7 @@ export class DetailsRestService {
 
     constructor(private http:Http) { }
 
-    getCommands(obj){
+    getPositions(obj){
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
         return this.http.get('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order')//,JSON.stringify(obj),{headers: headers})
@@ -30,15 +30,20 @@ export class DetailsRestService {
         .map(res =>  res.json())
     }
 
+    //TODO
     updateOrder(order, positions){
-        
+
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
         var data = {
-            order: "orders -> informacion de la order",
-            positions : `positions -> array de positions (que van dentro de la order)
-                         que todavia no tenemos`
+            order: order,
+            positions : positions
+        }
+
+        for(let i = 0 ; i < data.positions.length; i++){
+            data.positions[i].orderId = data.order.id;
+            data.positions[i].revision = null;
         }
 
         this.http.post("http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order/", JSON.stringify(data),  {headers: headers})
