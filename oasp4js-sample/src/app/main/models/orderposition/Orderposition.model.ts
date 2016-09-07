@@ -5,7 +5,7 @@ export class OrderPosition {
     public modificationCounter: number,
     public comment: string,
     public cook_id: number,
-    public offer_id: number,
+    public offerId: number,
     public offerName: string,
     public price: number,
     public state: string,

@@ -21,12 +21,6 @@ export class CrudComponent{
   public selectedTable = new Table(0,"","",undefined);
   public paginationPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/tablemanagement/v1/table/search"
 
-  public pageData = {
-            pagination: {
-              size: 4,
-              page: 1,
-              total: true
-      }};
 
   public tables:Table[];
   public headers: string[] = ["Table number","State", "Waiter"];
@@ -39,6 +33,13 @@ export class CrudComponent{
   public myState;
   public modalHeader:string;
 
+  public pageData = {
+      pagination: {
+          size: 4,
+          page: 1,
+          total: true
+      }};
+      
   constructor(private crudService:CrudService, private crudRestService: CrudRestService){
     crudService.getTables().subscribe(data => {this.tables = data});
     this.myState = -1;
