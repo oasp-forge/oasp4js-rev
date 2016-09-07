@@ -1,0 +1,16 @@
+export class OrderPosition {
+
+  constructor(
+    public id: number,
+    public modificationCounter: number,
+    public comment: string,
+    public cook_id: number,
+    public offer_id: number,
+    public offerName: string,
+    public price: number,
+    public state: number,
+    public drinkState: number,
+    public order_id: number
+  ){}
+
+}

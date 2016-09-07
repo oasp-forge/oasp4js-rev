@@ -5,12 +5,12 @@ import {Command} from '../../../models/command/Command.model'
 import {DetailsService} from '../service/Details.service'
 import {PaginationComponent} from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
-import {Http, Headers} from '@angular/http'
+import {DetailsRestService} from '../service/Details.service.rest'
 
 @Component({
   selector:'tableDetails',
   templateUrl:'app/main/views/details/view/Details.component.html',
-  inputs:['parentTable', '_commands'],
+  inputs:['parentTable'],
   providers:[DetailsService],
   outputs:['resultEvent', 'closeWindowEvent'],
   directives:[PaginationComponent, GridTableComponent],
@@ -19,65 +19,31 @@ import {Http, Headers} from '@angular/http'
 export class DetailsComponent implements OnInit{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   closeWindowEvent = new EventEmitter();
+  pageData;
 
-  //bad path
   CommandsPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order/search"
 
-  pageData = {
-      "pagination":{
-          page:1,
-          size: 4,
-          total: true
-      }
-  }
-
-  constructor(private detailsService:DetailsService, private http:Http){}
-
-  ngOnInit(){
-
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    var objJson = {state: "OPEN", tableId: 102};
-
-    this.http.post(this.CommandsPath, JSON.stringify(objJson), {headers: headers})
-      .map(res => res.json())
-      .subscribe(data => {
-
-        // this.myCommands = data
-    });
-
-    // this.http.post(this.CommandsPath,
-    //                JSON.stringify(this.pageData),
-    //                {headers: headers})
-    //                                   .map(res => res.json())
-    //                                   .subscribe(data => {
-    //                                       this.myCommands = data
-    //                                    });
-    //
-    if(this.parentTable.commands !== undefined){
-      this.detailsService.commands = JSON.parse(JSON.stringify(this.parentTable.commands));
-      this.myCommands = this.detailsService.copyCommands();
-    }
-  }
-
-  public _commands;
-  public headers: string[] = ["Number","Title", "Status", "Price", "Comment"];
-  public headers2: string[] = ["number","description", "state", "price", "Comment"];
-  public attributeNames: string[] = ["number", "title", "status", "price", "comment"];
-  public attributeNames2: string[] = ["number", "description", "status", "price", "comment"];
+  public headers: string[] = ["number","description", "state", "price", "Comment"];
+  public attributeNames: string[] = ["id", "offerName", "state", "price", "comment"];
 
   public parentTable:Table;
-  public commands:Command[] = commandsList;
-  public dirtyTable:Table = new Table(0,'','',null);
-  public commandToAdd:Command = new Command(null, '', '', null, '');
-  public selectedCommand:Command = new Command(null, '', '', null, '');
-  public emptyTable = false;
+  public commands:Command[];
+  public menus = [];
+  public commandToAdd:Command = null;
+  public selectedCommand:Command = null;
   public viewMenu: boolean = true;
-  public commandsPerPage = 4;
   public showCommands: Command[];
 
-  public myCommands: Command[];
+  constructor(private detailsRestService: DetailsRestService, private detailsService:DetailsService){}
 
+  ngOnInit(){
+      this.pageData = {
+          state: "OPEN",
+          tableId: 100 + this.parentTable.number
+      };
+      this.detailsRestService.getCommands(this.pageData).subscribe(data => {this.commands = data.result[0].positions});
+      this.detailsRestService.getMenus().subscribe(data => this.menus = data);
+  }
 
   openMenu(){
     this.viewMenu = !this.viewMenu;
@@ -85,31 +51,19 @@ export class DetailsComponent implements OnInit{
 
   addCommand(){
     this.viewMenu = !this.viewMenu;
-    this.detailsService.addCommand(this.commandToAdd);
-    this.myCommands = this.detailsService.copyCommands();
     this.resetValues();
   }
 
   clickedRow(valor){
-    if(!valor){
-      this.resetValues();
-    } else {
       this.selectedCommand = valor;
-    }
   }
 
   removeCommand(){
-    this.detailsService.removeCommand(this.selectedCommand);
-    this.resetValues();
-    if(this.detailsService.commands.length === 0){
-      this.emptyTable = true;
-    }
-    this.myCommands = this.detailsService.copyCommands();
   }
 
   resetValues(){
-    this.selectedCommand = new Command(null, '','',null,'');
-    this.commandToAdd = new Command(null, '','',null,'');
+    this.selectedCommand = null;
+    this.commandToAdd = null;
   }
 
   pagination(value){

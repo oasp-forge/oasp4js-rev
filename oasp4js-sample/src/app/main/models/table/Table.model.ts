@@ -1,13 +1,28 @@
-import {Command} from '../command/Command.model'
-
 export class Table {
 
   constructor(
+    public id: number,
+    public modificationCounter: number,
     public number: number,
-    public state: string,
-    public waiter: string,
-    public commands: Command[]
-  ) {  }
+    public state: number,
+    public waiterId: number
+  ){}
+
+  getId():number{
+    return this.id;
+  }
+
+  setId(id:number){
+    this.id = id;
+  }
+
+  getModificationCounter():number{
+    return this.modificationCounter;
+  }
+
+  setModificationCounter(modificationCounter:number){
+    this.modificationCounter = modificationCounter;
+  }
 
   getNumber():number{
     return this.number;
@@ -17,39 +32,19 @@ export class Table {
     this.number = number;
   }
 
-  getState():string{
+  getState():number{
     return this.state;
   }
 
-  setState(state:string){
-    this.state = state;
+  setState(state:number){
+    this.number = state;
   }
 
-  getWaiter(){
-    return this.waiter;
+  getWaiterId():number{
+    return this.waiterId;
   }
 
-  setWaiter(waiter:string){
-    this.waiter = waiter;
-  }
-
-  getCommand():Command[]{
-    return this.commands;
-  }
-
-  setCommand(commands:Command[]){
-    this.commands = commands;
-  }
-
-  addCommand(command:Command){
-    this.commands.push(command);
-  }
-
-  removeCommand(command:Command){
-    let index = this.commands.indexOf(command);
-    if(index > -1){
-      this.commands.splice(index, 1);
-    }
-
+  setWaiter(waiterId:number){
+    this.waiterId = waiterId;
   }
 }

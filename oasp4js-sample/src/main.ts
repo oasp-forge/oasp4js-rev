@@ -5,5 +5,6 @@ import { Oasp4jsSampleAppComponent } from './app/main/views/main/oasp4js-sample.
 import { HTTP_PROVIDERS } from '@angular/http';
 import { CrudRestService } from './app/main/views/crud/service/Crud.service.rest';
 import { KitchenRestService } from './app/main/views/kitchen/service/Kitchen.service.rest';
+import { DetailsRestService } from './app/main/views/details/service/Details.service.rest';
 
-bootstrap(Oasp4jsSampleAppComponent, [ROUTER_PROVIDERS, ROUTER_DIRECTIVES, HTTP_PROVIDERS, CrudRestService, KitchenRestService]);
+bootstrap(Oasp4jsSampleAppComponent, [ROUTER_PROVIDERS, ROUTER_DIRECTIVES, HTTP_PROVIDERS, CrudRestService, KitchenRestService, DetailsRestService]);

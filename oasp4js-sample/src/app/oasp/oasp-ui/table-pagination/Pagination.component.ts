@@ -17,11 +17,11 @@ export class PaginationComponent{
   paginationData;
   paginationParams;
 
-  currentPage: number;
+  currentPage: number = 1;
   pageView: number;
 
   initRowsPerPage: number;
-  rowsPerPage: number;
+  rowsPerPage: number = 4;
   numberPages: number;
 
   paginationList = new EventEmitter();
@@ -31,15 +31,15 @@ export class PaginationComponent{
   }
 
   ngOnInit(){
-      this.rowsPerPage = this.initPaginationParams.pagination.size;
+      if(this.initPaginationParams && this.initPaginationParams.pagination ){
+          this.rowsPerPage = this.initPaginationParams.pagination.size;
+      }
       this.currentPage = 1;
       this.pageView = 1;
   }
 
   ngOnChanges(){
-
     if(this.list){
-
       if(!this.initRowsPerPage) {
         this.initRowsPerPage = this.rowsPerPage;
       }
@@ -51,6 +51,7 @@ export class PaginationComponent{
       }
 
       this.numberPages = Math.ceil(this.list.length / this.rowsPerPage);
+    }
 
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
@@ -67,15 +68,17 @@ export class PaginationComponent{
                      {headers: headers})
                                         .map(res => res.json())
                                         .subscribe(data => {
-                                            this.showList = data.result;
+                                            if(data && data.result[0] && data.result[0].order){
+                                                this.showList = data.result[0].positions
+                                            } else {
+                                                this.showList = data.result;
+                                            }
                                             this.paginationList.emit(this.showList)
                                          });
 
       if(this.showList && this.showList.length <= 0){
         this.changePage(this.currentPage - 1, 0);
       }
-
-    }
   }
 
   changePage(page: number, view: number){
@@ -109,7 +112,11 @@ export class PaginationComponent{
                    {headers: headers})
                                       .map(res => res.json())
                                       .subscribe(data => {
-                                          this.showList = data.result;
+                                          if(data && data.result[0] && data.result[0].order){
+                                              this.showList = data.result[0].positions
+                                          } else {
+                                              this.showList = data.result;
+                                          }
                                           this.paginationList.emit(this.showList)
                                        });
 
