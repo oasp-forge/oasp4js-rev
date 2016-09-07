@@ -8,7 +8,7 @@ export class OrderPosition {
     public offer_id: number,
     public offerName: string,
     public price: number,
-    public state: number,
+    public state: string,
     public drinkState: number,
     public order_id: number
   ){}
