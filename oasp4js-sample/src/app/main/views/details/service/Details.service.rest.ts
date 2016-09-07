@@ -19,6 +19,7 @@ export class DetailsRestService {
     getPositions(obj){
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
+        //POST METHOD TO RETRIEVE DATA FROM SPECIFIC TABLE -> NOT WORKING
         return this.http.get('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order')//,JSON.stringify(obj),{headers: headers})
         .map(res =>  res.json())
     }
@@ -30,7 +31,6 @@ export class DetailsRestService {
         .map(res =>  res.json())
     }
 
-    //TODO
     updateOrder(order, positions){
 
         var headers = new Headers();

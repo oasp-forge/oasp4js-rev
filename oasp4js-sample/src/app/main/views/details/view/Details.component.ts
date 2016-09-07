@@ -1,8 +1,12 @@
 import {Component, Output, EventEmitter, OnChanges, OnInit} from '@angular/core'
 import {Table} from '../../../models/table/Table.model'
+import {Offer} from '../../../models/offer/Offer.model'
+import {OrderPosition} from '../../../models/orderposition/Orderposition.model'
+
 import {commandsList} from '../../../resources/commands/Commands.resource'
-import {Command} from '../../../models/command/Command.model'
+
 import {DetailsService} from '../service/Details.service'
+
 import {PaginationComponent} from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {DetailsRestService} from '../service/Details.service.rest'
@@ -31,9 +35,11 @@ export class DetailsComponent implements OnInit{
   public offerToAdd = null;
   public selectedPosition = null;
   public viewMenu: boolean = true;
-  public showPositions;
 
-  public positions;
+  public showPositions: OrderPosition[];
+
+  public positions: OrderPosition[];
+  public removedPositions: OrderPosition[] = [];
   public order;
 
   constructor(private detailsRestService: DetailsRestService, private detailsService:DetailsService){}
@@ -53,11 +59,12 @@ export class DetailsComponent implements OnInit{
 
   addCommand(){
       this.viewMenu = !this.viewMenu;
-    //   this.positions.push(new Command(undefined, this.offerToAdd.name,'ORDERED', this.offerToAdd.id, this.offerToAdd.price, "..."));
+      this.positions.push(new OrderPosition(undefined, 0, "", undefined, this.offerToAdd.id, this.offerToAdd.name, this.offerToAdd.price,'ORDERED', undefined, undefined));
       this.resetValues();
   }
 
   removeCommand(){
+      this.removedPositions.push(this.selectedPosition);
       this.positions.splice(this.positions.indexOf(this.selectedPosition),1);
   }
 
