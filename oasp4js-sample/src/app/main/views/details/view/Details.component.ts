@@ -5,6 +5,7 @@ import {Command} from '../../../models/command/Command.model'
 import {DetailsService} from '../service/Details.service'
 import {PaginationComponent} from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
+import {Http, Headers} from '@angular/http'
 
 @Component({
   selector:'tableDetails',
@@ -20,19 +21,39 @@ export class DetailsComponent implements OnInit{
   closeWindowEvent = new EventEmitter();
 
   //bad path
-  commandsPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/offermanagement/v1/offer/search"
+  CommandsPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order/search"
 
   pageData = {
-      pagination:{
+      "pagination":{
           page:1,
           size: 4,
           total: true
       }
   }
 
-  constructor(private detailsService:DetailsService){}
+  constructor(private detailsService:DetailsService, private http:Http){}
 
   ngOnInit(){
+
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    var objJson = {state: "OPEN", tableId: 102};
+
+    this.http.post(this.CommandsPath, JSON.stringify(objJson), {headers: headers})
+      .map(res => res.json())
+      .subscribe(data => {
+
+        // this.myCommands = data
+    });
+
+    // this.http.post(this.CommandsPath,
+    //                JSON.stringify(this.pageData),
+    //                {headers: headers})
+    //                                   .map(res => res.json())
+    //                                   .subscribe(data => {
+    //                                       this.myCommands = data
+    //                                    });
+    //
     if(this.parentTable.commands !== undefined){
       this.detailsService.commands = JSON.parse(JSON.stringify(this.parentTable.commands));
       this.myCommands = this.detailsService.copyCommands();
@@ -45,7 +66,7 @@ export class DetailsComponent implements OnInit{
   public attributeNames: string[] = ["number", "title", "status", "price", "comment"];
   public attributeNames2: string[] = ["number", "description", "status", "price", "comment"];
 
-  public parentTable:Table; 
+  public parentTable:Table;
   public commands:Command[] = commandsList;
   public dirtyTable:Table = new Table(0,'','',null);
   public commandToAdd:Command = new Command(null, '', '', null, '');

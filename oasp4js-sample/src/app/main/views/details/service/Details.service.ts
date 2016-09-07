@@ -12,24 +12,24 @@ export class DetailsService{
   commandIndex: number = commandId[0];
 
   addCommand(c:Command){
-    this.commandIndex++;
-
-    if(this.commandIndex === 9999999){
-        this.commandIndex = 1000000;
-    }
-
-    let d = new Command(this.commandIndex, c.getTitle(),'ORDERED', c.getPrice(), "...");
-    this.commands.push(d);
-    commandId[0] = this.commandIndex;
+    // this.commandIndex++;
+    //
+    // if(this.commandIndex === 9999999){
+    //     this.commandIndex = 1000000;
+    // }
+    //
+    // let d = new Command(this.commandIndex, c.getTitle(),'ORDERED', c.getPrice(), "...");
+    // this.commands.push(d);
+    // commandId[0] = this.commandIndex;
   }
 
   removeCommand(c:Command){
-    for(let i = 0; i < this.commands.length ; i ++){
-      if(this.commands[i].number === c.number){
-        this.commands.splice(i,1);
-        break;
-      }
-    }
+    // for(let i = 0; i < this.commands.length ; i ++){
+    //   if(this.commands[i].number === c.number){
+    //     this.commands.splice(i,1);
+    //     break;
+    //   }
+    // }
   }
 
   resetCommands(){

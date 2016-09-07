@@ -72,10 +72,10 @@ export class CrudComponent{
   }
 
   rowSelected(valor, param){
-    if(this.hideModalDialog){
-      this.pendingRequest.unsubscribe();
-      this.pendingRequest = null;
-    }
+    // if(this.hideModalDialog){
+    //   this.pendingRequest.unsubscribe();
+    //   this.pendingRequest = null;
+    // }
     if(!valor){
       this.selectedTable = new Table(0,"","",this.arr);
       this.modalHeader = "Details of Table #" + this.selectedTable.number;
@@ -84,12 +84,12 @@ export class CrudComponent{
       this.selectedTable = valor;
       this.modalHeader = "Details of Table #" + this.selectedTable.number;
       var me = this;
-      if(!this.pendingRequest){
-        this.pendingRequest = this.crudService.getOffers()
-        .subscribe(data => {
-          me._commands = data
-        });
-      }
+      // if(!this.pendingRequest){
+      //   this.pendingRequest = this.crudService.getOffers()
+      //   .subscribe(data => {
+      //     me._commands = data
+      //   });
+      // }
       // this.pendingRequest.unsubscribe();
       if(this.selectedTable.state === "FREE"){
         this.myState = 1;
