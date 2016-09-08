@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core'
-import {tablesList} from '../../../resources/tables/Tables.resource'
-import {Command} from '../../../models/command/Command.model'
-import {commandsList} from '../../../resources/commands/Commands.resource'
-import {KitchenRestService} from './Kitchen.service.rest'
 import { Http, Response,Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+
+import {Command} from '../../../models/command/Command.model'
+
+import {KitchenRestService} from './Kitchen.service.rest'
 
 @Injectable()
 export class KitchenService{

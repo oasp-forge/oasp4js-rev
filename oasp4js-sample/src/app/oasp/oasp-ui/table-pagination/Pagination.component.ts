@@ -73,13 +73,7 @@ export class PaginationComponent{
                                             } else {
                                                 this.showList = data.result;
                                             }
-                                            if(this.showList.length === 0 || this.showList.length > this.rowsPerPage){
-                                                this.paginateLocal();
-                                            } else {
-                                                this.paginationList.emit(this.showList);
-                                            }
-                                        },
-                                        err => this.paginateLocal());
+                                        })
 
       if(this.showList && this.showList.length <= 0){
         this.changePage(this.currentPage - 1, 0);
@@ -122,28 +116,7 @@ export class PaginationComponent{
                                           } else {
                                               this.showList = data.result;
                                           }
-                                          if(this.showList.length === 0 || this.showList.length > this.rowsPerPage){
-                                              this.changePageLocal();
-                                          } else {
-                                              this.paginationList.emit(this.showList);
-                                          }
-                                      },
-                                      err => this.changePageLocal());
-
+                                      })
   }
 
-  paginateLocal(){
-      this.showList = this.list.slice(this.rowsPerPage * (this.currentPage - 1), this.rowsPerPage * (this.currentPage - 1) + this.rowsPerPage);
-      this.numberPages = Math.ceil(this.list.length / this.rowsPerPage);
-      this.paginationList.emit(this.showList);
-  }
-
-  changePageLocal(){
-      if(this.rowsPerPage * (this.currentPage - 1) < this.rowsPerPage){
-          this.showList = this.list.slice(0, this.rowsPerPage);
-      } else{
-          this.showList = this.list.slice( this.rowsPerPage * (this.currentPage - 1), this.rowsPerPage * (this.currentPage - 1) + this.rowsPerPage);
-      }
-      this.paginationList.emit(this.showList)
-  }
 }

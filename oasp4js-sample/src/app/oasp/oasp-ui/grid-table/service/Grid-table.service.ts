@@ -1,14 +1,7 @@
 import {Injectable} from '@angular/core'
-import {Table} from '../../../../main/models/table/Table.model'
-import {tablesList} from '../../../../main/resources/tables/Tables.resource'
 
 @Injectable()
 export class GridtableService{
-  tables : Table[] = tablesList;
-
-  getTables():Table[]{
-    return this.tables;
-  }
 
   getTablesOrderBy(dir, name, data){
     /** This should be a call to back-end server **/
@@ -29,6 +22,5 @@ export class GridtableService{
 
   applyFilters(num: number, state: string, waiter: string){
       /** back-end call for filtering **/
-      return this.tables.slice();
   }
 }

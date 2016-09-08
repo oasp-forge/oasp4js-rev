@@ -1,9 +1,8 @@
 import {Component, Output, EventEmitter, OnChanges, OnInit} from '@angular/core'
+
 import {Table} from '../../../models/table/Table.model'
 import {Offer} from '../../../models/offer/Offer.model'
 import {OrderPosition} from '../../../models/orderposition/Orderposition.model'
-
-import {commandsList} from '../../../resources/commands/Commands.resource'
 
 import {DetailsService} from '../service/Details.service'
 
