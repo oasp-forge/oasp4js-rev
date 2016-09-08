@@ -23,7 +23,8 @@ import {DetailsRestService} from '../service/Details.service.rest'
 export class DetailsComponent implements OnInit{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   closeWindowEvent = new EventEmitter();
-  pageData;
+
+
 
   positionsPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order/search"
 
@@ -37,15 +38,14 @@ export class DetailsComponent implements OnInit{
   public viewMenu: boolean = true;
 
   public showPositions: OrderPosition[];
-  public rowsPerPage = 4;
 
-  public positions: OrderPosition[];
+  public positions: OrderPosition[] = [];
   public order;
 
   constructor(private detailsRestService: DetailsRestService, private detailsService:DetailsService){}
 
   ngOnInit(){
-      this.detailsRestService.getPositions(this.pageData).subscribe(data => {this.positions = data.result[0].positions; this.order = data.result[0].order});
+      this.detailsRestService.getPositions(this.parentTable.id).subscribe(data => {this.positions = data.result[0].positions; this.order = data.result[0].order});
       this.detailsRestService.getMenus().subscribe(data => this.offers = data);
   }
 

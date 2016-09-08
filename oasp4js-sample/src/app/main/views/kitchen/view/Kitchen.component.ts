@@ -15,24 +15,82 @@ import {KitchenRestService} from '../service/Kitchen.service.rest'
 
 export class KitchenComponent{
 
-    public availableCommands: Command[] = [];
-    public assignedCommands: Command[] = [];
+    public availableCommands = [];
+    public assignedCommands = [];
+
+    public orderPositions = [];
+    public offers = [];
+    public products = [];
+
     public selectedAvailableCommand;
     public selectedAssignedCommand;
 
-    public headers: string[] = ["Number","Title", "Status", "Comment"];
-    public attributeNames: string[] = ["id", "offerName", "state", "comment"];
+    public pageData = {
+        pagination: {
+            page: 1,
+            total: true
+        }};
+
+    public headers: string[] = ["ID","OrderID", "Offer", "Meal", "Side dish"];
+    public attributeNames: string[] = ["id", "orderId", "offerName", "mealName", "sideDishName"];
 
     constructor(private kitchenService: KitchenService, private kitchenRestService: KitchenRestService){
-        this.getAssignedCommands();
-        this.getAvailableCommands();
+        this.getLists();
+    }
+
+    getLists(){
+        this.kitchenRestService.getOffers(this.pageData).subscribe(data => {
+            this.offers = data.result
+            this.kitchenRestService.getProducts(this.pageData).subscribe(data => {
+                this.products = data.result
+                this.kitchenRestService.getOrderPositions().subscribe(data => {
+                    this.orderPositions = data
+                    this.fillKitchenTables();
+                });
+            });
+        });
+    }
+
+    fillKitchenTables(){
+
+        this.assignedCommands = [];
+        this.availableCommands = [];
+
+        for( let i = 0 ; i < this.orderPositions.length ; i++){
+            var kitchenProduct = {
+                id : 0,
+                orderId : 0,
+                offerName : "",
+                mealName : "",
+                sideDishName : ""
+            }
+
+            kitchenProduct.id = this.orderPositions[i].id;
+            kitchenProduct.orderId = this.orderPositions[i].orderId;
+            kitchenProduct.offerName = this.orderPositions[i].offerName;
+
+            for(let j = 0; j < this.offers.length ; j++){
+                if(this.orderPositions[i].offerId === this.offers[j].id){
+                    for(let t = 0 ; t < this.products.length ; t++){
+                        if(this.offers[j].mealId === this.products[t].id){
+                            kitchenProduct.mealName = this.products[t].description;
+                        }
+                        if(this.offers[j].sideDishId === this.products[t].id){
+                            kitchenProduct.sideDishName = this.products[t].description;
+                        }
+                    }
+                }
+            }
+            if(this.orderPositions[i].cookId){
+                this.assignedCommands.push(kitchenProduct);
+            } else {
+                this.availableCommands.push(kitchenProduct);
+            }
+        }
     }
 
     availableSelected(value){
         this.selectedAvailableCommand = value;
-    }
-
-    searchFilters(filters){
     }
 
     assignedSelected(value){
@@ -40,61 +98,50 @@ export class KitchenComponent{
     }
 
     assign(){
-
-
-        this.selectedAvailableCommand.state = "DELIVERED"
-        this.kitchenRestService.assignCommand(this.selectedAvailableCommand);
-
-        this.selectedAssignedCommand = undefined;
-        this.selectedAvailableCommand = undefined;
-
-        this.getAssignedCommands();
-        this.getAvailableCommands();
-    }
-
-    changeState(op: number){
-        switch(op){
-            case 1:
-                this.selectedAvailableCommand.state = "ORDERED";
-                this.kitchenService.returnCommand(this.selectedAssignedCommand);
-                break;
-            case 2:
-                this.kitchenService.cancelCommand(this.selectedAssignedCommand);
-                break;
-            case 3:
-                this.kitchenService.doneCommand(this.selectedAssignedCommand);
-                break;
+        for(let i = 0 ; i < this.orderPositions.length ; i++){
+            if(this.selectedAvailableCommand.id === this.orderPositions[i].id){
+                this.kitchenRestService.assignOrderPosition(this.orderPositions[i]);
+            }
         }
-        this.getAssignedCommands();
-        this.getAvailableCommands();
+        this.getLists();
 
-        this.selectedAvailableCommand = undefined;
         this.selectedAssignedCommand = undefined;
+        this.selectedAvailableCommand = undefined;
     }
 
-    getAvailableCommands(){
-        this.availableCommands = [];
-        this.kitchenRestService.getOrders()
-                                  .subscribe(commands => {
-                                      let com = commands;
-                                      for(let i = 0 ; i < com.result[0].positions.length ; i++){
-                                          if(com.result[0].positions[i].state == "DELIVERED"){
-                                              this.availableCommands.push(com.result[0].positions[i]);
-                                          }
-                                      }
-                                  })
+    return(){
+        for(let i = 0 ; i < this.orderPositions.length ; i++){
+            if(this.selectedAssignedCommand.id === this.orderPositions[i].id){
+                this.kitchenRestService.returnOrderPosition(this.orderPositions[i]);
+            }
+        }
+        this.getLists();
+
+        this.selectedAssignedCommand = undefined;
+        this.selectedAvailableCommand = undefined;
     }
 
-    getAssignedCommands(){
-        this.assignedCommands = [];
-        this.kitchenRestService.getOrders()
-                                  .subscribe(commands => {
-                                      let com = commands;
-                                      for(let i = 0 ; i < com.result[0].positions.length ; i++){
-                                          if(com.result[0].positions[i].state == "COOKING"){
-                                              this.assignedCommands.push(com.result[0].positions[i]);
-                                          }
-                                      }
-                                  })
+    done(){
+        for(let i = 0 ; i < this.orderPositions.length ; i++){
+            if(this.selectedAssignedCommand.id === this.orderPositions[i].id){
+                this.kitchenRestService.doneOrderPosition(this.orderPositions[i]);
+            }
+        }
+        this.getLists();
+
+        this.selectedAssignedCommand = undefined;
+        this.selectedAvailableCommand = undefined;
+    }
+
+    reject(){
+        for(let i = 0 ; i < this.orderPositions.length ; i++){
+            if(this.selectedAssignedCommand.id === this.orderPositions[i].id){
+                this.kitchenRestService.rejectOrderPosition(this.orderPositions[i]);
+            }
+        }
+        this.getLists();
+
+        this.selectedAssignedCommand = undefined;
+        this.selectedAvailableCommand = undefined;
     }
 }

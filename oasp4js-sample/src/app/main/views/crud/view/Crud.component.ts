@@ -28,12 +28,17 @@ export class CrudComponent{
   public states: string[] = ["FREE", "OCCUPIED", "RESERVED"]
 
   public showTables: Table[];
-  public rowsPerPage = 4;
   public hideModalDialog = false;
 
   public myState;
   public modalHeader:string;
 
+  public pageData = {
+      pagination: {
+          size: 4,
+          page: 1,
+          total: true
+      }};
 
   constructor(private crudService:CrudService, private crudRestService: CrudRestService){
     crudService.getTables().subscribe(data => {this.tables = data});
