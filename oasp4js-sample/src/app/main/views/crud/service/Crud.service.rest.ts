@@ -17,9 +17,11 @@ export class CrudRestService {
 
  constructor(private http:Http) { }
 
-  getTables(){
-    return this.http.get(this.basePath + '/table/')
-                           .map(res =>  res.json())
+  getTables(paginationData){
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      return this.http.post(this.basePath + '/table/search', JSON.stringify(paginationData), {headers:headers})
+                              .map(res =>  res.json())
   }
 
   getOffers(){

@@ -38,10 +38,10 @@
       <button type="button" class="btn btn-pagination" (click)="changeState('FREE')" [disabled] = "myState === 1 || myState === -1">Free</button>
   </div>
 
-  <!-- <div style="text-align:right">
-      <pagination [list] = "tables" [path] = "paginationPath" [initPaginationParams]= "pageData" (paginationList) = "pagination($event)"></pagination>
-  </div> -->
+</div>
 
+<div style ="text-align: right">
+    <pagination [numItems] = "numItems" [currentPage] = "1" [rowsPerPage] = "4" (eventCurrentPage) = "pagination($event)"></pagination>
 </div>
 
 <modal-dialog id="modal"
