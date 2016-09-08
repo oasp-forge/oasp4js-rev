@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core'
-import {tablesList} from '../../../resources/tables/Tables.resource'
+// import {tablesList} from '../../../resources/tables/Tables.resource'
 import {Command} from '../../../models/command/Command.model'
-import {commandsList} from '../../../resources/commands/Commands.resource'
+// import {commandsList} from '../../../resources/commands/Commands.resource'
 import {KitchenRestService} from './Kitchen.service.rest'
 import { Http, Response,Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';

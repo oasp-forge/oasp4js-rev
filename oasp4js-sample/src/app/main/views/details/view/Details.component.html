@@ -19,7 +19,7 @@
   <grid-table
       [headers] = "headers"
       [attributeNames] = "attributeNames"
-      [dataInput] = "showPositions"
+      [dataInput] = "positions"
       (objSelected) = "clickedRow($event)">
   </grid-table>
 
@@ -29,9 +29,9 @@
 
 </div>
 
-<div style="text-align:right">
+<!-- <div style="text-align:right">
   <pagination [list] = "positions" [path] = "positionsPath" [initPaginationParams]= "pageData" (paginationList) = "pagination($event)"></pagination>
-</div>
+</div> -->
 
 <br>
 

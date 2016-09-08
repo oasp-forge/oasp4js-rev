@@ -3,7 +3,7 @@ import {Table} from '../../../models/table/Table.model'
 import {Offer} from '../../../models/offer/Offer.model'
 import {OrderPosition} from '../../../models/orderposition/Orderposition.model'
 
-import {commandsList} from '../../../resources/commands/Commands.resource'
+// import {commandsList} from '../../../resources/commands/Commands.resource'
 
 import {DetailsService} from '../service/Details.service'
 
@@ -45,8 +45,11 @@ export class DetailsComponent implements OnInit{
   constructor(private detailsRestService: DetailsRestService, private detailsService:DetailsService){}
 
   ngOnInit(){
-      this.detailsRestService.getPositions(this.pageData).subscribe(data => {this.positions = data.result[0].positions; this.order = data.result[0].order});
-      this.detailsRestService.getMenus().subscribe(data => this.offers = data);
+      this.detailsRestService.getPositions(this.parentTable.id).subscribe(data => {
+        debugger
+        // this.positions = data.result[0].positions; this.order = data.result[0].order
+      });
+      this.detailsRestService.getMenus().subscribe(data => {debugger; this.offers = data});
   }
 
   openMenu(){

@@ -16,12 +16,19 @@ export class DetailsRestService {
 
     constructor(private http:Http) { }
 
-    getPositions(obj){
-        this.headers = new Headers();
-        this.headers.append('Content-Type', 'application/json');
-        //POST METHOD TO RETRIEVE DATA FROM SPECIFIC TABLE -> NOT WORKING
-        return this.http.get('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order')//,JSON.stringify(obj),{headers: headers})
-        .map(res =>  res.json())
+    getPositions(tableId){
+      this.headers = new Headers();
+      this.headers.append('Content-Type', 'application/json');
+      //POST METHOD TO RETRIEVE DATA FROM SPECIFIC TABLE -> NOT WORKING
+      // return this.http.get('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order')//,JSON.stringify(obj),{headers: headers})
+      // .map(res =>  res.json())
+
+      var requestPayload = {
+        state:"CLOSED",
+        tableId:tableId
+      }
+      return this.http.post('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order/search', JSON.stringify(requestPayload), {headers: this.headers})
+                           .map(res => {debugger; res.json()});
     }
 
     getMenus(){
