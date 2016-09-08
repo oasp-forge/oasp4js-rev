@@ -20,11 +20,11 @@ export class DetailsRestService {
         headers.append('Content-Type', 'application/json');
 
         var data = {
-            state : "OPEN",
+            state : "CLOSED",
             tableId : tableId
         };
 
-        return this.http.get('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order')//, JSON.stringify(data), {headers: headers})
+        return this.http.post('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order/search', JSON.stringify(data), {headers: headers})
                              .map(res => res.json());
     }
 

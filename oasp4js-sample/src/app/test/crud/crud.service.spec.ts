@@ -3,7 +3,7 @@ import {CrudRestService} from '../../main/views/crud/service/Crud.service.rest';
 import {Table} from '../../main/models/table/Table.model'
 import {Command} from '../../main/models/command/Command.model'
 import {beforeEachProviders,beforeEach,describe,expect,it,inject} from '@angular/core/testing';
-// import {commandsList} from '../../main/resources/commands/Commands.resource'
+
 import {Http} from '@angular/http';
 
 describe('CrudService [SERVICE]: \n', () => {

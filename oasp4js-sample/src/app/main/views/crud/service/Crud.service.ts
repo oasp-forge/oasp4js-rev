@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core'
 import {Table} from '../../../models/table/Table.model'
-// import {tablesList} from '../../../resources/tables/Tables.resource'
 import { CrudRestService } from './Crud.service.rest';
-
 
 @Injectable()
 export class CrudService{

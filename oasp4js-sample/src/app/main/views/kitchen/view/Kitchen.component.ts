@@ -1,9 +1,12 @@
 import {Component} from '@angular/core'
+
 import {Command} from '../../../models/command/Command.model'
+
 import {KitchenService} from '../service/Kitchen.service'
+import {KitchenRestService} from '../service/Kitchen.service.rest'
+
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {SearchPanelComponent} from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
-import {KitchenRestService} from '../service/Kitchen.service.rest'
 
 
 @Component({
