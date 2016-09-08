@@ -7,5 +7,4 @@ import {Table} from '../../../models/table/Table.model'
 @Injectable()
 export class DetailsService{
 
-
 }

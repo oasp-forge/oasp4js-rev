@@ -1,29 +1,28 @@
 <search-panel [searchInputs] ="[num,title,stat,comment]" (searchValues) = "searchFilters($event)">
 
     <div class = "searchFields propertyMargin-right">
-        <label> Number </label>
-        <input #num type ="number" class="form-control">
+        <label> ID </label>
+        <input #id type ="number" class="form-control">
     </div>
 
     <div class = "searchFields propertyMargin-right">
-        <label> Title </label>
-        <input #title type ="text" class="form-control">
+        <label> Order ID </label>
+        <input #orderId type ="number" class="form-control">
     </div>
 
     <div class = "searchFields propertyMargin-right">
-        <label> Status </label>
-        <select #stat class="form-control">
-          <option value="">All</option>
-          <option value="Ordered">Ordered</option>
-          <option value="Cooking">Cooking</option>
-          <option value="Canceled">Canceled</option>
-          <option value="Done">Done</option>
-        </select>
+        <label> Offer name </label>
+        <input #offerName type ="text" class="form-control">
     </div>
 
     <div class = "searchFields propertyMargin-right">
-        <label> Comment </label>
-        <input #comment type ="text" class="form-control">
+        <label> Meal name </label>
+        <input #mealName type ="text" class="form-control">
+    </div>
+
+    <div class = "searchFields propertyMargin-right">
+        <label> Side dish name </label>
+        <input #sideDishName type ="text" class="form-control">
     </div>
 
 </search-panel>
@@ -42,7 +41,7 @@
     </div>
 
     <button (click) ="assign()" [disabled] = "selectedAvailableCommand == undefined" class ="btn commandButton glyphicon glyphicon-arrow-right"></button>
-    <button  (click) ="changeState(1)" [disabled] = "selectedAssignedCommand == undefined" class ="btn commandButtonReturn glyphicon glyphicon-arrow-left"></button>
+    <button  (click) ="return()" [disabled] = "selectedAssignedCommand == undefined" class ="btn commandButtonReturn glyphicon glyphicon-arrow-left"></button>
 
     <div class = "commandTable">
         <h3> Assigned </h3>
@@ -53,7 +52,7 @@
             (objSelected) = "assignedSelected($event)">
          </grid-table>
 
-         <button  (click) ="changeState(2)" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-warning propertyMargin-left">Cancel</button>
-         <button  (click) ="changeState(3)" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-primary propertyMargin-left">Done</button>
+         <button  (click) ="reject()" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-warning propertyMargin-left">Cancel</button>
+         <button  (click) ="done()" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-primary propertyMargin-left">Done</button>
     </div>
 </div>

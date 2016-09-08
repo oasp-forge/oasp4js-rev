@@ -17,10 +17,6 @@ export class CrudRestService {
 
  constructor(private http:Http) { }
 
-  getTable(id:number) {
-    //return this.http.get(this.basePath + '/table/' + id).map((res:Response) => res.json());
-  }
-
   getTables(){
     return this.http.get(this.basePath + '/table/')
                            .map(res =>  res.json())
@@ -29,6 +25,11 @@ export class CrudRestService {
   getOffers(){
     return this.http.get(this.productsPath + '/offer/')
                            .map(res =>  res.json())
+  }
+
+  applyFilters(filters){
+      return this.http.get(this.basePath + '/table/' + 10 + filters[0])
+                             .map(res =>  res.json())
   }
 
   saveTable(table){

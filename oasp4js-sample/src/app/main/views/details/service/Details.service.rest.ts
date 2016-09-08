@@ -12,30 +12,27 @@ export class DetailsRestService {
     serverPath:String =  'http://10.68.8.26:8081/oasp4j-sample-server/';
     basePath:String = this.serverPath + 'services/rest/tablemanagement/v1';
     productsPath:String = this.serverPath + 'services/rest/offermanagement/v1';
-    headers = new Headers();
 
     constructor(private http:Http) { }
 
     getPositions(tableId){
-      this.headers = new Headers();
-      this.headers.append('Content-Type', 'application/json');
-      //POST METHOD TO RETRIEVE DATA FROM SPECIFIC TABLE -> NOT WORKING
-      // return this.http.get('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order')//,JSON.stringify(obj),{headers: headers})
-      // .map(res =>  res.json())
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
 
-      var requestPayload = {
-        state:"CLOSED",
-        tableId:tableId
-      }
-      return this.http.post('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order/search', JSON.stringify(requestPayload), {headers: this.headers})
-                           .map(res => {debugger; res.json()});
+        var data = {
+            state : "OPEN",
+            tableId : tableId
+        };
+
+        return this.http.get('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order')//, JSON.stringify(data), {headers: headers})
+                             .map(res => res.json());
     }
 
     getMenus(){
-        this.headers = new Headers();
-        this.headers.append('Content-Type', 'application/json');
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
         return this.http.get('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/offermanagement/v1/offer')
-        .map(res =>  res.json())
+                                .map(res =>  res.json())
     }
 
     updateOrder(order, positions){

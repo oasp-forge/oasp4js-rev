@@ -18,7 +18,7 @@ import { CrudRestService } from '../service/Crud.service.rest';
 
 export class CrudComponent{
 
-  public selectedTable = new Table(undefined,undefined,undefined,undefined,undefined);
+  public selectedTable = new Table(0,undefined,undefined,undefined,undefined);
   public paginationPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/tablemanagement/v1/table/search"
 
 
@@ -51,7 +51,10 @@ export class CrudComponent{
   }
 
   searchFilters(filters){
-      this.tables = this.crudService.applyFilters(filters);
+      this.crudRestService.applyFilters(filters)
+                                    .subscribe(data =>
+                                        this.tables = data
+                                    );
   }
 
   pagination(value){
@@ -68,11 +71,9 @@ export class CrudComponent{
   rowSelected(valor){
     if(valor){
         this.selectedTable = valor;
-        var a:number;
-        this.myState = this.selectedTable.state + 1;
-        // this.myState = this.states.indexOf(this.selectedTable.state) + 1;
+        this.myState = this.selectedTable.state;
     } else{
-        this.selectedTable = new Table(undefined,undefined,undefined,undefined,undefined);
+        this.selectedTable = new Table(0,undefined,undefined,undefined,undefined);
         this.myState = -1;
     }
   }
