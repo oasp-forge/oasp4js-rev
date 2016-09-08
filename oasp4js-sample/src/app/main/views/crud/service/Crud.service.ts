@@ -39,12 +39,6 @@ export class CrudService{
     return tables;
   }
 
-
-  applyFilters(filters){
-      /** back-end call for filtering **/
-      return this.tables.slice(0,4);
-  }
-
   getTableById(id:number):Table{
     let res:Table;
     for(let i = 0; i < this.tables.length; i ++){

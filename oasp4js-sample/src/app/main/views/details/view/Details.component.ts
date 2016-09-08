@@ -37,9 +37,9 @@ export class DetailsComponent implements OnInit{
   public viewMenu: boolean = true;
 
   public showPositions: OrderPosition[];
+  public rowsPerPage = 4;
 
   public positions: OrderPosition[];
-  public removedPositions: OrderPosition[] = [];
   public order;
 
   constructor(private detailsRestService: DetailsRestService, private detailsService:DetailsService){}
@@ -64,7 +64,6 @@ export class DetailsComponent implements OnInit{
   }
 
   removeCommand(){
-      this.removedPositions.push(this.selectedPosition);
       this.positions.splice(this.positions.indexOf(this.selectedPosition),1);
   }
 

@@ -31,6 +31,11 @@ export class CrudRestService {
                            .map(res =>  res.json())
   }
 
+  applyFilters(filters){
+      return this.http.get(this.basePath + '/table/' + 10 + filters[0])
+                             .map(res =>  res.json())
+  }
+
   saveTable(table){
 
       var headers = new Headers();

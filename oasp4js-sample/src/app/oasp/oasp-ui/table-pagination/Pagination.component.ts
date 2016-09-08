@@ -1,45 +1,29 @@
 import {Component, OnChanges, EventEmitter} from '@angular/core'
-import { Http, Response,Headers } from '@angular/http';
 
 @Component({
   selector:'pagination',
   templateUrl:'app/oasp/oasp-ui/table-pagination/Pagination.component.html',
-  inputs:['list', 'path', 'initPaginationParams'],
+  inputs:['list', 'rowsPerPage'],
   outputs: ['paginationList']
 })
 
 export class PaginationComponent{
 
-  showList;
   list;
-  path;
-  initPaginationParams;
-  paginationData;
-  paginationParams;
+  showList;
 
   currentPage: number = 1;
-  pageView: number;
+  pageView: number = 1;
 
   initRowsPerPage: number;
-  rowsPerPage: number = 4;
+  rowsPerPage: number;
   numberPages: number;
 
   paginationList = new EventEmitter();
 
-
-  constructor(private http:Http){
-  }
-
-  ngOnInit(){
-      if(this.initPaginationParams && this.initPaginationParams.pagination ){
-          this.rowsPerPage = this.initPaginationParams.pagination.size;
-      }
-      this.currentPage = 1;
-      this.pageView = 1;
-  }
-
   ngOnChanges(){
     if(this.list){
+
       if(!this.initRowsPerPage) {
         this.initRowsPerPage = this.rowsPerPage;
       }
@@ -50,40 +34,17 @@ export class PaginationComponent{
         this.rowsPerPage = this.initRowsPerPage;
       }
 
+      // This should be server-side
+      this.showList = this.list.slice(this.rowsPerPage * (this.currentPage - 1), this.rowsPerPage * (this.currentPage - 1) + this.rowsPerPage);
       this.numberPages = Math.ceil(this.list.length / this.rowsPerPage);
-    }
+      this.paginationList.emit(this.showList);
+      // -------
 
-      var headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-
-      this.paginationParams = {
-          pagination: {
-              size: this.rowsPerPage,
-              page: this.currentPage,
-              total: true
-          }};
-
-      this.http.post(this.path,
-                     JSON.stringify(this.paginationParams),
-                     {headers: headers})
-                                        .map(res => res.json())
-                                        .subscribe(data => {
-                                            if(data && data.result[0] && data.result[0].order){
-                                                this.showList = data.result[0].positions
-                                            } else {
-                                                this.showList = data.result;
-                                            }
-                                            if(this.showList.length === 0 || this.showList.length > this.rowsPerPage){
-                                                this.paginateLocal();
-                                            } else {
-                                                this.paginationList.emit(this.showList);
-                                            }
-                                        },
-                                        err => this.paginateLocal());
-
-      if(this.showList && this.showList.length <= 0){
+      if(this.showList.length <= 0){
         this.changePage(this.currentPage - 1, 0);
       }
+
+    }
   }
 
   changePage(page: number, view: number){
@@ -102,48 +63,13 @@ export class PaginationComponent{
       this.pageView = view;
     }
 
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    this.paginationParams = {
-        pagination: {
-            size: this.rowsPerPage,
-            page: this.currentPage,
-            total: true
-        }};
-
-    this.http.post(this.path,
-                   JSON.stringify(this.paginationParams),
-                   {headers: headers})
-                                      .map(res => res.json())
-                                      .subscribe(data => {
-                                          if(data && data.result[0] && data.result[0].order){
-                                              this.showList = data.result[0].positions
-                                          } else {
-                                              this.showList = data.result;
-                                          }
-                                          if(this.showList.length === 0 || this.showList.length > this.rowsPerPage){
-                                              this.changePageLocal();
-                                          } else {
-                                              this.paginationList.emit(this.showList);
-                                          }
-                                      },
-                                      err => this.changePageLocal());
-
-  }
-
-  paginateLocal(){
-      this.showList = this.list.slice(this.rowsPerPage * (this.currentPage - 1), this.rowsPerPage * (this.currentPage - 1) + this.rowsPerPage);
-      this.numberPages = Math.ceil(this.list.length / this.rowsPerPage);
-      this.paginationList.emit(this.showList);
-  }
-
-  changePageLocal(){
-      if(this.rowsPerPage * (this.currentPage - 1) < this.rowsPerPage){
-          this.showList = this.list.slice(0, this.rowsPerPage);
-      } else{
-          this.showList = this.list.slice( this.rowsPerPage * (this.currentPage - 1), this.rowsPerPage * (this.currentPage - 1) + this.rowsPerPage);
-      }
-      this.paginationList.emit(this.showList)
+    // This should be server-side
+    if(this.rowsPerPage * (this.currentPage - 1) < this.rowsPerPage){
+      this.showList = this.list.slice(0, this.rowsPerPage);
+    } else{
+      this.showList = this.list.slice( this.rowsPerPage * (this.currentPage - 1), this.rowsPerPage * (this.currentPage - 1) + this.rowsPerPage);
+    }
+    //---
+    this.paginationList.emit(this.showList)
   }
 }
