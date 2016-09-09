@@ -30,7 +30,12 @@ export class PaginationComponent{
         this.rowsPerPage = this.initRowsPerPage;
       }
 
-      this.numberPages = Math.ceil(this.numItems / this.rowsPerPage);
+      if(this.numItems){
+          this.numberPages = Math.ceil(this.numItems / this.rowsPerPage);
+      } else {
+          this.currentPage = 1;
+          this.numberPages = 1;
+      }
   }
 
   changePage(page: number, view: number){

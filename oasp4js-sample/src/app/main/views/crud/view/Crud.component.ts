@@ -54,7 +54,8 @@ export class CrudComponent{
   searchFilters(filters){
       this.crudRestService.applyFilters(filters)
                                     .subscribe(data =>
-                                        this.tables = data
+                                        {this.numItems = data.pagination.total;
+                                         this.tables = data.result}
                                     );
   }
 
@@ -73,7 +74,7 @@ export class CrudComponent{
   rowSelected(valor){
     if(valor){
         this.selectedTable = valor;
-        this.myState = this.selectedTable.state;
+        this.myState = this.states.indexOf(this.selectedTable.state) + 1;
     } else{
         this.selectedTable = new Table(0,undefined,undefined,undefined,undefined);
         this.myState = -1;

@@ -1,59 +1,64 @@
 import { Injectable } from '@angular/core';
 import {Table} from '../../../models/table/Table.model'
 import {Command} from '../../../models/command/Command.model'
-//import { environment } from '../environment';
+import { BusinessOperations } from '../../../../main/BusinessOperations';
 import { Http, Response,Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-/*
-  Need to know how to do a http connection with the server
-*/
+
 @Injectable()
 export class CrudRestService {
-  serverPath:String =  'http://10.68.8.26:8081/oasp4j-sample-server/';
-  basePath:String = this.serverPath + 'services/rest/tablemanagement/v1';
-  productsPath:String = this.serverPath + 'services/rest/offermanagement/v1';
 
- constructor(private http:Http) { }
+  BO:BusinessOperations = new BusinessOperations();
+  constructor(private http:Http) { }
 
   getTables(paginationData){
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      return this.http.post(this.basePath + '/table/search', JSON.stringify(paginationData), {headers:headers})
+      return this.http.post(this.BO.tableSearchPOST, JSON.stringify(paginationData), {headers:headers})
                               .map(res =>  res.json())
   }
 
   getOffers(){
-    return this.http.get(this.productsPath + '/offer/')
-                           .map(res =>  res.json())
+    return this.http.get(this.BO.offersGET)
+                    .map(res =>  res.json())
   }
 
   applyFilters(filters){
-      if(filters[0].hasText()){
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      if(filters[0].length > 0 || filters[1].length > 0 || filters[1].length > 0){
 
-      } else {
           var searchCriteria = {
-              
+              number : filters[0],
+              state : filters[1] === "" ? null : filters[1],
+              waiterId : filters[2]
           }
+          return this.http.post(this.BO.tableSearchPOST, JSON.stringify(searchCriteria), {headers:headers})
+          .map(res =>  res.json())
+      } else {
+          var pageData = {
+              pagination: {
+                  size: 4,
+                  page: 1,
+                  total: true
+              }};
+          return this.http.post(this.BO.tableSearchPOST, JSON.stringify(pageData), {headers:headers})
+                                  .map(res =>  res.json())
       }
-      return this.http.get(this.basePath + '/table/' + 10 + filters[0])
-                             .map(res =>  res.json())
   }
 
   saveTable(table){
-
-      var headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-
-      let post = this.http.post(this.basePath + '/table/', JSON.stringify(table),  {headers: headers})
-                             .map(res =>  res.json())
-                             .subscribe(data => { });
-      //post.unsubscribe();
+    var headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let post = this.http.post(this.BO.tablesPOST, JSON.stringify(table),  {headers: headers})
+                        .map(res =>  res.json())
+                        .subscribe(data => { });
   }
 
   private handleError(error: any): Promise<any> {
-      console.error('An error occurred', error); // for demo purposes only
-      return Promise.reject(error.message || error);
+    console.error('An error occurred', error); // for demo purposes only
+    return Promise.reject(error.message || error);
   }
 }
