@@ -20,10 +20,6 @@ export class DetailsComponent implements OnInit{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   closeWindowEvent = new EventEmitter();
 
-
-
-  positionsPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/order/search"
-
   public headers: string[] = ["number","description", "state", "price", "Comment"];
   public attributeNames: string[] = ["id", "offerName", "state", "price", "comment"];
 
@@ -33,20 +29,38 @@ export class DetailsComponent implements OnInit{
   public selectedPosition = null;
   public viewMenu: boolean = true;
 
-  public showPositions: OrderPosition[];
-
+  public numItems: number;
   public positions: OrderPosition[] = [];
   public order;
+
+  public pageData = {
+      pagination: {
+          size: 4,
+          page: 1,
+          total: true
+      }};
 
   constructor(private detailsRestService: DetailsRestService, private detailsService:DetailsService){}
 
   ngOnInit(){
-      this.detailsRestService.getPositions(this.parentTable.id).subscribe(data => {this.positions = data.result[0].positions; this.order = data.result[0].order});
+      this.loadPositions();
       this.detailsRestService.getMenus().subscribe(data => this.offers = data);
+  }
+
+  loadPositions(){
+      this.detailsRestService.getPositions(this.parentTable.id)
+                                            .subscribe(data => {
+                                                                this.positions = data.result[0].positions;
+                                                                this.order = data.result[0].order});
   }
 
   openMenu(){
     this.viewMenu = !this.viewMenu;
+  }
+
+  pagination(value){
+      this.pageData.pagination.total = value;
+      this.loadPositions();
   }
 
   clickedRow(valor){
@@ -66,10 +80,6 @@ export class DetailsComponent implements OnInit{
   resetValues(){
       this.selectedPosition = null;
       this.offerToAdd = null;
-  }
-
-  pagination(value){
-      this.showPositions = value;
   }
 
   cancel(){

@@ -19,17 +19,14 @@ import { CrudRestService } from '../service/Crud.service.rest';
 export class CrudComponent{
 
   public selectedTable = new Table(0,undefined,undefined,undefined,undefined);
-  public paginationPath = "http://10.68.8.26:8081/oasp4j-sample-server/services/rest/tablemanagement/v1/table/search"
-
 
   public tables:Table[];
   public headers: string[] = ["Table number","State", "Waiter"];
   public attributeNames: string[] = ["number", "state", "waiter"];
   public states: string[] = ["FREE", "OCCUPIED", "RESERVED"]
 
-  public showTables: Table[];
   public hideModalDialog = false;
-
+  public numItems: number;
   public myState;
   public modalHeader:string;
 
@@ -41,8 +38,12 @@ export class CrudComponent{
       }};
 
   constructor(private crudService:CrudService, private crudRestService: CrudRestService){
-    crudService.getTables().subscribe(data => {this.tables = data});
+    this.loadTables();
     this.myState = -1;
+  }
+
+  loadTables(){
+      this.crudRestService.getTables(this.pageData).subscribe(data => {this.numItems = data.pagination.total; this.tables = data.result});
   }
 
   openEditModal(){
@@ -58,9 +59,10 @@ export class CrudComponent{
   }
 
   pagination(value){
-      this.myState = -1;
-      this.showTables = value;
+      this.pageData.pagination.page = value;
+      this.loadTables();
   }
+
 
   changeState(state){
       this.selectedTable.state = state;

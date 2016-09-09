@@ -65,4 +65,24 @@ export class KitchenRestService {
              .map(res =>  res.json())
              .subscribe()
     }
+
+  moveOrderPosition(obj, cookId){
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+
+      obj.cookId = cookId;
+      this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj), {headers:headers})
+                               .map(res =>  res.json())
+                               .subscribe()
+  }
+
+  finishOrderPosition(obj, state){
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+
+      obj.state = state
+      this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj), {headers:headers})
+                               .map(res =>  res.json())
+                               .subscribe()
+  }
 }

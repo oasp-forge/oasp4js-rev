@@ -9,12 +9,6 @@ export class CrudService{
   constructor(private crudRestService:CrudRestService)
    { }
 
-  getTables(){
-      let a;
-      a = this.crudRestService.getTables();
-      return a;
-  }
-
   getOffers(){
     return this.crudRestService.getOffers();
   }

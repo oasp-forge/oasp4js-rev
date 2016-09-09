@@ -13,9 +13,11 @@ export class CrudRestService {
   BO:BusinessOperations = new BusinessOperations();
   constructor(private http:Http) { }
 
-  getTables(){
-    return this.http.get(this.BO.tablesGET)
-                    .map(res =>  res.json())
+  getTables(paginationData){
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      return this.http.post(this.BO.tableSearchPOST, JSON.stringify(paginationData), {headers:headers})
+                              .map(res =>  res.json())
   }
 
   getOffers(){

@@ -19,6 +19,7 @@ export class BusinessOperations {
   * POST operations
   */
   public tablesPOST = this.tablemgn + 'table/';
+  public tableSearchPOST = this.tablemgn + 'table/search'
   public orderSearchPOST = this.salesmgn + 'order/search';
   public orderPOST = this.salesmgn + 'order/';
   public productSearchPOST = this.offermgn + 'product/search';
