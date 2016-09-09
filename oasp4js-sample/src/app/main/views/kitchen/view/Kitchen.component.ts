@@ -84,6 +84,7 @@ export class KitchenComponent{
                     }
                 }
             }
+            
             if(this.orderPositions[i].cookId){
                 this.assignedCommands.push(kitchenProduct);
             } else {
@@ -103,7 +104,7 @@ export class KitchenComponent{
     assign(){
         for(let i = 0 ; i < this.orderPositions.length ; i++){
             if(this.selectedAvailableCommand.id === this.orderPositions[i].id){
-                this.kitchenRestService.assignOrderPosition(this.orderPositions[i]);
+                this.kitchenRestService.moveOrderPosition(this.orderPositions[i], 1);
             }
         }
         this.getLists();
@@ -115,7 +116,7 @@ export class KitchenComponent{
     return(){
         for(let i = 0 ; i < this.orderPositions.length ; i++){
             if(this.selectedAssignedCommand.id === this.orderPositions[i].id){
-                this.kitchenRestService.returnOrderPosition(this.orderPositions[i]);
+                this.kitchenRestService.moveOrderPosition(this.orderPositions[i], null);
             }
         }
         this.getLists();
@@ -124,22 +125,10 @@ export class KitchenComponent{
         this.selectedAvailableCommand = undefined;
     }
 
-    done(){
+    finish(state){
         for(let i = 0 ; i < this.orderPositions.length ; i++){
             if(this.selectedAssignedCommand.id === this.orderPositions[i].id){
-                this.kitchenRestService.doneOrderPosition(this.orderPositions[i]);
-            }
-        }
-        this.getLists();
-
-        this.selectedAssignedCommand = undefined;
-        this.selectedAvailableCommand = undefined;
-    }
-
-    reject(){
-        for(let i = 0 ; i < this.orderPositions.length ; i++){
-            if(this.selectedAssignedCommand.id === this.orderPositions[i].id){
-                this.kitchenRestService.rejectOrderPosition(this.orderPositions[i]);
+                this.kitchenRestService.finishOrderPosition(this.orderPositions[i], state);
             }
         }
         this.getLists();

@@ -52,7 +52,7 @@
             (objSelected) = "assignedSelected($event)">
          </grid-table>
 
-         <button  (click) ="reject()" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-warning propertyMargin-left">Cancel</button>
-         <button  (click) ="done()" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-primary propertyMargin-left">Done</button>
+         <button  (click) ="finish('CANCELLED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-warning propertyMargin-left">Cancel</button>
+         <button  (click) ="finish('PREPARED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-primary propertyMargin-left">Done</button>
     </div>
 </div>

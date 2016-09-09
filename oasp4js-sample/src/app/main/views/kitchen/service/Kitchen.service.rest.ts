@@ -33,40 +33,21 @@ export class KitchenRestService {
                             .map(res =>  res.json())
   }
 
-  assignOrderPosition(obj){
+  moveOrderPosition(obj, cookId){
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
-      obj.cookId = 1;
+
+      obj.cookId = cookId;
       this.http.post(this.baseSalesPath + '/orderposition/', JSON.stringify(obj), {headers:headers})
                                .map(res =>  res.json())
                                .subscribe()
   }
 
-  returnOrderPosition(obj){
+  finishOrderPosition(obj, state){
       var headers = new Headers();
       headers.append('Content-Type', 'application/json');
 
-      obj.cookId = null;
-      this.http.post(this.baseSalesPath + '/orderposition/', JSON.stringify(obj), {headers:headers})
-                               .map(res =>  res.json())
-                               .subscribe()
-  }
-
-  doneOrderPosition(obj){
-      var headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-
-      obj.state = "PREPARED"
-      this.http.post(this.baseSalesPath + '/orderposition/', JSON.stringify(obj), {headers:headers})
-                               .map(res =>  res.json())
-                               .subscribe()
-  }
-
-  rejectOrderPosition(obj){
-      var headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-
-      obj.state = "CANCELLED"
+      obj.state = state
       this.http.post(this.baseSalesPath + '/orderposition/', JSON.stringify(obj), {headers:headers})
                                .map(res =>  res.json())
                                .subscribe()
