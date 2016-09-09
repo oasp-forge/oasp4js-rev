@@ -30,6 +30,13 @@ export class CrudRestService {
   }
 
   applyFilters(filters){
+      if(filters[0].hasText()){
+
+      } else {
+          var searchCriteria = {
+              
+          }
+      }
       return this.http.get(this.basePath + '/table/' + 10 + filters[0])
                              .map(res =>  res.json())
   }
