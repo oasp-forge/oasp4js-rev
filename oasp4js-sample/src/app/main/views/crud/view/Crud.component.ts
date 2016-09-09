@@ -2,7 +2,7 @@ import {Component} from '@angular/core'
 import {CrudService} from '../service/Crud.service'
 import {Table} from '../../../models/table/Table.model'
 import {DetailsComponent} from '../../details/view/Details.component'
-// import {Command} from '../../../models/command/Command.model'
+import {i18n} from '../../../i18n'
 import {PaginationComponent} from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import {ModalDialogComponent} from '../../../../oasp/oasp-ui/modal-dialog/modal-dialog.component'
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
@@ -21,7 +21,7 @@ export class CrudComponent{
   public selectedTable = new Table(0,undefined,undefined,undefined,undefined);
 
   public tables:Table[];
-  public headers: string[] = ["Table number","State", "Waiter"];
+  public headers: string[];
   public attributeNames: string[] = ["number", "state", "waiter"];
   public states: string[] = ["FREE", "OCCUPIED", "RESERVED"]
 
@@ -37,9 +37,12 @@ export class CrudComponent{
           total: true
       }};
 
-  constructor(private crudService:CrudService, private crudRestService: CrudRestService){
-    this.loadTables();
-    this.myState = -1;
+  constructor(private i18n: i18n, private crudService:CrudService, private crudRestService: CrudRestService){
+      this.i18n = i18n.geti18n();
+      this.loadTables();
+      this.myState = -1;
+
+      this.headers = [this.i18n.tables.number,this.i18n.tables.state, this.i18n.tables.waiter]
   }
 
   loadTables(){

@@ -14,12 +14,12 @@
 
       <div class="dropdown">
         <button class="userList" type="button" (click) ="openMenu()">
-          <img  class ="icon" [src]="currentIcon">
-            {{currentLanguage}}
+          <img  class ="icon" [src]="currentLanguage.iconUrl">
+            {{currentLanguage.name}}
           <span class="caret"></span></button>
 
         <ul class="my-dropdown" [hidden] = "dropmenu" id ="dropMenuId">
-          <li (click) ="changeLanguage()"><a> <img  class ="icon" [src]="optionIcon"> {{optionLanguage}}</a></li>
+          <li (click) ="changeLanguage()"><a> <img  class ="icon" [src]="optionLanguage.iconUrl"> {{optionLanguage.name}}</a></li>
         </ul>
       </div>
 

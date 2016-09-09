@@ -6,5 +6,13 @@ import { HTTP_PROVIDERS } from '@angular/http';
 import { CrudRestService } from './app/main/views/crud/service/Crud.service.rest';
 import { KitchenRestService } from './app/main/views/kitchen/service/Kitchen.service.rest';
 import { DetailsRestService } from './app/main/views/details/service/Details.service.rest';
+import {i18n} from './app/main/i18n'
 
-bootstrap(Oasp4jsSampleAppComponent, [ROUTER_PROVIDERS, ROUTER_DIRECTIVES, HTTP_PROVIDERS, CrudRestService, KitchenRestService, DetailsRestService]);
+bootstrap(Oasp4jsSampleAppComponent, [ROUTER_PROVIDERS,
+                                      ROUTER_DIRECTIVES,
+                                      HTTP_PROVIDERS,
+                                      CrudRestService,
+                                      KitchenRestService,
+                                      DetailsRestService,
+                                      i18n
+                                     ]);

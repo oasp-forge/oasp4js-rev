@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import {languages} from '../../../resources/languages/Languages.resource'
+import {currentLang} from '../../../i18n'
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {User} from '../../../models/user/User.model';
 
@@ -17,11 +18,8 @@ export class HeaderComponent {
     user: User;
     dropmenu:boolean = true;
 
-    currentIcon:string = languages[0].iconUrl;
-    currentLanguage: string = languages[0].name;
-
-    optionIcon:string = languages[1].iconUrl;
-    optionLanguage: string = languages[1].name;
+    currentLanguage = languages[0];
+    optionLanguage = languages[1];
 
     logOffEvent = new EventEmitter<boolean>();
 
@@ -30,16 +28,19 @@ export class HeaderComponent {
     }
 
     changeLanguage(){
-      let aux = this.currentLanguage;
 
-      this.currentLanguage = this.optionLanguage;
-      this.optionLanguage = aux;
+      let aux = this.currentLanguage.name;
+      this.currentLanguage.name = this.optionLanguage.name;
+      this.optionLanguage.name = aux;
 
-      aux = this.currentIcon;
-      this.currentIcon = this.optionIcon;
-      this.optionIcon = aux;
+      aux = this.currentLanguage.iconUrl;
+      this.currentLanguage.iconUrl = this.optionLanguage.iconUrl;
+      this.optionLanguage.iconUrl = aux;
 
-      this.dropmenu = !this.dropmenu;
+     currentLang[0] = this.currentLanguage.code;
+
+     this.dropmenu = !this.dropmenu;
+
     }
 
     logOff(){

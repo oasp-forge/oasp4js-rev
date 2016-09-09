@@ -2,12 +2,12 @@
 
   <search-panel [searchInputs] = "[num, stat, waiter]" (searchValues) = "searchFilters($event)">
     <div class = "searchFields propertyMargin-right">
-        <label> Number </label>
+        <label> {{i18n.tables.number}} </label>
         <input #num type ="number" class="form-control">
     </div>
 
     <div class = "searchFields propertyMargin-right">
-        <label> State </label>
+        <label> {{i18n.tables.state}} </label>
         <select #stat class="form-control">
           <option value="">All</option>
           <option *ngFor ="let state of states ; let i = index"
@@ -16,12 +16,12 @@
     </div>
 
     <div class = "searchFields">
-        <label> Waiter </label>
+        <label> {{i18n.tables.waiter}} </label>
         <input #waiter type ="text" class="form-control">
     </div>
   </search-panel>
 
-  <legend> Tables </legend>
+  <legend> {{i18n.tables.title}} </legend>
 
   <grid-table
       [headers] = "headers"
