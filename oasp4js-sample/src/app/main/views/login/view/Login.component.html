@@ -1,50 +1,29 @@
 <div class="loginContainer">
-  <h1>This is the login to the devonfw restaurant example application as technical showcase for an AngularJS client.</h1>
+  <h1>{{i18n.LoginPage.intro}}</h1>
   <div>
     <img src="app/main/img/login_logo.png">
   </div>
-  
+
   <form (ngSubmit)="validateLogin(usernameLogin.value, passwordLogin.value)" #loginForm="ngForm">
-      <h2>Sign in</h2>
+      <h2>{{i18n.LoginPage.signIn}}</h2>
 
       <div class="cuadroUsuario">
 
           <div [hidden]="loginFailed" class="alert alert-danger">
             <a href="#" class="close" (click) ="hideAlertLogin()">&times;</a>
-            Authentication failed. Please try again!
+            {{i18n.LoginPage.failed}}
           </div>
 
           <div [hidden]="user.valid || user.pristine" class ="login-alert">
-            Please enter your username
+            {{i18n.LoginPage.form.usernameError}}
           </div>
-          <input placeholder="User name" type="text" style="margin-bottom:10px;" #usernameLogin class="form-control" required ngControl="username"  #user="ngForm">
+          <input [placeholder]="i18n.LoginPage.form.usernamePlaceHolder" type="text" style="margin-bottom:10px;" #usernameLogin class="form-control" required ngControl="username"  #user="ngForm">
 
           <div [hidden]="pass.valid || pass.pristine" class ="login-alert">
-            Please enter your password
+            {{i18n.LoginPage.form.passwordError}}
           </div>
-          <input type="password" placeholder="Password" style="margin-bottom:10px;" #passwordLogin class="form-control" required ngControl="password"  #pass="ngForm">
+          <input type="password" [placeholder]="i18n.LoginPage.form.passwordPlaceHolder" style="margin-bottom:10px;" #passwordLogin class="form-control" required ngControl="password"  #pass="ngForm">
 
       </div>
-      <button type="submit" class="btn  btn-success" [disabled]="!loginForm.form.valid">Submit</button>
+      <button type="submit" class="btn  btn-success" [disabled]="!loginForm.form.valid">{{i18n.buttons.submitBtn}}</button>
   </form>
-
-<!--
-  SERVER CALL (TEST 1)
-  <div style="margin-top:50px">
-    <h3>Spotify's Server Call (TEST)<h3>
-    <input id="search" type="text" class="form-control" placeholder="Search for artists...">
-    <div id="result"><div>
-  </div>
-  /SERVER CALL (TEST 1)
-
-  SERVER CALL (TEST 2)
-  <div style="margin-top:50px">
-    <h3>Angular 2 HTTP requests using RxJs Observables!</h3>
-	  <ul>
-	    <li *ngFor="let doctor of doctors">{{doctor}}</li>
-	  </ul>
-  </div>
-  /SERVER CALL (TEST 3)
-
-
-</div> -->

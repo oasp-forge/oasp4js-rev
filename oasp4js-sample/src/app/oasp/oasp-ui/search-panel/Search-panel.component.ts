@@ -1,4 +1,5 @@
 import {Component, ElementRef, ViewChild, OnChanges, EventEmitter} from '@angular/core'
+import {i18n} from '../../../main/i18n'
 
 @Component({
   selector:'search-panel',
@@ -12,6 +13,11 @@ export class SearchPanelComponent implements OnChanges{
   searchInputs;
   search;
   searchValues = new EventEmitter();
+  i18n
+
+  constructor(){
+      this.i18n = i18n[0];
+  }
 
   ngOnChanges(){
       if(this.searchInputs){

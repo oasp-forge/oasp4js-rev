@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import {languages} from '../../../resources/languages/Languages.resource'
-import {currentLang} from '../../../i18n'
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {User} from '../../../models/user/User.model';
+import {i18n} from '../../../i18n'
+import {I18n} from '../../../i18n'
 
 @Component({
     selector: 'header',
@@ -17,11 +18,16 @@ export class HeaderComponent {
     logged: boolean = false;
     user: User;
     dropmenu:boolean = true;
+    i18n;
 
     currentLanguage = languages[0];
     optionLanguage = languages[1];
 
     logOffEvent = new EventEmitter<boolean>();
+
+    constructor(private myI18n: I18n){
+        this.i18n = i18n[0];
+    }
 
     openMenu(){
       this.dropmenu = !this.dropmenu;
@@ -29,17 +35,13 @@ export class HeaderComponent {
 
     changeLanguage(){
 
-      let aux = this.currentLanguage.name;
-      this.currentLanguage.name = this.optionLanguage.name;
-      this.optionLanguage.name = aux;
+      this.myI18n.changeLanguage(this.optionLanguage.code);
 
-      aux = this.currentLanguage.iconUrl;
-      this.currentLanguage.iconUrl = this.optionLanguage.iconUrl;
-      this.optionLanguage.iconUrl = aux;
+      let aux = this.currentLanguage;
+      this.currentLanguage = this.optionLanguage;
+      this.optionLanguage = aux;
 
-     currentLang[0] = this.currentLanguage.code;
-
-     this.dropmenu = !this.dropmenu;
+      this.dropmenu = !this.dropmenu;
 
     }
 

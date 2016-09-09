@@ -6,6 +6,7 @@ import {DetailsService} from '../service/Details.service'
 import {PaginationComponent} from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {DetailsRestService} from '../service/Details.service.rest'
+import {i18n} from '../../../i18n'
 
 @Component({
   selector:'tableDetails',
@@ -20,7 +21,7 @@ export class DetailsComponent implements OnInit{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   closeWindowEvent = new EventEmitter();
 
-  public headers: string[] = ["number","description", "state", "price", "Comment"];
+  public headers: string[] ;
   public attributeNames: string[] = ["id", "offerName", "state", "price", "comment"];
 
   public parentTable:Table;
@@ -32,6 +33,7 @@ export class DetailsComponent implements OnInit{
   public numItems: number;
   public positions: OrderPosition[] = [];
   public order;
+  public i18n;
 
   public pageData = {
       pagination: {
@@ -40,7 +42,10 @@ export class DetailsComponent implements OnInit{
           total: true
       }};
 
-  constructor(private detailsRestService: DetailsRestService, private detailsService:DetailsService){}
+  constructor(private detailsRestService: DetailsRestService, private detailsService:DetailsService){
+      this.i18n = i18n[0];
+      this.headers = [this.i18n.details.number,this.i18n.details.description, this.i18n.details.state, this.i18n.details.price, this.i18n.details.comment];
+  }
 
   ngOnInit(){
       this.loadPositions();

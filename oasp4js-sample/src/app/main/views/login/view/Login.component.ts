@@ -3,8 +3,7 @@ import {User} from '../../../models/user/User.model';
 import {LoginService} from '../service/Login.service';
 import {Observable} from 'rxjs/Observable';
 import {Http, Headers} from '@angular/http';
-import 'rxjs/Rx';
-declare let $:any;
+import {i18n} from '../../../i18n'
 
 @Component({
   selector:'login',
@@ -20,10 +19,11 @@ export class LoginComponent{
 
   user:User;
   loginFailed:boolean = true;
+  i18n
 
-  constructor(
-    private loginService:LoginService
-  ){  }
+  constructor(private loginService:LoginService){
+      this.i18n = i18n[0];
+    }
 
   private hideAlertLogin(){
     this.loginFailed = !this.loginFailed;

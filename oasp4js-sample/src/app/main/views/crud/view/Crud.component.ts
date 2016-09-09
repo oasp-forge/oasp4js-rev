@@ -2,12 +2,12 @@ import {Component} from '@angular/core'
 import {CrudService} from '../service/Crud.service'
 import {Table} from '../../../models/table/Table.model'
 import {DetailsComponent} from '../../details/view/Details.component'
-import {i18n} from '../../../i18n'
 import {PaginationComponent} from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import {ModalDialogComponent} from '../../../../oasp/oasp-ui/modal-dialog/modal-dialog.component'
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {SearchPanelComponent} from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
 import { CrudRestService } from '../service/Crud.service.rest';
+import {i18n} from '../../../i18n'
 
 @Component({
   selector:'crud',
@@ -28,6 +28,7 @@ export class CrudComponent{
   public hideModalDialog = false;
   public numItems: number;
   public myState;
+  public i18n;
   public modalHeader:string;
 
   public pageData = {
@@ -37,12 +38,11 @@ export class CrudComponent{
           total: true
       }};
 
-  constructor(private i18n: i18n, private crudService:CrudService, private crudRestService: CrudRestService){
-      this.i18n = i18n.geti18n();
+  constructor(private crudService:CrudService, private crudRestService: CrudRestService){
       this.loadTables();
       this.myState = -1;
-
-      this.headers = [this.i18n.tables.number,this.i18n.tables.state, this.i18n.tables.waiter]
+      this.i18n = i18n[0];
+      this.headers = ["","",""];//   this.i18n2.tables.number,this.i18n2.tables.state, this.i18n2.tables.waiter]
   }
 
   loadTables(){
@@ -50,7 +50,7 @@ export class CrudComponent{
   }
 
   openEditModal(){
-      this.modalHeader = "Details of Table #" + this.selectedTable.number;
+      this.modalHeader = "";//this.i18n2.details.title + this.selectedTable.number;
       this.hideModalDialog = true;
   }
 

@@ -1,3 +1,4 @@
+
 import {Component} from '@angular/core'
 
 import {Command} from '../../../models/command/Command.model'
@@ -7,6 +8,7 @@ import {KitchenRestService} from '../service/Kitchen.service.rest'
 
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {SearchPanelComponent} from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
+import {i18n} from '../../../i18n'
 
 
 @Component({
@@ -33,12 +35,16 @@ export class KitchenComponent{
             page: 1,
             total: true
         }};
+    i18n;
 
-    public headers: string[] = ["ID","OrderID", "Offer", "Meal", "Side dish"];
+    public headers: string[];
     public attributeNames: string[] = ["id", "orderId", "offerName", "mealName", "sideDishName"];
 
     constructor(private kitchenService: KitchenService, private kitchenRestService: KitchenRestService){
+        this.i18n = i18n[0];
         this.getLists();
+
+        this.headers = ["ID","OrderID", "Offer", "Meal", "Side dish"];
     }
 
     getLists(){
@@ -84,7 +90,7 @@ export class KitchenComponent{
                     }
                 }
             }
-            
+
             if(this.orderPositions[i].cookId){
                 this.assignedCommands.push(kitchenProduct);
             } else {

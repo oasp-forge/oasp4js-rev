@@ -1,4 +1,5 @@
 import {Component, OnChanges, EventEmitter} from '@angular/core'
+import {i18n} from '../../../main/i18n'
 
 @Component({
   selector:'pagination',
@@ -18,6 +19,11 @@ export class PaginationComponent{
   numberPages: number;
 
   eventCurrentPage = new EventEmitter();
+  i18n
+
+  constructor(){
+      this.i18n = i18n[0];
+  }
 
   ngOnChanges(){
       if(!this.initRowsPerPage) {

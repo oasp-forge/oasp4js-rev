@@ -9,6 +9,8 @@ import { CrudComponent } from '../crud/view/Crud.component'
 import { KitchenComponent } from '../kitchen/view/Kitchen.component'
 import { User } from '../../models/user/User.model'
 import { ModalDialogComponent } from '../../../oasp/oasp-ui/modal-dialog/modal-dialog.component';
+import {I18n} from '../../i18n'
+import {i18n} from '../../i18n'
 
 @Routes([
     { path: '', component: CrudComponent },
@@ -44,13 +46,17 @@ export class Oasp4jsSampleAppComponent {
 
   public autoLogTitle = "Ooops...";
   public autoLogInfo = "Session time expired!";
+  i18n
 
   constructor(
     private router: Router,
     private loginService: LoginService,
-    private http: Http
+    private http: Http,
+    private myI18n : I18n
   ){
     this.autoLog = false;
+    myI18n.initI18n();
+    this.i18n = i18n[0];
     this.timer = setInterval(() => {
     }, this.mins*15);
   }
