@@ -1,10 +1,11 @@
 import {Component, ElementRef, ViewChild, OnChanges, EventEmitter} from '@angular/core'
-import {i18n} from '../../../main/i18n'
+import {OaspI18n} from '../../oasp-i18n/oasp-i18n.service';
 
 @Component({
   selector:'search-panel',
   templateUrl:'app/oasp/oasp-ui/search-panel/Search-panel.component.html',
-  inputs:["searchInputs"],
+  providers: [OaspI18n],
+  inputs: ["searchInputs"],
   outputs: ["searchValues"]
 })
 
@@ -15,8 +16,8 @@ export class SearchPanelComponent implements OnChanges{
   searchValues = new EventEmitter();
   i18n
 
-  constructor(){
-      this.i18n = i18n[0];
+  constructor(oaspI18n: OaspI18n){
+      this.i18n = oaspI18n.getI18n();
   }
 
   ngOnChanges(){

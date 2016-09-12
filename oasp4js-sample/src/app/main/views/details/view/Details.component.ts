@@ -6,13 +6,13 @@ import {DetailsService} from '../service/Details.service'
 import {PaginationComponent} from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {DetailsRestService} from '../service/Details.service.rest'
-import {i18n} from '../../../i18n'
+import {OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
 
 @Component({
   selector:'tableDetails',
   templateUrl:'app/main/views/details/view/Details.component.html',
   inputs:['parentTable'],
-  providers:[DetailsService],
+  providers:[DetailsService, DetailsRestService, OaspI18n],
   outputs:['resultEvent', 'closeWindowEvent'],
   directives:[PaginationComponent, GridTableComponent],
 })
@@ -42,8 +42,8 @@ export class DetailsComponent implements OnInit{
           total: true
       }};
 
-  constructor(private detailsRestService: DetailsRestService, private detailsService:DetailsService){
-      this.i18n = i18n[0];
+  constructor(private oaspI18n:OaspI18n, private detailsRestService: DetailsRestService, private detailsService:DetailsService){
+      this.i18n = oaspI18n.getI18n();
       this.headers = [this.i18n.details.number,this.i18n.details.description, this.i18n.details.state, this.i18n.details.price, this.i18n.details.comment];
   }
 

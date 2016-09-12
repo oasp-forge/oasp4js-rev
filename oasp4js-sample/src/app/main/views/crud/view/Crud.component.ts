@@ -7,12 +7,12 @@ import {ModalDialogComponent} from '../../../../oasp/oasp-ui/modal-dialog/modal-
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {SearchPanelComponent} from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
 import { CrudRestService } from '../service/Crud.service.rest';
-import {i18n} from '../../../i18n'
+import {OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
 
 @Component({
   selector:'crud',
   templateUrl:'app/main/views/crud/view/Crud.component.html',
-  providers:[CrudService],
+  providers:[CrudService, CrudRestService, OaspI18n],
   directives:[DetailsComponent, PaginationComponent, ModalDialogComponent, GridTableComponent, SearchPanelComponent],
 })
 
@@ -38,11 +38,11 @@ export class CrudComponent{
           total: true
       }};
 
-  constructor(private crudService:CrudService, private crudRestService: CrudRestService){
+  constructor(private oaspI18n: OaspI18n, private crudService:CrudService, private crudRestService: CrudRestService){
+      this.i18n = oaspI18n.getI18n();
       this.loadTables();
       this.myState = -1;
-      this.i18n = i18n[0];
-      this.headers = ["","",""];//   this.i18n2.tables.number,this.i18n2.tables.state, this.i18n2.tables.waiter]
+      this.headers = [this.i18n.tables.number, this.i18n.tables.state, this.i18n.tables.waiter]
   }
 
   loadTables(){
@@ -50,7 +50,7 @@ export class CrudComponent{
   }
 
   openEditModal(){
-      this.modalHeader = "";//this.i18n2.details.title + this.selectedTable.number;
+      this.modalHeader = this.i18n.details.title + this.selectedTable.number;
       this.hideModalDialog = true;
   }
 

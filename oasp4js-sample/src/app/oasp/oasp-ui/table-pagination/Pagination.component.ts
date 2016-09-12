@@ -1,9 +1,10 @@
 import {Component, OnChanges, EventEmitter} from '@angular/core'
-import {i18n} from '../../../main/i18n'
+import {OaspI18n} from '../../oasp-i18n/oasp-i18n.service';
 
 @Component({
   selector:'pagination',
   templateUrl:'app/oasp/oasp-ui/table-pagination/Pagination.component.html',
+  providers: [OaspI18n],
   inputs:['numItems', 'currentPage', 'rowsPerPage'],
   outputs: ['eventCurrentPage']
 })
@@ -21,8 +22,8 @@ export class PaginationComponent{
   eventCurrentPage = new EventEmitter();
   i18n
 
-  constructor(){
-      this.i18n = i18n[0];
+  constructor(oaspI18n: OaspI18n){
+      this.i18n = oaspI18n.getI18n();
   }
 
   ngOnChanges(){

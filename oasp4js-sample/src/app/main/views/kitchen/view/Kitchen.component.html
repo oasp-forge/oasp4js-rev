@@ -6,7 +6,7 @@
     </div>
 
     <div class = "searchFields propertyMargin-right">
-        <label> {{i18n.kitchen.orderId}} </label>
+        <label> {{i18n.kitchen.orderID}} </label>
         <input #orderId type ="number" class="form-control">
     </div>
 
@@ -52,7 +52,7 @@
             (objSelected) = "assignedSelected($event)">
          </grid-table>
 
-         <button  (click) ="finish('CANCELLED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-warning propertyMargin-left">Cancel</button>
-         <button  (click) ="finish('PREPARED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-primary propertyMargin-left">Done</button>
+         <button  (click) ="finish('CANCELLED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-warning propertyMargin-left">{{i18n.buttons.cancelBtn}}</button>
+         <button  (click) ="finish('PREPARED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-primary propertyMargin-left">{{i18n.buttons.doneBtn}}</button>
     </div>
 </div>

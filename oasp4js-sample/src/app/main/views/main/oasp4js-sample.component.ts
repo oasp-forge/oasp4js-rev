@@ -9,8 +9,7 @@ import { CrudComponent } from '../crud/view/Crud.component'
 import { KitchenComponent } from '../kitchen/view/Kitchen.component'
 import { User } from '../../models/user/User.model'
 import { ModalDialogComponent } from '../../../oasp/oasp-ui/modal-dialog/modal-dialog.component';
-import {I18n} from '../../i18n'
-import {i18n} from '../../i18n'
+import {OaspI18n} from '../../../oasp/oasp-i18n/oasp-i18n.service';
 
 @Routes([
     { path: '', component: CrudComponent },
@@ -23,7 +22,7 @@ import {i18n} from '../../i18n'
   selector: 'oasp4js-sample-app',
   templateUrl: 'oasp4js-sample.component.html',
   styleUrls: ['../../css/oasp4js-sample.component.css'],
-  providers:[LoginService],
+  providers:[LoginService, OaspI18n],
   directives: [
     LoginComponent,
     HeaderComponent,
@@ -52,11 +51,11 @@ export class Oasp4jsSampleAppComponent {
     private router: Router,
     private loginService: LoginService,
     private http: Http,
-    private myI18n : I18n
+    private oaspI18n : OaspI18n
   ){
     this.autoLog = false;
-    myI18n.initI18n();
-    this.i18n = i18n[0];
+    oaspI18n.initI18n();
+    this.i18n = oaspI18n.getI18n();
     this.timer = setInterval(() => {
     }, this.mins*15);
   }

@@ -12,17 +12,7 @@
 
     <div class = "header-right">
 
-      <div class="dropdown">
-        <button class="userList" type="button" (click) ="openMenu()">
-          <img  class ="icon" [src]="currentLanguage.iconUrl">
-            {{currentLanguage.name}}
-          <span class="caret"></span></button>
-
-        <ul class="my-dropdown" [hidden] = "dropmenu" id ="dropMenuId">
-          <li (click) ="changeLanguage()"><a> <img  class ="icon" [src]="optionLanguage.iconUrl"> {{optionLanguage.name}}</a></li>
-        </ul>
-      </div>
-
+      <languageSelector [list] ="languages" (changeLanguageEvent) = "changeLanguage($event)"></languageSelector>
 
       <span class="headerInfo" *ngIf="logged"> {{i18n.header.logged}} : {{user.username}} </span>
       <button type="button" class = "btn btn-primary" *ngIf="logged" (click) = "logOff()"> {{i18n.buttons.logOffBtn}} </button>
