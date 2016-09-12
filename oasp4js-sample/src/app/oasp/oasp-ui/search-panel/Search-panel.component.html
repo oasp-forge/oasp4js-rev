@@ -1,15 +1,15 @@
 <div class = "filter">
   <form class ="searchForm">
     <fieldset >
-        <legend> Search </legend>
+        <legend> {{i18n.searchPanel.title}} </legend>
 
         <div class = "form-flex">
           <ng-content></ng-content>
         </div>
 
         <div class = "right">
-          <button type="button" (click)="clearForm()" class = "btn btn-warning btn-filter">Clear</button>
-          <button (click)="doSearch()" class = "btn btn-primary btn-filter">Search</button>
+          <button type="button" (click)="clearForm()" class = "btn btn-warning btn-filter">{{i18n.buttons.clearBtn}}</button>
+          <button (click)="doSearch()" class = "btn btn-primary btn-filter">{{i18n.buttons.searchBtn}}</button>
         </div>
     </fieldset>
   </form>

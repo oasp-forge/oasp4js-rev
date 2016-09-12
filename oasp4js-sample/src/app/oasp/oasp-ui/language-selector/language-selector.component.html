@@ -1,0 +1,30 @@
+<div class="dropdown">
+  <button class="userList" type="button" (click) ="openCloseMenu()">
+    <img  class ="icon" [src]="currentLanguage.iconUrl">
+      {{currentLanguage.name}}
+    <span class="caret"></span></button>
+
+  <ul class="my-dropdown" [hidden] = "dropmenu">
+    <li *ngFor ="let option of optionLanguages"(click) ="changeLanguage(option)">
+        <a> <img  class ="icon" [src]="option.iconUrl"> {{option.name}}</a>
+    </li>
+  </ul>
+</div>
+
+<modal-dialog id="modal"
+  *ngIf="hideModalDialog"
+  [modal]=true
+  [TITLE]="i18n.header.confirm.title"
+  class="modaldialog">
+
+    <p>
+        {{i18n.header.confirm.bodyMsg1}}
+    </p>
+    <p>
+        {{i18n.header.confirm.bodyMsg2}}
+    </p>
+    <div class ="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal" (click)="confirm()">{{i18n.buttons.submitBtn}}</button>
+        <button class="btn btn-warning" data-dismiss="modal" (click)="cancel()">{{i18n.buttons.cancelBtn}}</button>
+    </div>
+</modal-dialog>

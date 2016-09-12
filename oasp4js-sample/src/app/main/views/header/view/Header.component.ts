@@ -3,43 +3,34 @@ import { EventEmitter } from '@angular/core';
 import {languages} from '../../../resources/languages/Languages.resource'
 import {ROUTER_DIRECTIVES} from "@angular/router";
 import {User} from '../../../models/user/User.model';
+import {OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
+import {LanguageSelector} from '../../../../oasp/oasp-ui/language-selector/language-selector.component';
 
 @Component({
     selector: 'header',
     templateUrl: 'app/main/views/header/view/Header.component.html',
     inputs: ["logged", "user"],
     outputs: ["logOffEvent"],
-    directives: [ROUTER_DIRECTIVES]
+    providers: [OaspI18n],
+    directives: [ROUTER_DIRECTIVES, LanguageSelector]
 })
 
 export class HeaderComponent {
     logged: boolean = false;
     user: User;
     dropmenu:boolean = true;
-
-    currentIcon:string = languages[0].iconUrl;
-    currentLanguage: string = languages[0].name;
-
-    optionIcon:string = languages[1].iconUrl;
-    optionLanguage: string = languages[1].name;
+    i18n;
+    languages;
 
     logOffEvent = new EventEmitter<boolean>();
 
-    openMenu(){
-      this.dropmenu = !this.dropmenu;
+    constructor(private oaspI18n: OaspI18n){
+        this.languages = languages;
+        this.i18n = oaspI18n.getI18n();
     }
 
-    changeLanguage(){
-      let aux = this.currentLanguage;
-
-      this.currentLanguage = this.optionLanguage;
-      this.optionLanguage = aux;
-
-      aux = this.currentIcon;
-      this.currentIcon = this.optionIcon;
-      this.optionIcon = aux;
-
-      this.dropmenu = !this.dropmenu;
+    changeLanguage(code){
+      this.oaspI18n.changeLanguage(code);
     }
 
     logOff(){

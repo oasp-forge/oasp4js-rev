@@ -3,13 +3,12 @@ import {User} from '../../../models/user/User.model';
 import {LoginService} from '../service/Login.service';
 import {Observable} from 'rxjs/Observable';
 import {Http, Headers} from '@angular/http';
-import 'rxjs/Rx';
-declare let $:any;
+import {OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
 
 @Component({
   selector:'login',
   templateUrl: 'app/main/views/login/view/Login.component.html',
-  providers:[LoginService],
+  providers:[LoginService, OaspI18n],
   outputs:['loginEvent', 'userEvent']
 })
 
@@ -20,10 +19,11 @@ export class LoginComponent{
 
   user:User;
   loginFailed:boolean = true;
+  i18n
 
-  constructor(
-    private loginService:LoginService
-  ){  }
+  constructor(private oaspI18n: OaspI18n, private loginService:LoginService){
+      this.i18n = oaspI18n.getI18n();
+    }
 
   private hideAlertLogin(){
     this.loginFailed = !this.loginFailed;

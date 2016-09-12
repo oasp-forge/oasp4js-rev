@@ -1,19 +1,19 @@
 <div style="float:left; width:100%;">
-  <p><b>Status: </b>{{parentTable.state}}</p>
+  <p><b>{{i18n.details.status}} : </b>{{parentTable.state}}</p>
 </div>
 
 <div style="margin:50 0 90 0">
 
   <div class="dropdown" style="float:right; margin:10px">
     <button *ngIf="offerToAdd" class="btn btn-default" disabled="disabled">{{offerToAdd.name}}</button>
-    <button *ngIf="!offerToAdd" class="btn btn-default dropdown-toggle" type="button" (click)="openMenu()" id="menu1" data-toggle="dropdown">Offers
+    <button *ngIf="!offerToAdd" class="btn btn-default dropdown-toggle" type="button" (click)="openMenu()" id="menu1" data-toggle="dropdown">{{i18n.details.offers}}
       <span class="caret"></span></button>
     <ul class="my-dropdown" role="menu"  [hidden]= "viewMenu" aria-labelledby="menu1">
       <li role="presentation" *ngFor=" let offer of offers">
         <a role="menuitem" tabindex="-1" style="cursor:pointer" (click)="offerToAdd = offer">{{offer.name}}</a>
       </li>
     </ul>
-    <button *ngIf="offerToAdd" class="btn btn-default" type="button" id="menu1" (click)="addCommand()">+Add</button>
+    <button *ngIf="offerToAdd" class="btn btn-default" type="button" id="menu1" (click)="addCommand()">{{i18n.buttons.addBtn}}</button>
   </div>
 
   <grid-table
@@ -24,7 +24,7 @@
   </grid-table>
 
   <div style="float:left;">
-    <button *ngIf="selectedPosition" class="btn btn-default" (click)="removeCommand()">Remove</button>
+    <button *ngIf="selectedPosition" class="btn btn-default" (click)="removeCommand()">{{i18n.buttons.removeBtn}}</button>
   </div>
 
 </div>
@@ -37,6 +37,6 @@
 
 <div style="text-align:right;" class="modal-footer">
   <br>
-  <button class="btn btn-primary" data-dismiss="modal" (click)="submit()">Submit</button>
-  <button class="btn btn-warning" data-dismiss="modal" (click)="cancel()">Cancel</button>
+  <button class="btn btn-primary" data-dismiss="modal" (click)="submit()">{{i18n.buttons.submitBtn}}</button>
+  <button class="btn btn-warning" data-dismiss="modal" (click)="cancel()">{{i18n.buttons.cancelBtn}}</button>
 </div>

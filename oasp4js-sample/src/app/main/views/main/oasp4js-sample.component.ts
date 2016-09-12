@@ -9,6 +9,7 @@ import { CrudComponent } from '../crud/view/Crud.component'
 import { KitchenComponent } from '../kitchen/view/Kitchen.component'
 import { User } from '../../models/user/User.model'
 import { ModalDialogComponent } from '../../../oasp/oasp-ui/modal-dialog/modal-dialog.component';
+import {OaspI18n} from '../../../oasp/oasp-i18n/oasp-i18n.service';
 
 @Routes([
     { path: '', component: CrudComponent },
@@ -21,7 +22,7 @@ import { ModalDialogComponent } from '../../../oasp/oasp-ui/modal-dialog/modal-d
   selector: 'oasp4js-sample-app',
   templateUrl: 'oasp4js-sample.component.html',
   styleUrls: ['../../css/oasp4js-sample.component.css'],
-  providers:[LoginService],
+  providers:[LoginService, OaspI18n],
   directives: [
     LoginComponent,
     HeaderComponent,
@@ -44,13 +45,17 @@ export class Oasp4jsSampleAppComponent {
 
   public autoLogTitle = "Ooops...";
   public autoLogInfo = "Session time expired!";
+  i18n
 
   constructor(
     private router: Router,
     private loginService: LoginService,
-    private http: Http
+    private http: Http,
+    private oaspI18n : OaspI18n
   ){
-    this.autoLog = false
+    this.autoLog = false;
+    oaspI18n.initI18n();
+    this.i18n = oaspI18n.getI18n();
     this.timer = setInterval(() => {
     }, this.mins*15)
 

@@ -4,7 +4,7 @@ export class Table {
     public id: number,
     public modificationCounter: number,
     public number: number,
-    public state: number,
+    public state: string,
     public waiterId: number
   ){}
 
@@ -32,12 +32,12 @@ export class Table {
     this.number = number;
   }
 
-  getState():number{
+  getState():string{
     return this.state;
   }
 
-  setState(state:number){
-    this.number = state;
+  setState(state:string){
+    this.state = state;
   }
 
   getWaiterId():number{

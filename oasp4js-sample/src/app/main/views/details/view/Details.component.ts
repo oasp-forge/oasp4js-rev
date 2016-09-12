@@ -6,12 +6,13 @@ import {DetailsService} from '../service/Details.service'
 import {PaginationComponent} from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {DetailsRestService} from '../service/Details.service.rest'
+import {OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
 
 @Component({
   selector:'tableDetails',
   templateUrl:'app/main/views/details/view/Details.component.html',
   inputs:['parentTable'],
-  providers:[DetailsService],
+  providers:[DetailsService, DetailsRestService, OaspI18n],
   outputs:['resultEvent', 'closeWindowEvent'],
   directives:[PaginationComponent, GridTableComponent],
 })
@@ -20,7 +21,7 @@ export class DetailsComponent implements OnInit{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   closeWindowEvent = new EventEmitter();
 
-  public headers: string[] = ["number","description", "state", "price", "Comment"];
+  public headers: string[] ;
   public attributeNames: string[] = ["id", "offerName", "state", "price", "comment"];
 
   public parentTable:Table;
@@ -32,6 +33,7 @@ export class DetailsComponent implements OnInit{
   public numItems: number;
   public positions: OrderPosition[] = [];
   public order;
+  public i18n;
 
   public pageData = {
       pagination: {
@@ -40,7 +42,10 @@ export class DetailsComponent implements OnInit{
           total: true
       }};
 
-  constructor(private detailsRestService: DetailsRestService, private detailsService:DetailsService){}
+  constructor(private oaspI18n:OaspI18n, private detailsRestService: DetailsRestService, private detailsService:DetailsService){
+      this.i18n = oaspI18n.getI18n();
+      this.headers = [this.i18n.details.number,this.i18n.details.description, this.i18n.details.state, this.i18n.details.price, this.i18n.details.comment];
+  }
 
   ngOnInit(){
       this.loadPositions();

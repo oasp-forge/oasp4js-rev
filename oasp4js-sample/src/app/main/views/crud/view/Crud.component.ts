@@ -2,17 +2,17 @@ import {Component} from '@angular/core'
 import {CrudService} from '../service/Crud.service'
 import {Table} from '../../../models/table/Table.model'
 import {DetailsComponent} from '../../details/view/Details.component'
-// import {Command} from '../../../models/command/Command.model'
 import {PaginationComponent} from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
 import {ModalDialogComponent} from '../../../../oasp/oasp-ui/modal-dialog/modal-dialog.component'
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {SearchPanelComponent} from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
 import { CrudRestService } from '../service/Crud.service.rest';
+import {OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
 
 @Component({
   selector:'crud',
   templateUrl:'app/main/views/crud/view/Crud.component.html',
-  providers:[CrudService],
+  providers:[CrudService, CrudRestService, OaspI18n],
   directives:[DetailsComponent, PaginationComponent, ModalDialogComponent, GridTableComponent, SearchPanelComponent],
 })
 
@@ -21,13 +21,14 @@ export class CrudComponent{
   public selectedTable = new Table(0,undefined,undefined,undefined,undefined);
 
   public tables:Table[];
-  public headers: string[] = ["Table number","State", "Waiter"];
+  public headers: string[];
   public attributeNames: string[] = ["number", "state", "waiter"];
   public states: string[] = ["FREE", "OCCUPIED", "RESERVED"]
 
   public hideModalDialog = false;
   public numItems: number;
   public myState;
+  public i18n;
   public modalHeader:string;
 
   public pageData = {
@@ -37,9 +38,11 @@ export class CrudComponent{
           total: true
       }};
 
-  constructor(private crudService:CrudService, private crudRestService: CrudRestService){
-    this.loadTables();
-    this.myState = -1;
+  constructor(private oaspI18n: OaspI18n, private crudService:CrudService, private crudRestService: CrudRestService){
+      this.i18n = oaspI18n.getI18n();
+      this.loadTables();
+      this.myState = -1;
+      this.headers = [this.i18n.tables.number, this.i18n.tables.state, this.i18n.tables.waiter]
   }
 
   loadTables(){
@@ -47,14 +50,15 @@ export class CrudComponent{
   }
 
   openEditModal(){
-      this.modalHeader = "Details of Table #" + this.selectedTable.number;
+      this.modalHeader = this.i18n.details.title + this.selectedTable.number;
       this.hideModalDialog = true;
   }
 
   searchFilters(filters){
       this.crudRestService.applyFilters(filters)
                                     .subscribe(data =>
-                                        this.tables = data
+                                        {this.numItems = data.pagination.total;
+                                         this.tables = data.result}
                                     );
   }
 
@@ -73,7 +77,7 @@ export class CrudComponent{
   rowSelected(valor){
     if(valor){
         this.selectedTable = valor;
-        this.myState = this.selectedTable.state;
+        this.myState = this.states.indexOf(this.selectedTable.state) + 1;
     } else{
         this.selectedTable = new Table(0,undefined,undefined,undefined,undefined);
         this.myState = -1;

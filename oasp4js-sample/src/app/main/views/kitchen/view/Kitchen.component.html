@@ -1,37 +1,37 @@
 <search-panel [searchInputs] ="[num,title,stat,comment]" (searchValues) = "searchFilters($event)">
 
     <div class = "searchFields propertyMargin-right">
-        <label> ID </label>
+        <label> {{i18n.kitchen.id}} </label>
         <input #id type ="number" class="form-control">
     </div>
 
     <div class = "searchFields propertyMargin-right">
-        <label> Order ID </label>
+        <label> {{i18n.kitchen.orderID}} </label>
         <input #orderId type ="number" class="form-control">
     </div>
 
     <div class = "searchFields propertyMargin-right">
-        <label> Offer name </label>
+        <label> {{i18n.kitchen.offerName}} </label>
         <input #offerName type ="text" class="form-control">
     </div>
 
     <div class = "searchFields propertyMargin-right">
-        <label> Meal name </label>
+        <label> {{i18n.kitchen.mealName}} </label>
         <input #mealName type ="text" class="form-control">
     </div>
 
     <div class = "searchFields propertyMargin-right">
-        <label> Side dish name </label>
+        <label> {{i18n.kitchen.sideDishName}} </label>
         <input #sideDishName type ="text" class="form-control">
     </div>
 
 </search-panel>
 
-<legend> Kitchen </legend>
+<legend> {{i18n.kitchen.title}} </legend>
 
 <div class ="Kitchentables">
     <div class = "commandTable">
-        <h3> Available </h3>
+        <h3> {{i18n.kitchen.available}} </h3>
         <grid-table
             [headers] ="headers"
             [attributeNames] = "attributeNames"
@@ -44,7 +44,7 @@
     <button  (click) ="return()" [disabled] = "selectedAssignedCommand == undefined" class ="btn commandButtonReturn glyphicon glyphicon-arrow-left"></button>
 
     <div class = "commandTable">
-        <h3> Assigned </h3>
+        <h3> {{i18n.kitchen.assigned}} </h3>
         <grid-table
             [headers] ="headers"
             [attributeNames] = "attributeNames"
@@ -52,7 +52,7 @@
             (objSelected) = "assignedSelected($event)">
          </grid-table>
 
-         <button  (click) ="finish('CANCELLED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-warning propertyMargin-left">Cancel</button>
-         <button  (click) ="finish('PREPARED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-primary propertyMargin-left">Done</button>
+         <button  (click) ="finish('CANCELLED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-warning propertyMargin-left">{{i18n.buttons.cancelBtn}}</button>
+         <button  (click) ="finish('PREPARED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-primary propertyMargin-left">{{i18n.buttons.doneBtn}}</button>
     </div>
 </div>

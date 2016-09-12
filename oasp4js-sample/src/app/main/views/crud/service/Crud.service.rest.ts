@@ -26,8 +26,27 @@ export class CrudRestService {
   }
 
   applyFilters(filters){
-    return this.http.get(this.BO.tablesGET + 10 + filters[0])
-                    .map(res =>  res.json())
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      if(filters[0].length > 0 || filters[1].length > 0 || filters[1].length > 0){
+
+          var searchCriteria = {
+              number : filters[0],
+              state : filters[1] === "" ? null : filters[1],
+              waiterId : filters[2]
+          }
+          return this.http.post(this.BO.tableSearchPOST, JSON.stringify(searchCriteria), {headers:headers})
+          .map(res =>  res.json())
+      } else {
+          var pageData = {
+              pagination: {
+                  size: 4,
+                  page: 1,
+                  total: true
+              }};
+          return this.http.post(this.BO.tableSearchPOST, JSON.stringify(pageData), {headers:headers})
+                                  .map(res =>  res.json())
+      }
   }
 
   saveTable(table){
