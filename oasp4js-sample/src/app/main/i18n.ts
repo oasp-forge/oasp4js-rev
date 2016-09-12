@@ -19,7 +19,7 @@
                             kitchenTab : "Kitchen",
                             confirm : {
                                 title : "Confirmation",
-                                bodyMsg1 : "If you change the language, page will we reloaded and you may lose any do not saved changes.",
+                                bodyMsg1 : "If you change the language, the page will we reloaded and you may lose any do not saved changes.",
                                 bodyMsg2 : "Are you sure?"
                             }
                         },
