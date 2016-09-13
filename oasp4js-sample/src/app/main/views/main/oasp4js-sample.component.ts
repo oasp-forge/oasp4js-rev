@@ -54,8 +54,8 @@ export class Oasp4jsSampleAppComponent {
     private oaspI18n : OaspI18n
   ){
     this.autoLog = false;
-    oaspI18n.initI18n();
-    this.i18n = oaspI18n.getI18n();
+    this.oaspI18n.initI18n();
+    this.i18n = this.oaspI18n.getI18n();
     this.timer = setInterval(() => {
     }, this.mins*15)
 
