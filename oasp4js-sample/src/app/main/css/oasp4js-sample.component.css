@@ -7185,6 +7185,10 @@ tr.selected {
   height:100%;
 }
 
+.modal-dialog {
+    z-index: 51;
+}
+
 .modaldialogInfo {
   position:absolute;
   left: 0px;

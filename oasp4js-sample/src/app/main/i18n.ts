@@ -19,7 +19,7 @@
                             kitchenTab : "Kitchen",
                             confirm : {
                                 title : "Confirmation",
-                                bodyMsg1 : "If you change the language, page will we reloaded and you may lose any do not saved changes.",
+                                bodyMsg1 : "If you change the language, the page will we reloaded and you may lose any do not saved changes.",
                                 bodyMsg2 : "Are you sure?"
                             }
                         },
@@ -98,7 +98,7 @@
                         },
 
                         header: {
-                            title : "Restaurant -Beispielanwendung",
+                            title : "Restaurant-Beispielanwendung",
                             logged : "Angemeldet als",
                             tablesTab : "Tische",
                             kitchenTab : "Küche",
@@ -119,10 +119,10 @@
                             clearBtn : "Klar",
                             searchBtn : "Suche",
                             editBtn : "Bearbeiten",
-                            cancelBtn : "Stornieren",
-                            doneBtn : "Erledigt",
+                            cancelBtn : "Abbrechen",
+                            doneBtn : "Fertig",
                             addBtn : "Hinzufügen",
-                            removeBtn : "Entfernen"
+                            removeBtn : "Herausnehmen"
                         },
 
                         searchPanel : {
@@ -141,15 +141,15 @@
                             waiter : "Bedienung",
                             btns : {
                                 free : "Frei",
-                                occupy : "besetzen",
-                                reserve : "Reservieren",
-                                cancel : "Stornierung der Reservierung"
+                                occupy : "Besetzen",
+                                reserve : "Reserve",
+                                cancel : "Reservierung aufheben"
                             }
                         },
 
                         details : {
-                            title: "Details zu Tisch #",
-                            status : "Zustand",
+                            title: "Details zum Tabelle  #",
+                            status : "Status",
                             offers : "bieten",
                             number: "Nummer",
                             description: "Beschreibung",
@@ -161,12 +161,12 @@
                         kitchen : {
                             title: "Küche",
                             id : "ID",
-                            orderID : "Auftrag",
+                            orderID : "Bestellen",
                             offerName : "Angebot Name",
                             mealName : "Mahlzeit Name",
                             sideDishName : "Beilage Name",
-                            available : "Erhältlich",
-                            assigned : "Assigned"
+                            available : "Verfügbar",
+                            assigned : "Zugewiesen"
                         }
                     },
                     es : {
@@ -181,7 +181,6 @@
                                 passwordError : "Por favor, inserte su contraseña"
                             }
                         },
-
                         header: {
                             title : "Aplicación de ejemplo de restaurante",
                             logged : "Conectado como",
