@@ -5,17 +5,16 @@ import {OaspI18n} from '../../oasp-i18n/oasp-i18n.service';
   selector:'pagination',
   templateUrl:'app/oasp/oasp-ui/table-pagination/Pagination.component.html',
   providers: [OaspI18n],
-  inputs:['numItems', 'currentPage', 'rowsPerPage'],
+  inputs:['numItems', 'rowsPerPage'],
   outputs: ['eventCurrentPage']
 })
 
 export class PaginationComponent{
 
   numItems;
-  currentPage:number;
+  currentPage:number =1;
   pageView: number = 1;
 
-  initRowsPerPage: number;
   rowsPerPage: number;
   numberPages: number;
 
@@ -27,15 +26,6 @@ export class PaginationComponent{
   }
 
   ngOnChanges(){
-      if(!this.initRowsPerPage) {
-        this.initRowsPerPage = this.rowsPerPage;
-      }
-
-      if(this.rowsPerPage > this.numItems){
-        this.rowsPerPage = this.numItems;
-      } else {
-        this.rowsPerPage = this.initRowsPerPage;
-      }
 
       if(this.numItems){
           this.numberPages = Math.ceil(this.numItems / this.rowsPerPage);

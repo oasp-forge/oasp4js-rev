@@ -22,9 +22,9 @@
 [type]="'info'"
 class="modaldialog">
   <form (ngSubmit)="validateAutoLogin(usernameLogin.value, passwordLogin.value)" #loginForm="ngForm">
-          <input [placeholder]="i18n.LoginPage.usernamePlaceHolder" type="text" style="margin-bottom:10px;" #usernameLogin class="form-control" required ngControl="username"  #user="ngForm">
-          <input [placeholder]="i18n.LoginPage.passwordPlaceHolder" type="text" style="margin-bottom:10px;" #passwordLogin class="form-control" required ngControl="password"  #pass="ngForm">
-          <button type="submit" class="btn  btn-success" [disabled]="!loginForm.form.valid">Submit</button>
+          <input [placeholder]="i18n.loginPage.form.usernamePlaceHolder" type="text" style="margin-bottom:10px;" #usernameLogin class="form-control" required ngControl="username"  #user="ngForm">
+          <input [placeholder]="i18n.loginPage.form.passwordPlaceHolder" type="text" style="margin-bottom:10px;" #passwordLogin class="form-control" required ngControl="password"  #pass="ngForm">
+          <button type="submit" class="btn  btn-success" [disabled]="!loginForm.form.valid">{{i18n.buttons.submitBtn}}</button>
   </form>
 </modal-dialog>
 
