@@ -16,12 +16,9 @@ export class LanguageSelector {
 
     list;
     public currentLanguage;
-    public languageList;
     public optionLanguages;
     public dropmenu;
-    public lang;
     public i18n
-    public modalHeader;
     public selectedLanguage;
 
     changeLanguageEvent = new EventEmitter();
@@ -29,14 +26,13 @@ export class LanguageSelector {
 
     constructor(private oaspI18n : OaspI18n){
         this.i18n = this.oaspI18n.getI18n();
-        this.lang = oaspI18n.getCookie("lang");
         this.dropmenu = true;
     }
 
     ngOnChanges(){
         if(this.list){
             this.optionLanguages = this.list.slice();
-            this.currentLanguage = this.list.find((language) => language.code == this.lang);
+            this.currentLanguage = this.list.find((language) => language.code == this.oaspI18n.getCookie("lang"));
             this.optionLanguages.splice(this.optionLanguages.indexOf(this.currentLanguage), 1);
         }
     }
