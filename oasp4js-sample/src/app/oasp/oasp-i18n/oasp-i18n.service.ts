@@ -17,6 +17,7 @@ export class OaspI18n {
         if(lang){
             i18n = I18n[lang];
         } else {
+            document.cookie="lang=en";
             i18n = I18n.en;
         }
     };
