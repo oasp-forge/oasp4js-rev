@@ -1,5 +1,4 @@
 import {Component} from '@angular/core'
-import {CrudService} from '../service/Crud.service'
 import {Table} from '../../../models/table/Table.model'
 import {DetailsComponent} from '../../details/view/Details.component'
 import {PaginationComponent} from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
@@ -12,7 +11,7 @@ import {OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
 @Component({
   selector:'crud',
   templateUrl:'app/main/views/crud/view/Crud.component.html',
-  providers:[CrudService, CrudRestService, OaspI18n],
+  providers:[CrudRestService, OaspI18n],
   directives:[DetailsComponent, PaginationComponent, ModalDialogComponent, GridTableComponent, SearchPanelComponent],
 })
 
@@ -38,7 +37,7 @@ export class CrudComponent{
           total: true
       }};
 
-  constructor(private oaspI18n: OaspI18n, private crudService:CrudService, private crudRestService: CrudRestService){
+  constructor(private oaspI18n: OaspI18n, private crudRestService: CrudRestService){
       this.i18n = oaspI18n.getI18n();
       this.loadTables();
       this.myState = -1;

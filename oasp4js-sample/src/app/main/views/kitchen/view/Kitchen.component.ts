@@ -3,7 +3,6 @@ import {Component} from '@angular/core'
 
 import {Command} from '../../../models/command/Command.model'
 
-import {KitchenService} from '../service/Kitchen.service'
 import {KitchenRestService} from '../service/Kitchen.service.rest'
 
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
@@ -15,7 +14,7 @@ import {OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
   selector:'kitchen',
   templateUrl:'app/main/views/kitchen/view/Kitchen.component.html',
   directives: [GridTableComponent, SearchPanelComponent],
-  providers: [KitchenService, KitchenRestService, OaspI18n]
+  providers: [KitchenRestService, OaspI18n]
 })
 
 export class KitchenComponent{
@@ -41,7 +40,7 @@ export class KitchenComponent{
     public headers: string[];
     public attributeNames: string[] = ["id", "orderId", "offerName", "mealName", "sideDishName"];
 
-    constructor(private oaspI18n: OaspI18n, private kitchenService: KitchenService, private kitchenRestService: KitchenRestService){
+    constructor(private oaspI18n: OaspI18n, private kitchenRestService: KitchenRestService){
         this.i18n = oaspI18n.getI18n();
         this.getLists();
 
