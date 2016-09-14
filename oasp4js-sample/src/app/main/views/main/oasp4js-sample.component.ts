@@ -57,7 +57,7 @@ export class Oasp4jsSampleAppComponent {
     this.oaspI18n.initI18n();
     this.i18n = this.oaspI18n.getI18n();
     this.timer = setInterval(() => {
-    }, this.mins*15)
+    }, this.mins*0.15)
 
     let params = {
       j_username: "chief",
@@ -67,9 +67,18 @@ export class Oasp4jsSampleAppComponent {
     headers.append('Content-type', 'application/json')
     headers.append('Set-cookie', 'JSESSIONID=D05C7ED98EAB30676B8774E54995F77C')
 
-    this.http.post("http://localhost:8081/oasp4j-sample-server/j_spring_security_login", JSON.stringify({username:"chief", password:"chief", submit:"Login"}), {headers:headers})
-             .map(res => res.json())
-             .subscribe(data => {debugger})
+    this.http.post('http://localhost:8081/oasp4j-sample-server/services/rest/login', JSON.stringify(params))
+    .toPromise()
+    .then(data => {
+      debugger
+    })
+            //  .map(res => {})
+            //  .subscribe(data => {
+            //    this.http.get('http://localhost:8081/oasp4j-sample-server/services/rest/security/v1/csrftoken/')
+            //             .map(res => {debugger})
+            //             .subscribe(data => {debugger})
+            //  })
+
     // this.http.post("http://localhost:8081/oasp4j-sample-server/services/rest/login",JSON.stringify(params), {headers:headers})
     //          .toPromise()
     //          .then(data => {
@@ -85,6 +94,7 @@ export class Oasp4jsSampleAppComponent {
   }
 
   enviar(value){
+    debugger
     clearInterval(this.timer);
     this.timer = setInterval(() => {
       if(this.login === true){
@@ -92,7 +102,7 @@ export class Oasp4jsSampleAppComponent {
         this.router.navigate(['']);
         this.login = false
       }
-  }, this.mins*15);
+  }, this.mins*0.15);
     setTimeout( ()=>{
         this.login = value
         if(this.usuario.id < 3){

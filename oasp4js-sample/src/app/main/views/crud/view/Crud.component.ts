@@ -40,7 +40,7 @@ export class CrudComponent{
 
   constructor(private oaspI18n: OaspI18n, private crudService:CrudService, private crudRestService: CrudRestService){
       this.i18n = oaspI18n.getI18n();
-      this.loadTables();
+      // this.loadTables();
       this.myState = -1;
       this.headers = [this.i18n.tables.number, this.i18n.tables.state, this.i18n.tables.waiter]
   }

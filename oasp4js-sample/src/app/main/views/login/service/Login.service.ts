@@ -73,11 +73,11 @@ export class LoginService{
   funcionGetTables(){
     var headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    this.http.get(this.basePath + '/table/', { headers: headers })
-                           .map(res => {
-                             JSON.stringify(res)
-                           })
-                           .subscribe(data => {});
+    // this.http.get(this.basePath + '/table/', { headers: headers })
+    //                        .map(res => {
+    //                          JSON.stringify(res)
+    //                        })
+    //                        .subscribe(data => {});
   }
 
 
