@@ -2,10 +2,10 @@
     <label class ="header-title"> <a> {{i18n.header.title}} </a> </label>
 
     <ul *ngIf="logged" class = "header-tabs">
-        <li *ngIf="user.permission === 1 || user.permission === 3" role = "presentation">
+        <li role = "presentation">
           <a [routerLink]="['/Tables']"> {{i18n.header.tablesTab}} </a>
         </li>
-        <li *ngIf="user.permission > 1" role = "presentation">
+        <li role = "presentation">
           <a [routerLink]="['/Kitchen']"> {{i18n.header.kitchenTab}} </a>
         </li>
     </ul>

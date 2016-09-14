@@ -4,6 +4,7 @@ import {Command} from '../../../models/command/Command.model'
 import { BusinessOperations } from '../../../../main/BusinessOperations';
 import { Http, Response,Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import {LoginService} from '../../login/service/Login.service'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
@@ -11,11 +12,13 @@ import 'rxjs/add/operator/toPromise';
 export class CrudRestService {
 
   BO:BusinessOperations = new BusinessOperations();
-  constructor(private http:Http) { }
+  constructor(private loginService: LoginService, private http:Http) { }
 
   getTables(paginationData){
-      var headers = new Headers();
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
       headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
       return this.http.post(this.BO.tableSearchPOST, JSON.stringify(paginationData), {headers:headers})
                               .map(res =>  res.json())
   }
@@ -26,11 +29,13 @@ export class CrudRestService {
   }
 
   applyFilters(filters){
-      var headers = new Headers();
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
       headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
       if(filters[0].length > 0 || filters[1].length > 0 || filters[1].length > 0){
 
-          var searchCriteria = {
+          let searchCriteria = {
               number : filters[0],
               state : filters[1] === "" ? null : filters[1],
               waiterId : filters[2]
@@ -38,7 +43,7 @@ export class CrudRestService {
           return this.http.post(this.BO.tableSearchPOST, JSON.stringify(searchCriteria), {headers:headers})
           .map(res =>  res.json())
       } else {
-          var pageData = {
+          let pageData = {
               pagination: {
                   size: 4,
                   page: 1,
@@ -50,15 +55,12 @@ export class CrudRestService {
   }
 
   saveTable(table){
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
     let post = this.http.post(this.BO.tablesPOST, JSON.stringify(table),  {headers: headers})
                         .map(res =>  res.json())
                         .subscribe(data => { });
-  }
-
-  private handleError(error: any): Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
   }
 }

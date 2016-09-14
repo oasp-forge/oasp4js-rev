@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Response,Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { BusinessOperations } from '../../../../main/BusinessOperations';
+import {LoginService} from '../../login/service/Login.service'
+import {Router} from '@angular/router'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
@@ -9,18 +11,23 @@ import 'rxjs/add/operator/toPromise';
 export class KitchenRestService {
 
   BO:BusinessOperations = new BusinessOperations();
-  constructor(private http:Http) {}
+  constructor( private loginService: LoginService, private http:Http) {
+  }
 
   getOffers(pageData){
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
     return this.http.post(this.BO.offerSearchPOST, JSON.stringify(pageData), {headers:headers})
                     .map(res =>  res.json())
   }
 
   getProducts(pageData){
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
     return this.http.post(this.BO.productSearchPOST, JSON.stringify(pageData), {headers:headers})
                     .map(res =>  res.json())
   }
@@ -31,8 +38,10 @@ export class KitchenRestService {
   }
 
   assignOrderPosition(obj){
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
     obj.cookId = 1;
     this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj), {headers:headers})
              .map(res =>  res.json())
@@ -40,8 +49,10 @@ export class KitchenRestService {
   }
 
   returnOrderPosition(obj){
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
     obj.cookId = null;
     this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj), {headers:headers})
              .map(res =>  res.json())
@@ -49,8 +60,10 @@ export class KitchenRestService {
   }
 
   doneOrderPosition(obj){
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
     obj.state = "PREPARED"
     this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj), {headers:headers})
              .map(res =>  res.json())
@@ -58,8 +71,10 @@ export class KitchenRestService {
   }
 
   rejectOrderPosition(obj){
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
     obj.state = "CANCELLED"
     this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj), {headers:headers})
              .map(res =>  res.json())
@@ -67,8 +82,10 @@ export class KitchenRestService {
     }
 
   moveOrderPosition(obj, cookId){
-      var headers = new Headers();
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
       headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
 
       obj.cookId = cookId;
       this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj), {headers:headers})
@@ -77,8 +94,10 @@ export class KitchenRestService {
   }
 
   finishOrderPosition(obj, state){
-      var headers = new Headers();
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
       headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
 
       obj.state = state
       this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj), {headers:headers})

@@ -1,84 +1,98 @@
 import {Injectable} from '@angular/core'
+import {Router} from "@angular/router";
 import {User} from '../../../models/user/User.model';
 import { Http, Response, Headers } from '@angular/http';
+import { BusinessOperations } from '../../../BusinessOperations';
 import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+
+export var Headerlogged = false;
+export var sesionExpired = false;
+export var csrfToken;
+export var errorLogin = true;
+export var user;
 
 @Injectable()
 export class LoginService{
-  private user1 = new User(1,'waiter', 'waiter', 1);
-  private user2 = new User(2,'chief', 'chief', 3);
-  private user3 = new User(3,'cook', 'cook', 2);
+    BO:BusinessOperations = new BusinessOperations();
+    public autoLog: boolean;
+    public mins = 60000;
+    public timeout = 10000;
+    public timer:number;
 
-  private users:User[] = [this.user1, this.user2, this.user3];
-
-  serverPath:String =  'http://10.68.8.26:8081/oasp4j-sample-server/';
-  basePath:String = this.serverPath + 'services/rest/tablemanagement/v1';
-  loginPath:String = this.serverPath + 'services/rest/';
-
-  respuesta = null;
-
-  constructor(private http:Http) { }
-
-  loginCorrect(user:User):boolean{
-    let ok = false;
-    for(let i = 0; i < this.users.length; i ++){
-      if(this.users[i].username === user.username && this.users[i].password === user.password){
-        ok = true;
-      }
-    }
-    return ok;
-  }
-
-  getIdFromParams(username:string, password:string) : number{
-    let res:number;
-    for(let i = 0; i < this.users.length; i ++){
-      if(this.users[i].getUsername() === username && this.users[i].getPassword() === password){
-        res = this.users[i].getId();
-      }
-    }
-    return res;
-  }
-
-  getPermissionFromParams(username:string, password:string) : number{
-    let res:number;
-    for(let i = 0; i < this.users.length; i ++){
-      if(this.users[i].getUsername() === username && this.users[i].getPassword() === password){
-        res = this.users[i].getPermission();
-      }
-    }
-    return res;
-  }
-
-  getUsers() : User[]{
-    return this.users;
-  }
+  constructor(private router: Router, private http:Http) {
+      this.timer = setInterval(() => {
+      }, this.mins*0.15)
+   }
 
   funcionLogin(username,password){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
 
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
-    let formData={
+    let formData={
       j_username:username,
       j_password:password
-    };   
+    };
 
-    let a;
-
-    var flag = this.http.post('http://10.68.8.26:8081/oasp4j-sample-server/services/rest/login', JSON.stringify({j_username: username, j_password: password}), { headers: headers })
-    .map(res => JSON.stringify(res))
-    .subscribe()
+   this.http.post(this.BO.loginPOST,JSON.stringify(formData), {headers:headers})
+               .map(res => JSON.stringify(res))
+               .subscribe(data => {
+                 this.http.get(this.BO.csrfGET)
+                    .map(res => res.json())
+                    .subscribe(data => {
+                        Headerlogged = true
+                        csrfToken = data.token;
+                        user = new User(0,"notUserYet", "notPasswordYet", 3);
+                        //this.functionsesionExpired();
+                        if(user.permission == 1 || 3){
+                            this.router.navigate(['/Tables'])
+                        }
+                        if(user.permission == 2){
+                            this.router.navigate(["/Kitchen"])
+                        }
+                    })
+                    //GET USER FROM BACKEND CURRENTUSER FUNCTION
+    },
+    err => {errorLogin = false})
   }
 
-  funcionGetTables(){
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    // this.http.get(this.basePath + '/table/', { headers: headers })
-    //                        .map(res => {
-    //                          JSON.stringify(res)
-    //                        })
-    //                        .subscribe(data => {});
+  getLogged(){
+      return Headerlogged;
   }
 
+  getcsrfToken() {
+      return csrfToken;
+  }
+
+  geterrorLogin(){
+     return errorLogin;
+  }
+
+  closeErrorLogin(){
+      errorLogin = true;
+  }
+
+  getUser(){
+      return user;
+  }
+
+  functionsesionExpired(){
+      clearInterval(this.timer);
+      this.timer = setInterval(() => {
+        if(this.getLogged() === true){
+          sesionExpired = true
+          this.logOut();
+        }
+      }, this.mins*0.15);
+  }
+
+  logOut(){
+    Headerlogged = false;
+    this.http.post('http://localhost:8081/oasp4j-sample-server/services/rest/logout', JSON.stringify({j_username: "", j_password: ""}), null)
+             .map(res => JSON.stringify(res))
+             .subscribe(data => {})
+    this.router.navigate(["/"])
+  }
 
 }

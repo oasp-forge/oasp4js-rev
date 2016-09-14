@@ -1,58 +1,60 @@
-<search-panel [searchInputs] ="[num,title,stat,comment]" (searchValues) = "searchFilters($event)">
+<div *ngIf="security">
+    <search-panel [searchInputs] ="[num,title,stat,comment]" (searchValues) = "searchFilters($event)">
 
-    <div class = "searchFields propertyMargin-right">
-        <label> {{i18n.kitchen.id}} </label>
-        <input #id type ="number" class="form-control">
-    </div>
+        <div class = "searchFields propertyMargin-right">
+            <label> {{i18n.kitchen.id}} </label>
+            <input #id type ="number" class="form-control">
+        </div>
 
-    <div class = "searchFields propertyMargin-right">
-        <label> {{i18n.kitchen.orderID}} </label>
-        <input #orderId type ="number" class="form-control">
-    </div>
+        <div class = "searchFields propertyMargin-right">
+            <label> {{i18n.kitchen.orderID}} </label>
+            <input #orderId type ="number" class="form-control">
+        </div>
 
-    <div class = "searchFields propertyMargin-right">
-        <label> {{i18n.kitchen.offerName}} </label>
-        <input #offerName type ="text" class="form-control">
-    </div>
+        <div class = "searchFields propertyMargin-right">
+            <label> {{i18n.kitchen.offerName}} </label>
+            <input #offerName type ="text" class="form-control">
+        </div>
 
-    <div class = "searchFields propertyMargin-right">
-        <label> {{i18n.kitchen.mealName}} </label>
-        <input #mealName type ="text" class="form-control">
-    </div>
+        <div class = "searchFields propertyMargin-right">
+            <label> {{i18n.kitchen.mealName}} </label>
+            <input #mealName type ="text" class="form-control">
+        </div>
 
-    <div class = "searchFields propertyMargin-right">
-        <label> {{i18n.kitchen.sideDishName}} </label>
-        <input #sideDishName type ="text" class="form-control">
-    </div>
+        <div class = "searchFields propertyMargin-right">
+            <label> {{i18n.kitchen.sideDishName}} </label>
+            <input #sideDishName type ="text" class="form-control">
+        </div>
 
-</search-panel>
+    </search-panel>
 
-<legend> {{i18n.kitchen.title}} </legend>
+    <legend> {{i18n.kitchen.title}} </legend>
 
-<div class ="Kitchentables">
-    <div class = "commandTable">
-        <h3> {{i18n.kitchen.available}} </h3>
-        <grid-table
-            [headers] ="headers"
-            [attributeNames] = "attributeNames"
-            [dataInput] = "availableCommands"
-            (objSelected) = "availableSelected($event)">
-        </grid-table>
-    </div>
+    <div class ="Kitchentables">
+        <div class = "commandTable">
+            <h3> {{i18n.kitchen.available}} </h3>
+            <grid-table
+                [headers] ="headers"
+                [attributeNames] = "attributeNames"
+                [dataInput] = "availableCommands"
+                (objSelected) = "availableSelected($event)">
+            </grid-table>
+        </div>
 
-    <button (click) ="assign()" [disabled] = "selectedAvailableCommand == undefined" class ="btn commandButton glyphicon glyphicon-arrow-right"></button>
-    <button  (click) ="return()" [disabled] = "selectedAssignedCommand == undefined" class ="btn commandButtonReturn glyphicon glyphicon-arrow-left"></button>
+        <button (click) ="assign()" [disabled] = "selectedAvailableCommand == undefined" class ="btn commandButton glyphicon glyphicon-arrow-right"></button>
+        <button  (click) ="return()" [disabled] = "selectedAssignedCommand == undefined" class ="btn commandButtonReturn glyphicon glyphicon-arrow-left"></button>
 
-    <div class = "commandTable">
-        <h3> {{i18n.kitchen.assigned}} </h3>
-        <grid-table
-            [headers] ="headers"
-            [attributeNames] = "attributeNames"
-            [dataInput] = "assignedCommands"
-            (objSelected) = "assignedSelected($event)">
-         </grid-table>
+        <div class = "commandTable">
+            <h3> {{i18n.kitchen.assigned}} </h3>
+            <grid-table
+                [headers] ="headers"
+                [attributeNames] = "attributeNames"
+                [dataInput] = "assignedCommands"
+                (objSelected) = "assignedSelected($event)">
+             </grid-table>
 
-         <button  (click) ="finish('CANCELLED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-warning propertyMargin-left">{{i18n.buttons.cancelBtn}}</button>
-         <button  (click) ="finish('PREPARED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-primary propertyMargin-left">{{i18n.buttons.doneBtn}}</button>
+             <button  (click) ="finish('CANCELLED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-warning propertyMargin-left">{{i18n.buttons.cancelBtn}}</button>
+             <button  (click) ="finish('PREPARED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-primary propertyMargin-left">{{i18n.buttons.doneBtn}}</button>
+        </div>
     </div>
 </div>
