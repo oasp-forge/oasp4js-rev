@@ -26,7 +26,6 @@ export class PaginationComponent{
   }
 
   ngOnChanges(){
-
       if(this.numItems){
           this.numberPages = Math.ceil(this.numItems / this.rowsPerPage);
       } else {

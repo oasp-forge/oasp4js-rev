@@ -9,7 +9,7 @@
 
       <div class="cuadroUsuario">
 
-          <div [hidden]="loginFailed" class="alert alert-danger">
+          <div [hidden]="loginService.geterrorLogin()" class="alert alert-danger">
             <a href="#" class="close" (click) ="hideAlertLogin()">&times;</a>
             {{i18n.loginPage.failed}}
           </div>
@@ -27,3 +27,4 @@
       </div>
       <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">{{i18n.buttons.submitBtn}}</button>
   </form>
+</div>

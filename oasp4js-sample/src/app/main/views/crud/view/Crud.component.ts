@@ -7,11 +7,13 @@ import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-
 import {SearchPanelComponent} from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
 import { CrudRestService } from '../service/Crud.service.rest';
 import {OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
+import {LoginService} from '../../login/service/Login.service'
+import {Router} from '@angular/router'
 
 @Component({
   selector:'crud',
   templateUrl:'app/main/views/crud/view/Crud.component.html',
-  providers:[CrudRestService, OaspI18n],
+  providers:[LoginService, CrudRestService, OaspI18n],
   directives:[DetailsComponent, PaginationComponent, ModalDialogComponent, GridTableComponent, SearchPanelComponent],
 })
 
@@ -29,6 +31,7 @@ export class CrudComponent{
   public myState;
   public i18n;
   public modalHeader:string;
+  public security = true;
 
   public pageData = {
       pagination: {
@@ -37,11 +40,16 @@ export class CrudComponent{
           total: true
       }};
 
-  constructor(private oaspI18n: OaspI18n, private crudRestService: CrudRestService){
-      this.i18n = oaspI18n.getI18n();
-      this.loadTables();
-      this.myState = -1;
-      this.headers = [this.i18n.tables.number, this.i18n.tables.state, this.i18n.tables.waiter]
+  constructor(private router:Router, private loginService: LoginService, private oaspI18n: OaspI18n, private crudRestService: CrudRestService){
+      if(!this.loginService.getUser()){
+          this.router.navigate(["/"])
+          this.security = false;
+      }else {
+          this.i18n = oaspI18n.getI18n();
+          this.loadTables();
+          this.myState = -1;
+          this.headers = [this.i18n.tables.number, this.i18n.tables.state, this.i18n.tables.waiter]
+      }
   }
 
   loadTables(){

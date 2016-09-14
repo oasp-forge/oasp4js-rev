@@ -1,53 +1,54 @@
-<div>
+<div *ngIf="security">
+    <div>
+      <search-panel [searchInputs] = "[num, stat, waiter]" (searchValues) = "searchFilters($event)">
+        <div class = "searchFields propertyMargin-right">
+            <label> {{i18n.tables.number}} </label>
+            <input #num type ="number" class="form-control">
+        </div>
 
-  <search-panel [searchInputs] = "[num, stat, waiter]" (searchValues) = "searchFilters($event)">
-    <div class = "searchFields propertyMargin-right">
-        <label> {{i18n.tables.number}} </label>
-        <input #num type ="number" class="form-control">
+        <div class = "searchFields propertyMargin-right">
+            <label> {{i18n.tables.state}} </label>
+            <select #stat class="form-control">
+              <option value="">All</option>
+              <option *ngFor ="let state of states ; let i = index"
+                      [value]="states[i]">{{states[i]}}</option>
+            </select>
+        </div>
+
+        <div class = "searchFields">
+            <label> {{i18n.tables.waiter}} </label>
+            <input #waiter type ="text" class="form-control">
+        </div>
+      </search-panel>
+
+      <legend> {{i18n.tables.title}} </legend>
+
+      <grid-table
+          [headers] = "headers"
+          [attributeNames] = "attributeNames"
+          [dataInput] = "tables"
+          (objSelected) = "rowSelected($event)">
+      </grid-table>
+
+      <div style="text-align:center">
+          <button type="button" class="btn btn-pagination" [disabled] = "myState === -1" data-toggle="modal" data-target="prueba" (click)="openEditModal()">{{i18n.buttons.editBtn}}</button>
+          <button type="button" class="btn btn-pagination" (click)="changeState('RESERVED')" [disabled] = "myState === 3 || myState === 2 || myState === -1">{{i18n.tables.btns.reserve}}</button>
+          <button type="button" class="btn btn-pagination" (click)="changeState('FREE')" [disabled] = "myState === 1 || myState === 2 || myState === -1">{{i18n.tables.btns.cancel}}</button>
+          <button type="button" class="btn btn-pagination" (click)="changeState('OCCUPIED')" [disabled] = "myState === 2 || myState === 1 || myState === -1">{{i18n.tables.btns.occupy}}</button>
+          <button type="button" class="btn btn-pagination" (click)="changeState('FREE')" [disabled] = "myState === 1 || myState === -1">{{i18n.tables.btns.free}}</button>
+      </div>
+
     </div>
 
-    <div class = "searchFields propertyMargin-right">
-        <label> {{i18n.tables.state}} </label>
-        <select #stat class="form-control">
-          <option value="">All</option>
-          <option *ngFor ="let state of states ; let i = index"
-                  [value]="states[i]">{{states[i]}}</option>
-        </select>
+    <div style ="text-align: right">
+        <pagination [numItems] = "numItems" [rowsPerPage] = "4" (eventCurrentPage) = "pagination($event)"></pagination>
     </div>
 
-    <div class = "searchFields">
-        <label> {{i18n.tables.waiter}} </label>
-        <input #waiter type ="text" class="form-control">
-    </div>
-  </search-panel>
-
-  <legend> {{i18n.tables.title}} </legend>
-
-  <grid-table
-      [headers] = "headers"
-      [attributeNames] = "attributeNames"
-      [dataInput] = "tables"
-      (objSelected) = "rowSelected($event)">
-  </grid-table>
-
-  <div style="text-align:center">
-      <button type="button" class="btn btn-pagination" [disabled] = "myState === -1" data-toggle="modal" data-target="prueba" (click)="openEditModal()">{{i18n.buttons.editBtn}}</button>
-      <button type="button" class="btn btn-pagination" (click)="changeState('RESERVED')" [disabled] = "myState === 3 || myState === 2 || myState === -1">{{i18n.tables.btns.reserve}}</button>
-      <button type="button" class="btn btn-pagination" (click)="changeState('FREE')" [disabled] = "myState === 1 || myState === 2 || myState === -1">{{i18n.tables.btns.cancel}}</button>
-      <button type="button" class="btn btn-pagination" (click)="changeState('OCCUPIED')" [disabled] = "myState === 2 || myState === 1 || myState === -1">{{i18n.tables.btns.occupy}}</button>
-      <button type="button" class="btn btn-pagination" (click)="changeState('FREE')" [disabled] = "myState === 1 || myState === -1">{{i18n.tables.btns.free}}</button>
-  </div>
-
+    <modal-dialog id="modal"
+      *ngIf="hideModalDialog"
+      [modal]=true
+      [TITLE]=modalHeader
+      class="modaldialog">
+      <tableDetails [parentTable]="selectedTable" (closeWindowEvent)="hideModalDialog = $event" (resultEvent)="rowSelected($event)"></tableDetails>
+    </modal-dialog>
 </div>
-
-<div style ="text-align: right">
-    <pagination [numItems] = "numItems" [rowsPerPage] = "4" (eventCurrentPage) = "pagination($event)"></pagination>
-</div>
-
-<modal-dialog id="modal"
-  *ngIf="hideModalDialog"
-  [modal]=true
-  [TITLE]=modalHeader
-  class="modaldialog">
-  <tableDetails [parentTable]="selectedTable" (closeWindowEvent)="hideModalDialog = $event" (resultEvent)="rowSelected($event)"></tableDetails>
-</modal-dialog>

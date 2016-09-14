@@ -3,19 +3,21 @@ import {Command} from '../../../models/command/Command.model'
 import { BusinessOperations } from '../../../../main/BusinessOperations';
 import { Http, Response,Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import {LoginService} from '../../login/service/Login.service'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-
 
 @Injectable()
 export class DetailsRestService {
 
   BO:BusinessOperations = new BusinessOperations();
-  constructor(private http:Http) { }
+  constructor(private loginService: LoginService, private http:Http) { }
 
   getPositions(tableId){
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
     var data = {
       state : "CLOSED",
       tableId : tableId
@@ -25,15 +27,19 @@ export class DetailsRestService {
   }
 
   getMenus(){
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
     return this.http.get(this.BO.offersGET)
                     .map(res =>  res.json())
   }
 
   updateOrder(order, positions){
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
+      let csrf = this.loginService.getcsrfToken();
+      let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('X-CSRF-TOKEN', csrf);
     var data = {
       order: order,
       positions : positions
