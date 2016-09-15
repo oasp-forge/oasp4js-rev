@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http, Response,Headers } from '@angular/http';
+import { HttpClient } from '../../../../oasp/oasp-security/http-client.service'
+
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -11,35 +12,23 @@ import { SecurityService } from '../../../../oasp/oasp-security/oasp-security.se
 export class DetailsRestService {
 
   BO:BusinessOperations = new BusinessOperations();
-  constructor(private securityService: SecurityService, private http:Http) { }
+  constructor(private securityService: SecurityService, private http:HttpClient) { }
 
   getPositions(tableId){
-      let csrf = this.securityService.getcsrfToken();
-      let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      headers.append('X-CSRF-TOKEN', csrf);
     var data = {
       state : "CLOSED",
       tableId : tableId
     };
-    return this.http.post(this.BO.orderSearchPOST, JSON.stringify(data), {headers: headers})
+    return this.http.post(this.BO.orderSearchPOST, JSON.stringify(data))
                     .map(res => res.json())
   }
 
   getMenus(){
-      let csrf = this.securityService.getcsrfToken();
-      let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      headers.append('X-CSRF-TOKEN', csrf);
     return this.http.get(this.BO.offersGET)
                     .map(res =>  res.json())
   }
 
   updateOrder(order, positions){
-      let csrf = this.securityService.getcsrfToken();
-      let headers = new Headers();
-      headers.append('Content-Type', 'application/json');
-      headers.append('X-CSRF-TOKEN', csrf);
     var data = {
       order: order,
       positions : positions
@@ -48,7 +37,7 @@ export class DetailsRestService {
       data.positions[i].orderId = data.order.id;
       data.positions[i].revision = null;
     }
-    this.http.post(this.BO.orderPOST, JSON.stringify(data),  {headers: headers})
+    this.http.post(this.BO.orderPOST, JSON.stringify(data))
              .map(res =>  res.json())
              .subscribe(data => {})
   }

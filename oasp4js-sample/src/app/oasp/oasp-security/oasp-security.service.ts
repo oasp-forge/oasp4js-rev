@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core'
 import {Router} from "@angular/router";
 import {User} from '../../main/models/user/User.model';
-import { Http, Response, Headers } from '@angular/http';
+import { HttpClient } from './http-client.service'
 import { BusinessOperations } from '../../main/BusinessOperations';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -21,21 +21,16 @@ export class SecurityService{
     public timeout = 10000;
     public timer:number;
 
-  constructor(private router: Router, private http:Http) {
-      this.timer = setInterval(() => {
-      }, this.mins*0.15)
-   }
+    constructor(private router: Router, private http:HttpClient) {
+    }
 
-  funcionLogin(username,password){
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-
+    funcionLogin(username,password){
     let formData={
       j_username:username,
       j_password:password
     };
 
-   this.http.post(this.BO.loginPOST,JSON.stringify(formData), {headers:headers})
+    this.http.post(this.BO.loginPOST,JSON.stringify(formData))
                .map(res => JSON.stringify(res))
                .subscribe(data => {
                  this.http.get(this.BO.csrfGET)
@@ -45,6 +40,7 @@ export class SecurityService{
                         csrfToken = data.token;
                         sessionExpired = false;
                         user = new User(0,"notUserYet", "notPasswordYet", 3);
+                        this.http.addDefaultHeader('X-CSRF-TOKEN', csrfToken)
                         if(user.permission == 1 || 3){
                             this.router.navigate(['/Tables'])
                         }
@@ -55,29 +51,29 @@ export class SecurityService{
                     //GET USER FROM BACKEND CURRENTUSER FUNCTION
     },
     err => {errorLogin = false})
-  }
+    }
 
-  getLogged(){
+    getLogged(){
       return Headerlogged;
-  }
+    }
 
-  getcsrfToken() {
+    getcsrfToken() {
       return csrfToken;
-  }
+    }
 
-  geterrorLogin(){
+    geterrorLogin(){
      return errorLogin;
-  }
+    }
 
-  closeErrorLogin(){
+    closeErrorLogin(){
       errorLogin = true;
-  }
+    }
 
-  getUser(){
+    getUser(){
       return user;
-  }
+    }
 
-  functionsesionExpired(){
+    functionsesionExpired(){
       clearInterval(this.timer);
       this.timer = setInterval(() => {
         if(this.getLogged() === true){
@@ -85,18 +81,18 @@ export class SecurityService{
           this.logOut();
         }
     }, this.mins*15);
-  }
+    }
 
-  getSessionExpired(){
+    getSessionExpired(){
       return sessionExpired;
-  }
+    }
 
-  logOut(){
+    logOut(){
     Headerlogged = false;
-    this.http.post(this.BO.logOutPost, JSON.stringify({j_username: "", j_password: ""}), null)
+    this.http.post(this.BO.logOutPost, JSON.stringify({j_username: "", j_password: ""}))
              .map(res => JSON.stringify(res))
              .subscribe(data => {})
     this.router.navigate(["/"])
-  }
+    }
 
 }
