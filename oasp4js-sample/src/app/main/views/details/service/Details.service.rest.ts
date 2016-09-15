@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import {Command} from '../../../models/command/Command.model'
-import { BusinessOperations } from '../../../../main/BusinessOperations';
 import { Http, Response,Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import {LoginService} from '../../login/service/Login.service'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { Command } from '../../../models/command/Command.model'
+import { BusinessOperations } from '../../../../main/BusinessOperations';
+import { SecurityService } from '../../../../oasp/oasp-security/oasp-security.service'
 
 @Injectable()
 export class DetailsRestService {
 
   BO:BusinessOperations = new BusinessOperations();
-  constructor(private loginService: LoginService, private http:Http) { }
+  constructor(private securityService: SecurityService, private http:Http) { }
 
   getPositions(tableId){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);
@@ -27,7 +27,7 @@ export class DetailsRestService {
   }
 
   getMenus(){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);
@@ -36,7 +36,7 @@ export class DetailsRestService {
   }
 
   updateOrder(order, positions){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);

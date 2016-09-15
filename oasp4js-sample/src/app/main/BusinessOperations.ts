@@ -29,6 +29,7 @@ export class BusinessOperations {
   public offerSearchPOST = this.offermgn + 'offer/search';
   public orderPositionPOST = this.salesmgn + 'orderposition/';
   public loginPOST = this.loginmgn + 'login';
+  public logOutPost = this.loginmgn + 'logout';
 
   constructor(){}
 

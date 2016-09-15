@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core'
 import {Router} from "@angular/router";
-import {User} from '../../../models/user/User.model';
+import {User} from '../../main/models/user/User.model';
 import { Http, Response, Headers } from '@angular/http';
-import { BusinessOperations } from '../../../BusinessOperations';
+import { BusinessOperations } from '../../main/BusinessOperations';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
@@ -14,7 +14,7 @@ export var errorLogin = true;
 export var user;
 
 @Injectable()
-export class LoginService{
+export class SecurityService{
     BO:BusinessOperations = new BusinessOperations();
     public autoLog: boolean;
     public mins = 60000;

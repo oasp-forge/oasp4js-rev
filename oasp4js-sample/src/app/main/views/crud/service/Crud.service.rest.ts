@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
-import {Table} from '../../../models/table/Table.model'
-import {Command} from '../../../models/command/Command.model'
-import { BusinessOperations } from '../../../../main/BusinessOperations';
 import { Http, Response,Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import {LoginService} from '../../login/service/Login.service'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { Table } from '../../../models/table/Table.model'
+import { Command } from '../../../models/command/Command.model'
+import { BusinessOperations } from '../../../../main/BusinessOperations';
+import { SecurityService } from '../../../../oasp/oasp-security/oasp-security.service'
 
 @Injectable()
 export class CrudRestService {
 
   BO:BusinessOperations = new BusinessOperations();
-  constructor(private loginService: LoginService, private http:Http) { }
+  constructor(private securityService: SecurityService, private http:Http) { }
 
   getTables(paginationData){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);
@@ -29,7 +29,7 @@ export class CrudRestService {
   }
 
   applyFilters(filters){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);
@@ -55,7 +55,7 @@ export class CrudRestService {
   }
 
   saveTable(table){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);

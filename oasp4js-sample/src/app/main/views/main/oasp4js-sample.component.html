@@ -1,4 +1,4 @@
-<header [logged]="loginService.getLogged()" [user] ="loginService.getUser()"></header>
+<header [logged]="securityService.getLogged()" [user] ="securityService.getUser()"></header>
 
 <div class = "app-body">
     <router-outlet></router-outlet>
@@ -8,14 +8,27 @@
 
 <!-- AUTOLOGIN -->
 <modal-dialog id="showPopup"
-*ngIf="loginService.sesionExpired"
+*ngIf="securityService.getSessionExpired()"
 [modal]=true
 [TITLE]=autoLogInfo
 [type]="'info'"
 class="modaldialog">
   <form (ngSubmit)="validateLogin(usernameLogin.value, passwordLogin.value)" #loginForm="ngForm">
-          <input [placeholder]="i18n.loginPage.form.usernamePlaceHolder" type="text" style="margin-bottom:10px;" #usernameLogin class="form-control" required ngControl="username"  #user="ngForm">
-          <input [placeholder]="i18n.loginPage.form.passwordPlaceHolder" type="text" style="margin-bottom:10px;" #passwordLogin class="form-control" required ngControl="password"  #pass="ngForm">
-          <button type="submit" class="btn  btn-success" [disabled]="!loginForm.form.valid">{{i18n.buttons.submitBtn}}</button>
+      <div [hidden]="securityService.geterrorLogin()" class="alert alert-danger">
+        <a href="#" class="close" (click) ="hideAlertLogin()">&times;</a>
+        {{i18n.loginPage.failed}}
+      </div>
+
+      <div [hidden]="user.valid || user.pristine" class ="login-alert">
+        {{i18n.loginPage.form.usernameError}}
+      </div>
+      <input [placeholder]="i18n.loginPage.form.usernamePlaceHolder" type="text" style="margin-bottom:10px;" #usernameLogin class="form-control" required ngControl="username"  #user="ngForm">
+
+      <div [hidden]="pass.valid || pass.pristine" class ="login-alert">
+        {{i18n.loginPage.form.passwordError}}
+      </div>
+      <input type="password" [placeholder]="i18n.loginPage.form.passwordPlaceHolder" style="margin-bottom:10px;" #passwordLogin class="form-control" required ngControl="password"  #pass="ngForm">
+
+      <button type="submit" class="btn btn-success" [disabled]="!loginForm.form.valid">{{i18n.buttons.submitBtn}}</button>
   </form>
 </modal-dialog>

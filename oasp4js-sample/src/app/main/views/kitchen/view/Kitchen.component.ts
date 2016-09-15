@@ -8,14 +8,14 @@ import {KitchenRestService} from '../service/Kitchen.service.rest'
 import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import {SearchPanelComponent} from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
 import {OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
-import {LoginService} from '../../login/service/Login.service'
+import { SecurityService} from '../../../../oasp/oasp-security/oasp-security.service';
 import {Router} from '@angular/router'
 
 @Component({
   selector:'kitchen',
   templateUrl:'app/main/views/kitchen/view/Kitchen.component.html',
   directives: [GridTableComponent, SearchPanelComponent],
-  providers: [KitchenRestService, OaspI18n]
+  providers: [KitchenRestService, OaspI18n, SecurityService]
 })
 
 export class KitchenComponent{
@@ -43,8 +43,8 @@ export class KitchenComponent{
     public headers: string[];
     public attributeNames: string[] = ["id", "orderId", "offerName", "mealName", "sideDishName"];
 
-    constructor(private router: Router, private loginService: LoginService, private oaspI18n: OaspI18n, private kitchenRestService: KitchenRestService){
-        if(!this.loginService.getUser()){
+    constructor(private router: Router, private securityService: SecurityService, private oaspI18n: OaspI18n, private kitchenRestService: KitchenRestService){
+        if(!this.securityService.getUser()){
             this.router.navigate(["/"])
             this.security = false;
         } else {

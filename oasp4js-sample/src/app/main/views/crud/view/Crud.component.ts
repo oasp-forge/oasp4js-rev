@@ -1,19 +1,19 @@
-import {Component} from '@angular/core'
-import {Table} from '../../../models/table/Table.model'
-import {DetailsComponent} from '../../details/view/Details.component'
-import {PaginationComponent} from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
-import {ModalDialogComponent} from '../../../../oasp/oasp-ui/modal-dialog/modal-dialog.component'
-import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
-import {SearchPanelComponent} from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
+import { Component } from '@angular/core'
+import { Router } from '@angular/router'
+import { Table } from '../../../models/table/Table.model'
+import { DetailsComponent } from '../../details/view/Details.component'
+import { PaginationComponent } from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
+import { ModalDialogComponent } from '../../../../oasp/oasp-ui/modal-dialog/modal-dialog.component'
+import { GridTableComponent } from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
+import { SearchPanelComponent } from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
 import { CrudRestService } from '../service/Crud.service.rest';
-import {OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
-import {LoginService} from '../../login/service/Login.service'
-import {Router} from '@angular/router'
+import { OaspI18n } from '../../../../oasp/oasp-i18n/oasp-i18n.service';
+import { SecurityService} from '../../../../oasp/oasp-security/oasp-security.service';
 
 @Component({
   selector:'crud',
   templateUrl:'app/main/views/crud/view/Crud.component.html',
-  providers:[LoginService, CrudRestService, OaspI18n],
+  providers:[SecurityService, CrudRestService, OaspI18n],
   directives:[DetailsComponent, PaginationComponent, ModalDialogComponent, GridTableComponent, SearchPanelComponent],
 })
 
@@ -40,8 +40,8 @@ export class CrudComponent{
           total: true
       }};
 
-  constructor(private router:Router, private loginService: LoginService, private oaspI18n: OaspI18n, private crudRestService: CrudRestService){
-      if(!this.loginService.getUser()){
+  constructor(private router:Router, private securityService: SecurityService, private oaspI18n: OaspI18n, private crudRestService: CrudRestService){
+      if(!this.securityService.getUser()){
           this.router.navigate(["/"])
           this.security = false;
       }else {

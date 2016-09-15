@@ -4,13 +4,14 @@ import {languages} from '../../../resources/languages/Languages.resource'
 import {User} from '../../../models/user/User.model';
 import {OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
 import {LanguageSelector} from '../../../../oasp/oasp-ui/language-selector/language-selector.component';
-import {LoginService} from '../../login/service/Login.service';
+import {SecurityService} from '../../../../oasp/oasp-security/oasp-security.service'
+
 
 @Component({
     selector: 'header',
     templateUrl: 'app/main/views/header/view/Header.component.html',
     inputs: ["logged", "user"],
-    providers: [OaspI18n, LoginService],
+    providers: [OaspI18n, SecurityService],
     directives: [ROUTER_DIRECTIVES, LanguageSelector]
 })
 
@@ -21,7 +22,7 @@ export class HeaderComponent {
     i18n;
     languages;
 
-    constructor(private router: Router, private loginService:LoginService, private oaspI18n: OaspI18n){
+    constructor(private router: Router, private securityService:SecurityService, private oaspI18n: OaspI18n){
         this.languages = languages;
         this.i18n = oaspI18n.getI18n();
     }
@@ -31,7 +32,7 @@ export class HeaderComponent {
     }
 
     logOff(){
-      this.loginService.logOut();
+      this.securityService.logOut();
       this.router.navigate(['/'])
     }
 }

@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
 import { Http, Response,Headers } from '@angular/http';
+import { Router } from '@angular/router'
 import { Observable } from 'rxjs/Rx';
-import { BusinessOperations } from '../../../../main/BusinessOperations';
-import {LoginService} from '../../login/service/Login.service'
-import {Router} from '@angular/router'
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { BusinessOperations } from '../../../../main/BusinessOperations';
+import { SecurityService } from '../../../../oasp/oasp-security/oasp-security.service'
 
 @Injectable()
 export class KitchenRestService {
 
   BO:BusinessOperations = new BusinessOperations();
-  constructor( private loginService: LoginService, private http:Http) {
+  constructor( private securityService: SecurityService, private http:Http) {
   }
 
   getOffers(pageData){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);
@@ -24,7 +24,7 @@ export class KitchenRestService {
   }
 
   getProducts(pageData){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);
@@ -38,7 +38,7 @@ export class KitchenRestService {
   }
 
   assignOrderPosition(obj){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);
@@ -49,7 +49,7 @@ export class KitchenRestService {
   }
 
   returnOrderPosition(obj){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);
@@ -60,7 +60,7 @@ export class KitchenRestService {
   }
 
   doneOrderPosition(obj){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);
@@ -71,7 +71,7 @@ export class KitchenRestService {
   }
 
   rejectOrderPosition(obj){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);
@@ -82,7 +82,7 @@ export class KitchenRestService {
     }
 
   moveOrderPosition(obj, cookId){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);
@@ -94,7 +94,7 @@ export class KitchenRestService {
   }
 
   finishOrderPosition(obj, state){
-      let csrf = this.loginService.getcsrfToken();
+      let csrf = this.securityService.getcsrfToken();
       let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('X-CSRF-TOKEN', csrf);
