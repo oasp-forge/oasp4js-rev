@@ -4,7 +4,7 @@ import { TimerWrapper } from '@angular/core/src/facade/async';
 import { Http, Response, Headers } from '@angular/http'
 import { User } from '../../models/user/User.model'
 import { HeaderComponent } from '../header/Header.component';
-import { LoginComponent } from '../login/view/Login.component';
+import { LoginComponent } from '../login/Login.component';
 import { CrudComponent } from '../crud/view/Crud.component'
 import { KitchenComponent } from '../kitchen/view/Kitchen.component'
 import { ModalDialogComponent } from '../../../oasp/oasp-ui/modal-dialog/modal-dialog.component';

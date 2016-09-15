@@ -1,15 +1,11 @@
-
-import {Component} from '@angular/core'
-
-import {Command} from '../../../models/command/Command.model'
-
-import {KitchenRestService} from '../service/Kitchen.service.rest'
-
-import {GridTableComponent} from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
-import {SearchPanelComponent} from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
-import {OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
-import { SecurityService} from '../../../../oasp/oasp-security/oasp-security.service';
-import {Router} from '@angular/router'
+import { Component } from '@angular/core'
+import { Router } from '@angular/router'
+import { Command } from '../../../models/command/Command.model'
+import { GridTableComponent } from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
+import { SearchPanelComponent } from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
+import { OaspI18n } from '../../../../oasp/oasp-i18n/oasp-i18n.service';
+import { SecurityService } from '../../../../oasp/oasp-security/oasp-security.service';
+import { KitchenRestService } from '../service/Kitchen.service.rest'
 
 @Component({
   selector:'kitchen',

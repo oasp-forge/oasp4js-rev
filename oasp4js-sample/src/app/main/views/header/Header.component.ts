@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import {Router, ROUTER_DIRECTIVES} from "@angular/router";
-import {languages} from '../../resources/languages/Languages.resource'
-import {User} from '../../models/user/User.model';
-import {OaspI18n} from '../../../oasp/oasp-i18n/oasp-i18n.service';
-import {LanguageSelector} from '../../../oasp/oasp-ui/language-selector/language-selector.component';
-import {SecurityService} from '../../../oasp/oasp-security/oasp-security.service'
+import { Router, ROUTER_DIRECTIVES } from "@angular/router";
+import { languages } from '../../resources/languages/Languages.resource'
+import { User } from '../../models/user/User.model';
+import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
+import { LanguageSelector } from '../../../oasp/oasp-ui/language-selector/language-selector.component';
+import { SecurityService } from '../../../oasp/oasp-security/oasp-security.service'
 
 
 @Component({
