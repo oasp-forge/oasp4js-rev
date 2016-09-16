@@ -1,9 +1,9 @@
-import {Injectable} from '@angular/core';
-import {Http, Headers} from '@angular/http';
+import {Injectable} from '@angular/core'
+import {Http, Headers} from '@angular/http'
 
 @Injectable()
 export class HttpClient {
-    headers
+    private headers: Headers
 
     constructor(private http: Http) {
       this.headers = new Headers();

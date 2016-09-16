@@ -1,11 +1,11 @@
-import {Injectable} from '@angular/core'
-import {Router} from "@angular/router";
-import {User} from '../../main/models/user/User.model';
-import { HttpClient } from './http-client.service'
-import { BusinessOperations } from '../../main/BusinessOperations';
+import { Injectable } from '@angular/core'
+import { Router } from "@angular/router";
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
+import { HttpClient } from './http-client.service'
+import { User } from '../../main/models/user/User.model';
+import { BusinessOperations } from '../../main/BusinessOperations';
 
 export var Headerlogged = false;
 export var sessionExpired = false;

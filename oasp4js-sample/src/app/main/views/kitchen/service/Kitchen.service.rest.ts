@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '../../../../oasp/oasp-security/http-client.service'
-import { Router } from '@angular/router'
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
 import { BusinessOperations } from '../../../../main/BusinessOperations';
-import { SecurityService } from '../../../../oasp/oasp-security/oasp-security.service'
 
 @Injectable()
 export class KitchenRestService {
 
   BO:BusinessOperations = new BusinessOperations();
-  constructor( private securityService: SecurityService, private http:HttpClient) {
+  constructor(private http:HttpClient) {
   }
 
   getOffers(pageData){

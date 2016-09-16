@@ -1,4 +1,4 @@
-import {Component, OnChanges, EventEmitter} from '@angular/core'
+import {Component, EventEmitter} from '@angular/core'
 import {GridtableService} from '../service/Grid-table.service'
 
 @Component({
@@ -9,7 +9,7 @@ import {GridtableService} from '../service/Grid-table.service'
   providers:[GridtableService]
 })
 
-export class GridTableComponent implements OnChanges{
+export class GridTableComponent{
 
     headers;
     attributeNames;

@@ -1,8 +1,5 @@
-import { Component, Output, EventEmitter } from '@angular/core'
+import { Component } from '@angular/core'
 import { Router } from '@angular/router'
-import { Observable } from 'rxjs/Observable';
-import { Http, Headers } from '@angular/http';
-import { User } from '../../models/user/User.model';
 import { SecurityService } from '../../../oasp/oasp-security/oasp-security.service';
 import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
 

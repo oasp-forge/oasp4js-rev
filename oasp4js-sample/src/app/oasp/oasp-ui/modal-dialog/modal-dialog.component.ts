@@ -1,6 +1,6 @@
-import {Component,Input, EventEmitter} from '@angular/core';
-import {ButtonBarComponent} from '../button-bar/button-bar.component'
-import {Table} from '../../../main/models/table/Table.model'
+import { Component,Input, EventEmitter } from '@angular/core'
+import { ButtonBarComponent } from '../button-bar/button-bar.component'
+import { Table } from '../../../main/models/table/Table.model'
 
 @Component({
   selector: 'modal-dialog',

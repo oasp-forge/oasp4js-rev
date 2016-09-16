@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 import { ROUTER_DIRECTIVES, Router, Routes } from "@angular/router";
-import { TimerWrapper } from '@angular/core/src/facade/async';
-import { Http, Response, Headers } from '@angular/http'
-import { User } from '../../models/user/User.model'
 import { HeaderComponent } from '../header/Header.component';
 import { LoginComponent } from '../login/Login.component';
 import { CrudComponent } from '../crud/view/Crud.component'

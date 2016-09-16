@@ -19,8 +19,4 @@ export class GridtableService{
 
     return data.slice(0,data.length);
   }
-
-  applyFilters(num: number, state: string, waiter: string){
-      /** back-end call for filtering **/
-  }
 }

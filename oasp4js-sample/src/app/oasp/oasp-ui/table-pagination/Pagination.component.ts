@@ -1,4 +1,4 @@
-import {Component, OnChanges, EventEmitter} from '@angular/core'
+import {Component, EventEmitter} from '@angular/core'
 import {OaspI18n} from '../../oasp-i18n/oasp-i18n.service';
 
 @Component({

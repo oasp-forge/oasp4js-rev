@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ROUTER_DIRECTIVES } from "@angular/router";
+import { ROUTER_DIRECTIVES } from "@angular/router";
 import { languages } from '../../resources/languages/Languages.resource'
 import { User } from '../../models/user/User.model';
 import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
@@ -22,9 +22,9 @@ export class HeaderComponent {
     i18n;
     languages;
 
-    constructor(private router: Router, private securityService:SecurityService, private oaspI18n: OaspI18n){
-        this.languages = languages;
+    constructor(private securityService:SecurityService, private oaspI18n: OaspI18n){
         this.i18n = oaspI18n.getI18n();
+        this.languages = languages;
     }
 
     changeLanguage(code){
@@ -33,6 +33,5 @@ export class HeaderComponent {
 
     logOff(){
       this.securityService.logOut();
-      this.router.navigate(['/'])
     }
 }

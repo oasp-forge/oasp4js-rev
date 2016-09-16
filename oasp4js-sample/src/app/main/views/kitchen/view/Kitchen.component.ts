@@ -1,6 +1,5 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
-import { Command } from '../../../models/command/Command.model'
 import { GridTableComponent } from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import { SearchPanelComponent } from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
 import { OaspI18n } from '../../../../oasp/oasp-i18n/oasp-i18n.service';
