@@ -21,9 +21,33 @@ export class KitchenRestService {
                     .map(res =>  res.json())
   }
 
+
   getOrderPositions(){
     return this.http.get(this.BO.orderPositionParamsGET)
                     .map(res =>  res.json())
+  }
+
+  applyFilters(filters){
+      let url = this.BO.orderPositionParamsGET;
+      if(filters[0].length > 0){
+          url = this.BO.orderPositionGET + '/' + filters[0];
+      } else {
+          if(filters[1].length > 0){
+              url += '&orderId='+filters[1];
+          }
+          if(filters[2].length > 0){
+              url += '&offerName='+filters[2];
+          }
+          if(filters[3].length > 0){
+              url += '&mealName='+filters[3];
+          }
+          if(filters[4].length > 0){
+              url += '&sideDishName='+filters[4];
+          }
+      }
+
+      return this.http.get(url)
+                      .map(res =>  res.json())
   }
 
   assignOrderPosition(obj){

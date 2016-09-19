@@ -23,7 +23,7 @@ export class CrudRestService {
   }
 
   applyFilters(filters){
-      if(filters[0].length > 0 || filters[1].length > 0 || filters[1].length > 0){
+      if(filters[0].length > 0 || filters[1].length > 0 || filters[2].length > 0){
 
           let searchCriteria = {
               number : filters[0],

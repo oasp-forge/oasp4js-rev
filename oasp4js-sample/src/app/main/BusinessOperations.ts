@@ -15,9 +15,11 @@ export class BusinessOperations {
   */
   public tablesGET = this.tablemgn + 'table/';
   public offersGET = this.offermgn + 'offer';
+  public orderPositionGET = this.salesmgn + 'orderposition';
   public orderPositionParamsGET = this.salesmgn + 'orderposition?mealOrSideDish=true&state=ORDERED';
   public csrfGET = this.securitymgn + 'csrftoken';
-  // http://10.68.8.26:8081/oasp4j-sample-server/services/rest/salesmanagement/v1/orderposition?mealOrSideDish=true&state=ORDERED
+  public userGET = this.securitymgn + 'currentuser';
+
   /*
   * POST operations
   */

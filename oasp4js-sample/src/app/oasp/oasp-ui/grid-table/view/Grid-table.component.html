@@ -3,7 +3,7 @@
           <th *ngFor="let attribute of attributeNames; let i = index"
               (click)="sortColumn(i, attribute)">
               {{headers[i]}}
-              <a [class]="sortIconStyle[i]"></a>
+              <a [class]="sortIconStyle[i]" aria-hidden="true"></a>
           </th>
       </thead>
       <tbody>

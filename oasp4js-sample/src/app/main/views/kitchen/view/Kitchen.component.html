@@ -1,5 +1,5 @@
 <div *ngIf="security">
-    <search-panel [searchInputs] ="[num,title,stat,comment]" (searchValues) = "searchFilters($event)">
+    <search-panel [searchInputs] ="[id,orderId,offerName,mealName, sideDishName]" (searchValues) = "searchFilters($event)">
 
         <div class = "searchFields propertyMargin-right">
             <label> {{i18n.kitchen.id}} </label>

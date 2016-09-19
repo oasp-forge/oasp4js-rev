@@ -1,5 +1,4 @@
 import { Component } from '@angular/core'
-import { Router } from '@angular/router'
 import { Table } from '../../../models/table/Table.model'
 import { DetailsComponent } from '../../details/view/Details.component'
 import { PaginationComponent } from '../../../../oasp/oasp-ui/table-pagination/Pagination.component'
@@ -30,7 +29,7 @@ export class CrudComponent{
   public numItems: number;
   public myState;
   public i18n;
-  public modalHeader:string;
+  public modalHeader: string;
   public security = true;
 
   public pageData = {
@@ -40,10 +39,10 @@ export class CrudComponent{
           total: true
       }};
 
-  constructor(private router:Router, private securityService: SecurityService, private oaspI18n: OaspI18n, private crudRestService: CrudRestService){
+  constructor(private securityService: SecurityService, private oaspI18n: OaspI18n, private crudRestService: CrudRestService){
       if(!this.securityService.getUser()){
-          this.router.navigate(["/"])
           this.security = false;
+          this.securityService.logOut();
       }else {
           this.i18n = oaspI18n.getI18n();
           this.loadTables();
@@ -63,9 +62,9 @@ export class CrudComponent{
 
   searchFilters(filters){
       this.crudRestService.applyFilters(filters)
-                                    .subscribe(data =>
-                                        {this.numItems = data.pagination.total;
-                                         this.tables = data.result}
+                                    .subscribe(data =>{
+                                        this.numItems = data.pagination.total;
+                                        this.tables = data.result}
                                     );
   }
 
@@ -73,7 +72,6 @@ export class CrudComponent{
       this.pageData.pagination.page = value;
       this.loadTables();
   }
-
 
   changeState(state){
       this.selectedTable.state = state;

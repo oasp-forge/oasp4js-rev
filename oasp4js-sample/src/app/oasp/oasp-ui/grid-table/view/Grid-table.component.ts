@@ -43,9 +43,9 @@ export class GridTableComponent{
           this.sortIconStyle[column] = "glyphicon glyphicon-chevron-down";
           this.rowsData = this.gridtableService.getTablesOrderBy(-1, name, this.rowsData);
       } else {
-          this.sortIconStyle[0] = "glyphicon glyphicon-chevron-down";
-          this.sortIconStyle[1] = "glyphicon glyphicon-chevron-down";
-          this.sortIconStyle[2] = "glyphicon glyphicon-chevron-down";
+          for(let i = 0 ; i < this.tableHeaders.length; i++){
+              this.sortIconStyle[i] = "glyphicon glyphicon-chevron-down";
+          }
           this.sortIconStyle[column] = "glyphicon glyphicon-chevron-up";
           this.rowsData = this.gridtableService.getTablesOrderBy(1, name, this.rowsData);
       }

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core'
-import { Router } from '@angular/router'
 import { GridTableComponent } from '../../../../oasp/oasp-ui/grid-table/view/Grid-table.component'
 import { SearchPanelComponent } from '../../../../oasp/oasp-ui/search-panel/Search-panel.component'
 import { OaspI18n } from '../../../../oasp/oasp-i18n/oasp-i18n.service';
@@ -24,7 +23,6 @@ export class KitchenComponent{
 
     public selectedAvailableCommand;
     public selectedAssignedCommand;
-
     public security = true;
 
     public pageData = {
@@ -38,10 +36,10 @@ export class KitchenComponent{
     public headers: string[];
     public attributeNames: string[] = ["id", "orderId", "offerName", "mealName", "sideDishName"];
 
-    constructor(private router: Router, private securityService: SecurityService, private oaspI18n: OaspI18n, private kitchenRestService: KitchenRestService){
+    constructor(private securityService: SecurityService, private oaspI18n: OaspI18n, private kitchenRestService: KitchenRestService){
         if(!this.securityService.getUser()){
-            this.router.navigate(["/"])
             this.security = false;
+            this.securityService.logOut();
         } else {
             this.i18n = oaspI18n.getI18n();
             this.getLists();
@@ -100,6 +98,22 @@ export class KitchenComponent{
                 this.availableCommands.push(kitchenProduct);
             }
         }
+    }
+
+    searchFilters(filters){
+        this.kitchenRestService.applyFilters(filters)
+                                      .subscribe(data =>{
+                                          if(data.length){
+                                              this.orderPositions = data;
+                                          } else {
+                                               this.orderPositions = []
+                                               if(data.state == "ORDERED"){
+                                                   this.orderPositions.push(data);
+                                               }
+                                          }
+                                          this.fillKitchenTables();
+                                      });
+
     }
 
     availableSelected(value){

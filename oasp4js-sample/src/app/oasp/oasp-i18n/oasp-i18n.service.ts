@@ -4,6 +4,8 @@ export var i18n = {};
 
 export class OaspI18n {
 
+    constructor(){}
+
     getCookie(name) {
         let value = "; " + document.cookie;
         let parts = value.split("; " + name + "=");
