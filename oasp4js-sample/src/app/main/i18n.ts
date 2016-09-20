@@ -42,6 +42,7 @@
 
                         searchPanel : {
                             title : "Search",
+                            all : "All"
                         },
 
                         pagination : {
@@ -127,6 +128,7 @@
 
                         searchPanel : {
                             title : "Suche",
+                            all : "alle"
                         },
 
                         pagination : {
@@ -211,6 +213,7 @@
 
                         searchPanel : {
                             title : "Búsqueda",
+                            all : "Todos"
                         },
 
                         pagination : {

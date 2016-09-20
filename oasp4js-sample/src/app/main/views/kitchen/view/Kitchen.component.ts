@@ -20,6 +20,9 @@ export class KitchenComponent{
     public orderPositions = [];
     public offers = [];
     public products = [];
+    public offerList = [];
+    public mealNameList = [];
+    public sideDishNameList = [];
 
     public selectedAvailableCommand;
     public selectedAssignedCommand;
@@ -42,6 +45,26 @@ export class KitchenComponent{
             this.securityService.logOut();
         } else {
             this.i18n = oaspI18n.getI18n();
+            this.kitchenRestService
+                    .getOffers(this.pageData)
+                            .subscribe(data => {
+                                for( let i = 0; i < data.result.length ; i++){
+                                    this.offerList.push(data.result[i].name)
+                                }
+                            });
+
+            this.kitchenRestService
+                    .getProducts(this.pageData)
+                            .subscribe(data => {
+                                for( let i = 0; i < data.result.length ; i++){
+                                    if(data.result[i][Object.keys(data.result[i])[0]] === "Meal"){
+                                        this.mealNameList.push(data.result[i].description)
+                                    }
+                                    if(data.result[i][Object.keys(data.result[i])[0]] === "SideDish"){
+                                        this.sideDishNameList.push(data.result[i].description)
+                                    }
+                                }
+                            });
             this.getLists();
             this.headers = [this.i18n.kitchen.id,this.i18n.kitchen.orderID, this.i18n.kitchen.offerName, this.i18n.kitchen.mealName, this.i18n.kitchen.sideDishName];
         }

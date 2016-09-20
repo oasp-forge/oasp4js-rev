@@ -9,7 +9,7 @@
         <div class = "searchFields propertyMargin-right">
             <label> {{i18n.tables.state}} </label>
             <select #stat class="form-control">
-              <option value="">All</option>
+              <option value="">{{i18n.searchPanel.all}}</option>
               <option *ngFor ="let state of states ; let i = index"
                       [value]="states[i]">{{states[i]}}</option>
             </select>

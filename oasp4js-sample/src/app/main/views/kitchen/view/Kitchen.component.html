@@ -13,17 +13,29 @@
 
         <div class = "searchFields propertyMargin-right">
             <label> {{i18n.kitchen.offerName}} </label>
-            <input #offerName type ="text" class="form-control">
+            <select #offerName class="form-control">
+              <option value="">{{i18n.searchPanel.all}}</option>
+              <option *ngFor ="let offer of offerList"
+                      [value]="offer">{{offer}}</option>
+            </select>
         </div>
 
         <div class = "searchFields propertyMargin-right">
             <label> {{i18n.kitchen.mealName}} </label>
-            <input #mealName type ="text" class="form-control">
+            <select #mealName class="form-control">
+                <option value="">{{i18n.searchPanel.all}}</option>
+                <option *ngFor ="let meal of mealNameList"
+                [value]="meal">{{meal}}</option>
+            </select>
         </div>
 
         <div class = "searchFields propertyMargin-right">
             <label> {{i18n.kitchen.sideDishName}} </label>
-            <input #sideDishName type ="text" class="form-control">
+            <select #sideDishName class="form-control">
+              <option value="">{{i18n.searchPanel.all}}</option>
+              <option *ngFor ="let sideDish of sideDishNameList"
+                      [value]="sideDish">{{sideDish}}</option>
+            </select>
         </div>
 
     </search-panel>
