@@ -4,7 +4,7 @@
     <img src="app/main/img/login_logo.png">
   </div>
 
-  <form (ngSubmit)="validateLogin(usernameLogin.value, passwordLogin.value)">
+  <form (ngSubmit)="validateLogin()" #loginForm="ngForm">
       <h2>{{i18n.loginPage.signIn}}</h2>
 
       <div class="cuadroUsuario">
@@ -14,17 +14,17 @@
             {{i18n.loginPage.failed}}
           </div>
 
-          <!-- <div [hidden]="user.valid || user.pristine" class ="login-alert">
+          <div [hidden]="username.valid || username.pristine" class ="login-alert">
             {{i18n.loginPage.form.usernameError}}
-          </div> -->
-          <input [placeholder]="i18n.loginPage.form.usernamePlaceHolder" type="text" style="margin-bottom:10px;" #usernameLogin class="form-control" required ngControl="username">
+          </div>
+          <input type="text" [placeholder]="i18n.loginPage.form.usernamePlaceHolder" [(ngModel)]="user.username" style="margin-bottom:10px;" #username="ngModel"  name="username" class="form-control" required>
 
-          <!-- <div [hidden]="pass.valid || pass.pristine" class ="login-alert">
+          <div [hidden]="password.valid || password.pristine" class ="login-alert">
             {{i18n.loginPage.form.passwordError}}
-          </div> -->
-          <input type="password" [placeholder]="i18n.loginPage.form.passwordPlaceHolder" style="margin-bottom:10px;" #passwordLogin class="form-control" required ngControl="password">
+          </div>
+          <input type="password" [placeholder]="i18n.loginPage.form.passwordPlaceHolder" [(ngModel)]="user.password" style="margin-bottom:10px;" #password="ngModel" name="password" class="form-control" required>
 
       </div>
-      <button type="submit" class="btn btn-success">{{i18n.buttons.submitBtn}}</button>
+      <button type="submit" class="btn btn-success" [disabled] ="!loginForm.form.valid">{{i18n.buttons.submitBtn}}</button>
   </form>
 </div>

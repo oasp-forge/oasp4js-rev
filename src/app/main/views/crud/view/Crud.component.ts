@@ -6,8 +6,7 @@ import { SecurityService} from '../../../../oasp/oasp-security/oasp-security.ser
 
 @Component({
   selector:'crud',
-  templateUrl:'Crud.component.html',
-  providers:[SecurityService, CrudRestService, OaspI18n]
+  templateUrl:'Crud.component.html'
 })
 
 export class CrudComponent{

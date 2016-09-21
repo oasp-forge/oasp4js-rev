@@ -8,8 +8,7 @@ import { OaspI18n } from '../../../../oasp/oasp-i18n/oasp-i18n.service';
   selector:'tableDetails',
   templateUrl:'Details.component.html',
   inputs:['parentTable'],
-  outputs:['resultEvent', 'closeWindowEvent'],
-  providers:[DetailsRestService, OaspI18n]
+  outputs:['resultEvent', 'closeWindowEvent']
 })
 
 export class DetailsComponent{

@@ -5,8 +5,7 @@ import { KitchenRestService } from '../service/Kitchen.service.rest'
 
 @Component({
   selector:'kitchen',
-  templateUrl:'Kitchen.component.html',
-  providers: [KitchenRestService, OaspI18n, SecurityService]
+  templateUrl:'Kitchen.component.html'
 })
 
 export class KitchenComponent{
