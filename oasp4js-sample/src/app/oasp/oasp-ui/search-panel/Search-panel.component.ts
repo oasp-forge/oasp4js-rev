@@ -27,16 +27,16 @@ export class SearchPanelComponent{
   }
 
   clearForm(){
-    for(let i = 0 ; i < this.search.length ; i++ ){
-        this.search[i].value = "";
-    }
+      for(let i = 0 ; i < this.search.length ; i++ ){
+          this.search[i].value = "";
+      }
   }
 
   doSearch(){
-    let values = [];
-    for(let i = 0 ; i < this.search.length ; i++ ){
-        values.push(this.search[i].value);
-    }
-    this.searchValues.emit(values);
+      let values = [];
+      for(let i = 0 ; i < this.search.length ; i++ ){
+          values.push(this.search[i].value);
+      }
+      this.searchValues.emit(values);
   }
 }

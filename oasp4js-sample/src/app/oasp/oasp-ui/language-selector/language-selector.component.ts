@@ -36,7 +36,7 @@ export class LanguageSelector {
     }
 
     openCloseMenu(){
-      this.dropmenu = !this.dropmenu;
+        this.dropmenu = !this.dropmenu;
     }
 
     changeLanguage(selected){
