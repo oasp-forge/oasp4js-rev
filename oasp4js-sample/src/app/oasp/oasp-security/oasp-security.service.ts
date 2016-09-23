@@ -3,9 +3,9 @@ import { Router } from "@angular/router";
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import { HttpClient } from './http-client.service'
 import { User } from '../../main/models/user/User.model';
 import { BusinessOperations } from '../../main/BusinessOperations';
+import {HttpClient} from './http-client.service'
 
 export var Headerlogged = false;
 export var sessionExpired = false;
@@ -24,10 +24,10 @@ export class SecurityService{
     constructor(private router: Router, private http:HttpClient) {
     }
 
-    funcionLogin(username,password){
+    funcionLogin(u){
     let formData={
-      j_username:username,
-      j_password:password
+      j_username: u.username,
+      j_password: u.password
     };
 
     this.http.post(this.BO.loginPOST,JSON.stringify(formData))
@@ -42,6 +42,7 @@ export class SecurityService{
                         sessionExpired = false;
                         this.http.addDefaultHeader('X-CSRF-TOKEN', csrfToken)
                         Headerlogged = true
+                        //GET USER FROM BACKEND CURRENTUSER FUNCTION
                         user = new User(0,"notUserYet", "notPasswordYet", 3);
                         if(user.permission == 1 || 3){
                             this.router.navigate(['/Tables'])
@@ -50,12 +51,11 @@ export class SecurityService{
                             this.router.navigate(["/Kitchen"])
                         }
 
-                        this.http.get(this.BO.userGET)
-                           .map(res => res.json())
-                           .subscribe(data => {
-                           })
+                        // this.http.get(this.BO.userGET)
+                        //    .map(res => res.json())
+                        //    .subscribe(data => {
+                        //    })
                     })
-                    //GET USER FROM BACKEND CURRENTUSER FUNCTION
     },
     err => {errorLogin = false})
     }

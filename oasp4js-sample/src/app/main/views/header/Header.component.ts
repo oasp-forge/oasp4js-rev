@@ -8,8 +8,7 @@ import { SecurityService } from '../../../oasp/oasp-security/oasp-security.servi
 @Component({
     selector: 'header',
     templateUrl: 'Header.component.html',
-    inputs: ["logged", "user"],
-    providers: [OaspI18n, SecurityService]
+    inputs: ["logged", "user"]
 })
 
 export class HeaderComponent {

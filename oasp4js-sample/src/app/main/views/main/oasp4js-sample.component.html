@@ -1,0 +1,39 @@
+<header [logged]="securityService.getLogged()" [user] ="securityService.getUser()"></header>
+
+
+<div class = "app-body">
+    <router-outlet></router-outlet>
+</div>
+
+<label class ="footer">{{i18n.footer.title}}</label>
+
+
+<modal-dialog id="showPopup"
+*ngIf="securityService.getSessionExpired()"
+[modal]=true
+[TITLE]=autoLogInfo
+class="modaldialog">
+<form (ngSubmit)="validateLogin()" #loginForm="ngForm">
+    <h2>{{i18n.loginPage.signIn}}</h2>
+
+    <div class="cuadroUsuario">
+
+        <div [hidden]="securityService.geterrorLogin() || securityService.getSessionExpired()" class="alert alert-danger">
+          <a href="#" class="close" (click) ="hideAlertLogin()">&times;</a>
+          {{i18n.loginPage.failed}}
+        </div>
+
+        <div [hidden]="username.valid || username.pristine" class ="login-alert">
+          {{i18n.loginPage.form.usernameError}}
+        </div>
+        <input type="text" [placeholder]="i18n.loginPage.form.usernamePlaceHolder" [(ngModel)]="user.username" style="margin-bottom:10px;" #username="ngModel"  name="username" class="form-control" required>
+
+        <div [hidden]="password.valid || password.pristine" class ="login-alert">
+          {{i18n.loginPage.form.passwordError}}
+        </div>
+        <input type="password" [placeholder]="i18n.loginPage.form.passwordPlaceHolder" [(ngModel)]="user.password" style="margin-bottom:10px;" #password="ngModel" name="password" class="form-control" required>
+
+    </div>
+    <button type="submit" class="btn btn-success" [disabled] ="!loginForm.form.valid">{{i18n.buttons.submitBtn}}</button>
+</form>
+</modal-dialog>

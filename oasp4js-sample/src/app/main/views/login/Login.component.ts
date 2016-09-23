@@ -1,19 +1,20 @@
 import { Component } from '@angular/core'
+import { User } from '../../models/user/User.model';
 import { Router } from '@angular/router'
 import { SecurityService } from '../../../oasp/oasp-security/oasp-security.service';
 import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
 
 @Component({
   selector:'login',
-  templateUrl: 'Login.component.html',
-  providers:[SecurityService, OaspI18n]
+  templateUrl: 'Login.component.html'
 })
 
 export class LoginComponent{
 
+  user: User = new User(0, "", "", 0);
   i18n
 
-  constructor(private router:Router, private oaspI18n: OaspI18n, private securityService:SecurityService){
+  constructor(private oaspI18n: OaspI18n, private securityService:SecurityService){
       this.i18n = oaspI18n.getI18n();
   }
 
@@ -21,8 +22,8 @@ export class LoginComponent{
       this.securityService.closeErrorLogin();
   }
 
-  validateLogin(username, password){
-      this.securityService.funcionLogin(username,password);
+  validateLogin(){
+      this.securityService.funcionLogin(this.user);
       this.securityService.functionsesionExpired();
   }
 

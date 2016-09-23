@@ -12,10 +12,10 @@ module.exports = function (config) {
       require('angular-cli/plugins/karma')
     ],
     files: [
-      { pattern: './src/test.ts', watched: false }
+      { pattern: '../src/test.ts', watched: false }
     ],
     preprocessors: {
-      './src/test.ts': ['angular-cli']
+      '../src/test.ts': ['angular-cli']
     },
     remapIstanbulReporter: {
       reports: {
@@ -24,7 +24,7 @@ module.exports = function (config) {
       }
     },
     angularCli: {
-      config: './angular-cli.json',
+      config: '../angular-cli.json',
       environment: 'dev'
     },
     reporters: ['progress', 'karma-remap-istanbul'],
