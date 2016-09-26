@@ -30,6 +30,7 @@ export class SearchPanelComponent{
     for(let i = 0 ; i < this.search.length ; i++ ){
         this.search[i].value = "";
     }
+    this.doSearch();
   }
 
   doSearch(){

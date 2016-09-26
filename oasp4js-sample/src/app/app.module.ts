@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing } from './app.routing';
+import { AppComponent } from './app.component.ts';
 
 import { CrudComponent } from './main/views/crud/view/Crud.component'
 import { DetailsComponent } from './main/views/details/view/Details.component'
@@ -39,7 +40,8 @@ import { SecurityService } from './oasp/oasp-security/oasp-security.service';
     ModalDialogComponent,
     SearchPanelComponent,
     PaginationComponent,
-    Collapse
+    Collapse,
+    AppComponent
   ],
   imports: [
     BrowserModule,
