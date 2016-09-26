@@ -1,9 +1,9 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './main/views/login/login.component'
-import { CrudComponent } from './main/views/crud/view/Crud.component'
-import { KitchenComponent } from './main/views/kitchen/view/Kitchen.component'
+import { LoginComponent } from './main/components/login/login.component'
+import { CrudComponent } from './main/components/crud/view/Crud.component'
+import { KitchenComponent } from './main/components/kitchen/view/Kitchen.component'
 
 const appRoutes: Routes = [
   {
