@@ -11,6 +11,8 @@ import { KitchenComponent } from './main/views/kitchen/view/Kitchen.component'
 import { LoginComponent } from './main/views/login/login.component'
 import { Oasp4jsSampleAppComponent } from './main/views/main/oasp4js-sample.component'
 import { GridTableComponent } from './oasp/oasp-ui/grid-table/view/Grid-table.component'
+
+import { Collapse } from './oasp/oasp-ui/directives/collapse.component.ts';
 import { LanguageSelector } from './oasp/oasp-ui/language-selector/language-selector.component'
 import { ModalDialogComponent } from './oasp/oasp-ui/modal-dialog/modal-dialog.component'
 import { SearchPanelComponent } from './oasp/oasp-ui/search-panel/Search-panel.component'
@@ -36,7 +38,8 @@ import { SecurityService } from './oasp/oasp-security/oasp-security.service';
     LanguageSelector,
     ModalDialogComponent,
     SearchPanelComponent,
-    PaginationComponent
+    PaginationComponent,
+    Collapse
   ],
   imports: [
     BrowserModule,
