@@ -17,7 +17,7 @@ before_install:
   - export CHROME_BIN=chromium-browser
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  # - cd oasp4js-sample
+  - cd oasp4js-sample
   - npm install -g gulp
 script:
   - ng test --watch=false
