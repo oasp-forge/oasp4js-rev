@@ -12,15 +12,17 @@ import { SecurityService } from '../../../oasp/oasp-security/oasp-security.servi
 })
 
 export class HeaderComponent {
-    logged: boolean = false;
+    logged: boolean;
     user: User;
-    dropmenu:boolean = true;
+    dropmenu:boolean;
     i18n;
     languages;
 
     constructor(private securityService:SecurityService, private oaspI18n: OaspI18n){
         this.i18n = oaspI18n.getI18n();
         this.languages = languages;
+        this.logged = false;
+        this.dropmenu = true;
     }
 
     changeLanguage(code){

@@ -16,7 +16,7 @@ export class DetailsComponent{
   closeWindowEvent = new EventEmitter();
 
   public headers: string[] ;
-  public attributeNames: string[] = ["id", "offerName", "state", "price", "comment"];
+  public attributeNames: string[];
 
   public parentTable:Table;
   public offers = [];
@@ -39,6 +39,7 @@ export class DetailsComponent{
   constructor(private oaspI18n:OaspI18n, private detailsRestService: DetailsRestService){
       this.i18n = oaspI18n.getI18n();
       this.headers = [this.i18n.details.number,this.i18n.details.description, this.i18n.details.state, this.i18n.details.price, this.i18n.details.comment];
+      this.attributeNames = ["id", "offerName", "state", "price", "comment"];
   }
 
   ngOnInit(){
