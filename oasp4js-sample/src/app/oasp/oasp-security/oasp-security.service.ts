@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { User } from '../../main/models/user/User.model';
 import { BusinessOperations } from '../../main/BusinessOperations';
-import {HttpClient} from './http-client.service'
+import { HttpClient } from './http-client.service'
 
 export var Headerlogged = false;
 export var sessionExpired = false;

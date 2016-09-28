@@ -1,6 +1,5 @@
 import { Component } from '@angular/core'
 import { User } from '../../models/user/User.model';
-import { Router } from '@angular/router'
 import { SecurityService } from '../../../oasp/oasp-security/oasp-security.service';
 import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
 

@@ -83,6 +83,12 @@
                             sideDishName : 'Side dish name',
                             available : 'Available',
                             assigned : 'Assigned'
+                        },
+
+                        notFound: {
+                          title: '404 Error',
+                          subtitle: 'Bad URL or page does not exist',
+                          backBtn: 'Back to login'
                         }
                     },
                     de : {
@@ -169,6 +175,12 @@
                             sideDishName : 'Beilage Name',
                             available : 'Verfügbar',
                             assigned : 'Zugewiesen'
+                        },
+
+                        notFound: {
+                          title: '404 Fehler',
+                          subtitle: 'Bad URL oder Seite existiert nicht',
+                          backBtn: 'Zurück zur Anmeldung'
                         }
                     },
                     es : {
@@ -254,6 +266,12 @@
                             sideDishName : 'Guarnición',
                             available : 'Disponible',
                             assigned : 'Asignado'
+                        },
+
+                        notFound: {
+                          title: '404 Error',
+                          subtitle: 'URL errónea o la página no existe',
+                          backBtn: 'Volver al acceso'
                         }
                     }
                 }

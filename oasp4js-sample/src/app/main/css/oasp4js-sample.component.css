@@ -5879,7 +5879,7 @@ button.close {
   border: 0;
   -webkit-appearance: none;
 }
-/*.modal-open {
+.modal-open {
   overflow: hidden;
 }
 .modal {
@@ -6002,7 +6002,7 @@ button.close {
   .modal-lg {
     width: 900px;
   }
-}*/
+}
 
 
 .tooltip {
@@ -7156,6 +7156,8 @@ tr.selected {
 
 .table th a {
   float:right;
+  width: 16px;
+  height: 16px;
   margin-right: 5px;
   text-decoration: none;
 }
@@ -7273,4 +7275,28 @@ tr.selected {
     margin-left: -50px;
     width: 50px;
     height: 35px;
+}
+
+/************** ICONS ******************/
+
+.IconArrowDown{
+  background-image: url('../img/arrow_carrot-down.png');
+  background-position: center;
+}
+
+.IconArrowUp{
+  background-image: url('../img/arrow_carrot-up.png');
+  background-position: center;
+}
+
+.IconArrowLeft{
+  background-image: url('../img/arrow_left.png');
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.IconArrowRight{
+  background-image: url('../img/arrow_right.png');
+  background-position: center;
+  background-repeat: no-repeat;
 }

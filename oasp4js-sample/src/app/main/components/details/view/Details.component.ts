@@ -15,7 +15,7 @@ export class DetailsComponent{
   resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
   closeWindowEvent = new EventEmitter();
 
-  public headers: string[] ;
+  public headers: string[];
   public attributeNames: string[];
 
   public parentTable:Table;

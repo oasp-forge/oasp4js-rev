@@ -26,10 +26,10 @@ export class HeaderComponent {
     }
 
     changeLanguage(code){
-      this.oaspI18n.changeLanguage(code);
+        this.oaspI18n.changeLanguage(code);
     }
 
     logOff(){
-      this.securityService.logOut();
+        this.securityService.logOut();
     }
 }
