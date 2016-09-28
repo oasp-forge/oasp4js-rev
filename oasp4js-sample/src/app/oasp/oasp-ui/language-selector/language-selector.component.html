@@ -5,7 +5,7 @@
     <span class="caret"></span></button>
 
   <ul class="my-dropdown" [hidden] = "dropmenu">
-    <li *ngFor ="let option of optionLanguages"(click) ="changeLanguage(option)">
+    <li *ngFor ="let option of optionLanguages" (click) ="changeLanguage(option)">
         <a> <img  class ="icon" [src]="option.iconUrl"> {{option.name}}</a>
     </li>
   </ul>

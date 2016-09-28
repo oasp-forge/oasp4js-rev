@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { User } from '../../main/models/user/User.model';
 import { BusinessOperations } from '../../main/BusinessOperations';
-import {HttpClient} from './http-client.service'
+import { HttpClient } from './http-client.service'
 
 export var Headerlogged = false;
 export var sessionExpired = false;
@@ -25,81 +25,81 @@ export class SecurityService{
     }
 
     funcionLogin(u){
-    let formData={
-      j_username: u.username,
-      j_password: u.password
-    };
+        let formData={
+          j_username: u.username,
+          j_password: u.password
+        };
 
-    this.http.post(this.BO.loginPOST,JSON.stringify(formData))
-               .map(res => JSON.stringify(res))
-               .subscribe(data => {
+        this.http.post(this.BO.loginPOST,JSON.stringify(formData))
+                   .map(res => JSON.stringify(res))
+                   .subscribe(data => {
 
-                 this.http.get(this.BO.csrfGET)
-                    .map(res => res.json())
-                    .subscribe(data => {
-                        Headerlogged = true
-                        csrfToken = data.token;
-                        sessionExpired = false;
-                        this.http.addDefaultHeader('X-CSRF-TOKEN', csrfToken)
-                        Headerlogged = true
-                        //GET USER FROM BACKEND CURRENTUSER FUNCTION
-                        user = new User(0,"notUserYet", "notPasswordYet", 3);
-                        if(user.permission == 1 || 3){
-                            this.router.navigate(['/Tables'])
-                        }
-                        if(user.permission == 2){
-                            this.router.navigate(["/Kitchen"])
-                        }
+                     this.http.get(this.BO.csrfGET)
+                        .map(res => res.json())
+                        .subscribe(data => {
+                            Headerlogged = true
+                            csrfToken = data.token;
+                            sessionExpired = false;
+                            this.http.addDefaultHeader('X-CSRF-TOKEN', csrfToken)
+                            Headerlogged = true
+                            //GET USER FROM BACKEND CURRENTUSER FUNCTION
+                            user = new User(0,"notUserYet", "notPasswordYet", 3);
+                            if(user.permission == 1 || 3){
+                                this.router.navigate(['/Tables'])
+                            }
+                            if(user.permission == 2){
+                                this.router.navigate(["/Kitchen"])
+                            }
 
-                        // this.http.get(this.BO.userGET)
-                        //    .map(res => res.json())
-                        //    .subscribe(data => {
-                        //    })
-                    })
-    },
-    err => {errorLogin = false})
-    }
+                            // this.http.get(this.BO.userGET)
+                            //    .map(res => res.json())
+                            //    .subscribe(data => {
+                            //    })
+                        })
+        },
+        err => {errorLogin = false})
+        }
 
     getLogged(){
-      return Headerlogged;
+        return Headerlogged;
     }
 
     getcsrfToken() {
-      return csrfToken;
+        return csrfToken;
     }
 
     geterrorLogin(){
-     return errorLogin;
+        return errorLogin;
     }
 
     closeErrorLogin(){
-      errorLogin = true;
+        errorLogin = true;
     }
 
     getUser(){
-      return user;
+        return user;
     }
 
     functionsesionExpired(){
-      clearInterval(this.timer);
-      this.timer = setInterval(() => {
-        if(this.getLogged() === true){
-          sessionExpired = true
-          this.logOut();
-        }
-    }, this.mins*15);
+        clearInterval(this.timer);
+        this.timer = setInterval(() => {
+            if(this.getLogged() === true){
+            sessionExpired = true
+            this.logOut();
+            }
+        }, this.mins*15);
     }
 
     getSessionExpired(){
-      return sessionExpired;
+        return sessionExpired;
     }
 
     logOut(){
-    Headerlogged = false;
-    this.http.post(this.BO.logOutPost, JSON.stringify({j_username: "", j_password: ""}))
-             .map(res => JSON.stringify(res))
-             .subscribe(data => {})
-    this.router.navigate(["/"])
+        Headerlogged = false;
+        this.http.post(this.BO.logOutPost, JSON.stringify({j_username: "", j_password: ""}))
+                .map(res => JSON.stringify(res))
+                .subscribe(data => {})
+        this.router.navigate(["/"])
     }
 
 }

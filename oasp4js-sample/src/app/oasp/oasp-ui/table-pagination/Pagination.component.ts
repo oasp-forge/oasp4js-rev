@@ -35,22 +35,21 @@ export class PaginationComponent{
   }
 
   changePage(page: number, view: number){
-
-    if(page > 0){
-      this.currentPage = page;
-      if(page < this.pageView){
-        this.pageView -= 4;
+      if(page > 0){
+          this.currentPage = page;
+          if(page < this.pageView){
+              this.pageView -= 4;
+          }
+          if(page > this.pageView + 3){
+              this.pageView += 4;
+          }
       }
-      if(page > this.pageView + 3){
-        this.pageView += 4;
+
+      if(view > 0){
+          this.pageView = view;
       }
-    }
 
-    if(view > 0){
-      this.pageView = view;
-    }
-
-    this.eventCurrentPage.emit(this.currentPage);
+      this.eventCurrentPage.emit(this.currentPage);
   }
 
 }

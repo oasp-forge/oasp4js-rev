@@ -34,10 +34,10 @@ export class SearchPanelComponent{
   }
 
   doSearch(){
-    let values = [];
-    for(let i = 0 ; i < this.search.length ; i++ ){
-        values.push(this.search[i].value);
-    }
-    this.searchValues.emit(values);
+      let values = [];
+      for(let i = 0 ; i < this.search.length ; i++ ){
+          values.push(this.search[i].value);
+      }
+      this.searchValues.emit(values);
   }
 }

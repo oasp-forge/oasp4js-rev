@@ -15,8 +15,8 @@ export class CrudComponent{
 
   public tables:Table[];
   public headers: string[];
-  public attributeNames: string[] = ["number", "state", "waiter"];
-  public states: string[] = ["FREE", "OCCUPIED", "RESERVED"]
+  public attributeNames: string[];
+  public states: string[];
 
   public hideModalDialog = false;
   public numItems: number;
@@ -40,7 +40,9 @@ export class CrudComponent{
           this.i18n = oaspI18n.getI18n();
           this.loadTables();
           this.myState = -1;
-          this.headers = [this.i18n.tables.number, this.i18n.tables.state, this.i18n.tables.waiter]
+          this.headers = [this.i18n.tables.number, this.i18n.tables.state, this.i18n.tables.waiter];
+          this.attributeNames = ["number", "state", "waiter"];
+          this.states = ["FREE", "OCCUPIED", "RESERVED"];
       }
   }
 

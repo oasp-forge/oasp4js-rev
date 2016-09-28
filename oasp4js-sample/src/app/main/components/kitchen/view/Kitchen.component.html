@@ -53,8 +53,8 @@
             </grid-table>
         </div>
 
-        <button (click) ="assign()" [disabled] = "selectedAvailableCommand == undefined" class ="btn commandButton glyphicon glyphicon-arrow-right"></button>
-        <button  (click) ="return()" [disabled] = "selectedAssignedCommand == undefined" class ="btn commandButtonReturn glyphicon glyphicon-arrow-left"></button>
+        <button (click) ="assign()" [disabled] = "selectedAvailableCommand == undefined" class ="btn commandButton glyphicon IconArrowRight"></button>
+        <button  (click) ="return()" [disabled] = "selectedAssignedCommand == undefined" class ="btn commandButtonReturn glyphicon IconArrowLeft"></button>
 
         <div class = "commandTable">
             <h3> {{i18n.kitchen.assigned}} </h3>

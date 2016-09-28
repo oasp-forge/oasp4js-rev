@@ -24,7 +24,6 @@ export class CrudRestService {
 
   applyFilters(filters){
       if(filters[0].length > 0 || filters[1].length > 0 || filters[2].length > 0){
-
           let searchCriteria = {
               number : filters[0],
               state : filters[1] === "" ? null : filters[1],
@@ -35,8 +34,8 @@ export class CrudRestService {
       } else {
           let pageData = {
               pagination: {
-                  size: 4,
                   page: 1,
+                  size: 4,
                   total: true
               }};
           return this.http.post(this.BO.tableSearchPOST, JSON.stringify(pageData))
