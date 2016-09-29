@@ -20,7 +20,8 @@ import { SearchPanelComponent } from './oasp-ui/search-panel/Search-panel.compon
     LanguageSelector,
     ModalDialogComponent,
     PaginationComponent,
-    SearchPanelComponent
+    SearchPanelComponent,
+    Collapse
   ],
   imports: [
     CommonModule
@@ -35,7 +36,8 @@ import { SearchPanelComponent } from './oasp-ui/search-panel/Search-panel.compon
     LanguageSelector,
     ModalDialogComponent,
     PaginationComponent,
-    SearchPanelComponent
+    SearchPanelComponent,
+    Collapse
   ]
 })
 export class OaspModule { }

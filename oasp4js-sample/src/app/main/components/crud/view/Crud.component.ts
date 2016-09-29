@@ -47,7 +47,11 @@ export class CrudComponent{
   }
 
   loadTables(){
-      this.crudRestService.getTables(this.pageData).subscribe(data => {this.numItems = data.pagination.total; this.tables = data.result});
+      this.crudRestService.getTables(this.pageData)
+          .subscribe(data => {
+            this.numItems = data.pagination.total;
+            this.tables = data.result
+          });
   }
 
   openEditModal(){
