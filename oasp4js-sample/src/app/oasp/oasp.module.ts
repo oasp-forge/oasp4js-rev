@@ -12,13 +12,16 @@ import { OaspI18n } from './oasp-i18n/oasp-i18n.service';
 import { HttpClient } from './oasp-security/http-client.service';
 import { SecurityService } from './oasp-security/oasp-security.service';
 
+import { SearchPanelComponent } from './oasp-ui/search-panel/Search-panel.component'
 
 @NgModule({
   declarations: [
     GridTableComponent,
     LanguageSelector,
     ModalDialogComponent,
-    PaginationComponent
+    PaginationComponent,
+    SearchPanelComponent,
+    Collapse
   ],
   imports: [
     CommonModule
@@ -32,7 +35,9 @@ import { SecurityService } from './oasp-security/oasp-security.service';
     GridTableComponent,
     LanguageSelector,
     ModalDialogComponent,
-    PaginationComponent
+    PaginationComponent,
+    SearchPanelComponent,
+    Collapse
   ]
 })
 export class OaspModule { }
