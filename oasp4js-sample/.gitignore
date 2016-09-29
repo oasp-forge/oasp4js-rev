@@ -34,3 +34,6 @@ Thumbs.db
 
 #ZIPs
 *.zip
+
+#BusinessOperations
+/src/app/main/BusinessOperations.ts

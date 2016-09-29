@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class BusinessOperations {
 
-  private serverPath = 'http://localhost:8081/oasp4j-sample-server/';
+  private serverPath = 'http://10.68.8.26:8081/oasp4j-sample-server/';
   public tablemgn = this.serverPath + 'services/rest/tablemanagement/v1/';
   public offermgn = this.serverPath + 'services/rest/offermanagement/v1/';
   public salesmgn = this.serverPath + 'services/rest/salesmanagement/v1/';
