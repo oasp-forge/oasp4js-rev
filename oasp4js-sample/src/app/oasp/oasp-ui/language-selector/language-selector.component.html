@@ -1,9 +1,12 @@
 <div class="dropdown">
-  <button class="userList" type="button" (click) ="openCloseMenu()">
+  <button
+   class="userList btn-default"
+   type="button"
+   (click) ="openCloseMenu()">
     <img  class ="icon" [src]="currentLanguage.iconUrl">
       {{currentLanguage.name}}
-    <span class="caret"></span></button>
-
+    <span class="caret"></span>
+  </button>
   <ul class="my-dropdown" [hidden] = "dropmenu">
     <li *ngFor ="let option of optionLanguages" (click) ="changeLanguage(option)">
         <a> <img  class ="icon" [src]="option.iconUrl"> {{option.name}}</a>
@@ -16,7 +19,6 @@
   [modal]=true
   [TITLE]="i18n.header.confirm.title"
   class="modaldialog">
-
     <p>
         {{i18n.header.confirm.bodyMsg1}}
     </p>

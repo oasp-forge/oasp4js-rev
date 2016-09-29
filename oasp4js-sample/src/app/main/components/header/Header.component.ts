@@ -4,7 +4,6 @@ import { User } from '../../models/user/User.model';
 import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
 import { SecurityService } from '../../../oasp/oasp-security/oasp-security.service'
 
-
 @Component({
     selector: 'header',
     templateUrl: 'Header.component.html',
@@ -12,13 +11,14 @@ import { SecurityService } from '../../../oasp/oasp-security/oasp-security.servi
 })
 
 export class HeaderComponent {
+    public isCollapsed: boolean = true;
     logged: boolean;
     user: User;
     dropmenu:boolean;
     i18n;
     languages;
 
-    constructor(private securityService:SecurityService, private oaspI18n: OaspI18n){
+    constructor(private securityService:SecurityService, private oaspI18n: OaspI18n) {
         this.i18n = oaspI18n.getI18n();
         this.languages = languages;
         this.logged = false;
@@ -31,5 +31,7 @@ export class HeaderComponent {
 
     logOff(){
         this.securityService.logOut();
+        this.isCollapsed = true;
     }
+
 }

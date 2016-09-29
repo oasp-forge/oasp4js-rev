@@ -33,12 +33,11 @@ export class SecurityService{
         this.http.post(this.BO.loginPOST,JSON.stringify(formData))
                    .map(res => JSON.stringify(res))
                    .subscribe(data => {
-
                      this.http.get(this.BO.csrfGET)
-                        .map(res => res.json())
+                        .map(res => {})
                         .subscribe(data => {
                             Headerlogged = true
-                            csrfToken = data.token;
+                            // csrfToken = data.token;
                             sessionExpired = false;
                             this.http.addDefaultHeader('X-CSRF-TOKEN', csrfToken)
                             Headerlogged = true

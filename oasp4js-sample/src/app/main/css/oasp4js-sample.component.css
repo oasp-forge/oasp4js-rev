@@ -6999,9 +6999,9 @@ tr.selected {
   margin-left: -30px !important;
 }
 
-.header-right button{
+/*.header-right button{
   margin-right : 50px;
-}
+}*/
 
 .header-restaurant .header-title {
   float: left !important;
@@ -7078,7 +7078,7 @@ tr.selected {
   list-style: none;
 }
 
-.header-restaurant .header-right .userList{
+.nav .navbar-nav .navbar-right .dropdown .userList {
   width: auto;
   display: -webkit-inline-box !important;
   margin-top:7px !important;
@@ -7087,9 +7087,26 @@ tr.selected {
   border: none !important;
   font-size: 16px !important;
 }
+/*.header-restaurant .header-right .userList{
+  width: auto;
+  display: -webkit-inline-box !important;
+  margin-top:7px !important;
+  margin-right: 70px !important;
+  background: none !important;
+  border: none !important;
+  font-size: 16px !important;
+}*/
+
+.userList {
+    vertical-align: middle;
+    border:none;
+    color: white !important;
+    background:none !important;
+}
 
 .userList:hover {
     color: white !important;
+    background:none !important;
 }
 
 .userList:hover {
@@ -7100,7 +7117,22 @@ tr.selected {
     outline: none !important;
 }
 
-.header-restaurant .header-right .dropdown {
+.nav .navbar-nav .navbar-right .dropdown {
+  display: -webkit-inline-box !important;
+  color: grey !important;
+}
+
+.nav .navbar-nav .navbar-right .dropdown ul {
+  background-color: white !important;
+  font-size: 16px !important;
+  z-index:100;
+}
+
+.nav .navbar-nav .navbar-right .dropdown ul:hover {
+    background-color: #f9f9f9 !important;
+}
+
+/*.header-restaurant .header-right .dropdown {
   display: -webkit-inline-box !important;
   color: grey !important;
 }
@@ -7112,7 +7144,7 @@ tr.selected {
 
 .header-restaurant .header-right .dropdown ul:hover {
     background-color: #f9f9f9 !important;
-}
+}*/
 
 .my-dropdown{
   position: absolute;
@@ -7120,7 +7152,7 @@ tr.selected {
   left: 0;
   z-index: 1000;
   float: left;
-  min-width: 160px;
+  min-width: 120px;
   margin: 2px 0 0;
   list-style: none;
   background-color: #fff;
@@ -7178,7 +7210,7 @@ tr.selected {
 .modaldialog {
   position:absolute;
   left: 0px;
-  top: 0px;
+  top: 5%;
   width:100%;
   height:100%;
 }

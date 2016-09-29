@@ -9,6 +9,7 @@ import { OaspModule } from './oasp/oasp.module'
 import { CrudComponent } from './main/components/crud/view/Crud.component'
 import { DetailsComponent } from './main/components/details/view/Details.component'
 import { HeaderComponent } from './main/components/header/Header.component'
+import { Collapse } from './oasp/oasp-ui/directives/collapse.component'
 import { KitchenComponent } from './main/components/kitchen/view/Kitchen.component'
 import { LoginComponent } from './main/components/login/login.component'
 import { NotFoundComponent } from './main/components/not-found/not-found.component'
@@ -33,7 +34,8 @@ import { SearchPanelComponent } from './oasp/oasp-ui/search-panel/Search-panel.c
     LoginComponent,
     NotFoundComponent,
     AppComponent,
-    SearchPanelComponent
+    SearchPanelComponent,
+    Collapse
   ],
   imports: [
     BrowserModule,

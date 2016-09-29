@@ -1,4 +1,52 @@
-<div class ="header-restaurant">
+<div class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <div class="navbar-brand">{{i18n.header.title}}</div>
+    <button
+      id="bootstrapHeaderHutton"
+      class="navbar-toggle"
+      data-toggle ="collapse"
+      (click)="isCollapsed = !isCollapsed"
+      data-target=".navHeaderCollapse">
+        <span class="sr-only"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </button>
+    <div [collapse]="isCollapsed" id="navHeaderCollapseID" class="collapse navbar-collapse navHeaderCollapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li *ngIf="logged" role = "presentation">
+          <a [routerLink]="['/Tables']"> {{i18n.header.tablesTab}} </a>
+        </li>
+        <li *ngIf="logged" role = "presentation">
+          <a [routerLink]="['/Kitchen']"> {{i18n.header.kitchenTab}} </a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li style="margin-left:5px; margin-top:15px;" class="header-right">
+          <languageSelector
+            [list] ="languages"
+            (changeLanguageEvent) = "changeLanguage($event)">
+          </languageSelector>
+        </li>
+        <li style="margin-right:20px">
+          <div *ngIf="logged" style="margin-top:15px; color:#999;">
+            {{i18n.header.logged}} : {{user.username}}
+          </div>
+        </li>
+        <li>
+          <button type="button" class = "btn btn-success" style="margin-top:8px" *ngIf="logged" (click) = "logOff()">
+            {{i18n.buttons.logOffBtn}}
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <div class ="header-restaurant">
     <label class ="header-title"> <a> {{i18n.header.title}} </a> </label>
 
     <ul *ngIf="logged" class = "header-tabs">
@@ -18,4 +66,4 @@
       <button type="button" class = "btn btn-success" *ngIf="logged" (click) = "logOff()"> {{i18n.buttons.logOffBtn}} </button>
     </div>
 
-</div>
+</div> -->
