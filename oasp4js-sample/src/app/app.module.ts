@@ -18,11 +18,6 @@ import { CrudRestService } from './main/components/crud/service/Crud.service.res
 import { DetailsRestService } from './main/components/details/service/Details.service.rest'
 import { KitchenRestService } from './main/components/kitchen/service/Kitchen.service.rest'
 
-import { SearchPanelComponent } from './oasp/oasp-ui/search-panel/Search-panel.component'
-
-
-
-
 @NgModule({
   declarations: [
     Oasp4jsSampleAppComponent,
@@ -32,8 +27,7 @@ import { SearchPanelComponent } from './oasp/oasp-ui/search-panel/Search-panel.c
     KitchenComponent,
     LoginComponent,
     NotFoundComponent,
-    AppComponent,
-    SearchPanelComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
