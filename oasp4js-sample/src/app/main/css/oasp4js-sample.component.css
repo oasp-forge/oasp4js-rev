@@ -7065,16 +7065,16 @@ tr.selected {
 
 /*-------------DROPDOWNLIST-------------*/
 
-.header-right .icon {
+.icon {
   height: 16px !important;
   width: 20px !important;
 }
 
-.header-right .languageSelection {
+.languageSelection {
   background-color: white;
 }
 
-.header-right .languageList li {
+.languageList li {
   list-style: none;
 }
 
@@ -7100,7 +7100,7 @@ tr.selected {
 .userList {
     vertical-align: middle;
     border:none;
-    color: white !important;
+    color: grey !important;
     background:none !important;
 }
 
