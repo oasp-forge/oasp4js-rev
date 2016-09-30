@@ -1,11 +1,11 @@
 <div *ngIf="http.getLoading()" class ="maskLoading">
 </div>
 
-  <header style="z-index:10" [logged]="securityService.getLogged()" [user] ="securityService.getUser()"></header>
+  <header style="z-index:1; position:relative;" [logged]="securityService.getLogged()" [user] ="securityService.getUser()"></header>
 
 
-  <div class = "app-body">
-      <router-outlet></router-outlet>
+  <div class="app-body">
+      <router-outlet style="position:relative;"></router-outlet>
   </div>
 
   <label class ="footer">{{i18n.footer.title}}</label>
