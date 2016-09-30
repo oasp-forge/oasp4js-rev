@@ -47,6 +47,7 @@ export class KitchenComponent{
                                 for( let i = 0; i < data.result.length ; i++){
                                     this.offerList.push(data.result[i].name)
                                 }
+                                this.kitchenRestService.disableLoading();
                             });
 
             this.kitchenRestService
@@ -60,6 +61,7 @@ export class KitchenComponent{
                                         this.sideDishNameList.push(data.result[i].description)
                                     }
                                 }
+                                this.kitchenRestService.disableLoading();
                             });
             this.getLists();
             this.headers = [this.i18n.kitchen.id,this.i18n.kitchen.orderID, this.i18n.kitchen.offerName, this.i18n.kitchen.mealName, this.i18n.kitchen.sideDishName];
@@ -74,6 +76,7 @@ export class KitchenComponent{
                 this.kitchenRestService.getOrderPositions().subscribe(data => {
                     this.orderPositions = data
                     this.fillKitchenTables();
+                    this.kitchenRestService.disableLoading();
                 });
             });
         });
@@ -131,6 +134,7 @@ export class KitchenComponent{
                                                }
                                           }
                                           this.fillKitchenTables();
+                                          this.kitchenRestService.disableLoading();
                                       });
 
     }

@@ -11,6 +11,10 @@ export class KitchenRestService {
   constructor(private http:HttpClient) {
   }
 
+  disableLoading(){
+    this.http.disableLoading();
+  }
+
   getOffers(pageData){
     return this.http.post(this.BO.offerSearchPOST, JSON.stringify(pageData))
                     .map(res =>  res.json())
@@ -54,41 +58,41 @@ export class KitchenRestService {
     obj.cookId = 1;
     this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
              .map(res =>  res.json())
-             .subscribe()
+             .subscribe(data => {this.http.disableLoading()})
   }
 
   returnOrderPosition(obj){
     obj.cookId = null;
     this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
              .map(res =>  res.json())
-             .subscribe()
+             .subscribe(data => {this.http.disableLoading()})
   }
 
   doneOrderPosition(obj){
     obj.state = "PREPARED"
     this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
              .map(res =>  res.json())
-             .subscribe()
+             .subscribe(data => {this.http.disableLoading()})
   }
 
   rejectOrderPosition(obj){
     obj.state = "CANCELLED"
     this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
              .map(res =>  res.json())
-             .subscribe()
+             .subscribe(data => {this.http.disableLoading()})
     }
 
   moveOrderPosition(obj, cookId){
       obj.cookId = cookId;
       this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
                                .map(res =>  res.json())
-                               .subscribe()
+                               .subscribe(data => {this.http.disableLoading()})
   }
 
   finishOrderPosition(obj, state){
       obj.state = state
       this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
                                .map(res =>  res.json())
-                               .subscribe()
+                               .subscribe(data => {this.http.disableLoading()})
   }
 }

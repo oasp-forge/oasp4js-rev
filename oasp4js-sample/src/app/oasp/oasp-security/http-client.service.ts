@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core'
 import {Http, Headers} from '@angular/http'
 
+export var loading: boolean = false;
+
 @Injectable()
 export class HttpClient {
     private headers: Headers
-    private loading: boolean = false;
 
     constructor(private http: Http) {
       this.headers = new Headers();
@@ -16,22 +17,24 @@ export class HttpClient {
     }
 
     get(url) {
-        this.loading = true;
+        loading = true;
         let response = this.http.get(url);
-        this.loading = false;
         return response;
     }
 
     post(url, data) {
-        this.loading = true;
+        loading = true;
         let response = this.http.post(url, data, {
           headers: this.headers
         });
-        this.loading = false;
         return response;
     }
 
     getLoading(){
-        return this.loading;
+        return loading;
+    }
+
+    disableLoading(){
+        loading = false;
     }
 }

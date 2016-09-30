@@ -51,6 +51,7 @@ export class CrudComponent{
           .subscribe(data => {
             this.numItems = data.pagination.total;
             this.tables = data.result
+            this.crudRestService.disableLoading();
           });
   }
 
@@ -63,7 +64,9 @@ export class CrudComponent{
       this.crudRestService.applyFilters(filters)
                                     .subscribe(data =>{
                                         this.numItems = data.pagination.total;
-                                        this.tables = data.result}
+                                        this.tables = data.result;
+                                        this.crudRestService.disableLoading();
+                                      }
                                     );
   }
 

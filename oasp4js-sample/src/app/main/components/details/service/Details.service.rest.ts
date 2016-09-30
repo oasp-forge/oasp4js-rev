@@ -11,6 +11,10 @@ export class DetailsRestService {
   BO:BusinessOperations = new BusinessOperations();
   constructor(private securityService: SecurityService, private http:HttpClient) { }
 
+  disableLoading(){
+    this.http.disableLoading();
+  }
+
   getPositions(tableId){
     var data = {
       state : "CLOSED",
@@ -36,6 +40,6 @@ export class DetailsRestService {
     }
     this.http.post(this.BO.orderPOST, JSON.stringify(data))
              .map(res =>  res.json())
-             .subscribe(data => {})
+             .subscribe(data => {this.http.disableLoading()})
   }
 }

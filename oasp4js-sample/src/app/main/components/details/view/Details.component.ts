@@ -44,14 +44,19 @@ export class DetailsComponent{
 
   ngOnInit(){
       this.loadPositions();
-      this.detailsRestService.getMenus().subscribe(data => this.offers = data);
+      this.detailsRestService.getMenus().subscribe(data => {
+                                                            this.offers = data
+                                                            this.detailsRestService.disableLoading();
+                                                          });
   }
 
   loadPositions(){
       this.detailsRestService.getPositions(this.parentTable.id)
                                             .subscribe(data => {
                                                                 this.positions = data.result[0].positions;
-                                                                this.order = data.result[0].order});
+                                                                this.order = data.result[0].order;
+                                                                this.detailsRestService.disableLoading();
+                                                              });
   }
 
   openMenu(){

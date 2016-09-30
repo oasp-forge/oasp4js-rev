@@ -12,6 +12,10 @@ export class CrudRestService {
   BO:BusinessOperations = new BusinessOperations();
   constructor(private securityService: SecurityService, private http:HttpClient) { }
 
+  disableLoading(){
+    this.http.disableLoading();
+  }
+
   getTables(paginationData){
       return this.http.post(this.BO.tableSearchPOST, JSON.stringify(paginationData))
                       .map(res =>  res.json())
@@ -46,6 +50,7 @@ export class CrudRestService {
   saveTable(table){
     let post = this.http.post(this.BO.tablesPOST, JSON.stringify(table))
                         .map(res =>  res.json())
-                        .subscribe(data => { });
+                        .subscribe(data => { this.http.disableLoading()},
+                                   err =>  { this.http.disableLoading()});
   }
 }

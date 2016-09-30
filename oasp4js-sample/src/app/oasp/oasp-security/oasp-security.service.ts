@@ -40,12 +40,14 @@ export class SecurityService{
                       csrfToken = data.token;
                       sessionExpired = false;
                       user = new User(0,"notUserYet", "notPasswordYet", 3);
+
                       if(user.permission == 1 || 3){
                           this.router.navigate(['/Tables'])
                       }
                       if(user.permission == 2){
                           this.router.navigate(["/Kitchen"])
                       }
+                      this.http.disableLoading();
 
                       // this.http.get(this.BO.userGET)
                       //    .map(res => res.json())
@@ -94,7 +96,7 @@ export class SecurityService{
         Headerlogged = false;
         this.http.post(this.BO.logOutPost, JSON.stringify({j_username: "", j_password: ""}))
                 .map(res => JSON.stringify(res))
-                .subscribe(data => {})
+                .subscribe(data => {this.http.disableLoading()})
         this.router.navigate(["/"])
     }
 
