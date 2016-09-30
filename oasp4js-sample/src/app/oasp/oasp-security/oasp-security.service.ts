@@ -30,31 +30,28 @@ export class SecurityService{
           j_password: u.password
         };
 
-        this.http.post(this.BO.loginPOST,JSON.stringify(formData))
-                   .map(res => JSON.stringify(res))
-                   .subscribe(data => {
-                     this.http.get(this.BO.csrfGET)
-                        .map(res => {})
-                        .subscribe(data => {
-                            Headerlogged = true
-                            // csrfToken = data.token;
-                            sessionExpired = false;
-                            this.http.addDefaultHeader('X-CSRF-TOKEN', csrfToken)
-                            Headerlogged = true
-                            //GET USER FROM BACKEND CURRENTUSER FUNCTION
-                            user = new User(0,"notUserYet", "notPasswordYet", 3);
-                            if(user.permission == 1 || 3){
-                                this.router.navigate(['/Tables'])
-                            }
-                            if(user.permission == 2){
-                                this.router.navigate(["/Kitchen"])
-                            }
+       this.http.post(this.BO.loginPOST,JSON.stringify(formData))
+            .map(res => JSON.stringify(res))
+            .subscribe(data => {
+              this.http.get(this.BO.csrfGET)
+                 .map(res => res.json())
+                 .subscribe(data => {
+                      Headerlogged = true
+                      csrfToken = data.token;
+                      sessionExpired = false;
+                      user = new User(0,"notUserYet", "notPasswordYet", 3);
+                      if(user.permission == 1 || 3){
+                          this.router.navigate(['/Tables'])
+                      }
+                      if(user.permission == 2){
+                          this.router.navigate(["/Kitchen"])
+                      }
 
-                            // this.http.get(this.BO.userGET)
-                            //    .map(res => res.json())
-                            //    .subscribe(data => {
-                            //    })
-                        })
+                      // this.http.get(this.BO.userGET)
+                      //    .map(res => res.json())
+                      //    .subscribe(data => {
+                      //    })
+                  })
         },
         err => {errorLogin = false})
         }
