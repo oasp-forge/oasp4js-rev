@@ -4,6 +4,7 @@ import {Http, Headers} from '@angular/http'
 @Injectable()
 export class HttpClient {
     private headers: Headers
+    private loading: boolean = false;
 
     constructor(private http: Http) {
       this.headers = new Headers();
@@ -15,12 +16,22 @@ export class HttpClient {
     }
 
     get(url) {
-      return this.http.get(url);
+        this.loading = true;
+        let response = this.http.get(url);
+        this.loading = false;
+        return response;
     }
 
     post(url, data) {
-      return this.http.post(url, data, {
-        headers: this.headers
-      });
+        this.loading = true;
+        let response = this.http.post(url, data, {
+          headers: this.headers
+        });
+        this.loading = false;
+        return response;
+    }
+
+    getLoading(){
+        return this.loading;
     }
 }
