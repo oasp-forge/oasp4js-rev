@@ -30,7 +30,9 @@ export class CrudComponent{
           size: 4,
           page: 1,
           total: true
-      }};
+      },
+      sort: [{name: "number", direction: "ASC"}]
+    };
 
   constructor(private securityService: SecurityService, private oaspI18n: OaspI18n, private crudRestService: CrudRestService){
       if(!this.securityService.getUser()){
@@ -68,6 +70,11 @@ export class CrudComponent{
                                         this.crudRestService.disableLoading();
                                       }
                                     );
+  }
+
+  sortColumnBy(sortParam){
+    this.pageData.sort = sortParam;
+    this.loadTables();
   }
 
   pagination(value){

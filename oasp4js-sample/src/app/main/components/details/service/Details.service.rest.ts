@@ -15,11 +15,7 @@ export class DetailsRestService {
     this.http.disableLoading();
   }
 
-  getPositions(tableId){
-    var data = {
-      state : "CLOSED",
-      tableId : tableId
-    };
+  getPositions(data){
     return this.http.post(this.BO.orderSearchPOST, JSON.stringify(data))
                     .map(res => res.json())
   }

@@ -29,12 +29,7 @@ export class DetailsComponent{
   public order;
   public i18n;
 
-  public pageData = {
-      pagination: {
-          size: 4,
-          page: 1,
-          total: true
-      }};
+  public pageData;
 
   constructor(private oaspI18n:OaspI18n, private detailsRestService: DetailsRestService){
       this.i18n = oaspI18n.getI18n();
@@ -43,6 +38,16 @@ export class DetailsComponent{
   }
 
   ngOnInit(){
+      this.pageData = {
+          pagination: {
+              size: 4,
+              page: 1,
+              total: true
+          },
+          state : "CLOSED",
+          tableId : this.parentTable.id,
+          sort: [{name: "id", direction: "DESC"}]
+        };
       this.loadPositions();
       this.detailsRestService.getMenus().subscribe(data => {
                                                             this.offers = data
@@ -51,12 +56,17 @@ export class DetailsComponent{
   }
 
   loadPositions(){
-      this.detailsRestService.getPositions(this.parentTable.id)
+      this.detailsRestService.getPositions(this.pageData)
                                             .subscribe(data => {
                                                                 this.positions = data.result[0].positions;
                                                                 this.order = data.result[0].order;
                                                                 this.detailsRestService.disableLoading();
                                                               });
+  }
+
+  sortColumnBy(sortParam){
+    this.pageData.sort = sortParam;
+    this.loadPositions();
   }
 
   openMenu(){

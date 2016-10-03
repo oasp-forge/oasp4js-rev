@@ -26,9 +26,12 @@ export class KitchenComponent{
 
     public pageData = {
         pagination: {
+            size: 4,
             page: 1,
             total: true
-        }};
+        },
+        sort: [{name: "id", direction: "ASC"}]
+      };
 
     i18n;
 
@@ -137,6 +140,16 @@ export class KitchenComponent{
                                           this.kitchenRestService.disableLoading();
                                       });
 
+    }
+
+    sortColumnBy(sortParam){
+      this.pageData.sort = sortParam;
+      this.getLists();
+    }
+
+    sortAssignedColumnBy(sortParam){
+      this.pageData.sort = sortParam;
+      this.getLists();
     }
 
     availableSelected(value){

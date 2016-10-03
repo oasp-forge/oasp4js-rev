@@ -1,12 +1,10 @@
 import {Component, EventEmitter} from '@angular/core'
-import {GridtableService} from '../service/Grid-table.service'
 
 @Component({
   selector:'grid-table',
   templateUrl:'Grid-table.component.html',
   inputs:['headers', 'attributeNames', 'dataInput'],
-  outputs:['objSelected'],
-  providers:[GridtableService]
+  outputs:['objSelected', 'sort']
 })
 
 export class GridTableComponent{
@@ -21,10 +19,8 @@ export class GridTableComponent{
 
     public selection;
     objSelected = new EventEmitter();
+    sort = new EventEmitter();
     public sortIconStyle = [];
-
-    constructor(private gridtableService : GridtableService){
-    }
 
     ngOnChanges(){
         this.attributesNames = this.attributeNames;
@@ -38,16 +34,18 @@ export class GridTableComponent{
         }
     }
 
-    sortColumn(column:number, name:string){
+    sortColumn(column:number, columnName:string){
         if(this.sortIconStyle[column] === "IconArrowUp"){
             this.sortIconStyle[column] = "IconArrowDown";
-            this.rowsData = this.gridtableService.getTablesOrderBy(-1, name, this.rowsData);
+            let sort = [{name: columnName, direction: "ASC"}];
+            this.sort.emit(sort);
         } else {
             for(let i = 0 ; i < this.tableHeaders.length; i++){
                 this.sortIconStyle[i] = "IconArrowDown";
             }
             this.sortIconStyle[column] = "IconArrowUp";
-            this.rowsData = this.gridtableService.getTablesOrderBy(1, name, this.rowsData);
+            let sort = [{name: columnName, direction: "DESC"}];
+            this.sort.emit(sort);
         }
     }
 

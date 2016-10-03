@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { GridTableComponent } from './oasp-ui/grid-table/view/Grid-table.component'
+import { GridTableComponent } from './oasp-ui/grid-table/Grid-table.component'
 
 import { Collapse } from './oasp-ui/directives/collapse.component.ts';
 import { LanguageSelector } from './oasp-ui/language-selector/language-selector.component'

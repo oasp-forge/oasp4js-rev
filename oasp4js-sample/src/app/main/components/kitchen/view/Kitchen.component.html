@@ -49,7 +49,8 @@
                 [headers] ="headers"
                 [attributeNames] = "attributeNames"
                 [dataInput] = "availableCommands"
-                (objSelected) = "availableSelected($event)">
+                (objSelected) = "availableSelected($event)"
+                (sort) = "sortColumnBy($event)">
             </grid-table>
         </div>
 
@@ -62,7 +63,8 @@
                 [headers] ="headers"
                 [attributeNames] = "attributeNames"
                 [dataInput] = "assignedCommands"
-                (objSelected) = "assignedSelected($event)">
+                (objSelected) = "assignedSelected($event)"
+                (sort) = "sortAssignedColumnBy($event)">
              </grid-table>
 
              <button  (click) ="finish('PREPARED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-primary propertyMargin-left">{{i18n.buttons.doneBtn}}</button>
