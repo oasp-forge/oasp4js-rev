@@ -26,8 +26,8 @@ export class KitchenRestService {
   }
 
 
-  getOrderPositions(){
-    return this.http.get(this.BO.orderPositionParamsGET)
+  getOrderPositions(sort){
+    return this.http.get(this.BO.orderPositionParamsGET + "&name="+ sort[0].name + "&direction="+ sort[0].direction)
                     .map(res =>  res.json())
   }
 

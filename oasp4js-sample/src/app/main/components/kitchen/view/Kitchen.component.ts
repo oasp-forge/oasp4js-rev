@@ -26,12 +26,12 @@ export class KitchenComponent{
 
     public pageData = {
         pagination: {
-            size: 4,
             page: 1,
             total: true
-        },
-        sort: [{name: "id", direction: "ASC"}]
+        }
       };
+
+    public sort = [{name: "id", direction: "ASC"}]
 
     i18n;
 
@@ -76,7 +76,7 @@ export class KitchenComponent{
             this.offers = data.result
             this.kitchenRestService.getProducts(this.pageData).subscribe(data => {
                 this.products = data.result
-                this.kitchenRestService.getOrderPositions().subscribe(data => {
+                this.kitchenRestService.getOrderPositions(this.sort).subscribe(data => {
                     this.orderPositions = data
                     this.fillKitchenTables();
                     this.kitchenRestService.disableLoading();
@@ -143,12 +143,12 @@ export class KitchenComponent{
     }
 
     sortColumnBy(sortParam){
-      this.pageData.sort = sortParam;
+      this.sort = sortParam;
       this.getLists();
     }
 
     sortAssignedColumnBy(sortParam){
-      this.pageData.sort = sortParam;
+      this.sort = sortParam;
       this.getLists();
     }
 

@@ -46,7 +46,7 @@ export class DetailsComponent{
           },
           state : "CLOSED",
           tableId : this.parentTable.id,
-          sort: [{name: "id", direction: "DESC"}]
+          sort: [{name: "id", direction: "ASC"}]
         };
       this.loadPositions();
       this.detailsRestService.getMenus().subscribe(data => {
