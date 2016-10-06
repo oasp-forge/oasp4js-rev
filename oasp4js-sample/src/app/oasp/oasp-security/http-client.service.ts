@@ -1,18 +1,18 @@
-import {Injectable} from '@angular/core'
-import {Http, Headers} from '@angular/http'
+import {Injectable} from '@angular/core';
+import {Http, Headers} from '@angular/http';
 
-export var loading: boolean = false;
+export var loading = false;
 
 @Injectable()
 export class HttpClient {
-    private headers: Headers
+    private headers: Headers;
 
     constructor(private http: Http) {
       this.headers = new Headers();
-      this.headers.append('Content-Type', 'application/json');
+      this.headers.append('Content-Type',  'application/json');
     }
 
-    addDefaultHeader(name, value){
+    addDefaultHeader(name, value) {
       this.headers.append(name, value);
     }
 
@@ -30,11 +30,11 @@ export class HttpClient {
         return response;
     }
 
-    getLoading(){
+    getLoading() {
         return loading;
     }
 
-    disableLoading(){
+    disableLoading() {
         loading = false;
     }
 }

@@ -12,8 +12,7 @@ import { HttpClient} from '../../../oasp/oasp-security/http-client.service';
 })
 
 export class Oasp4jsSampleAppComponent {
-
-  public user: User = new User(0, "", "", 0);
+  
   public autoLogTitle = "Ooops...";
   public autoLogInfo = "Session time expired!";
 

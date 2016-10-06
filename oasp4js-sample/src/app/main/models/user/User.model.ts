@@ -7,35 +7,35 @@ export class User {
     public permission: number
   ) {  }
 
-  getId():number{
+  getId(): number {
     return this.id;
   }
 
-  setId(id:number){
+  setId(id: number) {
     this.id = id;
   }
 
-  getUsername():string{
+  getUsername(): string {
     return this.username;
   }
 
-  setUsername(username:string){
+  setUsername(username: string) {
     this.username = username;
   }
 
-  getPassword():string{
+  getPassword(): string {
     return this.password;
   }
 
-  setPassword(password:string){
+  setPassword(password: string) {
     this.password = password;
   }
 
-  getPermission():number{
+  getPermission(): number {
     return this.permission;
   }
 
-  setPermission(permission:number){
+  setPermission(permission: number) {
     this.permission = permission;
   }
 
