@@ -28,10 +28,11 @@ export class Oasp4jsSampleAppComponent {
     this.i18n = this.oaspI18n.getI18n();
   }
 
-  validateLogin(username, password){
-      this.securityService.funcionLogin(this.user);
+  validateLogin(form){
+      this.securityService.funcionLogin(form.value.username, form.value.password);
       this.securityService.functionsesionExpired();
   }
+
 
   hideAlertLogin(){
       this.securityService.closeErrorLogin();

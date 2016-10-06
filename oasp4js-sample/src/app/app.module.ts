@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing } from './app.routing';
-import { AppComponent } from './app.component.ts';
 import { OaspModule } from './oasp/oasp.module'
 
 import { CrudComponent } from './main/components/crud/view/Crud.component'
@@ -26,8 +25,7 @@ import { KitchenRestService } from './main/components/kitchen/service/Kitchen.se
     HeaderComponent,
     KitchenComponent,
     LoginComponent,
-    NotFoundComponent,
-    AppComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

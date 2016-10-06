@@ -16,7 +16,7 @@
   [modal]=true
   [TITLE]=autoLogInfo
   class="modaldialog">
-  <form (ngSubmit)="validateLogin()" #loginForm="ngForm">
+  <form (ngSubmit)="validateLogin(loginForm)" #loginForm="ngForm">
       <h2>{{i18n.loginPage.signIn}}</h2>
 
       <div class="cuadroUsuario">
@@ -29,12 +29,12 @@
           <div [hidden]="username.valid || username.pristine" class ="login-alert">
             {{i18n.loginPage.form.usernameError}}
           </div>
-          <input type="text" [placeholder]="i18n.loginPage.form.usernamePlaceHolder" [(ngModel)]="user.username" style="margin-bottom:10px;" #username="ngModel"  name="username" class="form-control" required>
+          <input type="text" [placeholder]="i18n.loginPage.form.usernamePlaceHolder" ngModel #username="ngModel"  name="username" class="form-control propertyMargin-bottom"  required>
 
           <div [hidden]="password.valid || password.pristine" class ="login-alert">
             {{i18n.loginPage.form.passwordError}}
           </div>
-          <input type="password" [placeholder]="i18n.loginPage.form.passwordPlaceHolder" [(ngModel)]="user.password" style="margin-bottom:10px;" #password="ngModel" name="password" class="form-control" required>
+          <input type="password" [placeholder]="i18n.loginPage.form.passwordPlaceHolder" ngModel #password="ngModel" name="password" class="form-control propertyMargin-bottom" required>
 
       </div>
       <button type="submit" class="btn btn-success" [disabled] ="!loginForm.form.valid">{{i18n.buttons.submitBtn}}</button>

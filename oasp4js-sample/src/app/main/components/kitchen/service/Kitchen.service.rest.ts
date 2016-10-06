@@ -54,18 +54,12 @@ export class KitchenRestService {
                       .map(res =>  res.json())
   }
 
-  assignOrderPosition(obj){
-    obj.cookId = 1;
-    this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
-             .map(res =>  res.json())
-             .subscribe(data => {this.http.disableLoading()})
-  }
-
   returnOrderPosition(obj){
     obj.cookId = null;
     this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
              .map(res =>  res.json())
-             .subscribe(data => {this.http.disableLoading()})
+             .subscribe(data => {this.http.disableLoading()},
+                        err =>  { this.http.disableLoading()})
   }
 
   doneOrderPosition(obj){
@@ -79,20 +73,21 @@ export class KitchenRestService {
     obj.state = "CANCELLED"
     this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
              .map(res =>  res.json())
-             .subscribe(data => {this.http.disableLoading()})
+             .subscribe(data => {this.http.disableLoading()},
+                        err =>  { this.http.disableLoading()})
     }
 
   moveOrderPosition(obj, cookId){
       obj.cookId = cookId;
-      this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
+      return this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
                                .map(res =>  res.json())
-                               .subscribe(data => {this.http.disableLoading()})
   }
 
   finishOrderPosition(obj, state){
       obj.state = state
       this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
                                .map(res =>  res.json())
-                               .subscribe(data => {this.http.disableLoading()})
+                               .subscribe(data => {this.http.disableLoading()},
+                                          err =>  { this.http.disableLoading()})
   }
 }

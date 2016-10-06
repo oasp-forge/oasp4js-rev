@@ -36,7 +36,6 @@ export class CrudComponent{
 
   constructor(private securityService: SecurityService, private oaspI18n: OaspI18n, private crudRestService: CrudRestService){
       if(!this.securityService.getUser()){
-        debugger
           this.security = false;
           this.securityService.logOut();
       }else {
@@ -55,7 +54,8 @@ export class CrudComponent{
             this.numItems = data.pagination.total;
             this.tables = data.result
             this.crudRestService.disableLoading();
-          });
+          },
+          err =>  { this.crudRestService.disableLoading()});
   }
 
   openEditModal(){
@@ -69,7 +69,8 @@ export class CrudComponent{
                                         this.numItems = data.pagination.total;
                                         this.tables = data.result;
                                         this.crudRestService.disableLoading();
-                                      }
+                                      },
+                                      err =>  { this.crudRestService.disableLoading()}
                                     );
   }
 

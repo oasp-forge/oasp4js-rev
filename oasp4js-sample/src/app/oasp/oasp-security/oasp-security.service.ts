@@ -24,10 +24,10 @@ export class SecurityService{
     constructor(private router: Router, private http:HttpClient) {
     }
 
-    funcionLogin(u){
+    funcionLogin(username, password){
         let formData={
-          j_username: u.username,
-          j_password: u.password
+          j_username: username,
+          j_password: password
         };
 
        this.http.post(this.BO.loginPOST,JSON.stringify(formData))
