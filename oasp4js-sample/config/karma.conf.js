@@ -68,6 +68,12 @@ module.exports = function (config) {
     preprocessors: {
       './src/test.ts': ['angular-cli']
     },
+    customLaunchers: {
+        Chrome_travis_ci: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
+    },
     remapIstanbulReporter: {
       reports: {
         html: 'coverage',
