@@ -53,7 +53,7 @@
 // // https://karma-runner.github.io/0.13/config/configuration-file.html
 //
 module.exports = function (config) {
-  config.set({
+  configuration = {
     basePath: '',
     frameworks: ['jasmine', 'angular-cli'],
     plugins: [
@@ -84,6 +84,8 @@ module.exports = function (config) {
       config: './angular-cli.json',
       environment: 'dev'
     },
+
+
     reporters: ['progress', 'karma-remap-istanbul'],
     port: 9876,
     colors: true,
@@ -91,5 +93,11 @@ module.exports = function (config) {
     autoWatch: true,
     browsers: ['Chrome'],
     singleRun: false
-  });
+  }
+
+if (process.env.TRAVIS) {
+  configuration.browsers = ['Chrome_travis_ci'];
+}
+
+config.set(configuration);
 };
