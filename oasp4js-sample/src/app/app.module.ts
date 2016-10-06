@@ -10,7 +10,7 @@ import { CrudComponent } from './main/components/crud/view/Crud.component'
 import { DetailsComponent } from './main/components/details/view/Details.component'
 import { HeaderComponent } from './main/components/header/Header.component'
 import { KitchenComponent } from './main/components/kitchen/view/Kitchen.component'
-import { LoginComponent } from './main/components/login/login.component'
+import { LoginComponent } from './main/components/login/Login.component'
 import { NotFoundComponent } from './main/components/not-found/not-found.component'
 import { Oasp4jsSampleAppComponent } from './main/components/main/oasp4js-sample.component'
 

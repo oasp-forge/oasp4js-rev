@@ -1,7 +1,7 @@
 import { ModuleWithProviders }  from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { LoginComponent } from './main/components/login/login.component'
+import { LoginComponent } from './main/components/login/Login.component'
 import { CrudComponent } from './main/components/crud/view/Crud.component'
 import { KitchenComponent } from './main/components/kitchen/view/Kitchen.component'
 import { NotFoundComponent } from './main/components/not-found/not-found.component'

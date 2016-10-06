@@ -36,6 +36,7 @@ export class CrudComponent{
 
   constructor(private securityService: SecurityService, private oaspI18n: OaspI18n, private crudRestService: CrudRestService){
       if(!this.securityService.getUser()){
+        debugger
           this.security = false;
           this.securityService.logOut();
       }else {
