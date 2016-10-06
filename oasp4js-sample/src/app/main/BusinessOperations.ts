@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class BusinessOperations {
 
-  private serverPath = 'http://localhost:8081/oasp4j-sample-server/';
+  public serverPath = 'http://localhost:8081/oasp4j-sample-server/';
   public tablemgn = this.serverPath + 'services/rest/tablemanagement/v1/';
   public offermgn = this.serverPath + 'services/rest/offermanagement/v1/';
   public salesmgn = this.serverPath + 'services/rest/salesmanagement/v1/';
@@ -24,7 +24,7 @@ export class BusinessOperations {
   * POST operations
   */
   public tablesPOST = this.tablemgn + 'table/';
-  public tableSearchPOST = this.tablemgn + 'table/search'
+  public tableSearchPOST = this.tablemgn + 'table/search';
   public orderSearchPOST = this.salesmgn + 'order/search';
   public orderPOST = this.salesmgn + 'order/';
   public productSearchPOST = this.offermgn + 'product/search';
@@ -33,6 +33,6 @@ export class BusinessOperations {
   public loginPOST = this.loginmgn + 'login';
   public logOutPost = this.loginmgn + 'logout';
 
-  constructor(){}
+  constructor() {}
 
 }
