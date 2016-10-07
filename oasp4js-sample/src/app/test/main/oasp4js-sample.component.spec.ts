@@ -1,9 +1,10 @@
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { Oasp4jsSampleAppComponent } from '../../main/components/main/oasp4js-sample.component';
-import { OaspI18n} from '../../oasp/oasp-i18n/oasp-i18n.service';
-import { HttpClient} from '../../oasp/oasp-security/http-client.service';
-import { SecurityService} from '../../oasp/oasp-security/oasp-security.service';
+import { User } from '../../main/models/user/User.model';
+import { OaspI18n } from '../../oasp/oasp-i18n/oasp-i18n.service';
+import { HttpClient } from '../../oasp/oasp-security/http-client.service';
+import { SecurityService } from '../../oasp/oasp-security/oasp-security.service';
 
 let router: Router;
 let http: Http;
@@ -40,6 +41,10 @@ describe('Oasp4jsSampleAppComponent', () => {
 
   });
 
+  it('should be defined!', () => {
+    expect(oasp).toBeDefined();
+  });
+
   it('\'s BBOO should point to the right URL ', () => {
     let serverPath = 'http://localhost:8081/';
     expect(securityService.BO.serverPath.substring(0, 22)).toEqual(serverPath);
@@ -55,7 +60,6 @@ describe('Oasp4jsSampleAppComponent', () => {
 
   it('functions from \'SecurityService\' should have been called', () => {
     expect(securityService.funcionLogin).toHaveBeenCalled();
-    // expect(true).toBeTruthy();
     expect(securityService.functionsesionExpired).toHaveBeenCalled();
   });
 

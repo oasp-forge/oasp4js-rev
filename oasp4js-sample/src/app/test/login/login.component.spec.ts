@@ -1,48 +1,43 @@
-// import {LoginService} from '../../main/views/login/service/Login.service';
-// import {LoginComponent} from '../../main/views/login/view/Login.component';
-// import {it, describe, expect, beforeEach, inject} from '@angular/core/testing';
-// import {Component, Output, EventEmitter, OnInit, ChangeDetectorRef} from '@angular/core'
-// import {User} from '../../main/models/user/User.model'
-// import {Http} from '@angular/http'
-// import {OaspI18n} from '../../oasp/oasp-i18n/oasp-i18n.service';
-//
-// describe('\nLoginComponent [COMPONENT]: \n', () => {
-//     let component:LoginComponent;
-//     let http:Http;
-//     let service:LoginService = new LoginService(http);
-//     let loginEvent:EventEmitter<boolean> = new EventEmitter<boolean>();
-//     let userEvent:EventEmitter<User> = new EventEmitter<User>();
-//     //setup
-//     beforeEach(() => {
-//       component = new LoginComponent(service);
-//       loginEvent = component.loginEvent;
-//       userEvent = component.userEvent;
-//
-//       spyOn(component, 'validateLogin');
-//
-//       component.validateLogin('username', 'password');
-//
-//     });
-//
-//     //specs
-//     it('[TEST_ERROR] LoginComponent should be defined!', () => {
-//       expect(component).toBeDefined();
-//     });
-//
-//     it('[TEST_ERROR] typeof loginEvent should be EventEmitter<>!', () => {
-//       expect(loginEvent instanceof EventEmitter).toBe(true);
-//     });
-//
-//     it('[TEST_ERROR] typeof userEvent should be EventEmitter<>!', () => {
-//       expect(userEvent instanceof EventEmitter).toBe(true);
-//     });
-//
-//     it('[TEST_ERROR] validateLogin should have been called!', () => {
-//       expect(component.validateLogin).toHaveBeenCalled();
-//     });
-//
-//     it('[TEST_ERROR] validateLogin should have been called with => (\'username\', \'password\')', () => {
-//       expect(component.validateLogin).toHaveBeenCalledWith('username', 'password');
-//     });
-//
-// });
+import { LoginComponent } from '../../main/components/login/Login.component';
+import { Component, Output, EventEmitter, OnInit, ChangeDetectorRef } from '@angular/core'
+import { User } from '../../main/models/user/User.model';
+import { OaspI18n } from '../../oasp/oasp-i18n/oasp-i18n.service';
+import { Http } from '@angular/http';
+import { Router } from '@angular/router';
+import { HttpClient} from '../../oasp/oasp-security/http-client.service';
+import { SecurityService } from '../../oasp/oasp-security/oasp-security.service';
+
+describe('\nLoginComponent [COMPONENT]: \n', () => {
+    let i18n = new OaspI18n();
+    let router: Router;
+    let http: Http;
+    let form = {username: "u", password: "pass"};
+    let httpC = new HttpClient(http);
+    let security = new SecurityService(router, httpC);
+    let user: User = new User(0, "", "", 0);
+    let loginEvent:EventEmitter<boolean> = new EventEmitter<boolean>();
+    let userEvent:EventEmitter<User> = new EventEmitter<User>();
+    let login = new LoginComponent(i18n, security);
+
+    let validateLogin, hideAlertLogin, functionLogin, functionSessionExpired, closeErrorLogin;
+
+    beforeEach(() => {
+      spyOn(security, 'funcionLogin').and.callFake((user) => {});
+      spyOn(security, 'functionsesionExpired').and.callFake(() => {});
+      spyOn(security, 'closeErrorLogin').and.callFake(() => {});
+      spyOn(login, 'validateLogin').and.callFake(() => {
+        functionLogin = security.funcionLogin(form.username, form.password);
+        functionSessionExpired = security.functionsesionExpired();
+      });
+      spyOn(login, 'hideAlertLogin').and.callFake(() => {
+        closeErrorLogin = security.closeErrorLogin();
+      })
+      validateLogin = login.validateLogin(form);
+      hideAlertLogin = login.hideAlertLogin();
+    });
+
+    it('LoginComponent should be defined!', () => {
+      expect(login).toBeDefined();
+    });
+
+});
