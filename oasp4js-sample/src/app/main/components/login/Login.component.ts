@@ -10,7 +10,6 @@ import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
 
 export class LoginComponent{
 
-  user: User = new User(0, "", "", 0);
   i18n
 
   constructor(private oaspI18n: OaspI18n, private securityService:SecurityService){
@@ -21,8 +20,8 @@ export class LoginComponent{
       this.securityService.closeErrorLogin();
   }
 
-  validateLogin(){
-      this.securityService.funcionLogin(this.user);
+  validateLogin(form){
+      this.securityService.funcionLogin(form.value.username, form.value.password);
       this.securityService.functionsesionExpired();
   }
 

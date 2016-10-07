@@ -36,6 +36,7 @@ export class DetailsRestService {
     }
     this.http.post(this.BO.orderPOST, JSON.stringify(data))
              .map(res =>  res.json())
-             .subscribe(data => {this.http.disableLoading()});
+             .subscribe(data => {this.http.disableLoading()},
+                        err =>  { this.http.disableLoading()})
   }
 }

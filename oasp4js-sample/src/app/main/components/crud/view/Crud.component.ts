@@ -58,7 +58,8 @@ export class CrudComponent{
             this.numItems = data.pagination.total;
             this.tables = data.result
             this.crudRestService.disableLoading();
-          });
+          },
+          err =>  { this.crudRestService.disableLoading()});
   }
 
   openEditModal(){
@@ -72,7 +73,8 @@ export class CrudComponent{
                                         this.numItems = data.pagination.total;
                                         this.tables = data.result;
                                         this.crudRestService.disableLoading();
-                                      }
+                                      },
+                                      err =>  { this.crudRestService.disableLoading()}
                                     );
   }
 

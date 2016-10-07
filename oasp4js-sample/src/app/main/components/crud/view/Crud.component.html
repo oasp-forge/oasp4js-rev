@@ -36,7 +36,7 @@
           <button type="button" class="btn btn-pagination" (click)="changeState('RESERVED')" [disabled]="myState !== 1">{{i18n.tables.btns.reserve}}</button>
           <button type="button" class="btn btn-pagination" (click)="changeState('FREE')" [disabled]="myState != 3">{{i18n.tables.btns.cancel}}</button>
           <button type="button" class="btn btn-pagination" (click)="changeState('OCCUPIED')" [disabled]="myState !== 3">{{i18n.tables.btns.occupy}}</button>
-          <button type="button" class="btn btn-pagination" (click)="changeState('FREE')" [disabled]="myState === 1 || myState === -1">{{i18n.tables.btns.free}}</button>
+          <button type="button" class="btn btn-pagination" (click)="changeState('FREE')" [disabled]="myState <= 1">{{i18n.tables.btns.free}}</button>
       </div>
 
     </div>

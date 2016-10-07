@@ -10,7 +10,7 @@ let router: Router;
 let http: Http;
 let httpC = new HttpClient(http);
 let securityService = new SecurityService(router, httpC);
-let user = new User(0, '', '', 0);
+let form = {username: 'u', password: 'p'};
 let oasp = new Oasp4jsSampleAppComponent(
   securityService,
   new OaspI18n,
@@ -23,20 +23,20 @@ describe('Oasp4jsSampleAppComponent', () => {
   beforeEach(() => {
 
     // spies of SecurityService
-    spyOn(securityService, 'funcionLogin').and.callFake((user) => {});
+    spyOn(securityService, 'funcionLogin').and.callFake((username, password) => {});
     spyOn(securityService, 'functionsesionExpired').and.callFake(() => {});
     spyOn(securityService, 'closeErrorLogin').and.callFake(() => {});
 
     // spies to Oasp4jsSampleAppComponent
-    spyOn(oasp, 'validateLogin').and.callFake((username, password) => {
-      functionLogin = securityService.funcionLogin(user);
+    spyOn(oasp, 'validateLogin').and.callFake(() => {
+      functionLogin = securityService.funcionLogin(form.username, form.password);
       functionSessionExpired = securityService.functionsesionExpired();
     });
     spyOn(oasp, 'hideAlertLogin').and.callFake(() => {
       closeErrorLogin = securityService.closeErrorLogin();
     });
 
-    validateLogin = oasp.validateLogin('chief', 'chief');
+    validateLogin = oasp.validateLogin(form);
     hideAlertLogin = oasp.hideAlertLogin();
 
   });
@@ -50,8 +50,8 @@ describe('Oasp4jsSampleAppComponent', () => {
     expect(securityService.BO.serverPath.substring(0, 22)).toEqual(serverPath);
   });
 
-  it('function \'validateLogin(p1,p2)\' should have been called', () => {
-    expect(oasp.validateLogin).toHaveBeenCalledWith('chief', 'chief');
+  it('function \'validateLogin(form)\' should have been called', () => {
+    expect(oasp.validateLogin).toHaveBeenCalledWith(form);
   });
 
   it('function \'hideAlertLogin()\' should have been called', () => {

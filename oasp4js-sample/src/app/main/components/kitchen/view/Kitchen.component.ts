@@ -51,7 +51,8 @@ export class KitchenComponent{
                                     this.offerList.push(data.result[i].name)
                                 }
                                 this.kitchenRestService.disableLoading();
-                            });
+                            },
+                            err =>  { this.kitchenRestService.disableLoading()});
 
             this.kitchenRestService
                     .getProducts(this.pageData)
@@ -65,7 +66,8 @@ export class KitchenComponent{
                                     }
                                 }
                                 this.kitchenRestService.disableLoading();
-                            });
+                            },
+                            err =>  { this.kitchenRestService.disableLoading()});
             this.getLists();
             this.headers = [this.i18n.kitchen.id,this.i18n.kitchen.orderID, this.i18n.kitchen.offerName, this.i18n.kitchen.mealName, this.i18n.kitchen.sideDishName];
         }
@@ -80,9 +82,12 @@ export class KitchenComponent{
                     this.orderPositions = data
                     this.fillKitchenTables();
                     this.kitchenRestService.disableLoading();
-                });
-            });
-        });
+                },
+                err =>  { this.kitchenRestService.disableLoading()});
+            },
+            err =>  { this.kitchenRestService.disableLoading()});
+        },
+        err =>  { this.kitchenRestService.disableLoading()});
     }
 
     fillKitchenTables(){
@@ -138,7 +143,8 @@ export class KitchenComponent{
                                           }
                                           this.fillKitchenTables();
                                           this.kitchenRestService.disableLoading();
-                                      });
+                                      },
+                                      err =>  { this.kitchenRestService.disableLoading()});
 
     }
 
@@ -163,10 +169,11 @@ export class KitchenComponent{
     assign(){
         for(let i = 0 ; i < this.orderPositions.length ; i++){
             if(this.selectedAvailableCommand.id === this.orderPositions[i].id){
-                this.kitchenRestService.moveOrderPosition(this.orderPositions[i], 1);
+                this.kitchenRestService.moveOrderPosition(this.orderPositions[i], 1).subscribe(data => {
+                  this.kitchenRestService.disableLoading(); this.getLists()},
+                  err =>  { this.kitchenRestService.disableLoading()})
             }
         }
-        this.getLists();
 
         this.selectedAssignedCommand = undefined;
         this.selectedAvailableCommand = undefined;
@@ -175,10 +182,11 @@ export class KitchenComponent{
     return(){
         for(let i = 0 ; i < this.orderPositions.length ; i++){
             if(this.selectedAssignedCommand.id === this.orderPositions[i].id){
-                this.kitchenRestService.moveOrderPosition(this.orderPositions[i], null);
+                this.kitchenRestService.moveOrderPosition(this.orderPositions[i], null).subscribe(data => {
+                  this.kitchenRestService.disableLoading(); this.getLists()},
+                  err =>  { this.kitchenRestService.disableLoading()});
             }
         }
-        this.getLists();
 
         this.selectedAssignedCommand = undefined;
         this.selectedAvailableCommand = undefined;

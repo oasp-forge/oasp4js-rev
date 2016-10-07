@@ -1,7 +1,8 @@
     export var I18n = {
                     en : {
                         loginPage : {
-                            intro : 'This is the login to the devonfw restaurant example application as technical showcase for an Angular2 client.',
+                            intro : `This is the login to the devonfw restaurant example application
+                                     as technical showcase for an Angular2 client.`,
                             signIn : 'Sign in',
                             failed : 'Authentication failed. Please try again!',
                             form : {
@@ -19,7 +20,8 @@
                             kitchenTab : 'Kitchen',
                             confirm : {
                                 title : 'Confirmation',
-                                bodyMsg1 : 'If you change the language, the page will we reloaded and you may lose any do not saved changes.',
+                                bodyMsg1 : `If you change the language, the page will we reloaded
+                                            and you may lose any do not saved changes.`,
                                 bodyMsg2 : 'Are you sure?'
                             }
                         },
@@ -93,7 +95,8 @@
                     },
                     de : {
                         loginPage : {
-                            intro : 'Dies ist die Anmeldung zur devonfw Restaurant Beispielanwendung als technische Plattform für einen Angular2 Client.',
+                            intro : `Dies ist die Anmeldung zur devonfw Restaurant
+                                     Beispielanwendung als technische Plattform für einen Angular2 Client.`,
                             signIn : 'anmelden',
                             failed : 'Die Daten sind nicht korrekt , bitte versuchen Sie es erneut',
                             form : {
@@ -111,7 +114,8 @@
                             kitchenTab : 'Küche',
                             confirm : {
                                 title : 'Bestätigung',
-                                bodyMsg1 : 'Wenn Sie die Sprache ändern , Seite werden wir neu geladen und Sie können alle nicht gespeicherten Änderungen verloren.',
+                                bodyMsg1 : `Wenn Sie die Sprache ändern , Seite werden wir neu geladen
+                                            und Sie können alle nicht gespeicherten Änderungen verloren.`,
                                 bodyMsg2 : 'Bist du sicher?'
                             }
                         },
@@ -184,8 +188,9 @@
                         }
                     },
                     es : {
-                        loginPage :{
-                            intro : 'Este es el login de la aplicación de restaurante de ejemplo de devonfw, como una muestra técnica para el cliente en Angular2',
+                        loginPage : {
+                            intro : `Este es el login de la aplicación de restaurante de ejemplo
+                                     de devonfw, como una muestra técnica para el cliente en Angular2`,
                             signIn : 'Acceso',
                             failed : 'Los datos son incorrectos, por favor, intenta de nuevo',
                             form : {
@@ -274,4 +279,4 @@
                           backBtn: 'Volver al acceso'
                         }
                     }
-                }
+                };
