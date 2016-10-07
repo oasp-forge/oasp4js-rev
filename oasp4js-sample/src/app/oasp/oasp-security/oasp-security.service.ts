@@ -10,7 +10,7 @@ import { HttpClient } from './http-client.service';
 export var Headerlogged = false;
 export var sessionExpired = false;
 export var csrfToken;
-export var errorLogin = true;
+export var errorLogin:boolean = true;
 export var user;
 
 @Injectable()
@@ -36,30 +36,28 @@ export class SecurityService {
               this.http.get(this.BO.csrfGET)
                  .map(res => res.json())
                  .subscribe(data => {
-                      Headerlogged = true;
-                      csrfToken = data.token;
-                      sessionExpired = false;
-                      user = new User(0, 'notUserYet', 'notPasswordYet', 3);
-
-                      if (user.permission === 1 || 3) {
-                          this.router.navigate(['/Tables']);
-                      }
-                      if (user.permission === 2) {
-                          this.router.navigate(['/Kitchen']);
-                      }
-                      this.http.disableLoading();
-
-                      // this.http.get(this.BO.userGET)
-                      //    .map(res => res.json())
-                      //    .subscribe(data => {
-                      //    })
+                    Headerlogged = true;
+                    csrfToken = data.token;
+                    sessionExpired = false;
+                    user = new User(0, 'notUserYet', 'notPasswordYet', 3);
+                    if (user.permission === 1 || 3) {
+                        this.router.navigate(['/Tables']);
+                    }
+                    if (user.permission === 2) {
+                        this.router.navigate(['/Kitchen']);
+                    }
+                    this.http.disableLoading();
+                    // this.http.get(this.BO.userGET)
+                    //    .map(res => res.json())
+                    //    .subscribe(data => {
+                    //    })
                   });
-        },
-        err => {
-                errorLogin = false;
-                this.http.disableLoading();
-              });
-        }
+                },
+                err => {
+                  errorLogin = false;
+                  this.http.disableLoading();
+                });
+    }
 
     getLogged() {
         return Headerlogged;

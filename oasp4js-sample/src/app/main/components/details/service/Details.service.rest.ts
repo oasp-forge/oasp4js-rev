@@ -3,39 +3,39 @@ import { HttpClient } from '../../../../oasp/oasp-security/http-client.service'
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { BusinessOperations } from '../../../../main/BusinessOperations';
-import { SecurityService } from '../../../../oasp/oasp-security/oasp-security.service'
+import { SecurityService } from '../../../../oasp/oasp-security/oasp-security.service';
 
 @Injectable()
 export class DetailsRestService {
 
-  BO:BusinessOperations = new BusinessOperations();
-  constructor(private securityService: SecurityService, private http:HttpClient) { }
+  BO: BusinessOperations = new BusinessOperations();
+  constructor(private securityService: SecurityService, private http: HttpClient) { }
 
-  disableLoading(){
+  disableLoading() {
     this.http.disableLoading();
   }
 
-  getPositions(data){
+  getPositions(data) {
     return this.http.post(this.BO.orderSearchPOST, JSON.stringify(data))
                     .map(res => res.json())
   }
 
-  getMenus(){
+  getMenus() {
     return this.http.get(this.BO.offersGET)
                     .map(res =>  res.json())
   }
 
-  updateOrder(order, positions){
+  updateOrder(order, positions) {
     var data = {
       order: order,
       positions : positions
     }
-    for(let i = 0 ; i < data.positions.length; i++){
+    for (let i = 0 ; i < data.positions.length; i++) {
       data.positions[i].orderId = data.order.id;
       data.positions[i].revision = null;
     }
     this.http.post(this.BO.orderPOST, JSON.stringify(data))
              .map(res =>  res.json())
-             .subscribe(data => {this.http.disableLoading()})
+             .subscribe(data => {this.http.disableLoading()});
   }
 }

@@ -2,9 +2,9 @@ import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { Oasp4jsSampleAppComponent } from '../../main/components/main/oasp4js-sample.component';
 import { User } from '../../main/models/user/User.model';
-import { OaspI18n} from '../../oasp/oasp-i18n/oasp-i18n.service';
-import { HttpClient} from '../../oasp/oasp-security/http-client.service';
-import { SecurityService} from '../../oasp/oasp-security/oasp-security.service';
+import { OaspI18n } from '../../oasp/oasp-i18n/oasp-i18n.service';
+import { HttpClient } from '../../oasp/oasp-security/http-client.service';
+import { SecurityService } from '../../oasp/oasp-security/oasp-security.service';
 
 let router: Router;
 let http: Http;
@@ -17,30 +17,33 @@ let oasp = new Oasp4jsSampleAppComponent(
   new HttpClient(http)
 );
 
-let called = false;
 let validateLogin, hideAlertLogin, functionLogin, functionSessionExpired, closeErrorLogin;
 
 describe('Oasp4jsSampleAppComponent', () => {
   beforeEach(() => {
 
-    //spies of SecurityService
+    // spies of SecurityService
     spyOn(securityService, 'funcionLogin').and.callFake((user) => {});
     spyOn(securityService, 'functionsesionExpired').and.callFake(() => {});
     spyOn(securityService, 'closeErrorLogin').and.callFake(() => {});
 
-    //spies to Oasp4jsSampleAppComponent
+    // spies to Oasp4jsSampleAppComponent
     spyOn(oasp, 'validateLogin').and.callFake((username, password) => {
       functionLogin = securityService.funcionLogin(user);
       functionSessionExpired = securityService.functionsesionExpired();
     });
     spyOn(oasp, 'hideAlertLogin').and.callFake(() => {
       closeErrorLogin = securityService.closeErrorLogin();
-    })
+    });
 
     validateLogin = oasp.validateLogin('chief', 'chief');
     hideAlertLogin = oasp.hideAlertLogin();
 
-  })
+  });
+
+  it('should be defined!', () => {
+    expect(oasp).toBeDefined();
+  });
 
   it('\'s BBOO should point to the right URL ', () => {
     let serverPath = 'http://localhost:8081/';
@@ -57,8 +60,7 @@ describe('Oasp4jsSampleAppComponent', () => {
 
   it('functions from \'SecurityService\' should have been called', () => {
     expect(securityService.funcionLogin).toHaveBeenCalled();
-    // expect(true).toBeTruthy();
     expect(securityService.functionsesionExpired).toHaveBeenCalled();
-  })
+  });
 
 });

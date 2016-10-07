@@ -34,9 +34,12 @@ export class CrudComponent{
       sort: [{name: "number", direction: "ASC"}]
     };
 
-  constructor(private securityService: SecurityService, private oaspI18n: OaspI18n, private crudRestService: CrudRestService){
+  constructor(
+    private securityService: SecurityService,
+    private oaspI18n: OaspI18n,
+    private crudRestService: CrudRestService
+  ) {
       if(!this.securityService.getUser()){
-        debugger
           this.security = false;
           this.securityService.logOut();
       }else {
