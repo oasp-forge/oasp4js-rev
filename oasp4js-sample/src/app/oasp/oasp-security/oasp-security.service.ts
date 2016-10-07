@@ -24,15 +24,15 @@ export class SecurityService {
     constructor(private router: Router, private http: HttpClient) {
     }
 
-    funcionLogin(username, password){
-        let formData={
+    funcionLogin(username, password) {
+        let formData = {
           j_username: username,
           j_password: password
         };
 
        this.http.post(this.BO.loginPOST, JSON.stringify(formData))
             .map(res => JSON.stringify(res))
-            .subscribe(data => {
+            .subscribe(() => {
               this.http.get(this.BO.csrfGET)
                  .map(res => res.json())
                  .subscribe(data => {
