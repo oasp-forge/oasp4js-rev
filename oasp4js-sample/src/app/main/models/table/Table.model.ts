@@ -6,45 +6,45 @@ export class Table {
     public number: number,
     public state: string,
     public waiterId: number
-  ){}
+  ) {}
 
-  getId():number{
+  getId(): number {
     return this.id;
   }
 
-  setId(id:number){
+  setId(id: number) {
     this.id = id;
   }
 
-  getModificationCounter():number{
+  getModificationCounter(): number {
     return this.modificationCounter;
   }
 
-  setModificationCounter(modificationCounter:number){
+  setModificationCounter(modificationCounter: number) {
     this.modificationCounter = modificationCounter;
   }
 
-  getNumber():number{
+  getNumber(): number {
     return this.number;
   }
 
-  setNumber(number:number){
+  setNumber(number: number) {
     this.number = number;
   }
 
-  getState():string{
+  getState(): string {
     return this.state;
   }
 
-  setState(state:string){
+  setState(state: string) {
     this.state = state;
   }
 
-  getWaiterId():number{
+  getWaiterId(): number {
     return this.waiterId;
   }
 
-  setWaiter(waiterId:number){
+  setWaiter(waiterId: number) {
     this.waiterId = waiterId;
   }
 }
