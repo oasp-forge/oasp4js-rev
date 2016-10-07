@@ -32,6 +32,7 @@ describe('Oasp4jsSampleAppComponent', () => {
       functionLogin = securityService.funcionLogin(form.username, form.password);
       functionSessionExpired = securityService.functionsesionExpired();
     });
+
     spyOn(oasp, 'hideAlertLogin').and.callFake(() => {
       closeErrorLogin = securityService.closeErrorLogin();
     });

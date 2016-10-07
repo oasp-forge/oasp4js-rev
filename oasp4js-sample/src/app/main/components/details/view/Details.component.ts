@@ -37,72 +37,73 @@ export class DetailsComponent{
       this.attributeNames = ["id", "offerName", "state", "price", "comment"];
   }
 
-  ngOnInit(){
-      this.pageData = {
-          pagination: {
-              size: 4,
-              page: 1,
-              total: true
-          },
-          state : "CLOSED",
-          tableId : this.parentTable.id,
-          sort: [{name: "id", direction: "ASC"}]
-        };
-      this.loadPositions();
-      this.detailsRestService.getMenus().subscribe(data => {
-                                                            this.offers = data
-                                                            this.detailsRestService.disableLoading();
-                                                          });
+  ngOnInit() {
+    this.pageData = {
+        pagination: {
+            size: 4,
+            page: 1,
+            total: true
+        },
+        state : "CLOSED",
+        tableId : this.parentTable.id,
+        sort: [{name: "id", direction: "ASC"}]
+    };
+    this.loadPositions();
+    this.detailsRestService.getMenus()
+        .subscribe(data => {
+            this.offers = data
+            this.detailsRestService.disableLoading();
+         });
   }
 
-  loadPositions(){
+  loadPositions() {
       this.detailsRestService.getPositions(this.pageData)
-                                            .subscribe(data => {
-                                                                this.positions = data.result[0].positions;
-                                                                this.order = data.result[0].order;
-                                                                this.detailsRestService.disableLoading();
-                                                              });
+          .subscribe(data => {
+              this.positions = data.result[0].positions;
+              this.order = data.result[0].order;
+              this.detailsRestService.disableLoading();
+           });
   }
 
-  sortColumnBy(sortParam){
+  sortColumnBy(sortParam) {
     this.pageData.sort = sortParam;
     this.loadPositions();
   }
 
-  openMenu(){
+  openMenu() {
     this.viewMenu = !this.viewMenu;
   }
 
-  pagination(value){
+  pagination(value) {
       this.pageData.pagination.total = value;
       this.loadPositions();
   }
 
-  clickedRow(valor){
+  clickedRow(valor) {
       this.selectedPosition = valor;
   }
 
-  addCommand(){
+  addCommand() {
       this.viewMenu = !this.viewMenu;
       this.positions.push(new OrderPosition(undefined, 0, "", undefined, this.offerToAdd.id, this.offerToAdd.name, this.offerToAdd.price,'ORDERED', undefined, undefined));
       this.resetValues();
   }
 
-  removeCommand(){
-      this.positions.splice(this.positions.indexOf(this.selectedPosition),1);
+  removeCommand() {
+      this.positions.splice(this.positions.indexOf(this.selectedPosition), 1);
   }
 
-  resetValues(){
+  resetValues() {
       this.selectedPosition = null;
       this.offerToAdd = null;
   }
 
-  cancel(){
+  cancel() {
       this.resultEvent.emit(this.parentTable);
       this.closeWindowEvent.emit(false);
   }
 
-  submit(){
+  submit() {
       this.resultEvent.emit(this.parentTable);
       this.detailsRestService.updateOrder(this.order, this.positions);
       this.closeWindowEvent.emit(false);

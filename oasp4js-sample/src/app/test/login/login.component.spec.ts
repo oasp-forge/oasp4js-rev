@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { HttpClient} from '../../oasp/oasp-security/http-client.service';
 import { SecurityService } from '../../oasp/oasp-security/oasp-security.service';
 
-describe('\nLoginComponent [COMPONENT]: \n', () => {
+describe('LoginComponent', () => {
     let i18n = new OaspI18n();
     let router: Router;
     let http: Http;
@@ -25,22 +25,18 @@ describe('\nLoginComponent [COMPONENT]: \n', () => {
       spyOn(security, 'functionsesionExpired').and.callFake(() => {});
       spyOn(security, 'closeErrorLogin').and.callFake(() => {});
       spyOn(login, 'validateLogin').and.callFake(() => {
-        functionLogin = security.funcionLogin(user);
+        functionLogin = security.funcionLogin('chief', 'chief');
         functionSessionExpired = security.functionsesionExpired();
       });
       spyOn(login, 'hideAlertLogin').and.callFake(() => {
         closeErrorLogin = security.closeErrorLogin();
       })
-      validateLogin = login.validateLogin();
+      validateLogin = login.validateLogin(user);
       hideAlertLogin = login.hideAlertLogin();
     });
 
     it('LoginComponent should be defined!', () => {
       expect(login).toBeDefined();
-    });
-
-    it('Variable \'user\' should be defined', () => {
-      expect(login.user).toBeDefined();
     });
 
 });
