@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { HttpClient} from '../../oasp/oasp-security/http-client.service';
 import { SecurityService } from '../../oasp/oasp-security/oasp-security.service';
 
-describe('\nLoginComponent [COMPONENT]: \n', () => {
+describe('LoginComponent', () => {
     let i18n = new OaspI18n();
     let router: Router;
     let http: Http;
