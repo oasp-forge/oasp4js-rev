@@ -11,6 +11,6 @@ export class OrderPosition {
     public state: string,
     public drinkState: number,
     public order_id: number
-  ){}
+  ) {}
 
 }

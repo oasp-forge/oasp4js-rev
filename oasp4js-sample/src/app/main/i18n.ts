@@ -1,6 +1,4 @@
     export var I18n = {
-
-      
                     en : {
                         loginPage : {
                             intro : `This is the login to the devonfw restaurant example application

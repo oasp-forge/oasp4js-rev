@@ -1,15 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Table } from '../../../models/table/Table.model';
 import { CrudRestService } from '../service/Crud.service.rest';
 import { OaspI18n } from '../../../../oasp/oasp-i18n/oasp-i18n.service';
 import { SecurityService} from '../../../../oasp/oasp-security/oasp-security.service';
 
 @Component({
-  selector: 'crud',
+  selector: 'app-crud',
   templateUrl: 'Crud.component.html'
 })
 
-export class CrudComponent {
+export class CrudComponent implements OnInit {
 
   public selectedTable = new Table(0, undefined, undefined, undefined, undefined);
 

@@ -1,24 +1,21 @@
-import { Component, EventEmitter } from '@angular/core'
-import { Table } from '../../../models/table/Table.model'
-import { OrderPosition } from '../../../models/orderposition/Orderposition.model'
-import { DetailsRestService } from '../service/Details.service.rest'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Table } from '../../../models/table/Table.model';
+import { OrderPosition } from '../../../models/orderposition/Orderposition.model';
+import { DetailsRestService } from '../service/Details.service.rest';
 import { OaspI18n } from '../../../../oasp/oasp-i18n/oasp-i18n.service';
 
 @Component({
-  selector:'tableDetails',
-  templateUrl:'Details.component.html',
-  inputs:['parentTable'],
-  outputs:['resultEvent', 'closeWindowEvent']
+  selector: 'app-table-details',
+  templateUrl: 'Details.component.html'
 })
 
-export class DetailsComponent{
-  resultEvent:EventEmitter<Table> = new EventEmitter<Table>();
-  closeWindowEvent = new EventEmitter();
+export class DetailsComponent implements OnInit {
+  @Input('parentTable') parentTable: Table;
+  @Output('resultEvent') resultEvent: EventEmitter<Table> = new EventEmitter<Table>();
+  @Output('closeWindowEvent') closeWindowEvent = new EventEmitter();
 
   public headers: string[];
   public attributeNames: string[];
-
-  public parentTable:Table;
   public offers = [];
   public offerToAdd = null;
   public selectedPosition = null;
@@ -31,10 +28,11 @@ export class DetailsComponent{
 
   public pageData;
 
-  constructor(private oaspI18n:OaspI18n, private detailsRestService: DetailsRestService) {
+  constructor(private oaspI18n: OaspI18n, private detailsRestService: DetailsRestService) {
       this.i18n = oaspI18n.getI18n();
-      this.headers = [this.i18n.details.number,this.i18n.details.description, this.i18n.details.state, this.i18n.details.price, this.i18n.details.comment];
-      this.attributeNames = ["id", "offerName", "state", "price", "comment"];
+      this.headers = [this.i18n.details.number, this.i18n.details.description, this.i18n.details.state,
+                      this.i18n.details.price, this.i18n.details.comment];
+      this.attributeNames = ['id', 'offerName', 'state', 'price', 'comment'];
   }
 
   ngOnInit() {
@@ -44,14 +42,14 @@ export class DetailsComponent{
             page: 1,
             total: true
         },
-        state : "CLOSED",
+        state : 'CLOSED',
         tableId : this.parentTable.id,
-        sort: [{name: "id", direction: "ASC"}]
+        sort: [{name: 'id', direction: 'ASC'}]
     };
     this.loadPositions();
     this.detailsRestService.getMenus()
         .subscribe(data => {
-            this.offers = data
+            this.offers = data;
             this.detailsRestService.disableLoading();
          });
   }
@@ -85,7 +83,8 @@ export class DetailsComponent{
 
   addCommand() {
       this.viewMenu = !this.viewMenu;
-      this.positions.push(new OrderPosition(undefined, 0, "", undefined, this.offerToAdd.id, this.offerToAdd.name, this.offerToAdd.price,'ORDERED', undefined, undefined));
+      this.positions.push(new OrderPosition(undefined, 0, '', undefined, this.offerToAdd.id,
+                          this.offerToAdd.name, this.offerToAdd.price, 'ORDERED', undefined, undefined));
       this.resetValues();
   }
 

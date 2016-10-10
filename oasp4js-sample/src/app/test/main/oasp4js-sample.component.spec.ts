@@ -1,7 +1,6 @@
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { Oasp4jsSampleAppComponent } from '../../main/components/main/oasp4js-sample.component';
-import { User } from '../../main/models/user/User.model';
 import { OaspI18n } from '../../oasp/oasp-i18n/oasp-i18n.service';
 import { HttpClient } from '../../oasp/oasp-security/http-client.service';
 import { SecurityService } from '../../oasp/oasp-security/oasp-security.service';

@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { OaspI18n } from '../../../../oasp/oasp-i18n/oasp-i18n.service';
 import { SecurityService } from '../../../../oasp/oasp-security/oasp-security.service';
 import { KitchenRestService } from '../service/Kitchen.service.rest';
 
 @Component({
-  selector: 'kitchen',
+  selector: 'app-kitchen',
   templateUrl: 'Kitchen.component.html'
 })
 
-export class KitchenComponent {
+export class KitchenComponent implements OnInit {
 
     public availableCommands = [];
     public assignedCommands = [];
@@ -80,10 +80,10 @@ export class KitchenComponent {
     getLists() {
         this.kitchenRestService.getOffers(this.pageData).subscribe(data => {
             this.offers = data.result;
-            this.kitchenRestService.getProducts(this.pageData).subscribe( data => {
-                this.products = data.result;
-                this.kitchenRestService.getOrderPositions(this.sort).subscribe( data => {
-                    this.orderPositions = data;
+            this.kitchenRestService.getProducts(this.pageData).subscribe( pData => {
+                this.products = pData.result;
+                this.kitchenRestService.getOrderPositions(this.sort).subscribe( opData => {
+                    this.orderPositions = opData;
                     this.fillKitchenTables();
                     this.kitchenRestService.disableLoading();
                 },
