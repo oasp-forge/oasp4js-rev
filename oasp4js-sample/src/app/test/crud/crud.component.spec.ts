@@ -12,7 +12,7 @@ let http: Http;
 let httpC = new HttpClient(http);
 let securityService = new SecurityService(router, httpC);
 let crudRestService = new CrudRestService(httpC);
-let crud;
+let crud = new CrudComponent(securityService, new OaspI18n, crudRestService);
 
 describe('CrudComponent', () => {
   beforeEach(() => {
@@ -21,7 +21,9 @@ describe('CrudComponent', () => {
   });
 
   it('pageData has no correct properties pagination and sort', () => {
+      expect(crud).toBeDefined();
       expect(crud.pageData.pagination).toBeDefined();
       expect(crud.pageData.sort).toBeDefined();
   });
+
 });

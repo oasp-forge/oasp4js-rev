@@ -56,7 +56,8 @@ export class SecurityService {
                 err => {
                   errorLogin = false;
                   this.http.disableLoading();
-                });
+                }
+            );
     }
 
     getLogged() {

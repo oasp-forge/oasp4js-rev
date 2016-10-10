@@ -15,16 +15,15 @@ describe('DetailsComponent', () => {
     let httpC = new HttpClient(http);
     let security = new SecurityService(router, httpC);
     let service = new DetailsRestService(security, httpC);
-    let details = new DetailsComponent(i18n, service);
+    let details;
 
     let ngOnInit, loadPositions;
     let getMenus;
 
     beforeEach(() => {
 
-      // details = new DetailsComponent(i18n, service);
-      // let fixture = TestBed.createComponent(DetailsComponent);
-      // details = fixture.componentInstance;
+      details = new DetailsComponent(i18n, service);
+
       // service spies
       spyOn(service, 'getMenus').and.callFake(() => {
         details.offers = ['filled', 'with', 'fake', 'data'];
@@ -39,18 +38,12 @@ describe('DetailsComponent', () => {
 
       ngOnInit = details.ngOnInit();
 
-      // cancel = details.cancel();
-      // submit = details.submit();
-
     });
 
 
-    // it('DetailsComponent should be defined', inject([DetailsComponent], (d) => {
-    //   expect(d).toBeDefined();
-    // }));
-
-    // it('\'offers\' should contain some data', () => {
-    //   expect(details.offers.length).toBeGreaterThan(0);
-    // });
+    it('DetailsComponent should be defined', () => {
+      // console.log(details.ngOnInit());
+      expect(details).toBeDefined();
+    });
 
 });

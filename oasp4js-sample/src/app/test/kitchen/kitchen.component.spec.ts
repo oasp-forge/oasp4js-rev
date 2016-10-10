@@ -19,6 +19,7 @@ describe('KitchenComponent', () => {
   });
 
   it('pageData has no correct properties pagination and sort', () => {
+      expect(kitchen).toBeDefined();
       expect(kitchen.pageData.pagination).toBeDefined();
       expect(kitchen.sort).toBeDefined();
   });
