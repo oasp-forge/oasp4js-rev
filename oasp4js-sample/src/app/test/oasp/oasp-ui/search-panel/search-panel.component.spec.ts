@@ -1,4 +1,4 @@
-import { SearchPanelComponent } from '../../../../oasp/oasp-ui/search-panel/search-panel.component';
+import { SearchPanelComponent } from '../../../../oasp/oasp-ui/search-panel/Search-panel.component';
 import { OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
 
 let searchPanel: SearchPanelComponent;
