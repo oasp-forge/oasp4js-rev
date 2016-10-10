@@ -5,7 +5,7 @@ import { SecurityService} from '../../oasp/oasp-security/oasp-security.service';
 import { OaspI18n } from '../../oasp/oasp-i18n/oasp-i18n.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
-import { TestBed } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 
 describe('DetailsComponent', () => {
 
@@ -15,16 +15,16 @@ describe('DetailsComponent', () => {
     let httpC = new HttpClient(http);
     let security = new SecurityService(router, httpC);
     let service = new DetailsRestService(security, httpC);
-    let details;
+    let details = new DetailsComponent(i18n, service);
 
     let ngOnInit, loadPositions, sortColumnBy, cancel, submit;
     let getMenus;
 
     beforeEach(() => {
 
-      details = new DetailsComponent(i18n, service);
-      let fixture = TestBed.createComponent(DetailsComponent);
-      details = fixture.componentInstance;
+      // details = new DetailsComponent(i18n, service);
+      // let fixture = TestBed.createComponent(DetailsComponent);
+      // details = fixture.componentInstance;
       // service spies
       spyOn(service, 'getMenus').and.callFake(() => {
         details.offers = ['filled', 'with', 'fake', 'data'];
@@ -44,10 +44,11 @@ describe('DetailsComponent', () => {
 
     });
 
-    // it('DetailsComponent should be defined', () => {
-    //   expect(details).toBeDefined();
-    // });
-    //
+
+    // it('DetailsComponent should be defined', inject([DetailsComponent], (d) => {
+    //   expect(d).toBeDefined();
+    // }));
+
     // it('\'offers\' should contain some data', () => {
     //   expect(details.offers.length).toBeGreaterThan(0);
     // });
