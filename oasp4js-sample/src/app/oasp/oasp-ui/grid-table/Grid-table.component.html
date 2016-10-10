@@ -7,7 +7,7 @@
           </th>
       </thead>
       <tbody>
-          <tr *ngFor="let obj of rowsData"
+          <tr *ngFor="let obj of dataInput"
           (click)=clickedRow(obj)>
               <td *ngFor= "let attribute of attributeNames"
                   [class.selected]="selection === obj">
