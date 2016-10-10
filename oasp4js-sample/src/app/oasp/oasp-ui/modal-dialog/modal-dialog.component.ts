@@ -1,56 +1,36 @@
-import { Component,Input, EventEmitter } from '@angular/core'
-import { Table } from '../../../main/models/table/Table.model'
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'modal-dialog',
+  selector: 'app-modal-dialog',
   templateUrl: 'modal-dialog.component.html'
 })
 export class ModalDialogComponent {
 
-  @Input('HEADER') header:Object;
-  @Input('BODY') body:Object;
-  @Input('BUTTONS') buttonDefs:Object;
-  @Input('TITLE') title:string;
-  @Input('modal') modal:boolean;
-  @Input('parentTable') parentTable:Table;
+  @Input('header') header: Object;
+  @Input('title') title: string;
+  @Input('modal') modal: boolean;
 
-  defaultHeader:Object = "";
-  defaultBody:Object = "OASP dialog body";
-  defaultButtonDefs:Object;
-  defaultTitle:String = "OASP dialog title";
+  defaultHeader: Object = '';
+  defaultBody: Object = 'OASP dialog body';
 
-  public info:string = "info";
-  public container:string = "container";
+  defaultButtonDefs: Object;
+  defaultTitle: String = 'OASP dialog title';
 
+  constructor() {};
 
-  public nameLogin = "login";
-  public nameDetails = "tableDetails"
-
-  getHeader(){
-      if(this.header != null)
-          return this.header;
-      else
-          return this.defaultHeader;
+  getHeader() {
+      if (this.header != null) {
+        return this.header;
+      } else {
+        return this.defaultHeader;
+      }
   }
 
-  getBody(){
-      if(this.body != null)
-          return this.body;
-      else
-          return this.defaultBody;
-  }
-
-  getButtons(){
-      if(this.buttonDefs != null)
-          return this.buttonDefs;
-      else
-          return this.defaultButtonDefs;
-  }
-
-  getTitle(){
-      if(this.title != null)
-          return this.title;
-      else
-          return this.defaultTitle;
+  getTitle() {
+      if (this.title != null) {
+        return this.title;
+      } else {
+        return this.defaultTitle;
+      }
   }
 }

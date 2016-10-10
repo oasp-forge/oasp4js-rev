@@ -14,11 +14,11 @@
   </ul>
 </div>
 
-<modal-dialog id="modal"
-  style= "z-index:51; position:fixed; left: 0px; top: 0px; width:100%; height:100%;"
+<app-modal-dialog
+  style= "position:fixed;"
   *ngIf="hideModalDialog"
   [modal]=true
-  [TITLE]="i18n.header.confirm.title"
+  [title]="i18n.header.confirm.title"
   class="modaldialog">
     <p>
         {{i18n.header.confirm.bodyMsg1}}
@@ -30,4 +30,4 @@
         <button class="btn btn-primary" data-dismiss="modal" (click)="confirm()">{{i18n.buttons.submitBtn}}</button>
         <button class="btn btn-warning" data-dismiss="modal" (click)="cancel()">{{i18n.buttons.cancelBtn}}</button>
     </div>
-</modal-dialog>
+</app-modal-dialog>

@@ -1,8 +1,8 @@
-import { DetailsComponent } from '../../main/components/details/view/Details.component';
-import { DetailsRestService } from '../../main/components/details/service/Details.service.rest';
-import { HttpClient} from '../../oasp/oasp-security/http-client.service';
-import { SecurityService} from '../../oasp/oasp-security/oasp-security.service';
-import { OaspI18n } from '../../oasp/oasp-i18n/oasp-i18n.service';
+import { DetailsComponent } from '../../../main/components/details/view/Details.component';
+import { DetailsRestService } from '../../../main/components/details/service/Details.service.rest';
+import { HttpClient} from '../../../oasp/oasp-security/http-client.service';
+import { SecurityService} from '../../../oasp/oasp-security/oasp-security.service';
+import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { TestBed, inject } from '@angular/core/testing';

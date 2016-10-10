@@ -11,10 +11,10 @@
   <label class ="footer">{{i18n.footer.title}}</label>
 
 
-  <modal-dialog id="showPopup"
+  <app-modal-dialog id="showPopup"
   *ngIf="securityService.getSessionExpired()"
   [modal]=true
-  [TITLE]=autoLogInfo
+  [title]=autoLogInfo
   class="modaldialog">
   <form (ngSubmit)="validateLogin(loginForm)" #loginForm="ngForm">
       <h2>{{i18n.loginPage.signIn}}</h2>
@@ -39,4 +39,4 @@
       </div>
       <button type="submit" class="btn btn-success" [disabled] ="!loginForm.form.valid">{{i18n.buttons.submitBtn}}</button>
   </form>
-  </modal-dialog>
+</app-modal-dialog>

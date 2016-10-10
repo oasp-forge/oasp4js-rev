@@ -1,37 +1,37 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core'
+import {Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 import {OaspI18n} from '../../oasp-i18n/oasp-i18n.service';
 
 @Component({
-  selector:'search-panel',
-  templateUrl:'Search-panel.component.html'
+  selector: 'app-search-panel',
+  templateUrl: 'Search-panel.component.html'
 })
 
-export class SearchPanelComponent{
+export class SearchPanelComponent implements OnChanges {
   @Input('searchInputs') searchInputs;
   @Output('searchValues') searchValues = new EventEmitter();
   search;
-  i18n
+  i18n;
 
-  constructor(oaspI18n: OaspI18n){
+  constructor(oaspI18n: OaspI18n) {
       this.i18n = oaspI18n.getI18n();
   }
 
-  ngOnChanges(){
-      if(this.searchInputs){
+  ngOnChanges() {
+      if (this.searchInputs) {
           this.search = this.searchInputs;
       }
   }
 
-  clearForm(){
-    for(let i = 0 ; i < this.search.length ; i++ ){
-        this.search[i].value = "";
+  clearForm() {
+    for (let i = 0 ; i < this.search.length ; i++ ) {
+        this.search[i].value = '';
     }
     this.doSearch();
   }
 
-  doSearch(){
+  doSearch() {
       let values = [];
-      for(let i = 0 ; i < this.search.length ; i++ ){
+      for (let i = 0 ; i < this.search.length ; i++ ) {
           values.push(this.search[i].value);
       }
       this.searchValues.emit(values);
