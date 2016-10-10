@@ -1,5 +1,5 @@
 <div *ngIf="security">
-    <search-panel [searchInputs] ="[id,orderId,offerName,mealName, sideDishName]" (searchValues) = "searchFilters($event)">
+    <oasp-search-panel [searchInputs] ="[id,orderId,offerName,mealName, sideDishName]" (searchValues) = "searchFilters($event)">
 
         <div class = "searchFields propertyMargin-right">
             <label> {{i18n.kitchen.id}} </label>
@@ -38,20 +38,20 @@
             </select>
         </div>
 
-    </search-panel>
+    </oasp-search-panel>
 
     <legend> {{i18n.kitchen.title}} </legend>
 
     <div class ="Kitchentables">
         <div class = "commandTable">
             <h3> {{i18n.kitchen.available}} </h3>
-            <grid-table
+            <oasp-grid-table
                 [headers] ="headers"
                 [attributeNames] = "attributeNames"
                 [dataInput] = "availableCommands"
                 (objSelected) = "availableSelected($event)"
                 (sort) = "sortColumnBy($event)">
-            </grid-table>
+            </oasp-grid-table>
         </div>
 
         <button (click) ="assign()" [disabled] = "selectedAvailableCommand == undefined" class ="btn commandButton glyphicon IconArrowRight"></button>
@@ -59,13 +59,13 @@
 
         <div class = "commandTable">
             <h3> {{i18n.kitchen.assigned}} </h3>
-            <grid-table
+            <oasp-grid-table
                 [headers] ="headers"
                 [attributeNames] = "attributeNames"
                 [dataInput] = "assignedCommands"
                 (objSelected) = "assignedSelected($event)"
                 (sort) = "sortAssignedColumnBy($event)">
-             </grid-table>
+             </oasp-grid-table>
 
              <button  (click) ="finish('PREPARED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-primary propertyMargin-left">{{i18n.buttons.doneBtn}}</button>
              <button  (click) ="finish('CANCELLED')" [disabled] = "selectedAssignedCommand == undefined" class ="btn btn-warning propertyMargin-left">{{i18n.buttons.cancelBtn}}</button>

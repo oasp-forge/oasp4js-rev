@@ -1,10 +1,10 @@
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
-import { KitchenComponent } from '../../main/components/kitchen/view/Kitchen.component';
-import { KitchenRestService } from '../../main/components/kitchen/service/Kitchen.service.rest';
-import { OaspI18n} from '../../oasp/oasp-i18n/oasp-i18n.service';
-import { HttpClient} from '../../oasp/oasp-security/http-client.service';
-import { SecurityService} from '../../oasp/oasp-security/oasp-security.service';
+import { KitchenComponent } from '../../../main/components/kitchen/view/Kitchen.component';
+import { KitchenRestService } from '../../../main/components/kitchen/service/Kitchen.service.rest';
+import { OaspI18n} from '../../../oasp/oasp-i18n/oasp-i18n.service';
+import { HttpClient} from '../../../oasp/oasp-security/http-client.service';
+import { SecurityService} from '../../../oasp/oasp-security/oasp-security.service';
 
 let router: Router;
 let http: Http;

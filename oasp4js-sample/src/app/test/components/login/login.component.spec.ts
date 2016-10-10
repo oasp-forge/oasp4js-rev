@@ -1,9 +1,9 @@
-import { LoginComponent } from '../../main/components/login/Login.component';
-import { OaspI18n } from '../../oasp/oasp-i18n/oasp-i18n.service';
+import { LoginComponent } from '../../../main/components/login/Login.component';
+import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
-import { HttpClient} from '../../oasp/oasp-security/http-client.service';
-import { SecurityService } from '../../oasp/oasp-security/oasp-security.service';
+import { HttpClient} from '../../../oasp/oasp-security/http-client.service';
+import { SecurityService } from '../../../oasp/oasp-security/oasp-security.service';
 
 describe('LoginComponent', () => {
     let i18n = new OaspI18n();

@@ -1,11 +1,11 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core'
+import {Component, EventEmitter, Input, Output, OnChanges} from '@angular/core';
 
 @Component({
-  selector:'grid-table',
-  templateUrl:'Grid-table.component.html'
+  selector: 'oasp-grid-table',
+  templateUrl: 'Grid-table.component.html'
 })
 
-export class GridTableComponent{
+export class GridTableComponent implements OnChanges {
 
     @Input('headers') headers;
     @Input('attributeNames') attributeNames;
@@ -14,42 +14,44 @@ export class GridTableComponent{
     @Output('objSelected') objSelected = new EventEmitter();
     @Output('sort') sort = new EventEmitter();
 
-    public rowsData = [];
-    public attNames = [];
-    public tableHeaders = [];
+    rowsData = [];
+    attNames = [];
+    tableHeaders = [];
 
-    public selection;
-    public sortIconStyle = [];
+    selection;
+    sortIconStyle = [];
 
-    ngOnChanges(){
+    constructor() {};
+
+    ngOnChanges() {
         this.attNames = this.attributeNames;
         this.tableHeaders = this.headers;
         this.rowsData = this.dataInput;
         this.selection = undefined;
-        if(this.sortIconStyle.length === 0){
-            for(let i = 0 ; i < this.tableHeaders.length; i++){
-                this.sortIconStyle.push("IconArrowDown");
+        if (this.sortIconStyle.length === 0) {
+            for (let i = 0 ; i < this.tableHeaders.length; i++) {
+                this.sortIconStyle.push('IconArrowDown');
             }
         }
     }
 
-    sortColumn(column:number, columnName:string){
-        if(this.sortIconStyle[column] === "IconArrowUp"){
-            this.sortIconStyle[column] = "IconArrowDown";
-            let sort = [{name: columnName, direction: "ASC"}];
+    sortColumn(column: number, columnName: string) {
+        if (this.sortIconStyle[column] === 'IconArrowUp') {
+            this.sortIconStyle[column] = 'IconArrowDown';
+            let sort = [{name: columnName, direction: 'ASC'}];
             this.sort.emit(sort);
         } else {
-            for(let i = 0 ; i < this.tableHeaders.length; i++){
-                this.sortIconStyle[i] = "IconArrowDown";
+            for (let i = 0 ; i < this.tableHeaders.length; i++) {
+                this.sortIconStyle[i] = 'IconArrowDown';
             }
-            this.sortIconStyle[column] = "IconArrowUp";
-            let sort = [{name: columnName, direction: "DESC"}];
+            this.sortIconStyle[column] = 'IconArrowUp';
+            let sort = [{name: columnName, direction: 'DESC'}];
             this.sort.emit(sort);
         }
     }
 
-    clickedRow(valor){
-        if(this.selection === valor){
+    clickedRow(valor) {
+        if (this.selection === valor) {
             this.selection = undefined;
         } else {
             this.selection = valor;

@@ -1,6 +1,6 @@
 <div *ngIf="security">
     <div>
-      <search-panel [searchInputs] = "[num, stat, waiter]" (searchValues) = "searchFilters($event)">
+      <oasp-search-panel [searchInputs] = "[num, stat, waiter]" (searchValues) = "searchFilters($event)">
         <div class = "searchFields propertyMargin-right">
             <label> {{i18n.tables.number}} </label>
             <input #num type ="number" class="form-control">
@@ -19,17 +19,17 @@
             <label> {{i18n.tables.waiter}} </label>
             <input #waiter type ="text" class="form-control">
         </div>
-      </search-panel>
+      </oasp-search-panel>
 
       <legend> {{i18n.tables.title}} </legend>
 
-      <grid-table
+      <oasp-grid-table
           [headers] = "headers"
           [attributeNames] = "attributeNames"
           [dataInput] = "tables"
           (objSelected) = "rowSelected($event)"
           (sort) = "sortColumnBy($event)">
-      </grid-table>
+      </oasp-grid-table>
 
       <div style="text-align:center">
           <button type="button" class="btn btn-pagination" (click)="openEditModal()" [disabled] = "myState === -1">{{i18n.buttons.editBtn}}</button>
@@ -42,14 +42,14 @@
     </div>
 
     <div style ="text-align: right">
-        <pagination [numItems] = "numItems" [rowsPerPage] = "4" (eventCurrentPage) = "pagination($event)"></pagination>
+        <oasp-pagination [numItems] = "numItems" [rowsPerPage] = "4" (eventCurrentPage) = "pagination($event)"></oasp-pagination>
     </div>
 
-    <modal-dialog id="modal"
+    <oasp-modal-dialog
       *ngIf="hideModalDialog"
       [modal]=true
-      [TITLE]=modalHeader
+      [title]=modalHeader
       class="modaldialog">
       <app-table-details [parentTable]="selectedTable" (closeWindowEvent)="hideModalDialog = $event" (resultEvent)="rowSelected($event)"></app-table-details>
-    </modal-dialog>
+    </oasp-modal-dialog>
 </div>
