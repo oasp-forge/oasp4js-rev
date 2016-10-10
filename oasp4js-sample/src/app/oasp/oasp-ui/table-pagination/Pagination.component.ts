@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output, OnChanges} from '@angular/core';
 import {OaspI18n} from '../../oasp-i18n/oasp-i18n.service';
 
 @Component({
-  selector: 'oasp-pagination',
+  selector: 'app-pagination',
   templateUrl: 'Pagination.component.html'
 })
 

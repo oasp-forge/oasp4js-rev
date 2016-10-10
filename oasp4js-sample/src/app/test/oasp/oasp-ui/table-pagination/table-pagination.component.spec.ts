@@ -3,7 +3,6 @@ import { OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
 
 let pagination: PaginationComponent;
 
-
 describe('search-panel-component', () => {
   beforeEach(() => {
     pagination = new PaginationComponent(new OaspI18n);

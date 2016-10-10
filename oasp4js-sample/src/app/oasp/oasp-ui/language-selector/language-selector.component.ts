@@ -3,7 +3,7 @@ import { EventEmitter } from '@angular/core';
 import { OaspI18n } from '../../oasp-i18n/oasp-i18n.service';
 
 @Component({
-    selector: 'oasp-language-selector',
+    selector: 'app-language-selector',
     templateUrl: 'language-selector.component.html'
 })
 

@@ -2,7 +2,7 @@ import {Component, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 import {OaspI18n} from '../../oasp-i18n/oasp-i18n.service';
 
 @Component({
-  selector: 'oasp-search-panel',
+  selector: 'app-search-panel',
   templateUrl: 'Search-panel.component.html'
 })
 

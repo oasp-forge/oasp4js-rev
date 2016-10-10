@@ -22,10 +22,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li style="margin-right:15px; margin-top:15px; position:relative;">
-          <oasp-language-selector
+          <app-language-selector
             [list] ="languages"
             (changeLanguageEvent) = "changeLanguage($event)">
-          </oasp-language-selector>
+          </app-language-selector>
         </li>
         <li style="margin-right:20px">
           <div *ngIf="logged" style="margin-top:15px; color:#999;">

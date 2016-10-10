@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output, OnChanges} from '@angular/core';
 
 @Component({
-  selector: 'oasp-grid-table',
+  selector: 'app-grid-table',
   templateUrl: 'Grid-table.component.html'
 })
 

@@ -16,13 +16,13 @@
     <button *ngIf="offerToAdd" class="btn btn-default" type="button" id="menu1" (click)="addCommand()">{{i18n.buttons.addBtn}}</button>
   </div>
 
-  <oasp-grid-table
+  <app-grid-table
       [headers] = "headers"
       [attributeNames] = "attributeNames"
       [dataInput] = "positions"
       (objSelected) = "clickedRow($event)"
       (sort) = "sortColumnBy($event)">
-  </oasp-grid-table>
+  </app-grid-table>
 
   <div style="float:left;">
     <button *ngIf="selectedPosition" class="btn btn-default" (click)="removeCommand()">{{i18n.buttons.removeBtn}}</button>
@@ -31,7 +31,7 @@
 </div>
 
 <div style ="text-align: right">
-    <oasp-pagination [numItems] = "numItems" [rowsPerPage] = "4" (eventCurrentPage) = "pagination($event)"></oasp-pagination>
+    <app-pagination [numItems] = "numItems" [rowsPerPage] = "4" (eventCurrentPage) = "pagination($event)"></app-pagination>
 </div>
 
 <br>

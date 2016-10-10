@@ -2,7 +2,6 @@ import { ModalDialogComponent } from '../../../../oasp/oasp-ui/modal-dialog/moda
 
 let modalDialog: ModalDialogComponent;
 
-
 describe('modal-dialog-component', () => {
   beforeEach(() => {
     modalDialog = new ModalDialogComponent();

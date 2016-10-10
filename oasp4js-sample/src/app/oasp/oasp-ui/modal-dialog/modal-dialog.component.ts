@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'oasp-modal-dialog',
+  selector: 'app-modal-dialog',
   templateUrl: 'modal-dialog.component.html'
 })
 export class ModalDialogComponent {

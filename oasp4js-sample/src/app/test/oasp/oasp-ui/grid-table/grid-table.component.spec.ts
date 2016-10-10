@@ -2,7 +2,6 @@ import { GridTableComponent } from '../../../../oasp/oasp-ui/grid-table/Grid-tab
 
 let gridTable: GridTableComponent;
 
-
 describe('grid-table-component', () => {
   beforeEach(() => {
     gridTable = new GridTableComponent();

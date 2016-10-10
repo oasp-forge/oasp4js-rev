@@ -14,7 +14,7 @@
   </ul>
 </div>
 
-<oasp-modal-dialog
+<app-modal-dialog
   style= "position:fixed;"
   *ngIf="hideModalDialog"
   [modal]=true
@@ -30,4 +30,4 @@
         <button class="btn btn-primary" data-dismiss="modal" (click)="confirm()">{{i18n.buttons.submitBtn}}</button>
         <button class="btn btn-warning" data-dismiss="modal" (click)="cancel()">{{i18n.buttons.cancelBtn}}</button>
     </div>
-</oasp-modal-dialog>
+</app-modal-dialog>
