@@ -10,7 +10,7 @@ import { HttpClient } from './http-client.service';
 export var Headerlogged = false;
 export var sessionExpired = false;
 export var csrfToken;
-export var errorLogin:boolean = true;
+export var errorLogin = true;
 export var user;
 
 @Injectable()

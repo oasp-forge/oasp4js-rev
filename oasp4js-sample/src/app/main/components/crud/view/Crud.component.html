@@ -50,6 +50,6 @@
       [modal]=true
       [TITLE]=modalHeader
       class="modaldialog">
-      <tableDetails [parentTable]="selectedTable" (closeWindowEvent)="hideModalDialog = $event" (resultEvent)="rowSelected($event)"></tableDetails>
+      <app-table-details [parentTable]="selectedTable" (closeWindowEvent)="hideModalDialog = $event" (resultEvent)="rowSelected($event)"></app-table-details>
     </modal-dialog>
 </div>

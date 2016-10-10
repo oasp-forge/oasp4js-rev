@@ -1,19 +1,15 @@
-import {Component, EventEmitter} from '@angular/core'
+import {Component, Input, Output, EventEmitter} from '@angular/core'
 import {OaspI18n} from '../../oasp-i18n/oasp-i18n.service';
 
 @Component({
   selector:'search-panel',
-  templateUrl:'Search-panel.component.html',
-  providers: [OaspI18n],
-  inputs: ["searchInputs"],
-  outputs: ["searchValues"]
+  templateUrl:'Search-panel.component.html'
 })
 
 export class SearchPanelComponent{
-
-  searchInputs;
+  @Input('searchInputs') searchInputs;
+  @Output('searchValues') searchValues = new EventEmitter();
   search;
-  searchValues = new EventEmitter();
   i18n
 
   constructor(oaspI18n: OaspI18n){

@@ -1,25 +1,22 @@
-import {Component, EventEmitter} from '@angular/core'
+import {Component, EventEmitter, Input, Output, OnChanges} from '@angular/core'
 import {OaspI18n} from '../../oasp-i18n/oasp-i18n.service';
 
 @Component({
   selector:'pagination',
-  templateUrl:'Pagination.component.html',
-  providers: [OaspI18n],
-  inputs:['numItems', 'rowsPerPage'],
-  outputs: ['eventCurrentPage']
+  templateUrl:'Pagination.component.html'
 })
 
-export class PaginationComponent{
+export class PaginationComponent implements OnChanges{
+  @Input ('numItems') numItems: number;
+  @Input ('rowsPerPage') rowsPerPage: number;
 
-  numItems;
+  @Output ('eventCurrentPage') eventCurrentPage = new EventEmitter();
+
   currentPage:number =1;
   pageView: number = 1;
-
-  rowsPerPage: number;
   numberPages: number;
 
-  eventCurrentPage = new EventEmitter();
-  i18n
+  i18n;
 
   constructor(oaspI18n: OaspI18n){
       this.i18n = oaspI18n.getI18n();

@@ -17,7 +17,7 @@ describe('DetailsComponent', () => {
     let service = new DetailsRestService(security, httpC);
     let details = new DetailsComponent(i18n, service);
 
-    let ngOnInit, loadPositions, sortColumnBy, cancel, submit;
+    let ngOnInit, loadPositions;
     let getMenus;
 
     beforeEach(() => {

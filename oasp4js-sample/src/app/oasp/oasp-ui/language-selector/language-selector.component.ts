@@ -1,25 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 import { OaspI18n } from '../../oasp-i18n/oasp-i18n.service';
 
 @Component({
     selector: 'languageSelector',
-    templateUrl: 'language-selector.component.html',
-    providers : [OaspI18n],
-    inputs: ['list'],
-    outputs : ['changeLanguageEvent']
+    templateUrl: 'language-selector.component.html'
 })
 
 export class LanguageSelector {
 
-    list;
+    @Input('list') list;
+    @Output('changeLanguageEvent') changeLanguageEvent = new EventEmitter();
+
     public currentLanguage;
     public optionLanguages;
     public dropmenu;
     public i18n
     public selectedLanguage;
 
-    changeLanguageEvent = new EventEmitter();
     hideModalDialog = false;
 
     constructor(private oaspI18n : OaspI18n){

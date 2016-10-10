@@ -1,29 +1,28 @@
-import {Component, EventEmitter} from '@angular/core'
+import {Component, EventEmitter, Input, Output} from '@angular/core'
 
 @Component({
   selector:'grid-table',
-  templateUrl:'Grid-table.component.html',
-  inputs:['headers', 'attributeNames', 'dataInput'],
-  outputs:['objSelected', 'sort']
+  templateUrl:'Grid-table.component.html'
 })
 
 export class GridTableComponent{
 
-    headers;
-    attributeNames;
-    dataInput;
+    @Input('headers') headers;
+    @Input('attributeNames') attributeNames;
+    @Input('dataInput') dataInput;
+
+    @Output('objSelected') objSelected = new EventEmitter();
+    @Output('sort') sort = new EventEmitter();
 
     public rowsData = [];
-    public attributesNames = [];
+    public attNames = [];
     public tableHeaders = [];
 
     public selection;
-    objSelected = new EventEmitter();
-    sort = new EventEmitter();
     public sortIconStyle = [];
 
     ngOnChanges(){
-        this.attributesNames = this.attributeNames;
+        this.attNames = this.attributeNames;
         this.tableHeaders = this.headers;
         this.rowsData = this.dataInput;
         this.selection = undefined;
