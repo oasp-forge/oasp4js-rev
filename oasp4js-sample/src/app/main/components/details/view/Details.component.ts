@@ -28,14 +28,14 @@ export class DetailsComponent implements OnInit {
 
   public pageData;
 
-  constructor(private oaspI18n: OaspI18n, private detailsRestService: DetailsRestService) {
-      this.i18n = oaspI18n.getI18n();
-      this.headers = [this.i18n.details.number, this.i18n.details.description, this.i18n.details.state,
-                      this.i18n.details.price, this.i18n.details.comment];
-      this.attributeNames = ['id', 'offerName', 'state', 'price', 'comment'];
+  constructor(public oaspI18n: OaspI18n, private detailsRestService: DetailsRestService) {
   }
 
   ngOnInit() {
+    this.i18n = this.oaspI18n.getI18n();
+    this.headers = [this.i18n.details.number, this.i18n.details.description, this.i18n.details.state,
+    this.i18n.details.price, this.i18n.details.comment];
+    this.attributeNames = ['id', 'offerName', 'state', 'price', 'comment'];
     this.pageData = {
         pagination: {
             size: 4,
