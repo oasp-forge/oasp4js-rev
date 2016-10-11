@@ -17,6 +17,7 @@ import { CrudRestService } from './main/components/crud/service/Crud.service.res
 import { DetailsRestService } from './main/components/details/service/Details.service.rest'
 import { KitchenRestService } from './main/components/kitchen/service/Kitchen.service.rest'
 
+
 @NgModule({
   declarations: [
     Oasp4jsSampleAppComponent,
@@ -25,7 +26,7 @@ import { KitchenRestService } from './main/components/kitchen/service/Kitchen.se
     HeaderComponent,
     KitchenComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

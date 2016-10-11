@@ -5,7 +5,7 @@ import { SecurityService} from '../../../oasp/oasp-security/oasp-security.servic
 import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
-import { TestBed, inject } from '@angular/core/testing';
+// import { TestBed, inject } from '@angular/core/testing';
 
 describe('DetailsComponent', () => {
 

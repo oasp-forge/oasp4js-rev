@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By }              from '@angular/platform-browser';
-import { DebugElement }    from '@angular/core';
+import { DebugElement, EventEmitter }    from '@angular/core';
 
 import { GridTableComponent } from '../../../../oasp/oasp-ui/grid-table/Grid-table.component';
 
@@ -38,6 +38,13 @@ describe('GridTableComponent', () => {
 
   it('number of headers should be equal to number of attributes', () => {
     expect(comp.attributeNames.length).toEqual(comp.headers.length);
+  });
+
+  it('has to have 2 outputs: OBJSELECTED and SORT', () => {
+    expect(comp.objSelected).not.toBeNull();
+    expect(comp.sort).not.toBeNull();
+    expect(comp.objSelected instanceof EventEmitter).toBeTruthy();
+    expect(comp.sort instanceof EventEmitter).toBeTruthy();
   });
 
 });
