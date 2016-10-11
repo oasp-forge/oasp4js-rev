@@ -4,8 +4,8 @@
   <button type="button" class="btn btn-pagination" (click) ="changePage(currentPage - 1, 0)" [disabled]="currentPage === 1"> {{i18n.pagination.previous}} </button>
 
 
-  <button type="button" class="btn btn-pagination" [class.selected]="currentPage === pageView" (click) ="changePage(pageView)" [disabled]="currentPage === pageView">{{pageView}}</button>
-  <button type="button" class="btn btn-pagination" [class.selected]="currentPage === (pageView + 1)" (click) ="changePage(pageView + 1)" *ngIf="numberPages > 1 && pageView + 1 <= numberPages" [disabled]="currentPage === pageView + 1">{{pageView + 1}}</button>
+  <button type="button" class="btn btn-pagination" [class.selected]="currentPage === pageView" (click) ="changePage(pageView)" [disabled]="currentPage === pageView -1">{{pageView}}</button>
+  <button type="button" class="btn btn-pagination" [class.selected]="currentPage === (pageView + 1)" (click) ="changePage(pageView + 1)" *ngIf="numberPages > 1 && pageView - 1 <= numberPages" [disabled]="currentPage === pageView + 1">{{pageView + 1}}</button>
   <button type="button" class="btn btn-pagination" [class.selected]="currentPage === (pageView + 2)" (click) ="changePage(pageView + 2)" *ngIf="numberPages > 2 && pageView + 2 <= numberPages" [disabled]="currentPage === pageView + 2">{{pageView + 2}}</button>
   <button type="button" class="btn btn-pagination" [class.selected]="currentPage === (pageView + 3)" (click) ="changePage(pageView + 3)" *ngIf="numberPages > 3 && pageView + 3 <= numberPages" [disabled]="currentPage === pageView + 3">{{pageView + 3}}</button>
 

@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 export class ModalDialogComponent {
 
   @Input('title') title: string;
-  
+
   constructor() {};
 
 }
