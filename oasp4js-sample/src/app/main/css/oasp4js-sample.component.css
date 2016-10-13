@@ -7072,6 +7072,11 @@ tr.selected {
   background-color: transparent !important;
 }
 
+.header-user {
+  margin-top:15px;
+  color:#999;
+}
+
 /*-------------DROPDOWNLIST-------------*/
 
 .icon {
@@ -7096,15 +7101,6 @@ tr.selected {
   border: none !important;
   font-size: 16px !important;
 }
-/*.header-restaurant .header-right .userList{
-  width: auto;
-  display: -webkit-inline-box !important;
-  margin-top:7px !important;
-  margin-right: 70px !important;
-  background: none !important;
-  border: none !important;
-  font-size: 16px !important;
-}*/
 
 .userList {
     vertical-align: middle;
@@ -7140,20 +7136,6 @@ tr.selected {
 .nav .navbar-nav .navbar-right .dropdown ul:hover {
     background-color: #f9f9f9 !important;
 }
-
-/*.header-restaurant .header-right .dropdown {
-  display: -webkit-inline-box !important;
-  color: grey !important;
-}
-
-.header-restaurant .header-right .dropdown ul {
-  background-color: white !important;
-  font-size: 16px !important;
-}
-
-.header-restaurant .header-right .dropdown ul:hover {
-    background-color: #f9f9f9 !important;
-}*/
 
 .my-dropdown{
   position: absolute;

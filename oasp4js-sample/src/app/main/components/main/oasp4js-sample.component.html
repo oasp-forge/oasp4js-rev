@@ -1,7 +1,7 @@
 <div *ngIf="http.getLoading()" class ="maskLoading">
 </div>
 
-  <header style="z-index:1; position:relative;" [logged]="securityService.getLogged()" [user] ="securityService.getUser()"></header>
+  <app-header style="z-index:1; position:relative;" [logged]="securityService.getLogged()" [user] ="securityService.getUser()"></app-header>
 
 
   <div class="app-body">

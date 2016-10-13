@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
@@ -6,25 +6,19 @@ import { HeaderComponent } from '../../../main/components/header/Header.componen
 import { OaspI18n} from '../../../oasp/oasp-i18n/oasp-i18n.service';
 import { SecurityService} from '../../../oasp/oasp-security/oasp-security.service';
 import { languages } from '../../../main/resources/languages/Languages.resource';
-import { HttpClient} from '../../../oasp/oasp-security/http-client.service';
 import { Router } from '@angular/router';
 import { AppModule } from '../../../app.module';
 import { OaspModule } from '../../../oasp/oasp.module';
+import { User } from '../../../main/models/user/User.model';
 
 let comp: HeaderComponent;
 let fixture: ComponentFixture<HeaderComponent>;
-let titleDe: DebugElement;
-let titleEl: HTMLElement;
+let logOffDe: DebugElement;
 let oaspI18n: OaspI18n;
 let i18n;
 
 class RouterStub {
   navigateByUrl(url: string) { return url; }
-}
-
-class HttpClientStub {
-  get(url) { return null; }
-  post(url) { return null; }
 }
 
 describe('HeaderComponent', () => {
@@ -33,7 +27,6 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       imports : [ AppModule, OaspModule ],
       providers: [ OaspI18n,
-                   { provide: HttpClient, useClass: HttpClientStub },
                    SecurityService,
                    { provide: Router, useClass: RouterStub } ]
     }).compileComponents();
@@ -44,11 +37,12 @@ describe('HeaderComponent', () => {
     fixture = TestBed.createComponent(HeaderComponent);
     comp = fixture.componentInstance;
 
-    languages.forEach(lang => lang.iconUrl = '')
-    
+    languages.forEach(lang => lang.iconUrl = '');
+
     spyOn(comp, 'ngOnInit').and.callFake(() => {
       comp.i18n = comp.oaspI18n.getI18n();
       comp.languages = languages;
+      comp.user = new User(0, 'user', 'pass', 0);
       comp.logged = false;
       comp.dropmenu = true;
     });
@@ -62,6 +56,18 @@ describe('HeaderComponent', () => {
 
   it('I18n has been defined', () => {
     expect(comp.i18n).toBeDefined();
+  });
+
+  it('logOff button redirect to login', () => {
+    inject([Router], (router: Router) => { // ...
+
+      const spy = spyOn(router, 'navigateByUrl');
+      const navArgs = spy.calls.first().args[0];
+
+      logOffDe = fixture.debugElement.query(By.css('button'));
+      logOffDe.triggerEventHandler('click', null);
+      expect(navArgs).toBe('/');
+    });
   });
 
 });

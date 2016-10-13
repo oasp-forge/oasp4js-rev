@@ -96,6 +96,7 @@ export class SecurityService {
 
     logOut() {
         Headerlogged = false;
+        user = null;
         this.http.post(this.BO.logOutPost, JSON.stringify({j_username: '', j_password: ''}))
                 .map(res => JSON.stringify(res))
                 .subscribe(data => {this.http.disableLoading(); });

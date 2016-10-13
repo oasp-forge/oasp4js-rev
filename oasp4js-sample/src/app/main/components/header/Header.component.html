@@ -11,7 +11,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <div [collapse]="isCollapsed" class="collapse navbar-collapse navHeaderCollapse">
+    <div [appcollapse]="isCollapsed" class="collapse navbar-collapse navHeaderCollapse">
       <ul *ngIf="logged" class="nav navbar-nav navbar-left">
         <li role = "presentation">
           <a [routerLink]="['/Tables']"> {{i18n.header.tablesTab}} </a>
@@ -28,7 +28,7 @@
           </app-language-selector>
         </li>
         <li style="margin-right:20px">
-          <div *ngIf="logged" style="margin-top:15px; color:#999;">
+          <div *ngIf="logged" class="header-user">
             {{i18n.header.logged}} : {{user.username}}
           </div>
         </li>
@@ -41,28 +41,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-<!-- <div class ="header-restaurant">
-    <label class ="header-title"> <a> {{i18n.header.title}} </a> </label>
-
-    <ul *ngIf="logged" class = "header-tabs">
-        <li role = "presentation">
-          <a [routerLink]="['/Tables']"> {{i18n.header.tablesTab}} </a>
-        </li>
-        <li role = "presentation">
-          <a [routerLink]="['/Kitchen']"> {{i18n.header.kitchenTab}} </a>
-        </li>
-    </ul>
-
-    <div class = "header-right">
-
-      <languageSelector [list] ="languages" (changeLanguageEvent) = "changeLanguage($event)"></languageSelector>
-
-      <span class="headerInfo" *ngIf="logged"> {{i18n.header.logged}} : {{user.username}} </span>
-      <button type="button" class = "btn btn-success" *ngIf="logged" (click) = "logOff()"> {{i18n.buttons.logOffBtn}} </button>
-    </div>
-
-</div> -->

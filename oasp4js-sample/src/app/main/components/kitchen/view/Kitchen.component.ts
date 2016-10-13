@@ -38,7 +38,7 @@ export class KitchenComponent implements OnInit {
     public headers: string[];
     public attributeNames: string[] = ['id', 'orderId', 'offerName', 'mealName', 'sideDishName'];
 
-    constructor (private securityService: SecurityService, private oaspI18n: OaspI18n, private kitchenRestService: KitchenRestService) {
+    constructor (private securityService: SecurityService, public oaspI18n: OaspI18n, private kitchenRestService: KitchenRestService) {
     }
 
     ngOnInit() {
