@@ -2,18 +2,17 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { DetailsComponent } from '../../../main/components/details/view/Details.component';
+import { HeaderComponent } from '../../../main/components/header/Header.component';
 import { OaspI18n} from '../../../oasp/oasp-i18n/oasp-i18n.service';
-import { DetailsRestService } from '../../../main/components/details/service/Details.service.rest';
 import { SecurityService} from '../../../oasp/oasp-security/oasp-security.service';
+import { languages } from '../../../main/resources/languages/Languages.resource';
 import { HttpClient} from '../../../oasp/oasp-security/http-client.service';
 import { Router } from '@angular/router';
-import { Table } from '../../../main/models/table/Table.model';
 import { AppModule } from '../../../app.module';
 import { OaspModule } from '../../../oasp/oasp.module';
 
-let comp: DetailsComponent;
-let fixture: ComponentFixture<DetailsComponent>;
+let comp: HeaderComponent;
+let fixture: ComponentFixture<HeaderComponent>;
 let titleDe: DebugElement;
 let titleEl: HTMLElement;
 let oaspI18n: OaspI18n;
@@ -28,13 +27,12 @@ class HttpClientStub {
   post(url) { return null; }
 }
 
-describe('DetailsComponent', () => {
+describe('HeaderComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports : [ AppModule, OaspModule ],
       providers: [ OaspI18n,
-                   DetailsRestService,
                    { provide: HttpClient, useClass: HttpClientStub },
                    SecurityService,
                    { provide: Router, useClass: RouterStub } ]
@@ -43,31 +41,23 @@ describe('DetailsComponent', () => {
 
   beforeEach(() => {
 
-    fixture = TestBed.createComponent(DetailsComponent);
+    fixture = TestBed.createComponent(HeaderComponent);
     comp = fixture.componentInstance;
 
+    languages.forEach(lang => lang.iconUrl = '')
+    
     spyOn(comp, 'ngOnInit').and.callFake(() => {
       comp.i18n = comp.oaspI18n.getI18n();
-      comp.headers = [comp.i18n.details.number, comp.i18n.details.description, comp.i18n.details.state,
-      comp.i18n.details.price, comp.i18n.details.comment];
-      comp.attributeNames = ['id', 'offerName', 'state', 'price', 'comment'];
+      comp.languages = languages;
+      comp.logged = false;
+      comp.dropmenu = true;
     });
 
     oaspI18n = new OaspI18n();
     i18n = oaspI18n.getI18n();
-    comp.parentTable = new Table(1, 0, 1, 'FREE', 0);
 
     fixture.detectChanges();
 
-
-    titleDe = fixture.debugElement.query(By.css('p'));
-    titleEl = titleDe.nativeElement;
-
-
-  });
-
-  it('Table status is correctly set', () => {
-    expect(titleEl.textContent).toContain(comp.parentTable.state);
   });
 
   it('I18n has been defined', () => {

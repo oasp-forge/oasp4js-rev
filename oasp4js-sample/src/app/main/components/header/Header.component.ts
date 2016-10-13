@@ -18,11 +18,14 @@ export class HeaderComponent {
     i18n;
     languages;
 
-    constructor(private securityService:SecurityService, private oaspI18n: OaspI18n) {
-        this.i18n = oaspI18n.getI18n();
-        this.languages = languages;
-        this.logged = false;
-        this.dropmenu = true;
+    constructor(private securityService:SecurityService, public oaspI18n: OaspI18n) {
+    }
+
+    ngOnInit(){
+      this.i18n = this.oaspI18n.getI18n();
+      this.languages = languages;
+      this.logged = false;
+      this.dropmenu = true;
     }
 
     changeLanguage(code){

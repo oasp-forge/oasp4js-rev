@@ -34,7 +34,7 @@ export class CrudComponent implements OnInit {
       sort: [{name: 'number', direction: 'ASC'}]
     };
 
-  constructor(private securityService: SecurityService, private oaspI18n: OaspI18n, private crudRestService: CrudRestService) {
+  constructor(private securityService: SecurityService, public oaspI18n: OaspI18n, private crudRestService: CrudRestService) {
   }
 
   ngOnInit() {

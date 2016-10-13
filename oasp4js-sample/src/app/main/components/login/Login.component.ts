@@ -9,10 +9,13 @@ import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
 
 export class LoginComponent {
 
-  i18n;
+  public i18n;
 
-  constructor(private oaspI18n: OaspI18n, private securityService: SecurityService) {
-      this.i18n = oaspI18n.getI18n();
+  constructor(public oaspI18n: OaspI18n, public securityService: SecurityService) {
+  }
+
+  ngOnInit() {
+    this.i18n = this.oaspI18n.getI18n();
   }
 
   hideAlertLogin() {
