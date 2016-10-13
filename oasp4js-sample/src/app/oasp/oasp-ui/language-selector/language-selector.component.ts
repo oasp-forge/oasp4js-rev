@@ -17,12 +17,12 @@ export class LanguageSelectorComponent implements OnChanges {
     public dropmenu;
     public i18n;
     public selectedLanguage;
-
-    hideModalDialog = false;
+    public hideModalDialog;
 
     constructor(private oaspI18n: OaspI18n) {
         this.i18n = this.oaspI18n.getI18n();
         this.dropmenu = true;
+        this.hideModalDialog = false;
     }
 
     ngOnChanges() {

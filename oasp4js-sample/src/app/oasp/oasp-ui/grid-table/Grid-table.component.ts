@@ -14,22 +14,21 @@ export class GridTableComponent implements OnChanges {
     @Output('objSelected') objSelected = new EventEmitter();
     @Output('sort') sort = new EventEmitter();
 
-    rowsData = [];
     attNames = [];
-    tableHeaders = [];
 
     selection;
+    sorting;
     sortIconStyle = [];
 
     constructor() {};
 
     ngOnChanges() {
         this.attNames = this.attributeNames;
-        this.tableHeaders = this.headers;
-        this.rowsData = this.dataInput;
+        this.headers = this.headers;
+        this.dataInput = this.dataInput;
         this.selection = undefined;
         if (this.sortIconStyle.length === 0) {
-            for (let i = 0 ; i < this.tableHeaders.length; i++) {
+            for (let i = 0 ; i < this.headers.length; i++) {
                 this.sortIconStyle.push('IconArrowDown');
             }
         }
@@ -38,15 +37,15 @@ export class GridTableComponent implements OnChanges {
     sortColumn(column: number, columnName: string) {
         if (this.sortIconStyle[column] === 'IconArrowUp') {
             this.sortIconStyle[column] = 'IconArrowDown';
-            let sort = [{name: columnName, direction: 'ASC'}];
-            this.sort.emit(sort);
+            this.sorting = [{name: columnName, direction: 'ASC'}];
+            this.sort.emit(this.sorting);
         } else {
-            for (let i = 0 ; i < this.tableHeaders.length; i++) {
+            for (let i = 0 ; i < this.headers.length; i++) {
                 this.sortIconStyle[i] = 'IconArrowDown';
             }
             this.sortIconStyle[column] = 'IconArrowUp';
-            let sort = [{name: columnName, direction: 'DESC'}];
-            this.sort.emit(sort);
+            this.sorting = [{name: columnName, direction: 'DESC'}];
+            this.sort.emit(this.sorting);
         }
     }
 
