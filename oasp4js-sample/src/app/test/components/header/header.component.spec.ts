@@ -1,4 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 import { HeaderComponent } from '../../../main/components/header/Header.component';
 import { OaspI18n} from '../../../oasp/oasp-i18n/oasp-i18n.service';
@@ -11,6 +13,7 @@ import { User } from '../../../main/models/user/User.model';
 
 let comp: HeaderComponent;
 let fixture: ComponentFixture<HeaderComponent>;
+let logOffDe: DebugElement;
 let oaspI18n: OaspI18n;
 let i18n;
 
@@ -53,6 +56,18 @@ describe('HeaderComponent', () => {
 
   it('I18n has been defined', () => {
     expect(comp.i18n).toBeDefined();
+  });
+
+  it('logOff button redirect to login', () => {
+    inject([Router], (router: Router) => { // ...
+
+      const spy = spyOn(router, 'navigateByUrl');
+      const navArgs = spy.calls.first().args[0];
+
+      logOffDe = fixture.debugElement.query(By.css('button'));
+      logOffDe.triggerEventHandler('click', null);
+      expect(navArgs).toBe('/');
+    });
   });
 
 });
