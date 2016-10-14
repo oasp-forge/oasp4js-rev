@@ -13,7 +13,7 @@ let form = {username: 'u', password: 'p'};
 let oasp = new Oasp4jsSampleAppComponent(
   securityService,
   new OaspI18n,
-  new HttpClient(http)
+  httpC
 );
 
 let validateLogin, hideAlertLogin, functionLogin, functionSessionExpired, closeErrorLogin;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SecurityService } from '../../../oasp/oasp-security/oasp-security.service';
 import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
 
@@ -7,12 +7,15 @@ import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
   templateUrl: 'Login.component.html'
 })
 
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   i18n;
 
-  constructor(private oaspI18n: OaspI18n, private securityService: SecurityService) {
-      this.i18n = oaspI18n.getI18n();
+  constructor(public oaspI18n: OaspI18n, private securityService: SecurityService) {
+  }
+
+  ngOnInit() {
+    this.i18n = this.oaspI18n.getI18n();
   }
 
   hideAlertLogin() {

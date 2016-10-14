@@ -1,27 +1,55 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Http } from '@angular/http';
-import { Router } from '@angular/router';
 import { CrudComponent } from '../../../main/components/crud/view/Crud.component';
-import { CrudRestService } from '../../../main/components/crud/service/Crud.service.rest';
 import { OaspI18n} from '../../../oasp/oasp-i18n/oasp-i18n.service';
-import { HttpClient} from '../../../oasp/oasp-security/http-client.service';
 import { SecurityService} from '../../../oasp/oasp-security/oasp-security.service';
+import { Router } from '@angular/router';
+import { AppModule } from '../../../app.module';
+import { OaspModule } from '../../../oasp/oasp.module';
 
-let router: Router;
-let http: Http;
-let httpC = new HttpClient(http);
-let securityService = new SecurityService(router, httpC);
-let crudRestService = new CrudRestService(httpC);
-let crud;
+let comp: CrudComponent;
+let fixture: ComponentFixture<CrudComponent>;
+let oaspI18n: OaspI18n;
+let i18n;
+
+class RouterStub {
+  navigateByUrl(url: string) { return url; }
+}
 
 describe('CrudComponent', () => {
+
   beforeEach(() => {
-    crud = new CrudComponent(securityService, new OaspI18n, crudRestService);
+    TestBed.configureTestingModule({
+      imports : [ AppModule, OaspModule ],
+      providers: [ OaspI18n,
+                   SecurityService,
+                   { provide: Router, useClass: RouterStub } ]
+    }).compileComponents();
+  });
+
+  beforeEach(() => {
+
+    fixture = TestBed.createComponent(CrudComponent);
+    comp = fixture.componentInstance;
+
+    spyOn(comp, 'ngOnInit').and.callFake(() => {
+      comp.security = true;
+      comp.i18n = comp.oaspI18n.getI18n();
+      comp.myState = -1;
+      comp.headers = [comp.i18n.tables.number, comp.i18n.tables.state, comp.i18n.tables.waiter];
+      comp.attributeNames = ['number', 'state', 'waiter'];
+      comp.states = ['FREE', 'OCCUPIED', 'RESERVED'];
+    });
+
+    oaspI18n = new OaspI18n();
+    i18n = oaspI18n.getI18n();
+
+    fixture.detectChanges();
 
   });
 
-  it('pageData has no correct properties pagination and sort', () => {
-      expect(crud.pageData.pagination).toBeDefined();
-      expect(crud.pageData.sort).toBeDefined();
+  it('I18n has been defined', () => {
+    expect(comp.i18n).toBeDefined();
   });
+
 });

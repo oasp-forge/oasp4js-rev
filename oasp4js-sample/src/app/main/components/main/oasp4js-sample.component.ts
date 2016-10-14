@@ -17,11 +17,7 @@ export class Oasp4jsSampleAppComponent {
 
   i18n;
 
-  constructor(
-    private securityService: SecurityService,
-    private oaspI18n: OaspI18n,
-    private http: HttpClient
-  ) {
+  constructor(private securityService: SecurityService, private oaspI18n: OaspI18n, private http: HttpClient) {
     this.oaspI18n.initI18n();
     this.i18n = this.oaspI18n.getI18n();
   }
@@ -30,7 +26,6 @@ export class Oasp4jsSampleAppComponent {
       this.securityService.funcionLogin(form.value.username, form.value.password);
       this.securityService.functionsesionExpired();
   }
-
 
   hideAlertLogin() {
       this.securityService.closeErrorLogin();
