@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { LanguageSelectorComponent } from '../../../../oasp/oasp-ui/language-selector/language-selector.component';
 import { ModalDialogComponent } from '../../../../oasp/oasp-ui/modal-dialog/modal-dialog.component';
 import { OaspI18n} from '../../../../oasp/oasp-i18n/oasp-i18n.service';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 
 let comp: LanguageSelectorComponent;
 let fixture: ComponentFixture<LanguageSelectorComponent>;

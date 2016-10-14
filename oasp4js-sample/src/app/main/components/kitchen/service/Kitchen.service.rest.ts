@@ -57,7 +57,7 @@ export class KitchenRestService {
     obj.cookId = null;
     this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
              .map(res =>  res.json())
-             .subscribe(data => {this.http.disableLoading(); },
+             .subscribe(data => { this.http.disableLoading(); },
                         err =>  { this.http.disableLoading(); });
   };
 
@@ -79,14 +79,14 @@ export class KitchenRestService {
   moveOrderPosition(obj, cookId) {
       obj.cookId = cookId;
       return this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
-                               .map(res =>  res.json());
+                      .map(res =>  res.json());
   };
 
   finishOrderPosition(obj, state) {
       obj.state = state;
       this.http.post(this.BO.orderPositionPOST, JSON.stringify(obj))
-                               .map(res =>  res.json())
-                               .subscribe(data => {this.http.disableLoading(); },
-                                          err =>  { this.http.disableLoading(); });
+               .map(res =>  res.json())
+               .subscribe(data => {this.http.disableLoading(); },
+                          err =>  { this.http.disableLoading(); });
   };
 }

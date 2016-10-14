@@ -9,9 +9,9 @@ import { OaspI18n } from '../../../oasp/oasp-i18n/oasp-i18n.service';
 
 export class LoginComponent implements OnInit {
 
-  i18n;
+  public i18n;
 
-  constructor(public oaspI18n: OaspI18n, private securityService: SecurityService) {
+  constructor(public oaspI18n: OaspI18n, public securityService: SecurityService) {
   }
 
   ngOnInit() {
