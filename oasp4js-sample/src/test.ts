@@ -11,6 +11,8 @@ import 'zone.js/dist/fake-async-test';
 declare var __karma__: any;
 declare var require: any;
 
+import {} from 'jasmine';
+
 // Prevent Karma from running prematurely.
 __karma__.loaded = function () {};
 
