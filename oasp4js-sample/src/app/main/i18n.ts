@@ -97,8 +97,8 @@
                         loginPage : {
                             intro : `Dies ist die Anmeldung zur devonfw Restaurant
                                      Beispielanwendung als technische Plattform für einen Angular2 Client.`,
-                            signIn : 'anmelden',
-                            failed : 'Die Daten sind nicht korrekt , bitte versuchen Sie es erneut',
+                            signIn : 'Anmelden',
+                            failed : 'Die Anmeldung hat fehlgeschlagen, bitte versuchen Sie es erneut',
                             form : {
                                 usernamePlaceHolder : 'Benutzername',
                                 usernameError : 'Bitte geben Sie Ihren Benutzernamen ein',
@@ -114,9 +114,9 @@
                             kitchenTab : 'Küche',
                             confirm : {
                                 title : 'Bestätigung',
-                                bodyMsg1 : `Wenn Sie die Sprache ändern , Seite werden wir neu geladen
-                                            und Sie können alle nicht gespeicherten Änderungen verloren.`,
-                                bodyMsg2 : 'Bist du sicher?'
+                                bodyMsg1 : `Wenn Sie die Sprache ändern, wird die Seite neu geladen und
+								ihre Angaben gehen verloren.`,
+                                bodyMsg2 : 'Sind Sie sicher?'
                             }
                         },
 
@@ -126,46 +126,46 @@
 
                         buttons : {
                             logOffBtn : 'Abmelden',
-                            submitBtn : 'einreichen',
-                            clearBtn : 'Klar',
-                            searchBtn : 'Suche',
+                            submitBtn : 'Absenden',
+                            clearBtn : 'Eingaben löschen',
+                            searchBtn : 'Suchen',
                             editBtn : 'Bearbeiten',
                             cancelBtn : 'Abbrechen',
                             doneBtn : 'Fertig',
                             addBtn : 'Hinzufügen',
-                            removeBtn : 'Herausnehmen'
+                            removeBtn : 'Entfernen'
                         },
 
                         searchPanel : {
-                            title : 'Suche',
-                            all : 'alle'
+                            title : 'Suchen',
+                            all : 'alles'
                         },
 
                         pagination : {
-                            next: 'Nächster',
-                            previous : 'früher'
+                            next: 'Nächste Seite',
+                            previous : 'Vorherige Seite'
                         },
 
                         tables : {
                             title : 'Tische',
-                            number : 'Nummer',
-                            state : 'Zustand',
+                            number : 'nummer',
+                            state : 'Status',
                             waiter : 'Bedienung',
                             btns : {
                                 free : 'Frei',
                                 occupy : 'Besetzen',
-                                reserve : 'Reserve',
-                                cancel : 'Reservierung aufheben'
+                                reserve : 'Reservieren',
+                                cancel : 'Reservierung stornieren'
                             }
                         },
 
                         details : {
-                            title: 'Details zum Tabelle  #',
+                            title: 'Mehr Informationen zum Tisch #',
                             status : 'Status',
-                            offers : 'bieten',
+                            offers : 'Angebote',
                             number: 'Nummer',
                             description: 'Beschreibung',
-                            state: 'Zustand',
+                            state: 'Status',
                             price : 'Preis',
                             comment : 'Kommentar'
                         },
@@ -173,18 +173,18 @@
                         kitchen : {
                             title: 'Küche',
                             id : 'ID',
-                            orderID : 'Bestellen',
+                            orderID : 'BestellungsID',
                             offerName : 'Angebot Name',
-                            mealName : 'Mahlzeit Name',
+                            mealName : 'Gericht Name',
                             sideDishName : 'Beilage Name',
                             available : 'Verfügbar',
                             assigned : 'Zugewiesen'
                         },
 
                         notFound: {
-                          title: '404 Fehler',
-                          subtitle: 'Bad URL oder Seite existiert nicht',
-                          backBtn: 'Zurück zur Anmeldung'
+                          title: 'Fehler 404',
+                          subtitle: 'Schlechte URL oder Seite nicht gefunden',
+                          backBtn: 'Zurück zum Anmeldung'
                         }
                     },
                     es : {
